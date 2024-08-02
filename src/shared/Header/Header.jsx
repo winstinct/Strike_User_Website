@@ -15,10 +15,10 @@ export default function Header() {
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/">Offers</NavLink>
+          <NavLink to="/offers">Offers</NavLink>
         </li>
         <li>
-          <NavLink to="/">Tickets</NavLink>
+          <NavLink to="/tickets">Tickets</NavLink>
         </li>
       </ul>
 
@@ -26,6 +26,7 @@ export default function Header() {
         <Icon className="text-[2rem]" icon="mdi:bell-outline" />
         <Icon className="text-[2rem]" icon="lets-icons:bag" />
         <div className="bg-gray-300 h-[50px] w-[2px]"></div>
+        <Link to="/login">
         <button
           style={{
             backgroundImage: "linear-gradient(#A967FF, #5500C3)",
@@ -35,6 +36,7 @@ export default function Header() {
         >
           Login/Signup
         </button>
+        </Link>
       </div>
       
     </header>

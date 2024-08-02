@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import strikeLogo from "../../assets/strike-logo.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
@@ -17,39 +17,50 @@ export default function MobileHeader() {
           <Icon
             className="text-[2.5rem] cursor-pointer border-[1px] border-gray-300 rounded-md"
             icon="bitcoin-icons:cross-outline"
-            onClick={()=>setIsVisible(!isVisible)}
+            onClick={() => setIsVisible(!isVisible)}
           />
         ) : (
           <Icon
             className="text-[2.5rem] cursor-pointer border-[1px] border-gray-300 rounded-md"
             icon="ic:sharp-menu"
-            onClick={()=>setIsVisible(!isVisible)}
+            onClick={() => setIsVisible(!isVisible)}
           />
         )}
       </div>
 
-      {isVisible && (<ul className="flex flex-col justify-center gap-[1rem] py-[1.5rem] absolute left-0 bg-white w-full shadow-lg">
-        <li className="hover:bg-gray-300 py-2 px-5 cursor-pointer select-none">
-          <NavLink to="">Home</NavLink>
-        </li>
-        <li className="hover:bg-gray-300 py-2 px-5 cursor-pointer select-none">
-          <NavLink to="">Offers</NavLink>
-        </li>
-        <li className="hover:bg-gray-300 py-2 px-5 cursor-pointer select-none">
-          <NavLink to="">Tickets</NavLink>
-        </li>
-        <li className="py-2 px-5 cursor-pointer">
-          <button
-            style={{
-              backgroundImage: "linear-gradient(#A967FF, #5500C3)",
-              boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
-            }}
-            className="text-white rounded-[50px] lg:py-[1rem] py-[0.5rem] lg:px-[3rem] px-[1.5rem]"
-          >
-            Login/Signup
-          </button>
-        </li>
-      </ul>)}
+      {isVisible && (
+        <div className="flex flex-col justify-center gap-[1rem] py-[1.5rem] absolute left-0 z-50 bg-white w-full shadow-lg">
+          <NavLink onClick={()=>setIsVisible(!isVisible)} to="/">
+            <p className="hover:bg-gray-300 py-2 px-5 cursor-pointer select-none">
+              Home
+            </p>
+          </NavLink>
+          <NavLink onClick={()=>setIsVisible(!isVisible)} to="/offers">
+            <p className="hover:bg-gray-300 py-2 px-5 cursor-pointer select-none">
+              Offers
+            </p>
+          </NavLink>
+          <NavLink onClick={()=>setIsVisible(!isVisible)} to="/tickets">
+            <p className="hover:bg-gray-300 py-2 px-5 cursor-pointer select-none">
+              Tickets
+            </p>
+          </NavLink>
+          <p className="py-2 px-5 cursor-pointer">
+            <Link to="/login">
+              <button
+                style={{
+                  backgroundImage: "linear-gradient(#A967FF, #5500C3)",
+                  boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
+                }}
+                className="text-white rounded-[50px] lg:py-[1rem] py-[0.5rem] lg:px-[3rem] px-[1.5rem]"
+                onClick={() => setIsVisible(!isVisible)}
+              >
+                Login/Signup
+              </button>
+            </Link>
+          </p>
+        </div>
+      )}
     </header>
   );
 }
