@@ -10,7 +10,7 @@ export default function MainLayout() {
     <div>
       <Header/>
       <div className='my-[2rem] text-center h-[5rem]'>
-        <h1>Content goes here .....</h1>
+        <h1>Content goes here ...</h1>
       </div>
       {pathname === "/login" || pathname === "/signup" ? "" : <Footer/>}
     </div>
