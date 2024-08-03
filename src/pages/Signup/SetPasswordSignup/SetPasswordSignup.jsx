@@ -105,7 +105,7 @@ export default function SetPasswordSignup() {
     //   setShowError(false);
     //   navigate("/login");
     // }
-    navigate("/login")
+    navigate("/personal-details-layout")
   }
 
   return (

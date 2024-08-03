@@ -10,6 +10,10 @@ import OTPVerification from "../pages/PasswordReset/OTPVerification/OTPVerificat
 import SetPassword from "../pages/PasswordReset/SetPassword/SetPassword";
 import OTPVerificationSignup from "../pages/Signup/OTPVerificationSignup/OTPVerificationSignup";
 import SetPasswordSignup from "../pages/Signup/SetPasswordSignup/SetPasswordSignup";
+import PersonalDetailsLayout from "../layouts/PersonalDetailsLayout";
+import PersonalDetails from "../pages/Signup/PersonalDetails/PersonalDetails";
+import ContactDetails from "../pages/Signup/PersonalDetails/ContactDetails";
+import LocationDetails from "../pages/Signup/PersonalDetails/LocationDetails";
 
 export const router = createBrowserRouter([
     {
@@ -55,6 +59,24 @@ export const router = createBrowserRouter([
         {
           path:"set-password-signup",
           element:<SetPasswordSignup/>
+        },
+      ]
+    },
+    {
+      path: "/personal-details-layout",
+      element: <PersonalDetailsLayout/>,
+      children:[
+        {
+          path:'personal-details',
+          element:<PersonalDetails/>
+        },
+        {
+          path:'',
+          element:<ContactDetails/>
+        },
+        {
+          path:'location-details',
+          element:<LocationDetails/>
         },
       ]
     },
