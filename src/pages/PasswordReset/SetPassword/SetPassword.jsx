@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import slider1Img from "../../assets/slider-1.svg";
-import slider2Img from "../../assets/slider-2.svg";
-import slider3Img from "../../assets/slider-3.svg";
+import { Link, useAsyncError, useNavigate } from "react-router-dom";
+import slider1Img from "../../../assets/slider-1.svg";
+import slider2Img from "../../../assets/slider-2.svg";
+import slider3Img from "../../../assets/slider-3.svg";
 
 // Slider
 // Import Swiper React components
@@ -15,23 +15,23 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
-import RequiredErrorMsg from "../../shared/RequiredError/RequiredErrorMsg";
-import RequiredStar from "../../shared/RequiredStar/RequiredStar";
+import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 
-export default function Login() {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function SetPassword() {
+  const navigate = useNavigate()
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
   const [showError, setShowError] = useState(false);
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e)=>{
     e.preventDefault();
-    if (!emailRegex.test(email)) {
-      return setShowError(true);
+    if(confirmPassword !== newPassword){
+      return setShowError(true)
     }
-    console.log(email, password);
-  };
+    navigate("/login")
+  }
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] my-[3rem]">
       {/* Slider Start  */}
@@ -112,97 +112,90 @@ export default function Login() {
       <div className="flex flex-col justify-center md:mt-0 mt-[2rem]">
         <form action="">
           <header>
+          <div onClick={()=>navigate(-1)} className="border-[1px] border-gray-300 rounded-[50px] shadow-2xl max-w-[80px] h-[40px] flex justify-center items-center mb-[2.5rem] cursor-pointer"><Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" /></div>
             <h1 className="md:text-[2rem] text-[1.5rem] font-semibold">
-              Hi, Welcome Back! 👋
+            Set Password
             </h1>
-            <p className="text-[14px]">Log in to your account!</p>
+            <p className="text-[14px] mt-[0.5rem]">Please enter your new password</p>
           </header>
 
           <div className="my-[1.5rem] space-y-[1rem]">
             <div>
-              <label className="font-medium block mb-[0.2rem]" htmlFor="email">
-                Email
-                <RequiredStar />
-              </label>
-              <input
-                className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
-                placeholder="Email"
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              {email && !emailRegex.test(email) && showError && (
-                <p className="text-red-500 text-[14px]">
-                  This email is invalid!
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                className="font-medium block mb-[0.2rem]"
-                htmlFor="password"
-              >
-                Password
-                <RequiredStar />
+              <label className="font-medium block mb-[0.2rem]" htmlFor="newPassword">
+              Enter New Password<RequiredStar/>
               </label>
               <div className="relative">
                 <input
                   className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
-                  placeholder="Enter password"
-                  type={isPasswordVisible ? "text" : "password"}
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter New password"
+                  type={isNewPasswordVisible ? "text" : "password"}
+                  id="newPassword"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                 />
-                {isPasswordVisible ? (
+                {isNewPasswordVisible ? (
                   <Icon
-                    onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                    onClick={() => setIsNewPasswordVisible(!isNewPasswordVisible)}
                     className="absolute top-[6px] right-2 text-[1.8rem] text-[#CCCCCC] cursor-pointer"
                     icon="mdi:eye-off"
                   />
                 ) : (
                   <Icon
-                    onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                    onClick={() => setIsNewPasswordVisible(!isNewPasswordVisible)}
                     className="absolute top-[6px] right-2 text-[1.8rem] text-[#CCCCCC] cursor-pointer"
                     icon="mdi:eye"
                   />
                 )}
               </div>
-              <Link to="/forgot-password">
-                <p className="text-right text-[14px] hover:underline mt-[0.3rem]">
-                  Forgot Password?
-                </p>
-              </Link>
+            </div>
+
+            <div>
+              <label className="font-medium block mb-[0.2rem]" htmlFor="confirmPassword">
+              Re-Enter New Password<RequiredStar/>
+              </label>
+              <div className="relative">
+                <input
+                  className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
+                  placeholder="Re-Enter New password"
+                  type={isConfirmPasswordVisible ? "text" : "password"}
+                  id="confirmPassword"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                {isConfirmPasswordVisible ? (
+                  <Icon
+                    onClick={() => setIsConfirmPasswordVisible(!isConfirmPasswordVisible)}
+                    className="absolute top-[6px] right-2 text-[1.8rem] text-[#CCCCCC] cursor-pointer"
+                    icon="mdi:eye-off"
+                  />
+                ) : (
+                  <Icon
+                    onClick={() => setIsConfirmPasswordVisible(!isConfirmPasswordVisible)}
+                    className="absolute top-[6px] right-2 text-[1.8rem] text-[#CCCCCC] cursor-pointer"
+                    icon="mdi:eye"
+                  />
+                )}
+              </div>
+              {confirmPassword && newPassword && showError && confirmPassword !== newPassword && (<p className="text-red-500 text-[14px]">Password does not match!</p>)}
             </div>
           </div>
 
           <footer className="text-center">
             <button
               style={{
-                backgroundImage:
-                  !email || !password
-                    ? "linear-gradient(#6C2D91, #2C005B)"
-                    : "linear-gradient(#A967FF, #5500C3)",
+                backgroundImage: !newPassword || !confirmPassword ? 'linear-gradient(#6C2D91, #2C005B)' : 'linear-gradient(#A967FF, #5500C3)',
                 boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
               }}
               className="text-white rounded-[50px] py-[0.5rem] px-[1.5rem] w-full"
-              disabled={!email || !password ? true : false}
+              disabled={!newPassword || !confirmPassword ? true : false}
               onClick={handleSubmit}
             >
-              Login
+              Submit
             </button>
-            <p className="mt-[1rem]">
-              Don’t have an account?{" "}
-              <Link className="text-[#A967FF] hover:underline" to="/signup">
-                Sign Up
-              </Link>{" "}
-              now.
-            </p>
           </footer>
         </form>
       </div>
     </div>
   );
 }
+
