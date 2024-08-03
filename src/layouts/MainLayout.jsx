@@ -5,7 +5,6 @@ import { Outlet, useLocation } from 'react-router-dom'
 
 export default function MainLayout() {
   const {pathname} = useLocation();
-  console.log('Current Location===> ', pathname)
   return (
     <div>
       <Header/>
