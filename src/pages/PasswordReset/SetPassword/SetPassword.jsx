@@ -23,15 +23,91 @@ export default function SetPassword() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [showError, setShowError] = useState(false);
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%._-])[A-Za-z\d!@#$%._-]{8,}$/;
+
+  const valid = (id) => {
+    const element = document.getElementById(id);
+    element.style.color = "#24B24B";
+    element.style.borderColor = "#24B24B";
+  };
+
+  const inValid = (id) => {
+    const element = document.getElementById(id);
+    element.style.color = "red";
+    element.style.borderColor = "red";
+  };
+
+  const handleChange = (e) => {
+    //validate password
+    const pwd = e.target.value;
+    if (pwd.match(/[A-Z]/) !== null) {
+      valid("upper");
+    } else {
+      inValid("upper");
+    }
+
+    if (pwd.match(/[a-z]/) !== null) {
+      valid("lower");
+    } else {
+      inValid("lower");
+    }
+
+    if (pwd.match(/[0-9]/) !== null) {
+      valid("num");
+    } else {
+      inValid("num");
+    }
+
+    if (pwd.match(/[@&#$%]/) !== null) {
+      valid("char");
+    } else {
+      inValid("char");
+    }
+
+    if (pwd.length >= 8) {
+      valid("more8");
+    } else {
+      inValid("more8");
+    }
+
+    if (passwordRegex.test(pwd)) {
+      setIsPasswordValid(true);
+    } else {
+      setIsPasswordValid(false);
+    }
+    setNewPassword(pwd);
+  };
 
   const handleSubmit = (e)=>{
     e.preventDefault();
     if(confirmPassword !== newPassword){
       return setShowError(true)
     }
+
+     //Validate password
+     if (!passwordRegex.test(newPassword)) {
+      setIsPasswordValid(false);
+      setShowError(true);
+      return;
+    }
+
+    // const result = await changePasswordByEmailApi({
+    //   newPassword: password,
+    //   otp_reference: reference,
+    //   email: email,
+    // });
+    // if (!result?.error) {
+    //   setPassword("");
+    //   setConfirmPassword("");
+    //   setShowError(false);
+    //   navigate("/login");
+    // }
     navigate("/login")
   }
+
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] my-[3rem]">
       {/* Slider Start  */}
@@ -110,7 +186,7 @@ export default function SetPassword() {
       {/* Slider End  */}
 
       <div className="flex flex-col justify-center md:mt-0 mt-[2rem]">
-        <form action="">
+        <div>
           <header>
           <div onClick={()=>navigate(-1)} className="border-[1px] border-gray-300 rounded-[50px] shadow-2xl max-w-[80px] h-[40px] flex justify-center items-center mb-[2.5rem] cursor-pointer"><Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" /></div>
             <h1 className="md:text-[2rem] text-[1.5rem] font-semibold">
@@ -119,7 +195,7 @@ export default function SetPassword() {
             <p className="text-[14px] mt-[0.5rem]">Please enter your new password</p>
           </header>
 
-          <div className="my-[1.5rem] space-y-[1rem]">
+          <div className="mt-[1.5rem] mb-[2.5rem] space-y-[1rem]">
             <div>
               <label className="font-medium block mb-[0.2rem]" htmlFor="newPassword">
               Enter New Password<RequiredStar/>
@@ -131,7 +207,7 @@ export default function SetPassword() {
                   type={isNewPasswordVisible ? "text" : "password"}
                   id="newPassword"
                   value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  onChange={handleChange}
                 />
                 {isNewPasswordVisible ? (
                   <Icon
@@ -177,7 +253,40 @@ export default function SetPassword() {
                 )}
               </div>
               {confirmPassword && newPassword && showError && confirmPassword !== newPassword && (<p className="text-red-500 text-[14px]">Password does not match!</p>)}
+              {confirmPassword && newPassword && showError && !isPasswordValid && confirmPassword === newPassword  && (<p className="text-red-500 text-[14px]">Invalid Password</p>)}
             </div>
+          </div>
+
+          {/* Password Validation Criteria  */}
+          <div className="mb-[2.5rem]">
+          <h3 className="font-semibold text-[#64646E]">Your Password Must Contain</h3>
+          <ul className="list-disc list-inside text-[14px] space-y-[0.3rem] mt-[0.5rem]">
+            <li
+              id="more8"
+            >
+              Between 8 and 20 characters
+            </li>
+            <li
+              id="upper"
+            >
+              1 Upper Case Letter
+            </li>
+            <li
+              id="lower"
+            >
+              1 Lower Case Letter
+            </li>
+            <li
+              id="num"
+            >
+              1 Number
+            </li>
+            <li
+              id="char"
+            >
+              1 Special Character (@ & # $ %)
+            </li>
+          </ul>
           </div>
 
           <footer className="text-center">
@@ -193,7 +302,7 @@ export default function SetPassword() {
               Submit
             </button>
           </footer>
-        </form>
+        </div>
       </div>
     </div>
   );
