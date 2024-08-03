@@ -15,6 +15,8 @@ export default function MainLayout() {
       pathname === "/signup" ||
       pathname === "/forgot-password" ||
       pathname === "/otp-verification" ||
+      pathname === "/set-password-signup" ||
+      pathname === "/otp-verification-signup" ||
       pathname === "/set-password" ? (
         ""
       ) : (
