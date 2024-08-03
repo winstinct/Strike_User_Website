@@ -8,6 +8,8 @@ import Signup from "../pages/Signup/Signup";
 import ForgotPassword from "../pages/PasswordReset/ForgotPassword/ForgotPassword";
 import OTPVerification from "../pages/PasswordReset/OTPVerification/OTPVerification";
 import SetPassword from "../pages/PasswordReset/SetPassword/SetPassword";
+import OTPVerificationSignup from "../pages/Signup/OTPVerificationSignup/OTPVerificationSignup";
+import SetPasswordSignup from "../pages/Signup/SetPasswordSignup/SetPasswordSignup";
 
 export const router = createBrowserRouter([
     {
@@ -45,6 +47,14 @@ export const router = createBrowserRouter([
         {
           path:"set-password",
           element:<SetPassword/>
+        },
+        {
+          path:"otp-verification-signup",
+          element:<OTPVerificationSignup/>
+        },
+        {
+          path:"set-password-signup",
+          element:<SetPasswordSignup/>
         },
       ]
     },

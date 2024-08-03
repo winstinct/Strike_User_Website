@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import slider1Img from "../../assets/slider-1.svg"
 import slider2Img from "../../assets/slider-2.svg"
 import slider3Img from "../../assets/slider-3.svg";
@@ -17,6 +17,11 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 
 export default function Signup() {
+  const navigate = useNavigate();
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    navigate("/otp-verification-signup");
+  }
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] my-[3rem]">
 
@@ -88,6 +93,7 @@ export default function Signup() {
               boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
             }}
             className="text-white rounded-[50px] py-[0.5rem] px-[1.5rem] w-full"
+            onClick={handleSubmit}
             >Submit</button>
             <p className="mt-[1rem]">Already have an account? <Link className="text-[#A967FF] hover:underline" to="/login">Login</Link> now.</p>
           </footer>
