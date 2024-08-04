@@ -21,9 +21,16 @@ export default function ContactDetails() {
   const { name, flags, countryCallingCode } = countries[country];
   const callingCode = countries[country]?.countryCallingCode || "";
   const [mobileNumber, setMobileNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [showError, setShowError] = useState(false)
   console.log("mobile number===> ", mobileNumber);
 
   const handleNext = () => {
+    // validate input fields 
+    if(!mobileNumber || !email){
+      return setShowError(true)
+    }
+
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
@@ -112,6 +119,7 @@ export default function ContactDetails() {
               onChange={(e) => setMobileNumber(e.target.value)}
             />
           </div>
+          {!mobileNumber && showError && (<p className="text-red-500 text-[14px]">This field is required*</p>)}
         </div>
 
         <div>
@@ -123,7 +131,9 @@ export default function ContactDetails() {
             className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
             type="email"
             id="email"
+            onChange={(e)=>setEmail(e.target.value)}
           />
+          {!email && showError && (<p className="text-red-500 text-[14px]">This field is required*</p>)}
         </div>
       </div>
       <div className="flex md:h-[150px] relative md:mt-0 mt-[4rem]">
