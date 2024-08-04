@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCountries } from "use-react-countries";
 import {
@@ -11,8 +11,10 @@ import {
   Button,
 } from "@material-tailwind/react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
+import { StepperContext } from "../../../contexts/StepperContextProvider";
 
 export default function ContactDetails() {
+  const {currentStep, setCurrentStep, steps} = useContext(StepperContext)
   const navigate = useNavigate();
   const { countries } = useCountries();
   const [country, setCountry] = useState(0);
@@ -20,16 +22,26 @@ export default function ContactDetails() {
   const callingCode = countries[country]?.countryCallingCode || "";
   const [mobileNumber, setMobileNumber] = useState("");
   console.log("mobile number===> ", mobileNumber);
-  const handleNext = ()=>{
-    navigate("/personal-details-layout/personal-details")
-  }
+
+  const handleNext = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
   return (
     <div>
       <div>
         <div className="flex items-center gap-5 mb-[3rem]">
           <Icon
             onClick={() => navigate(-1)}
-            className="text-[2.5rem] border-[1px] w-[80px] rounded-[50px] cursor-pointer border-gray-300"
+            className="text-[2.5rem] hover:bg-[#A967FF] hover:text-white hover:border-[#A967FF] duration-200 border-[1px] w-[80px] rounded-[50px] cursor-pointer border-gray-300"
             icon="lets-icons:arrow-left-long"
           />
           <h3 className="md:text-[2rem] text-[1.5rem] font-semibold">
@@ -115,16 +127,16 @@ export default function ContactDetails() {
         </div>
       </div>
       <div className="flex md:h-[150px] relative md:mt-0 mt-[4rem]">
-      <button
-        style={{
-          backgroundImage: "linear-gradient(#A967FF, #5500C3)",
-          boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
-        }}
-        className="text-white rounded-[50px] h-[40px] py-[0.5rem] px-[1.5rem] md:w-[300px] w-full absolute bottom-0 right-0"
-        onClick={handleNext}
-      >
-        Next
-      </button>
+        <button
+          style={{
+            backgroundImage: "linear-gradient(#A967FF, #5500C3)",
+            boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
+          }}
+          className="text-white rounded-[50px] h-[40px] py-[0.5rem] px-[1.5rem] md:w-[300px] w-full absolute bottom-0 right-0"
+          onClick={handleNext}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

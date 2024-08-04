@@ -112,7 +112,7 @@ export default function OTPVerificationSignup() {
           <header>
             <div
               onClick={() => navigate(-1)}
-              className="border-[1px] border-gray-300 rounded-[50px] shadow-2xl max-w-[80px] h-[40px] flex justify-center items-center mb-[2.5rem] cursor-pointer"
+              className="border-[1px] hover:bg-[#A967FF] hover:text-white hover:border-[#A967FF] duration-200 border-gray-300 rounded-[50px] shadow-2xl max-w-[80px] h-[40px] flex justify-center items-center mb-[2.5rem] cursor-pointer"
             >
               <Icon
                 className="text-[2.5rem]"

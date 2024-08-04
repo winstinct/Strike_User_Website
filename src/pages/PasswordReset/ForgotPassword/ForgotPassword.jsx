@@ -110,7 +110,7 @@ export default function ForgotPassword() {
       <div className="flex flex-col justify-center md:mt-0 mt-[2rem]">
         <form action="">
           <header>
-          <div onClick={()=>navigate(-1)} className="border-[1px] border-gray-300 rounded-[50px] shadow-2xl max-w-[80px] h-[40px] flex justify-center items-center mb-[2.5rem] cursor-pointer"><Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" /></div>
+          <div onClick={()=>navigate(-1)} className="border-[1px] hover:bg-[#A967FF] hover:text-white hover:border-[#A967FF] duration-200 border-gray-300 rounded-[50px] shadow-2xl max-w-[80px] h-[40px] flex justify-center items-center mb-[2.5rem] cursor-pointer"><Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" /></div>
             <h1 className="md:text-[2rem] text-[1.5rem] font-semibold">
             Forgot Password?
             </h1>
