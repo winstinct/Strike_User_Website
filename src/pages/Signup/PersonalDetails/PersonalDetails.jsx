@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCountries } from "use-react-countries";
 import { Select, Option, ThemeProvider } from "@material-tailwind/react";
@@ -15,7 +15,7 @@ const dateOptions = {
 };
 
 export default function PersonalDetails() {
-  const {currentStep, setCurrentStep, steps} = useContext(StepperContext)
+  const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
   const navigate = useNavigate();
   const { countries } = useCountries();
   const [country, setCountry] = useState(0);
@@ -23,20 +23,28 @@ export default function PersonalDetails() {
   const callingCode = countries[country]?.countryCallingCode || "";
   const [mobileNumber, setMobileNumber] = useState("");
   const [dob, setDob] = useState();
-
+  const [selecectedFile, setSelectedFile] = useState(null);
+  console.log("Selected File===> ", selecectedFile && URL.createObjectURL(selecectedFile))
   console.log("mobile number===> ", mobileNumber);
-  
+
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
+    navigate("/personal-details-layout/location-details");
   };
 
   const handleBack = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
+    navigate(-1);
   };
+
+  useEffect(() => {
+    setCurrentStep(1);
+  }, []);
+
   return (
     <div>
       <div>
@@ -54,6 +62,42 @@ export default function PersonalDetails() {
 
       <ThemeProvider value={selectCustomTheme}>
         <div className="grid md:grid-cols-2 grid-cols-1 xl:gap-[2.5rem] gap-[1rem]">
+            {/* Upload File Input  */}
+          {!selecectedFile && (<div className="md:col-span-2 flex justify-center">
+            <div
+              onClick={() => document.getElementById("file").click()}
+              className="border-[4px] border-[#CCCCCC] w-[130px] h-[130px] rounded-full flex justify-center items-center relative cursor-pointer"
+            >
+              <p>Icon</p>
+              <div
+                style={{
+                  backgroundImage: "linear-gradient(#A967FF, #5500C3)",
+                  boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
+                }}
+                className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none"
+              >
+                +
+              </div>
+              <input onChange={(e)=> setSelectedFile(e.target.files[0])} className="hidden" type="file" id="file" />
+            </div>
+          </div>)}
+
+          {/* Uploaded File  */}
+          {selecectedFile && (<div className="md:col-span-2 flex justify-center">
+            <div
+              className="border-[4px] border-[#CCCCCC] w-[130px] h-[130px] rounded-full flex justify-center items-center relative"
+            >
+              <img className="w-[130px] h-[130px] rounded-full p-1" src={URL.createObjectURL(selecectedFile)} alt="Profile Photo" />
+              <div
+                className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none bg-red-700"
+                onClick={()=>setSelectedFile(null)}
+              >
+                c
+              </div>
+            </div>
+          </div>)}
+
+
           <div>
             <label className="block" htmlFor="fname">
               First Name

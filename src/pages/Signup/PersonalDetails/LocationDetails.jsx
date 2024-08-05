@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCountries } from "use-react-countries";
 import {
@@ -36,7 +36,11 @@ export default function LocationDetails() {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
+    navigate(-1)
   };
+  useEffect(()=>{
+    setCurrentStep(2)
+  }, [])
   return (
     <div>
       <div>

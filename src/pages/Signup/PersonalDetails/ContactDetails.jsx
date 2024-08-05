@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCountries } from "use-react-countries";
 import {
@@ -34,12 +34,16 @@ export default function ContactDetails() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
+    navigate("/personal-details-layout/personal-details")
   };
 
   const handleBack = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
+    useEffect(()=>{
+      setCurrentStep(0)
+    }, [])
   };
 
   return (
@@ -108,7 +112,7 @@ export default function ContactDetails() {
             <Input
               type="tel"
               placeholder="Mobile Number"
-              className="rounded-l-none outline-none !border-t-blue-gray-200 pl-2 py-[0.4rem] rounded-r-md"
+              className="rounded-l-none outline-none !border-[1px] !border-gray-300 pl-2 py-[0.4rem] rounded-r-md"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}

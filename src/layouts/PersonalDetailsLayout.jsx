@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Header from "../shared/Header/Header";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StepperContext } from "../contexts/StepperContextProvider";
 
 export default function PersonalDetailsLayout() {
   const {currentStep, steps} = useContext(StepperContext) || {}
-
+  console.log("personal details layout rendered====> ", steps, currentStep)
   return (
     <div>
       <Header />
@@ -14,7 +14,7 @@ export default function PersonalDetailsLayout() {
         <div className="flex md:flex-row flex-col gap-10">
           <div
             style={{ backgroundImage: "linear-gradient(#A967FF, #5500C3)" }}
-            className="text-white md:p-10 p-5 min-h-[450px]"
+            className="text-white md:p-10 p-5 md:min-h-[450px] h-[300px]"
           >
             <div>
               {steps?.map(({ label, content }, index) => {
@@ -60,32 +60,17 @@ export default function PersonalDetailsLayout() {
                       )}
                     </div>
                     <div>
-                      <h3 className="font-semibold">{label.title}</h3>
-                      <p className="text-[12px]">{label.subTitle}</p>
+                      <h3 className="font-semibold">{label?.title}</h3>
+                      <p className="text-[12px]">{label?.subTitle}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
           </div>
-          <div className="flex-1">{steps[currentStep]?.content}</div>
+          {/* <div className="flex-1">{steps[currentStep]?.content}</div> */}
+          <div className="flex-1"><Outlet/></div>
         </div>
-
-        {/* Controller  */}
-        {/* <div className="flex justify-end gap-10 mt-[1rem]">
-          <button
-            onClick={handleBack}
-            className="bg-gray-500 text-white px-6 py-2 rounded-md"
-          >
-            Back
-          </button>
-          <button
-            onClick={handleNext}
-            className="bg-gray-500 text-white px-6 py-2 rounded-md"
-          >
-            Next
-          </button>
-        </div> */}
       </div>
     </div>
   );
