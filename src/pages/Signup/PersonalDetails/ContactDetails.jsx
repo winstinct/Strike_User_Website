@@ -12,6 +12,7 @@ import {
 } from "@material-tailwind/react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
+import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
 
 export default function ContactDetails() {
   const {currentStep, setCurrentStep, steps} = useContext(StepperContext)
@@ -20,14 +21,25 @@ export default function ContactDetails() {
   const [country, setCountry] = useState(0);
   const { name, flags, countryCallingCode } = countries[country];
   const callingCode = countries[country]?.countryCallingCode || "";
+
   const [mobileNumber, setMobileNumber] = useState("");
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false)
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   console.log("mobile number===> ", mobileNumber);
 
   const handleNext = () => {
     // validate input fields 
     if(!mobileNumber || !email){
+      return setShowError(true)
+    }
+
+    if (!emailRegex.test(email)) {
+      return setShowError(true);
+    }
+
+    if(mobileNumber.length !== 10){
       return setShowError(true)
     }
 
@@ -110,7 +122,7 @@ export default function ContactDetails() {
               </div>
             </Menu>
             <Input
-              type="tel"
+              type="number"
               placeholder="Mobile Number"
               className="rounded-l-none outline-none !border-[1px] !border-gray-300 pl-2 py-[0.4rem] rounded-r-md"
               labelProps={{
@@ -123,7 +135,8 @@ export default function ContactDetails() {
               onChange={(e) => setMobileNumber(e.target.value)}
             />
           </div>
-          {!mobileNumber && showError && (<p className="text-red-500 text-[14px]">This field is required*</p>)}
+          {!mobileNumber && showError && <ShowErrorMsg message="This field is required"/>}
+          {mobileNumber && mobileNumber.length !== 10 && showError && <ShowErrorMsg message="Invalid mobile number"/>}
         </div>
 
         <div>
@@ -137,7 +150,8 @@ export default function ContactDetails() {
             id="email"
             onChange={(e)=>setEmail(e.target.value)}
           />
-          {!email && showError && (<p className="text-red-500 text-[14px]">This field is required*</p>)}
+          {!email && showError && <ShowErrorMsg message="This field is required"/>}
+          {email && !emailRegex.test(email) && showError && <ShowErrorMsg message="Please provide valid email"/>}
         </div>
       </div>
       <div className="flex md:h-[150px] relative md:mt-0 mt-[4rem]">

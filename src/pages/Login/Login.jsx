@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import slider1Img from "../../assets/slider-1.svg";
-import slider2Img from "../../assets/slider-2.svg";
-import slider3Img from "../../assets/slider-3.svg";
+import slider1Img from "../../assets/slider-1.png";
+import slider2Img from "../../assets/slider-2.png";
+import slider3Img from "../../assets/slider-3.png";
 
 // Slider
 // Import Swiper React components
@@ -15,8 +15,8 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
-import RequiredErrorMsg from "../../shared/RequiredError/RequiredErrorMsg";
 import RequiredStar from "../../shared/RequiredStar/RequiredStar";
+import ShowErrorMsg from "../../shared/ShowErrorMsg/ShowErrorMsg";
 
 export default function Login() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -27,15 +27,21 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if(!email || !password){
+      return setShowError(true)
+    }
+
     if (!emailRegex.test(email)) {
       return setShowError(true);
     }
     console.log(email, password);
   };
+
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] my-[3rem]">
+    <div className="grid md:grid-cols-2 grid-cols-1 md:pb-0 pb-[1rem] lg:px-[4rem] md:px-[1.5rem] px-[1rem] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem]">
       {/* Slider Start  */}
-      <div className="shadow-lg pb-[2.5rem] rounded-xl">
+      <div className="shadow-lg rounded-xl pb-[1rem] mt-[1rem]">
         <Swiper
           pagination={true}
           autoplay={{
@@ -48,14 +54,14 @@ export default function Login() {
             <div>
               <img
                 src={slider1Img}
-                className="w-full rounded-t-xl"
+                className="w-full h-[300px] rounded-t-xl"
                 alt="Slider-1"
               />
               <div className="md:mx-[2rem] mx-[0.5rem]">
-                <h3 className="text-[1.5rem] font-bold mt-[2.5rem]">
+                <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                   Welcome to <span className="text-[#A967FF]">Strike</span>
                 </h3>
-                <p className="text-[1.25rem] text-[#4C4C4C] mt-[1.5rem] md:mb-[2.5rem] mb-[2rem]">
+                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
                   Purchase lottery tickets for a chance to win big and host
                   private lotteries with friends and family for unforgettable
                   moments.
@@ -63,42 +69,46 @@ export default function Login() {
               </div>
             </div>
           </SwiperSlide>
+
+
           <SwiperSlide>
             <div>
               <img
                 src={slider2Img}
-                className="w-full rounded-t-xl"
+                className="w-full h-[300px] rounded-t-xl"
                 alt="Slider-2"
               />
               <div className="md:mx-[2rem] mx-[0.5rem]">
-                <h3 className="text-[1.5rem] font-bold mt-[2.5rem]">
+                <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                   Play and <span className="text-[#A967FF]">Win 🤩</span>
                 </h3>
-                <p className="text-[1.25rem] text-[#4C4C4C] mt-[1.5rem] md:mb-[2.5rem] mb-[2rem]">
+                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
                   Explore a variety of lottery games with incredible jackpots.
                 </p>
               </div>
             </div>
           </SwiperSlide>
+
           <SwiperSlide>
             <div>
               <img
                 src={slider3Img}
-                className="w-full rounded-t-xl"
+                className="w-full h-[300px] rounded-t-xl"
                 alt="Slider-3"
               />
               <div className="md:mx-[2rem] mx-[0.5rem]">
-                <h3 className="text-[1.5rem] font-bold mt-[2.5rem]">
+                <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                   Get Ready to{" "}
                   <span className="text-[#A967FF]">Strike it Lucky! 🚀</span>
                 </h3>
-                <p className="text-[1.25rem] text-[#4C4C4C] mt-[1.5rem] md:mb-[2.5rem] mb-[2rem]">
+                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
                   Enjoy exclusive perks, bonuses, and rewards as a valued member
                   of the Strike community.
                 </p>
               </div>
             </div>
           </SwiperSlide>
+
         </Swiper>
         <p className="text-[14px] text-center px-[0.2rem]">
           Users must be <span className="text-[#FF0023]">18 or older</span>.
@@ -132,11 +142,8 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {email && !emailRegex.test(email) && showError && (
-                <p className="text-red-500 text-[14px]">
-                  This email is invalid!
-                </p>
-              )}
+              {email && !emailRegex.test(email) && showError && <ShowErrorMsg message="Please provide valid email!"/>}
+              {showError && !email && <ShowErrorMsg message="This field is required*"/>}
             </div>
 
             <div>
@@ -169,6 +176,7 @@ export default function Login() {
                     icon="mdi:eye"
                   />
                 )}
+                {!password && showError && <ShowErrorMsg message="This field is required*"/>}
               </div>
               <Link to="/forgot-password">
                 <p className="text-right text-[14px] hover:underline mt-[0.3rem]">
@@ -181,14 +189,10 @@ export default function Login() {
           <footer className="text-center">
             <button
               style={{
-                backgroundImage:
-                  !email || !password
-                    ? "linear-gradient(#6C2D91, #2C005B)"
-                    : "linear-gradient(#A967FF, #5500C3)",
+                backgroundImage:"linear-gradient(#A967FF, #5500C3)",
                 boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
               }}
               className="text-white rounded-[50px] py-[0.5rem] px-[1.5rem] w-full"
-              disabled={!email || !password ? true : false}
               onClick={handleSubmit}
             >
               Login

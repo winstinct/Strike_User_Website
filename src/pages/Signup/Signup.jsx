@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import slider1Img from "../../assets/slider-1.svg";
-import slider2Img from "../../assets/slider-2.svg";
-import slider3Img from "../../assets/slider-3.svg";
+import slider1Img from "../../assets/slider-1.png";
+import slider2Img from "../../assets/slider-2.png";
+import slider3Img from "../../assets/slider-3.png";
 
 // Slider
 // Import Swiper React components
@@ -13,17 +13,35 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination, Autoplay } from "swiper/modules";
+import RequiredStar from "../../shared/RequiredStar/RequiredStar";
+import { useState } from "react";
+import ShowErrorMsg from "../../shared/ShowErrorMsg/ShowErrorMsg";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [referralCode, setReferralCode] = useState("");
+  const [showError, setShowError] = useState(false)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!emailRegex.test(email)) {
+      return setShowError(true);
+    }
+
+    if(!email || !referralCode){
+      return setShowError(true)
+    }
+
     navigate("/otp-verification-signup");
   };
+
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] my-[3rem]">
-      {/* Slider Start  */}
-      <div className="shadow-lg pb-[2.5rem] rounded-xl">
+    <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] md:pb-0 pb-[1rem]">
+     {/* Slider Start  */}
+     <div className="shadow-lg rounded-xl pb-[1rem] mt-[1rem]">
         <Swiper
           pagination={true}
           autoplay={{
@@ -36,14 +54,14 @@ export default function Signup() {
             <div>
               <img
                 src={slider1Img}
-                className="w-full rounded-t-xl"
+                className="w-full h-[300px] rounded-t-xl"
                 alt="Slider-1"
               />
               <div className="md:mx-[2rem] mx-[0.5rem]">
-                <h3 className="text-[1.5rem] font-bold mt-[2.5rem]">
+                <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                   Welcome to <span className="text-[#A967FF]">Strike</span>
                 </h3>
-                <p className="text-[1.25rem] text-[#4C4C4C] mt-[1.5rem] md:mb-[2.5rem] mb-[2rem]">
+                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
                   Purchase lottery tickets for a chance to win big and host
                   private lotteries with friends and family for unforgettable
                   moments.
@@ -51,42 +69,46 @@ export default function Signup() {
               </div>
             </div>
           </SwiperSlide>
+
+
           <SwiperSlide>
             <div>
               <img
                 src={slider2Img}
-                className="w-full rounded-t-xl"
+                className="w-full h-[300px] rounded-t-xl"
                 alt="Slider-2"
               />
               <div className="md:mx-[2rem] mx-[0.5rem]">
-                <h3 className="text-[1.5rem] font-bold mt-[2.5rem]">
+                <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                   Play and <span className="text-[#A967FF]">Win 🤩</span>
                 </h3>
-                <p className="text-[1.25rem] text-[#4C4C4C] mt-[1.5rem] md:mb-[2.5rem] mb-[2rem]">
+                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
                   Explore a variety of lottery games with incredible jackpots.
                 </p>
               </div>
             </div>
           </SwiperSlide>
+
           <SwiperSlide>
             <div>
               <img
                 src={slider3Img}
-                className="w-full rounded-t-xl"
+                className="w-full h-[300px] rounded-t-xl"
                 alt="Slider-3"
               />
               <div className="md:mx-[2rem] mx-[0.5rem]">
-                <h3 className="text-[1.5rem] font-bold mt-[2.5rem]">
+                <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                   Get Ready to{" "}
                   <span className="text-[#A967FF]">Strike it Lucky! 🚀</span>
                 </h3>
-                <p className="text-[1.25rem] text-[#4C4C4C] mt-[1.5rem] md:mb-[2.5rem] mb-[2rem]">
+                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
                   Enjoy exclusive perks, bonuses, and rewards as a valued member
                   of the Strike community.
                 </p>
               </div>
             </div>
           </SwiperSlide>
+
         </Swiper>
         <p className="text-[14px] text-center px-[0.2rem]">
           Users must be <span className="text-[#FF0023]">18 or older</span>.
@@ -109,29 +131,34 @@ export default function Signup() {
           <div className="my-[1.5rem] space-y-[1rem]">
             <div>
               <label className="font-medium block mb-[0.2rem]" htmlFor="email">
-                Email
+                Email<RequiredStar/>
               </label>
               <input
                 className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
                 placeholder="Email"
                 type="email"
                 id="email"
+                onChange={(e)=>setEmail(e.target.value)}
               />
+              {email && !emailRegex.test(email) && <ShowErrorMsg message="Please provide valid email"/>}
+              {!email && showError && <ShowErrorMsg message="This field is required"/>}
             </div>
 
             <div>
               <label
                 className="font-medium block mb-[0.2rem]"
-                htmlFor="password"
+                htmlFor="referralCode"
               >
-                Referral Code
+                Referral Code<RequiredStar/>
               </label>
               <input
                 className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
                 type="text"
                 placeholder="Enter your code here"
-                id="password"
+                id="referralCode"
+                onChange={(e)=>setReferralCode(e.target.value)}
               />
+               {!referralCode && showError && <ShowErrorMsg message="This field is required"/>}
             </div>
           </div>
 

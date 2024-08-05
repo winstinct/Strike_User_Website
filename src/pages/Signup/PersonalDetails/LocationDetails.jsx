@@ -1,32 +1,29 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCountries } from "use-react-countries";
 import {
-  Input,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Button,
   Select,
   Option,
 } from "@material-tailwind/react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
+import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
 
 export default function LocationDetails() {
   const {currentStep, setCurrentStep, steps} = useContext(StepperContext)
-  const navigate = useNavigate();
-  const { countries } = useCountries();
-  const [country, setCountry] = useState(0);
-  const { name, flags, countryCallingCode } = countries[country];
-  const callingCode = countries[country]?.countryCallingCode || "";
-  const [mobileNumber, setMobileNumber] = useState("");
-  console.log("mobile number===> ", mobileNumber);
+  const navigate = useNavigate("");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [pinCode, setPinCode] = useState("");
+  const [address, setAddress] = useState("");
+  const [showError, setShowError] = useState(false);
   
   const handleNext = () => {
-    alert("Submit Now !")
+    if(!country || !state || !city || !pinCode || !address){
+      return setShowError(true)
+    }
+
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
@@ -44,7 +41,7 @@ export default function LocationDetails() {
   return (
     <div>
       <div>
-        <div className="flex items-center gap-5 mb-[3rem]">
+        <div className="flex items-center gap-5 mb-[1rem]">
           <Icon
             onClick={handleBack}
             className="text-[2.5rem] hover:bg-[#A967FF] hover:text-white hover:border-[#A967FF] duration-200 border-[1px] w-[80px] rounded-[50px] cursor-pointer border-gray-300"
@@ -56,7 +53,7 @@ export default function LocationDetails() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 grid-cols-1 xl:gap-[2.5rem] gap-[1rem]">
+      <div className="grid md:grid-cols-2 grid-cols-1 xl:gap-[1.5rem] gap-[1rem]">
         <div className="w-full">
           <p className="font-medium">
             Country
@@ -64,12 +61,15 @@ export default function LocationDetails() {
           </p>
           <Select
             className="border-[1px] border-gray-300 rounded-md"
-            placeholder="gg"
+            placeholder="Country"
+            value={country}
+            onChange={(value)=>setCountry(value)}
           >
-            <Option value="Male">Male</Option>
-            <Option value="Female">Female</Option>
-            <Option value="Other">Other</Option>
+            <Option value="India">India</Option>
+            <Option value="Nepal">Nepal</Option>
+            <Option value="Mayanmar">Mayanmar</Option>
           </Select>
+          {showError && !country && <ShowErrorMsg message="This field is required"/>}
         </div>
         <div className="w-full">
           <p className="font-medium">
@@ -79,11 +79,14 @@ export default function LocationDetails() {
           <Select
             className="border-[1px] border-gray-300 rounded-md"
             placeholder="gg"
+            value={state}
+            onChange={(value)=>setState(value)}
           >
-            <Option value="Male">Male</Option>
-            <Option value="Female">Female</Option>
-            <Option value="Other">Other</Option>
+            <Option value="India">India</Option>
+            <Option value="Nepal">Nepal</Option>
+            <Option value="Mayanmar">Mayanmar</Option>
           </Select>
+          {showError && !state && <ShowErrorMsg message="This field is required"/>}
         </div>
         <div className="w-full">
           <p className="font-medium">
@@ -93,22 +96,27 @@ export default function LocationDetails() {
           <Select
             className="border-[1px] border-gray-300 rounded-md"
             placeholder="gg"
+            value={city}
+            onChange={(value)=>setCity(value)}
           >
-            <Option value="Male">Male</Option>
-            <Option value="Female">Female</Option>
-            <Option value="Other">Other</Option>
+            <Option value="India">India</Option>
+            <Option value="Nepal">Nepal</Option>
+            <Option value="Mayanmar">Mayanmar</Option>
           </Select>
+          {showError && !city && <ShowErrorMsg message="This field is required"/>}
         </div>
         <div>
-          <label className="block" htmlFor="email">
+          <label className="block" htmlFor="pincode">
             Pincode
             <RequiredStar />
           </label>
           <input
             className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
-            type="email"
-            id="email"
+            type="number"
+            id="pincode"
+            onChange={(e)=>setPinCode(e.target.value)}
           />
+          {showError && !pinCode && <ShowErrorMsg message="This field is required"/>}
         </div>
         <div className="md:col-span-2">
           <label className="block" htmlFor="address">
@@ -119,7 +127,9 @@ export default function LocationDetails() {
             className="outline-none border-[1px] border-gray-300 px-3 py-1 rounded-lg w-full"
             name="address"
             id="address"
+            onChange={(e)=>setAddress(e.target.value)}
           ></textarea>
+          {showError && !address && <ShowErrorMsg message="This field is required"/>}
         </div>
       </div>
       <div className="flex md:h-[70px] relative md:mt-0 mt-[4rem]">

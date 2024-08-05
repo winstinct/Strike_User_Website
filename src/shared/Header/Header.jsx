@@ -6,7 +6,7 @@ import MobileHeader from "./MobileHeader";
 export default function Header() {
   return (
     <>
-    <header className="md:flex hidden justify-between items-center lg:px-[4rem] px-[1rem] py-[1.5rem] shadow-lg">
+    <header className="md:flex hidden justify-between items-center lg:px-[4rem] px-[1rem] py-[0.3rem] shadow-lg">
       <div>
         <Link to="/"><img src={strikeLogo} className="min-w-[130px]" alt="Site Logo" /></Link>
       </div>

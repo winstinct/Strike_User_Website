@@ -9,6 +9,7 @@ import { selectCustomTheme } from "../../../utils/selectCutomTheme";
 import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
+import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
 const dateOptions = {
   mode: "single",
   dateFormat: "d M Y",
@@ -17,17 +18,19 @@ const dateOptions = {
 export default function PersonalDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
   const navigate = useNavigate();
-  const { countries } = useCountries();
-  const [country, setCountry] = useState(0);
-  const { name, flags, countryCallingCode } = countries[country];
-  const callingCode = countries[country]?.countryCallingCode || "";
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [dob, setDob] = useState();
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("");
+  const [dob, setDob] = useState(null);
   const [selecectedFile, setSelectedFile] = useState(null);
-  console.log("Selected File===> ", selecectedFile && URL.createObjectURL(selecectedFile))
-  console.log("mobile number===> ", mobileNumber);
+  const [showError, setShowError] = useState(false);
 
   const handleNext = () => {
+    if(!firstName || !lastName || !dob || !selecectedFile){
+      return setShowError(true)
+    }
+
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
@@ -48,7 +51,7 @@ export default function PersonalDetails() {
   return (
     <div>
       <div>
-        <div className="flex items-center gap-5 mb-[3rem]">
+        <div className="flex items-center gap-5 mb-[1rem]">
           <Icon
             onClick={handleBack}
             className="text-[2.5rem] hover:bg-[#A967FF] hover:text-white hover:border-[#A967FF] duration-200 border-[1px] w-[80px] rounded-[50px] cursor-pointer border-gray-300"
@@ -61,9 +64,11 @@ export default function PersonalDetails() {
       </div>
 
       <ThemeProvider value={selectCustomTheme}>
-        <div className="grid md:grid-cols-2 grid-cols-1 xl:gap-[2.5rem] gap-[1rem]">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-[1rem]">
             {/* Upload File Input  */}
+
           {!selecectedFile && (<div className="md:col-span-2 flex justify-center">
+            <div>
             <div
               onClick={() => document.getElementById("file").click()}
               className="border-[4px] border-[#CCCCCC] w-[130px] h-[130px] rounded-full flex justify-center items-center relative cursor-pointer"
@@ -80,6 +85,8 @@ export default function PersonalDetails() {
               </div>
               <input onChange={(e)=> setSelectedFile(e.target.files[0])} className="hidden" type="file" id="file" />
             </div>
+            {showError && !selecectedFile && <ShowErrorMsg message="Fiele is required"/>}
+          </div>
           </div>)}
 
           {/* Uploaded File  */}
@@ -89,10 +96,10 @@ export default function PersonalDetails() {
             >
               <img className="w-[130px] h-[130px] rounded-full p-1" src={URL.createObjectURL(selecectedFile)} alt="Profile Photo" />
               <div
-                className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none bg-red-700"
+                className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none bg-red-600"
                 onClick={()=>setSelectedFile(null)}
               >
-                c
+                <Icon className="text-white p-[3px]" icon="akar-icons:cross" />
               </div>
             </div>
           </div>)}
@@ -108,7 +115,9 @@ export default function PersonalDetails() {
               type="text"
               placeholder="Enter first name"
               id="fname"
+              onChange={(e)=>setFirstName(e.target.value)}
             />
+            {!firstName && showError && <ShowErrorMsg message="This field is required"/>}
           </div>
           <div>
             <label className="block" htmlFor="lname">
@@ -120,7 +129,9 @@ export default function PersonalDetails() {
               type="text"
               placeholder="Enter last name"
               id="lname"
+              onChange={(e)=>setLastName(e.target.value)}
             />
+            {!lastName && showError && <ShowErrorMsg message="This field is required"/>}
           </div>
 
           <div className="w-full">
@@ -130,12 +141,14 @@ export default function PersonalDetails() {
             </p>
             <Select
               className="border-[1px] border-gray-300 rounded-md"
-              placeholder="gg"
+              placeholder="Gender"
+              onChange={(value)=>setGender(value)}
             >
               <Option value="Male">Male</Option>
               <Option value="Female">Female</Option>
               <Option value="Other">Other</Option>
             </Select>
+            {!gender && showError && <ShowErrorMsg message="This field is required"/>}
           </div>
 
           <div>
@@ -159,16 +172,12 @@ export default function PersonalDetails() {
                 icon="mingcute:down-line"
               />
             </div>
-            {/* {!dob && showError && (
-              <span className="text-red-500 text-[14px]">
-                This field is required*
-              </span>
-            )} */}
+            {!dob && showError && <ShowErrorMsg message="This field is required"/>}
           </div>
         </div>
       </ThemeProvider>
 
-      <div className="flex md:h-[100px] relative md:mt-0 mt-[4rem]">
+      <div className="flex md:h-[70px] relative">
         <button
           style={{
             backgroundImage: "linear-gradient(#A967FF, #5500C3)",
