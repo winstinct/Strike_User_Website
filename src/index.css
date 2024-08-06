@@ -81,3 +81,34 @@ div button+label{
 div button.peer ::after,::before{
  border-style: none !important;
 }
+
+
+/* Strike User Submit Button Styles  */
+.submitBtn{
+  background-image: linear-gradient(#A967FF, #5500C3);
+  color:white;
+  border-radius: 50px;
+  padding: 0.7rem 0;
+}
+
+.submitBtn:hover{
+  background-image: linear-gradient(#6D2C91, #3F1B6F);
+}
+
+/* Back Button Styles  */
+.backBtn{
+  border:1px gray groove;
+  border-radius: 50px;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.backBtn:hover{
+  background-image: linear-gradient(#A967FF, #5500C3);
+  color:#fff;
+  border-color: #A967FF;
+}

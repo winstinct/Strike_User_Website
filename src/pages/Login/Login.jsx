@@ -188,11 +188,7 @@ export default function Login() {
 
           <footer className="text-center">
             <button
-              style={{
-                backgroundImage:"linear-gradient(#A967FF, #5500C3)",
-                boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
-              }}
-              className="text-white rounded-[50px] py-[0.5rem] px-[1.5rem] w-full"
+              className="submitBtn w-full"
               onClick={handleSubmit}
             >
               Login

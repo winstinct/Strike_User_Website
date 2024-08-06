@@ -121,7 +121,7 @@ export default function OTPVerification() {
           <header>
             <div
               onClick={() => navigate(-1)}
-              className="border-[1px] hover:bg-[#A967FF] hover:text-white hover:border-[#A967FF] duration-200 border-gray-300 rounded-[50px] shadow-2xl max-w-[80px] h-[40px] flex justify-center items-center mb-[2.5rem] cursor-pointer"
+              className="backBtn mb-[2rem]"
             >
               <Icon
                 className="text-[2.5rem]"
@@ -163,11 +163,7 @@ export default function OTPVerification() {
 
           <footer className="text-center">
             <button
-              style={{
-                backgroundImage: "linear-gradient(#A967FF, #5500C3)",
-                boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
-              }}
-              className="text-white rounded-[50px] py-[0.5rem] px-[1.5rem] w-full"
+              className="submitBtn w-full"
               onClick={handleSubmit}
             >
               Submit

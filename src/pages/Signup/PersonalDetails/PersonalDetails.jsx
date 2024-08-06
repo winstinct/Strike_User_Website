@@ -52,11 +52,13 @@ export default function PersonalDetails() {
     <div>
       <div>
         <div className="flex items-center gap-5 mb-[1rem]">
+        <div className="backBtn">
           <Icon
-            onClick={handleBack}
-            className="text-[2.5rem] hover:bg-[#A967FF] hover:text-white hover:border-[#A967FF] duration-200 border-[1px] w-[80px] rounded-[50px] cursor-pointer border-gray-300"
+            onClick={() => navigate(-1)}
+            className="text-[2rem]"
             icon="lets-icons:arrow-left-long"
           />
+          </div>
           <h3 className="md:text-[2rem] text-[1.5rem] font-semibold">
             Personal Details
           </h3>
@@ -177,13 +179,9 @@ export default function PersonalDetails() {
         </div>
       </ThemeProvider>
 
-      <div className="flex md:h-[70px] relative">
+      <div className="flex md:h-[80px] relative md:mt-0 mt-[4rem]">
         <button
-          style={{
-            backgroundImage: "linear-gradient(#A967FF, #5500C3)",
-            boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
-          }}
-          className="text-white rounded-[50px] h-[40px] py-[0.5rem] px-[1.5rem] md:w-[300px] w-full absolute bottom-0 right-0"
+          className="submitBtn md:w-[300px] w-full absolute bottom-0 right-0"
           onClick={handleNext}
         >
           Next
