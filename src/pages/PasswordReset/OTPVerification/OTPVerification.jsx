@@ -138,7 +138,7 @@ export default function OTPVerification() {
           </header>
 
           <div className="flex justify-between items-center font-medium mt-[2.5rem] mb-[1.5rem]">
-            <h3>Enter OTP</h3>
+            <h3>Enter OTP<RequiredStar/></h3>
             <div className="text-[14px]">
               Didn’t receive?{" "}
               <button onClick={handleSendAgain} className="text-[#A967FF] underline">Send Again</button>
@@ -157,8 +157,8 @@ export default function OTPVerification() {
                 <input {...props} className="otp-input" />
               )}
             />
-            {!otp && showError && <ShowErrorMsg message="This field is required"/>}
-            {otp && otp.length < 6 && showError && <ShowErrorMsg message="OTP length must be 6 characters"/>}
+            <div className="text-right mt-1">{!otp && showError && <ShowErrorMsg message="OTP is required"/>}</div>
+            <div className="text-right mt-1">{otp && otp.length < 6 && showError && <ShowErrorMsg message="OTP length must be 6 characters"/>}</div>
           </div>
 
           <footer className="text-center">

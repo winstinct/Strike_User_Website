@@ -85,7 +85,7 @@ export default function PersonalDetails() {
               </div>
               <input onChange={(e)=> setSelectedFile(e.target.files[0])} className="hidden" type="file" id="file" />
             </div>
-            {showError && !selecectedFile && <ShowErrorMsg message="Fiele is required"/>}
+            {showError && !selecectedFile && <ShowErrorMsg message="Photo is required"/>}
           </div>
           </div>)}
 

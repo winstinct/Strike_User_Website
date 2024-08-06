@@ -27,6 +27,9 @@ export default function LocationDetails() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
+
+    alert('Submitted')
+    navigate("/login")
   };
 
   const handleBack = () => {

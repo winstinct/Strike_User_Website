@@ -136,7 +136,7 @@ export default function ContactDetails() {
             />
           </div>
           {!mobileNumber && showError && <ShowErrorMsg message="This field is required"/>}
-          {mobileNumber && mobileNumber.length !== 10 && showError && <ShowErrorMsg message="Invalid mobile number"/>}
+          {mobileNumber && mobileNumber.length !== 10 && showError && <ShowErrorMsg message="Mobile number must be 10 digits"/>}
         </div>
 
         <div>
