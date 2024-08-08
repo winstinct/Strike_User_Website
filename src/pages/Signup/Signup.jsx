@@ -35,7 +35,7 @@ export default function Signup() {
       return setShowError(true)
     }
 
-    navigate("/otp-verification-signup");
+    navigate("/auth/otp-verification-signup");
   };
 
   return (
@@ -171,7 +171,7 @@ export default function Signup() {
             </button>
             <p className="mt-[1rem]">
               Already have an account?{" "}
-              <Link className="text-[#A967FF] hover:underline" to="/login">
+              <Link className="text-[#A967FF] hover:underline" to="/auth/login">
                 Login
               </Link>{" "}
               now.

@@ -14,70 +14,77 @@ import PersonalDetailsLayout from "../layouts/PersonalDetailsLayout";
 import PersonalDetails from "../pages/Signup/PersonalDetails/PersonalDetails";
 import ContactDetails from "../pages/Signup/PersonalDetails/ContactDetails";
 import LocationDetails from "../pages/Signup/PersonalDetails/LocationDetails";
+import LoginSignupLayout from "../layouts/LoginSignupLayout";
 
 export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout/>,
-      children:[
-        {
-          path:"",
-          element:<Home/>
-        },
-        {
-          path:"offers",
-          element:<Offers/>
-        },
-        {
-          path:"tickets",
-          element:<Tickets/>
-        },
-        {
-          path:"signup",
-          element:<Signup/>
-        },
-        {
-          path:"login",
-          element:<Login/>
-        },
-        {
-          path:"forgot-password",
-          element:<ForgotPassword/>
-        },
-        {
-          path:"otp-verification",
-          element:<OTPVerification/>
-        },
-        {
-          path:"set-password",
-          element:<SetPassword/>
-        },
-        {
-          path:"otp-verification-signup",
-          element:<OTPVerificationSignup/>
-        },
-        {
-          path:"set-password-signup",
-          element:<SetPasswordSignup/>
-        },
-      ]
-    },
-    {
-      path: "/personal-details-layout",
-      element: <PersonalDetailsLayout/>,
-      children:[
-        {
-          path:'personal-details',
-          element:<PersonalDetails/>
-        },
-        {
-          path:'',
-          element:<ContactDetails/>
-        },
-        {
-          path:'location-details',
-          element:<LocationDetails/>
-        },
-      ]
-    },
-  ]);
+  {
+    path: "/auth",
+    element: <LoginSignupLayout />,
+    children: [
+      {
+        path: "signup",
+        element: <Signup />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "otp-verification",
+        element: <OTPVerification />,
+      },
+      {
+        path: "set-password",
+        element: <SetPassword />,
+      },
+      {
+        path: "otp-verification-signup",
+        element: <OTPVerificationSignup />,
+      },
+      {
+        path: "set-password-signup",
+        element: <SetPasswordSignup />,
+      },
+    ],
+  },
+  {
+    path: "/auth/personal-details-layout",
+    element: <PersonalDetailsLayout />,
+    children: [
+      {
+        path: "personal-details",
+        element: <PersonalDetails />,
+      },
+      {
+        path: "",
+        element: <ContactDetails />,
+      },
+      {
+        path: "location-details",
+        element: <LocationDetails />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "offers",
+        element: <Offers />,
+      },
+      {
+        path: "tickets",
+        element: <Tickets />,
+      },
+    ],
+  },
+]);

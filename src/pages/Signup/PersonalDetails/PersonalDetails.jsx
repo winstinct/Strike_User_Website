@@ -34,7 +34,7 @@ export default function PersonalDetails() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
-    navigate("/personal-details-layout/location-details");
+    navigate("/auth/personal-details-layout/location-details");
   };
 
   const handleBack = () => {

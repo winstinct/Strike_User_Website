@@ -178,7 +178,7 @@ export default function Login() {
                 )}
                 {!password && showError && <ShowErrorMsg message="This field is required*"/>}
               </div>
-              <Link to="/forgot-password">
+              <Link to="/auth/forgot-password">
                 <p className="text-right text-[14px] hover:underline mt-[0.3rem]">
                   Forgot Password?
                 </p>
@@ -195,7 +195,7 @@ export default function Login() {
             </button>
             <p className="mt-[1rem]">
               Don’t have an account?{" "}
-              <Link className="text-[#A967FF] hover:underline" to="/signup">
+              <Link className="text-[#A967FF] hover:underline" to="/auth/signup">
                 Sign Up
               </Link>{" "}
               now.

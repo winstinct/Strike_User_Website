@@ -6,7 +6,7 @@ import MobileHeader from "./MobileHeader";
 export default function Header() {
   return (
     <>
-    <header className="md:flex hidden justify-between items-center lg:px-[4rem] px-[1rem] py-[0.3rem] shadow-lg">
+    <header className="md:flex hidden justify-between items-center lg:px-[4rem] px-[1rem] py-[0.3rem] shadow-lg fixed w-full bg-white top-0 z-50">
       <div>
         <Link to="/"><img src={strikeLogo} className="min-w-[130px]" alt="Site Logo" /></Link>
       </div>
@@ -26,7 +26,7 @@ export default function Header() {
         <Icon className="text-[2rem]" icon="mdi:bell-outline" />
         <Icon className="text-[2rem]" icon="lets-icons:bag" />
         <div className="bg-gray-300 h-[50px] w-[2px]"></div>
-        <Link to="/login">
+        <Link to="/auth/login">
         <button
           style={{
             backgroundImage: "linear-gradient(#A967FF, #5500C3)",

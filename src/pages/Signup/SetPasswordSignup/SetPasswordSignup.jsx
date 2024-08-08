@@ -107,7 +107,7 @@ export default function SetPasswordSignup() {
     //   setShowError(false);
     //   navigate("/login");
     // }
-    navigate("/personal-details-layout");
+    navigate("/auth/personal-details-layout");
   };
 
   return (

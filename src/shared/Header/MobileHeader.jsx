@@ -6,7 +6,8 @@ import { useState } from "react";
 export default function MobileHeader() {
   const [isVisible, setIsVisible] = useState(false);
   return (
-    <header className="lg:px-[4rem] px-[1rem] py-[1rem] shadow-lg md:hidden block relative">
+    <header className="fixed top-0 w-full bg-white z-50">
+      <div className="lg:px-[4rem] px-[1rem] py-[1rem] shadow-lg md:hidden block relative">
       <div className="flex items-center justify-between">
         <img src={strikeLogo} className="w-[100px]" alt="Site Logo" />
         <div className="flex items-center gap-[1rem]">
@@ -46,7 +47,7 @@ export default function MobileHeader() {
             </p>
           </NavLink>
           <p className="py-2 px-5 cursor-pointer">
-            <Link to="/login">
+            <Link to="/auth/login">
               <button
                 style={{
                   backgroundImage: "linear-gradient(#A967FF, #5500C3)",
@@ -61,6 +62,7 @@ export default function MobileHeader() {
           </p>
         </div>
       )}
+      </div>
     </header>
   );
 }

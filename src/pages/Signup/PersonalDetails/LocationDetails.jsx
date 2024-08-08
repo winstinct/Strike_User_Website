@@ -29,7 +29,7 @@ export default function LocationDetails() {
     }
 
     alert('Submitted')
-    navigate("/login")
+    navigate("/auth/login")
   };
 
   const handleBack = () => {

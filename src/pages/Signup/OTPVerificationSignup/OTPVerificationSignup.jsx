@@ -30,7 +30,7 @@ export default function OTPVerificationSignup() {
       return setShowError(true)
     }
     console.log('Entered OTP====> ', otp);
-    navigate("/set-password-signup")
+    navigate("/auth/set-password-signup")
   };
   const handleSendAgain = ()=>{
     alert('Send OTP Again')

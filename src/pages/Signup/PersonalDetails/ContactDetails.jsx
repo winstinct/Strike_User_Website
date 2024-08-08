@@ -46,7 +46,7 @@ export default function ContactDetails() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
-    navigate("/personal-details-layout/personal-details")
+    navigate("/auth/personal-details-layout/personal-details")
   };
 
   const handleBack = () => {
@@ -81,62 +81,56 @@ export default function ContactDetails() {
             Mobile Number
             <RequiredStar />
           </p>
-          <div className="relative flex w-full md:mb-0 mb-[1.5rem] outline-none">
-            <Menu placement="bottom-start">
-              <MenuHandler>
-                <Button
-                  ripple={false}
-                  variant="text"
-                  color="blue-gray"
-                  className="flex h-10 w-[8rem] items-center gap-2 rounded-r-none border border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3"
-                >
-                  <img
-                    src={flags.svg}
-                    alt={name}
-                    className="h-4 w-4 rounded-full object-cover"
-                  />
-                  {countryCallingCode}
-                </Button>
-              </MenuHandler>
-              <div className="overflow-auto">
-                <MenuList className="max-h-[15rem] w-[18rem]">
-                  {countries.map(
-                    ({ name, flags, countryCallingCode }, index) => {
-                      return (
-                        <MenuItem
-                          key={name}
-                          value={name}
-                          className="flex items-center gap-2 px-[1rem] py-[0.5rem] hover:bg-gray-300 text-[12px] text-left"
-                          onClick={() => setCountry(index)}
-                        >
-                          <img
-                            src={flags.svg}
-                            alt={name}
-                            className="h-5 w-5 rounded-full object-cover"
-                          />
-                          {name}{" "}
-                          <span className="ml-auto">{countryCallingCode}</span>
-                        </MenuItem>
-                      );
-                    }
-                  )}
-                </MenuList>
-              </div>
-            </Menu>
-            <Input
-              type="number"
-              placeholder="Mobile Number"
-              className="rounded-l-none outline-none !border-[1px] !border-gray-300 pl-2 py-[0.4rem] rounded-r-md"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-              containerProps={{
-                className: "min-w-0",
-              }}
-              value={mobileNumber}
-              onChange={(e) => setMobileNumber(e.target.value)}
+          <div className="relative flex w-full max-w-[24rem]">
+      <Menu placement="bottom-start">
+        <MenuHandler>
+          <Button
+            ripple={false}
+            variant="text"
+            color="blue-gray"
+            className="flex h-10 items-center gap-2 rounded-r-none border border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3"
+          >
+            <img
+              src={flags.svg}
+              alt={name}
+              className="h-4 w-4 rounded-full object-cover"
             />
-          </div>
+            {countryCallingCode}
+          </Button>
+        </MenuHandler>
+        <MenuList className="max-h-[20rem] max-w-[18rem]">
+          {countries.map(({ name, flags, countryCallingCode }, index) => {
+            return (
+              <MenuItem
+                key={name}
+                value={name}
+                className="flex items-center gap-2"
+                onClick={() => setCountry(index)}
+              >
+                <img
+                  src={flags.svg}
+                  alt={name}
+                  className="h-5 w-5 rounded-full object-cover"
+                />
+                {name} <span className="ml-auto">{countryCallingCode}</span>
+              </MenuItem>
+            );
+          })}
+        </MenuList>
+      </Menu>
+      <Input
+        type="tel"
+        placeholder="Mobile Number"
+        className="rounded-l-none !outline-none !border-t-blue-gray-200 focus:!border-t-gray-900"
+        labelProps={{
+          className: "before:content-none after:content-none",
+        }}
+        containerProps={{
+          className: "min-w-0",
+        }}
+        onChange={(e)=>setMobileNumber(e.target.value)}
+      />
+    </div>
           {!mobileNumber && showError && <ShowErrorMsg message="This field is required"/>}
           {mobileNumber && mobileNumber.length !== 10 && showError && <ShowErrorMsg message="Mobile number must be 10 digits"/>}
         </div>

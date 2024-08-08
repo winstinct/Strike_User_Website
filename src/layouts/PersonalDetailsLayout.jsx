@@ -10,7 +10,7 @@ export default function PersonalDetailsLayout() {
   return (
     <div>
       <Header />
-      <div className="md:m-[3rem] m-[1rem]">
+      <div className="mt-[6rem] mx-[1rem]">
         <div className="flex md:flex-row flex-col gap-10">
           <div
             style={{ backgroundImage: "linear-gradient(#A967FF, #5500C3)" }}
@@ -68,8 +68,7 @@ export default function PersonalDetailsLayout() {
               })}
             </div>
           </div>
-          {/* <div className="flex-1">{steps[currentStep]?.content}</div> */}
-          <div className="flex-1"><Outlet/></div>
+          <div className="flex-1 md:mb-0 mb-[1rem]"><Outlet/></div>
         </div>
       </div>
     </div>

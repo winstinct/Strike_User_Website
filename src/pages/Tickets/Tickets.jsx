@@ -1,6 +1,6 @@
 export default function Tickets() {
   return (
-    <div className="p-[4rem]">
+    <div>
       <h1>Tickest page comming soon...</h1>
     </div>
   )

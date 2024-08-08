@@ -110,7 +110,7 @@ export default function SetPassword() {
     //   setShowError(false);
     //   navigate("/login");
     // }
-    navigate("/login")
+    navigate("/auth/login")
   }
 
   return (

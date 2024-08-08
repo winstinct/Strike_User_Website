@@ -6,12 +6,12 @@ import appStoreIcon from "../../assets/app-store.svg"
 export default function Footer() {
   return (
     <footer 
-    className="md:p-[4rem] p-[1rem] text-white"
+    className="md:p-[4rem] p-[1rem] text-white rounded-xl mx-56"
     style={{backgroundImage: "linear-gradient(#A967FF, #5500C3)"}}
     >
-      <div className="grid lg:grid-cols-5 md:grid-cols-3 gap-[3rem]">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[3rem]">
       <div>
-        <img src={strikeLogo} alt="Website Logo" className="bg-white p-[0.5rem] rounded-md mb-[2.5rem]"/>
+        <img src={strikeLogo} alt="Website Logo" className="bg-white p-[0.5rem] min-w-[80px] rounded-md mb-[2.5rem]"/>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit lacinia est, nec pretium dolor molestie id.</p>
       </div>
       <div>
@@ -58,10 +58,12 @@ export default function Footer() {
           </li>
         </ul>
       </div>
+      </div>
 
-      <div className="space-y-[1.5rem]">
+      <div className="space-y-[1.5rem] grid lg:grid-cols-2 xl:gap-[2.5rem] mt-[3rem]">
         <p className="text-[1.25rem] leading-[1.8rem]">Download the Strike app for the ultimate experience!</p>
-        <div className="flex items-center gap-[1.1rem] bg-black px-[1rem] py-[0.5rem] w-[180px]">
+        <div className="flex xl:flex-row flex-col gap-5">
+        <div className="flex items-center gap-[1.1rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
           <img src={playStoreIcon} alt="Playstore icon" />
           <div>
             <p className="text-[10px] font-medium">GET IT ON</p>
@@ -69,14 +71,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex items-center gap-[1.1rem] bg-black px-[1rem] py-[0.5rem] w-[180px]">
+        <div className="flex items-center gap-[1.1rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
           <img src={appStoreIcon} alt="Playstore icon" />
           <div>
             <p className="text-[10px] font-medium">GET IT ON</p>
             <h3 className="font-semibold">App Store</h3>
           </div>
         </div>
-      </div>
+        </div>
       </div>
 
       <p className="text-center pt-[3rem]">© {new Date().getFullYear()} Strike x Gaming. All rights reserved.</p>

@@ -29,7 +29,7 @@ export default function ForgotPassword() {
     if(!emailRegex.test(email)){
       return setShowError(true)
     }
-    navigate("/otp-verification")
+    navigate("/auth/otp-verification")
   }
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] md:pb-0 pb-[1rem]">
