@@ -138,3 +138,37 @@ div button.peer ::after,::before{
 *::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+
+
+
+/* Lottery shape styles  */
+.middle1{
+  position: absolute;
+  left: -5px;
+  width: 30px;
+  height: 60px;
+  border-radius: 0 40px 40px 0;
+  background: white;
+  border-top: 4px solid #A967FF;
+  border-bottom: 4px solid #A967FF;
+  border-right: 4px solid #A967FF;
+  border-left: 4px solid #FFF;
+}
+
+.middle2{
+  position: absolute;
+  right: -5px;
+  width: 30px;
+  height: 60px;
+  border-radius: 40px 0px 0px 40px;
+  background: #FFF;
+  border-top: 4px solid #A967FF;
+  border-bottom: 4px solid #A967FF;
+  border-left: 4px solid #A967FF;
+  border-right: 4px solid #FFF;
+}
+
+
+
+
