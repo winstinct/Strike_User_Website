@@ -5,10 +5,18 @@ import LotteryCategories from "./LotteryCategories";
 import PopularCampaigns from "./PopularCampaigns";
 import PublicLotteries from "./PublicLotteries";
 import Winners from "./Winners";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0 });
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="space-y-[3rem] py-[1.3rem]">
+    <main className="space-y-[3rem]">
       <Banner />
       <GameCategories />
       <LotteryCategories />

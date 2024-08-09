@@ -15,6 +15,9 @@ import PersonalDetails from "../pages/Signup/PersonalDetails/PersonalDetails";
 import ContactDetails from "../pages/Signup/PersonalDetails/ContactDetails";
 import LocationDetails from "../pages/Signup/PersonalDetails/LocationDetails";
 import LoginSignupLayout from "../layouts/LoginSignupLayout";
+import LotteryGames from "../pages/LotteryGames/LotteryGames";
+import NumberGames from "../pages/NumberGames/NumberGames";
+import WheelGames from "../pages/WheelGames/WheelGames";
 
 export const router = createBrowserRouter([
   {
@@ -84,6 +87,18 @@ export const router = createBrowserRouter([
       {
         path: "tickets",
         element: <Tickets />,
+      },
+      {
+        path: "lottery-games",
+        element: <LotteryGames />,
+      },
+      {
+        path: "number-games",
+        element: <NumberGames />,
+      },
+      {
+        path: "wheel-games",
+        element: <WheelGames />,
       },
     ],
   },

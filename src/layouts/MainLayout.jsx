@@ -72,7 +72,7 @@ export default function MainLayout() {
 
         {/* Main Content */}
         <div className="flex-1 mt-[5rem]">
-          <Outlet />
+          <div className="py-[1.3rem]"><Outlet /></div>
           <Footer />
         </div>
 
