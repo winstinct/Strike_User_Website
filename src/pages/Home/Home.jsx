@@ -8,7 +8,7 @@ import Winners from "./Winners";
 
 export default function Home() {
   return (
-    <main className="space-y-[3rem] my-[1.3rem]">
+    <main className="space-y-[3rem] py-[1.3rem]">
       <Banner />
       <GameCategories />
       <LotteryCategories />
