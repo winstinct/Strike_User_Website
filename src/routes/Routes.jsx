@@ -18,6 +18,8 @@ import LoginSignupLayout from "../layouts/LoginSignupLayout";
 import LotteryGames from "../pages/LotteryGames/LotteryGames";
 import NumberGames from "../pages/NumberGames/NumberGames";
 import WheelGames from "../pages/WheelGames/WheelGames";
+import AddToCart from "../pages/AddToCart/AddToCart";
+import CartQuantityAdjuster from "../pages/CartQuantityAdjuster/CartQuantityAdjuster";
 
 export const router = createBrowserRouter([
   {
@@ -99,6 +101,14 @@ export const router = createBrowserRouter([
       {
         path: "wheel-games",
         element: <WheelGames />,
+      },
+      {
+        path: "addToCart/:lotteryId",
+        element: <AddToCart />,
+      },
+      {
+        path: "cartQuantityAdjuster/:lotteryId",
+        element: <CartQuantityAdjuster />,
       },
     ],
   },
