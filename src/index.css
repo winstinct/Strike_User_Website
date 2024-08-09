@@ -13,6 +13,11 @@ body {
 .swiper-pagination-bullet-active{
   background: #A967FF !important;
 }
+.swiper-pagination-bullet{
+  width: 40px !important;
+  height: 10px !important;
+  border-radius: 5px !important;
+}
 
 
 
@@ -20,7 +25,6 @@ body {
 
 
 /* Flatpicker override css styles  */
-
 /* Month dropdown list  */
 div.flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month,
 .flatpickr-weekdays,
@@ -138,8 +142,6 @@ div button.peer ::after,::before{
 *::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
-
-
 
 
 /* Lottery shape styles  */

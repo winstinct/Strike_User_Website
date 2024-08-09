@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import popularLotteryImg from "../../assets/popular-lottery.jpeg";
+import lotteryImg from "../../assets/lottery.png";
 import { Progress } from "@material-tailwind/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -149,7 +150,7 @@ export default function PublicLotteries() {
           <header>
             <img
               className="h-[100px] w-full rounded-xl"
-              src={popularLotteryImg}
+              src={lotteryImg}
               alt=""
             />
           </header>
@@ -297,7 +298,7 @@ export default function PublicLotteries() {
           <header>
             <img
               className="h-[100px] w-full rounded-xl"
-              src={popularLotteryImg}
+              src={lotteryImg}
               alt=""
             />
           </header>
@@ -445,7 +446,7 @@ export default function PublicLotteries() {
           <header>
             <img
               className="h-[100px] w-full rounded-xl"
-              src={popularLotteryImg}
+              src={lotteryImg}
               alt=""
             />
           </header>
