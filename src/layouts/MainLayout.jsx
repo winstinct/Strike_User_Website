@@ -64,7 +64,7 @@ export default function MainLayout() {
     <div className="relative min-h-screen">
       <Header />
 
-      <div className="flex">
+      <div className="block">
         {/* Left Sidebar */}
         <div className="bg-white shadow-2xl border-r-[1px] border-[#d3cccc] fixed top-[5.2rem] left-0 bottom-0 w-52 z-10">
           <LeftSideBar />
