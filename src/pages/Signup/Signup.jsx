@@ -16,6 +16,8 @@ import { Pagination, Autoplay } from "swiper/modules";
 import RequiredStar from "../../shared/RequiredStar/RequiredStar";
 import { useState } from "react";
 import ShowErrorMsg from "../../shared/ShowErrorMsg/ShowErrorMsg";
+import { useDispatch } from "react-redux";
+import { addUserDetails } from "../../redux/createUserSlice";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -24,6 +26,8 @@ export default function Signup() {
   const [showError, setShowError] = useState(false)
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  const dispatch = useDispatch()
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -34,7 +38,7 @@ export default function Signup() {
     if(!email || !referralCode){
       return setShowError(true)
     }
-
+    dispatch(addUserDetails({Email:email, refferalCodes:referralCode}))
     navigate("/auth/otp-verification-signup");
   };
 

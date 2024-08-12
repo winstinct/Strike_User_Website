@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "../shared/Header/Header";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { StepperContext } from "../contexts/StepperContextProvider";
 
 export default function PersonalDetailsLayout() {

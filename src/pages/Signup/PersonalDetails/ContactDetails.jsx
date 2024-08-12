@@ -13,10 +13,13 @@ import {
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
+import { useDispatch } from "react-redux";
+import { addUserDetails } from "../../../redux/createUserSlice";
 
 export default function ContactDetails() {
   const {currentStep, setCurrentStep, steps} = useContext(StepperContext)
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const { countries } = useCountries();
   const [country, setCountry] = useState(0);
   const { name, flags, countryCallingCode } = countries[country];
@@ -46,6 +49,8 @@ export default function ContactDetails() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
+
+    dispatch(addUserDetails({MobileNumber:mobileNumber}))
     navigate("/auth/personal-details-layout/personal-details")
   };
 

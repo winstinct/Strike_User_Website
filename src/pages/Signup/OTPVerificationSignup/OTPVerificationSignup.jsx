@@ -18,18 +18,21 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
+import { useDispatch } from "react-redux";
+import { addUserDetails } from "../../../redux/createUserSlice";
 
 export default function OTPVerificationSignup() {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const [showError, setShowError] = useState(false);
-
+  const dispatch = useDispatch()
   const handleSubmit = (e) => {
     e.preventDefault();
     if(!otp.length || otp.length < 6){
       return setShowError(true)
     }
     console.log('Entered OTP====> ', otp);
+    dispatch(addUserDetails({otp}))
     navigate("/auth/set-password-signup")
   };
   const handleSendAgain = ()=>{

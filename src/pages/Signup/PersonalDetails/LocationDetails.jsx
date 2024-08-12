@@ -8,10 +8,13 @@ import {
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
+import { useSelector } from "react-redux";
 
 export default function LocationDetails() {
   const {currentStep, setCurrentStep, steps} = useContext(StepperContext)
   const navigate = useNavigate("");
+  const userData = useSelector(state => state.createUser);
+ 
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
@@ -27,9 +30,8 @@ export default function LocationDetails() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
-
-    alert('Submitted')
-    navigate("/auth/login")
+    console.log("User Signup Data===> ", {...userData, location:{country, state, city, pinCode, address}})
+    // navigate("/auth/login")
   };
 
   const handleBack = () => {

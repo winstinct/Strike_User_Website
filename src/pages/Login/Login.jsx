@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import slider1Img from "../../assets/slider-1.png";
 import slider2Img from "../../assets/slider-2.png";
 import slider3Img from "../../assets/slider-3.png";
@@ -17,107 +17,125 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import RequiredStar from "../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../shared/ShowErrorMsg/ShowErrorMsg";
+import { useAuth } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
+import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
+  const [passwordErr, setPasswordErr] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!email || !password){
-      return setShowError(true)
+    if (!email || !password) {
+      return setShowError(true);
     }
 
     if (!emailRegex.test(email)) {
       return setShowError(true);
     }
     console.log(email, password);
+
+    //Login by firebase
+    try {
+      setPasswordErr(false);
+      setIsProcessing(true);
+      await login(email, password);
+      setIsProcessing(false);
+      toast.success("Login success!", { autoClose: 3000 });
+      navigate("/");
+    } catch (error) {
+      setIsProcessing(false);
+      toast.error("Credentials (Password/Email) are not correct!");
+    }
   };
 
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 md:pb-0 pb-[1rem] lg:px-[4rem] md:px-[1.5rem] px-[1rem] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem]">
       {/* Slider Start  */}
       <div className="md:min-h-screen flex flex-col justify-center">
-      <div className="shadow-lg rounded-xl pb-[1rem] min-h-[90%] max-w-[100%]">
-        <Swiper
-          pagination={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          modules={[Pagination, Autoplay]}
-        >
-          <SwiperSlide>
-            <div>
-              <img
-                src={slider1Img}
-                className="w-full h-[300px] rounded-t-xl"
-                alt="Slider-1"
-              />
-              <div className="md:mx-[2rem] mx-[0.5rem]">
-                <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
-                  Welcome to <span className="text-[#A967FF]">Strike</span>
-                </h3>
-                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
-                  Purchase lottery tickets for a chance to win big and host
-                  private lotteries with friends and family for unforgettable
-                  moments.
-                </p>
+        <div className="shadow-lg rounded-xl pb-[1rem] min-h-[90%] max-w-[100%]">
+          <Swiper
+            pagination={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            modules={[Pagination, Autoplay]}
+          >
+            <SwiperSlide>
+              <div>
+                <img
+                  src={slider1Img}
+                  className="w-full h-[300px] rounded-t-xl"
+                  alt="Slider-1"
+                />
+                <div className="md:mx-[2rem] mx-[0.5rem]">
+                  <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
+                    Welcome to <span className="text-[#A967FF]">Strike</span>
+                  </h3>
+                  <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
+                    Purchase lottery tickets for a chance to win big and host
+                    private lotteries with friends and family for unforgettable
+                    moments.
+                  </p>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
 
-
-          <SwiperSlide>
-            <div>
-              <img
-                src={slider2Img}
-                className="w-full h-[300px] rounded-t-xl"
-                alt="Slider-2"
-              />
-              <div className="md:mx-[2rem] mx-[0.5rem]">
-                <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
-                  Play and <span className="text-[#A967FF]">Win 🤩</span>
-                </h3>
-                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
-                  Explore a variety of lottery games with incredible jackpots.
-                </p>
+            <SwiperSlide>
+              <div>
+                <img
+                  src={slider2Img}
+                  className="w-full h-[300px] rounded-t-xl"
+                  alt="Slider-2"
+                />
+                <div className="md:mx-[2rem] mx-[0.5rem]">
+                  <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
+                    Play and <span className="text-[#A967FF]">Win 🤩</span>
+                  </h3>
+                  <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
+                    Explore a variety of lottery games with incredible jackpots.
+                  </p>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
 
-          <SwiperSlide>
-            <div>
-              <img
-                src={slider3Img}
-                className="w-full h-[300px] rounded-t-xl"
-                alt="Slider-3"
-              />
-              <div className="md:mx-[2rem] mx-[0.5rem]">
-                <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
-                  Get Ready to{" "}
-                  <span className="text-[#A967FF]">Strike it Lucky! 🚀</span>
-                </h3>
-                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
-                  Enjoy exclusive perks, bonuses, and rewards as a valued member
-                  of the Strike community.
-                </p>
+            <SwiperSlide>
+              <div>
+                <img
+                  src={slider3Img}
+                  className="w-full h-[300px] rounded-t-xl"
+                  alt="Slider-3"
+                />
+                <div className="md:mx-[2rem] mx-[0.5rem]">
+                  <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
+                    Get Ready to{" "}
+                    <span className="text-[#A967FF]">Strike it Lucky! 🚀</span>
+                  </h3>
+                  <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
+                    Enjoy exclusive perks, bonuses, and rewards as a valued
+                    member of the Strike community.
+                  </p>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-
-        </Swiper>
-        <p className="text-[14px] text-center px-[0.2rem]">
-          Users must be <span className="text-[#FF0023]">18 or older</span>.
-          Participation involves{" "}
-          <span className="text-[#FF0023]">financial risk;</span> Play
-          responsibly.
-        </p>
-      </div>
+            </SwiperSlide>
+          </Swiper>
+          <p className="text-[14px] text-center px-[0.2rem]">
+            Users must be <span className="text-[#FF0023]">18 or older</span>.
+            Participation involves{" "}
+            <span className="text-[#FF0023]">financial risk;</span> Play
+            responsibly.
+          </p>
+        </div>
       </div>
       {/* Slider End  */}
 
@@ -144,8 +162,12 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {email && !emailRegex.test(email) && showError && <ShowErrorMsg message="Please provide valid email!"/>}
-              {showError && !email && <ShowErrorMsg message="This field is required*"/>}
+              {email && !emailRegex.test(email) && showError && (
+                <ShowErrorMsg message="Please provide valid email!" />
+              )}
+              {showError && !email && (
+                <ShowErrorMsg message="This field is required*" />
+              )}
             </div>
 
             <div>
@@ -178,7 +200,9 @@ export default function Login() {
                     icon="mdi:eye"
                   />
                 )}
-                {!password && showError && <ShowErrorMsg message="This field is required*"/>}
+                {!password && showError && (
+                  <ShowErrorMsg message="This field is required*" />
+                )}
               </div>
               <Link to="/auth/forgot-password">
                 <p className="text-right text-[14px] hover:underline mt-[0.3rem]">
@@ -189,15 +213,19 @@ export default function Login() {
           </div>
 
           <footer className="text-center">
-            <button
-              className="submitBtn w-full"
-              onClick={handleSubmit}
-            >
-              Login
-            </button>
+            {isProcessing ? (
+              <SubmitBtnLoader />
+            ) : (
+              <button className="submitBtn w-full" onClick={handleSubmit}>
+                Login
+              </button>
+            )}
             <p className="mt-[1rem]">
               Don’t have an account?{" "}
-              <Link className="text-[#A967FF] hover:underline" to="/auth/signup">
+              <Link
+                className="text-[#A967FF] hover:underline"
+                to="/auth/signup"
+              >
                 Sign Up
               </Link>{" "}
               now.

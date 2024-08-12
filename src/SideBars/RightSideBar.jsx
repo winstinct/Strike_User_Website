@@ -9,9 +9,9 @@ export default function RightSideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <div
-      className={`bg-white shadow-2xl border-l-[1px] border-[#d3cccc] fixed top-[5.2rem] bottom-0 w-52 z-10 pt-[2rem] px-1 h-[600px] overflow-visible duration-300 ${isCollapsed ? 'right-[-12rem]' : 'right-0'}`}
+      className={`bg-white shadow-2xl border-l-[1px] border-[#d3cccc] fixed pt-[5.5rem] bottom-0 w-52 z-10 px-1 h-[600px] overflow-visible duration-300 min-h-screen overflow-y-auto ${isCollapsed ? 'right-[-12rem]' : 'right-0'}`}
     >
-      <p className="absolute top-[0.5rem] right-[11.8rem] cursor-pointer border-[1px] bg-white hover:bg-[#A967FF] duration-200 hover:text-white border-gray-300 rounded-md shadow-lg z-50">
+      {/* <p className="absolute top-[0.5rem] right-[11.8rem] cursor-pointer border-[1px] bg-white hover:bg-[#A967FF] duration-200 hover:text-white border-gray-300 rounded-md shadow-lg z-50">
         {isCollapsed ? (
           <Icon
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -25,14 +25,14 @@ export default function RightSideBar() {
             icon="solar:alt-arrow-right-outline"
           />
         )}
-      </p>
-      <div className="pb-[3rem] mt-[0.3rem]">
+      </p> */}
+      <div>
         <div>
           <img src={lotteryNameImg} alt="" />
-          <div className="flex justify-center relative my-[1.5rem]">
-            <img className="max-h-[200px] mr-14" src={personImg} alt="" />
+          <div className="flex justify-center items-center relative my-[0.5rem]">
+            <img className="max-h-[130px]" src={personImg} alt="" />
             <img
-              className="absolute bottom-0 right-0 max-w-[100px]"
+              className="absolute bottom-0 right-0 max-w-[70px]"
               src={walletImg}
               alt=""
             />

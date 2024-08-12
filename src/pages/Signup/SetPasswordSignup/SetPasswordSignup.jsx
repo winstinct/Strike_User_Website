@@ -17,9 +17,12 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
+import { useDispatch } from "react-redux";
+import { addUserDetails } from "../../../redux/createUserSlice";
 
 export default function SetPasswordSignup() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
@@ -96,6 +99,7 @@ export default function SetPasswordSignup() {
       return;
     }
 
+    dispatch(addUserDetails({Password:confirmPassword}))
     // const result = await changePasswordByEmailApi({
     //   newPassword: password,
     //   otp_reference: reference,

@@ -10,6 +10,8 @@ import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
+import { useDispatch } from "react-redux";
+import { addUserDetails } from "../../../redux/createUserSlice";
 const dateOptions = {
   mode: "single",
   dateFormat: "d M Y",
@@ -18,7 +20,7 @@ const dateOptions = {
 export default function PersonalDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("");
@@ -34,6 +36,7 @@ export default function PersonalDetails() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
+    dispatch(addUserDetails({FirstName:firstName, LastName:lastName, gender:gender, dob:dob, imageUrl:'demo-url'}))
     navigate("/auth/personal-details-layout/location-details");
   };
 
