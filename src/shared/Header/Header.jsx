@@ -10,7 +10,7 @@ export default function Header() {
       <div>
         <Link to="/"><img src={strikeLogo} className="min-w-[130px]" alt="Site Logo" /></Link>
       </div>
-      <ul className="flex items-center lg:gap-[3rem] gap-[1.5rem] text-[1.25rem] font-medium">
+      <ul className="flex items-center lg:gap-[3rem] gap-[1.5rem] text-[1rem] font-medium">
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
