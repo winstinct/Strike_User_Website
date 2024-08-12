@@ -42,7 +42,7 @@ export default function Login() {
     <div className="grid md:grid-cols-2 grid-cols-1 md:pb-0 pb-[1rem] lg:px-[4rem] md:px-[1.5rem] px-[1rem] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem]">
       {/* Slider Start  */}
       <div className="md:min-h-screen flex flex-col justify-center">
-      <div className="shadow-lg rounded-xl pb-[1rem] max-w-[100%]">
+      <div className="shadow-lg rounded-xl pb-[1rem] min-h-[90%] max-w-[100%]">
         <Swiper
           pagination={true}
           autoplay={{
