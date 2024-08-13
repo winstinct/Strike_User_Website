@@ -3,25 +3,21 @@ import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
-
 const firebaseConfig = {
+  apiKey: process.meta.env.VITE_apiKey,
 
-  apiKey: "AIzaSyC9B0bt_CIi1dB6hcaw7yafGZUOkLPEMas",
+  authDomain: process.meta.env.VITE_authDomain,
 
-  authDomain: "striekuserapp.firebaseapp.com",
+  projectId: process.meta.env.VITE_projectId,
 
-  projectId: "striekuserapp",
+  storageBucket: process.meta.env.VITE_storageBucket,
 
-  storageBucket: "striekuserapp.appspot.com",
+  messagingSenderId: process.meta.env.VITE_messagingSenderId,
 
-  messagingSenderId: "994786943300",
+  appId: process.meta.env.VITE_appId,
 
-  appId: "1:994786943300:web:d3dc36796d99920d2e3711",
-
-  measurementId: "G-6VLS57QRGB"
-
+  measurementId: process.meta.env.VITE_measurementId,
 };
-
 
 const app = initializeApp(firebaseConfig);
 

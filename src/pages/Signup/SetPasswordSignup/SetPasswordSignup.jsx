@@ -17,18 +17,24 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../../redux/createUserSlice";
 
 export default function SetPasswordSignup() {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const dispatch = useDispatch();
+  const { Password, confirmPassword } = useSelector(
+    (state) => state.createUser
+  );
+
+  // const [newPassword, setNewPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
+
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
+
   const [showError, setShowError] = useState(false);
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%._-])[A-Za-z\d!@#$%._-]{8,}$/;
@@ -83,23 +89,22 @@ export default function SetPasswordSignup() {
     } else {
       setIsPasswordValid(false);
     }
-    setNewPassword(pwd);
+    dispatch(addUserDetails({Password:pwd}))
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (confirmPassword !== newPassword) {
+    if (confirmPassword !== Password) {
       return setShowError(true);
     }
 
     //Validate password
-    if (!passwordRegex.test(newPassword)) {
+    if (!passwordRegex.test(Password)) {
       setIsPasswordValid(false);
       setShowError(true);
       return;
     }
 
-    dispatch(addUserDetails({Password:confirmPassword}))
     // const result = await changePasswordByEmailApi({
     //   newPassword: password,
     //   otp_reference: reference,
@@ -116,8 +121,8 @@ export default function SetPasswordSignup() {
 
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] md:pb-0 pb-[1rem]">
-     {/* Slider Start  */}
-     <div className="shadow-lg rounded-xl pb-[1rem] mt-[1rem]">
+      {/* Slider Start  */}
+      <div className="shadow-lg rounded-xl pb-[1rem] mt-[1rem]">
         <Swiper
           pagination={true}
           autoplay={{
@@ -145,7 +150,6 @@ export default function SetPasswordSignup() {
               </div>
             </div>
           </SwiperSlide>
-
 
           <SwiperSlide>
             <div>
@@ -184,7 +188,6 @@ export default function SetPasswordSignup() {
               </div>
             </div>
           </SwiperSlide>
-
         </Swiper>
         <p className="text-[14px] text-center px-[0.2rem]">
           Users must be <span className="text-[#FF0023]">18 or older</span>.
@@ -198,10 +201,7 @@ export default function SetPasswordSignup() {
       <div className="flex flex-col justify-center mt-[1rem]">
         <div>
           <header>
-            <div
-              onClick={() => navigate(-1)}
-              className="backBtn"
-            >
+            <div onClick={() => navigate(-1)} className="backBtn">
               <Icon
                 className="text-[2.5rem]"
                 icon="lets-icons:arrow-left-long"
@@ -210,9 +210,7 @@ export default function SetPasswordSignup() {
             <h1 className="md:text-[2rem] text-[1.5rem] font-semibold">
               Set Password
             </h1>
-            <p className="text-[14px]">
-              Please enter your new password
-            </p>
+            <p className="text-[14px]">Please enter your new password</p>
           </header>
 
           <div className="space-y-[1rem] mt-[0.5rem]">
@@ -230,7 +228,7 @@ export default function SetPasswordSignup() {
                   placeholder="Enter New password"
                   type={isNewPasswordVisible ? "text" : "password"}
                   id="newPassword"
-                  value={newPassword}
+                  value={Password}
                   onChange={handleChange}
                 />
                 {isNewPasswordVisible ? (
@@ -250,7 +248,9 @@ export default function SetPasswordSignup() {
                     icon="mdi:eye"
                   />
                 )}
-                {!newPassword && showError && <ShowErrorMsg message="This field is required"/>}
+                {!Password && showError && (
+                  <ShowErrorMsg message="This field is required" />
+                )}
               </div>
             </div>
 
@@ -269,7 +269,11 @@ export default function SetPasswordSignup() {
                   type={isConfirmPasswordVisible ? "text" : "password"}
                   id="confirmPassword"
                   value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e) =>
+                    dispatch(
+                      addUserDetails({ confirmPassword: e.target.value })
+                    )
+                  }
                 />
                 {isConfirmPasswordVisible ? (
                   <Icon
@@ -290,21 +294,23 @@ export default function SetPasswordSignup() {
                 )}
               </div>
               {confirmPassword &&
-                newPassword &&
+                Password &&
                 showError &&
-                confirmPassword !== newPassword && (
+                confirmPassword !== Password && (
                   <p className="text-red-500 text-[14px]">
                     Password does not match!
                   </p>
                 )}
               {confirmPassword &&
-                newPassword &&
+                Password &&
                 showError &&
                 !isPasswordValid &&
-                confirmPassword === newPassword && (
+                confirmPassword === Password && (
                   <p className="text-red-500 text-[14px]">Invalid Password</p>
                 )}
-                {!confirmPassword && showError && <ShowErrorMsg message="This field is required"/>}
+              {!confirmPassword && showError && (
+                <ShowErrorMsg message="This field is required" />
+              )}
             </div>
           </div>
 
@@ -323,10 +329,7 @@ export default function SetPasswordSignup() {
           </div>
 
           <footer className="text-center">
-            <button
-              className="submitBtn w-full"
-              onClick={handleSubmit}
-            >
+            <button className="submitBtn w-full" onClick={handleSubmit}>
               Submit
             </button>
           </footer>

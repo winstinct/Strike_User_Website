@@ -1,7 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCountries } from "use-react-countries";
 import { Select, Option, ThemeProvider } from "@material-tailwind/react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import { selectCustomTheme } from "../../../utils/selectCutomTheme";
@@ -10,7 +9,7 @@ import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../../redux/createUserSlice";
 const dateOptions = {
   mode: "single",
@@ -21,30 +20,21 @@ export default function PersonalDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [gender, setGender] = useState("");
-  const [dob, setDob] = useState(null);
-  const [selecectedFile, setSelectedFile] = useState(null);
+  const { FirstName, LastName, gender, dob, imageUrl, selecectedFile } =
+    useSelector((state) => state.createUser);
+    console.log("Selected File===>", selecectedFile)
+
   const [showError, setShowError] = useState(false);
 
   const handleNext = () => {
-    if(!firstName || !lastName || !dob || !selecectedFile){
-      return setShowError(true)
+    if (!FirstName || !LastName || !dob || !selecectedFile) {
+      return setShowError(true);
     }
 
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
-    dispatch(addUserDetails({FirstName:firstName, LastName:lastName, gender:gender, dob:dob, imageUrl:'demo-url'}))
     navigate("/auth/personal-details-layout/location-details");
-  };
-
-  const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-    navigate(-1);
   };
 
   useEffect(() => {
@@ -55,12 +45,8 @@ export default function PersonalDetails() {
     <div>
       <div>
         <div className="flex items-center gap-5 mb-[1rem]">
-        <div className="backBtn">
-          <Icon
-            onClick={() => navigate(-1)}
-            className="text-[2rem]"
-            icon="lets-icons:arrow-left-long"
-          />
+          <div onClick={() => navigate(-1)} className="backBtn">
+            <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
           </div>
           <h3 className="md:text-[2rem] text-[1.5rem] font-semibold">
             Personal Details
@@ -70,45 +56,66 @@ export default function PersonalDetails() {
 
       <ThemeProvider value={selectCustomTheme}>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-[1rem]">
-            {/* Upload File Input  */}
+          {/* Upload File Input  */}
 
-          {!selecectedFile && (<div className="md:col-span-2 flex justify-center">
-            <div>
-            <div
-              onClick={() => document.getElementById("file").click()}
-              className="border-[4px] border-[#CCCCCC] w-[130px] h-[130px] rounded-full flex justify-center items-center relative cursor-pointer"
-            >
-              <p>Icon</p>
-              <div
-                style={{
-                  backgroundImage: "linear-gradient(#A967FF, #5500C3)",
-                  boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
-                }}
-                className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none"
-              >
-                +
+          {!selecectedFile && (
+            <div className="md:col-span-2 flex justify-center">
+              <div>
+                <div
+                  onClick={() => document.getElementById("file").click()}
+                  className="border-[4px] border-[#CCCCCC] w-[130px] h-[130px] rounded-full flex justify-center items-center relative cursor-pointer"
+                >
+                  <p>Icon</p>
+                  <div
+                    style={{
+                      backgroundImage: "linear-gradient(#A967FF, #5500C3)",
+                      boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
+                    }}
+                    className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none"
+                  >
+                    +
+                  </div>
+                  <input
+                    onChange={(e) =>
+                      dispatch(
+                        addUserDetails({ selecectedFile: e.target.files[0] })
+                      )
+                    }
+                    className="hidden"
+                    type="file"
+                    id="file"
+                  />
+                </div>
+                {showError && !selecectedFile && (
+                  <ShowErrorMsg message="Photo is required" />
+                )}
               </div>
-              <input onChange={(e)=> setSelectedFile(e.target.files[0])} className="hidden" type="file" id="file" />
             </div>
-            {showError && !selecectedFile && <ShowErrorMsg message="Photo is required"/>}
-          </div>
-          </div>)}
+          )}
 
           {/* Uploaded File  */}
-          {selecectedFile && (<div className="md:col-span-2 flex justify-center">
-            <div
-              className="border-[4px] border-[#CCCCCC] w-[130px] h-[130px] rounded-full flex justify-center items-center relative"
-            >
-              <img className="w-[130px] h-[130px] rounded-full p-1" src={URL.createObjectURL(selecectedFile)} alt="Profile Photo" />
-              <div
-                className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none bg-red-600"
-                onClick={()=>setSelectedFile(null)}
-              >
-                <Icon className="text-white p-[3px]" icon="akar-icons:cross" />
+          {selecectedFile && (
+            <div className="md:col-span-2 flex justify-center">
+              <div className="border-[4px] border-[#CCCCCC] w-[130px] h-[130px] rounded-full flex justify-center items-center relative">
+                <img
+                  className="w-[130px] h-[130px] rounded-full p-1"
+                  src={URL.createObjectURL(selecectedFile)}
+                  alt="Profile Photo"
+                />
+                <div
+                  className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none bg-red-600"
+                  onClick={() =>
+                    dispatch(addUserDetails({ selecectedFile: null }))
+                  }
+                >
+                  <Icon
+                    className="text-white p-[3px]"
+                    icon="akar-icons:cross"
+                  />
+                </div>
               </div>
             </div>
-          </div>)}
-
+          )}
 
           <div>
             <label className="block" htmlFor="fname">
@@ -120,9 +127,14 @@ export default function PersonalDetails() {
               type="text"
               placeholder="Enter first name"
               id="fname"
-              onChange={(e)=>setFirstName(e.target.value)}
+              value={FirstName}
+              onChange={(e) =>
+                dispatch(addUserDetails({ FirstName: e.target.value }))
+              }
             />
-            {!firstName && showError && <ShowErrorMsg message="This field is required"/>}
+            {!FirstName && showError && (
+              <ShowErrorMsg message="This field is required" />
+            )}
           </div>
           <div>
             <label className="block" htmlFor="lname">
@@ -134,9 +146,14 @@ export default function PersonalDetails() {
               type="text"
               placeholder="Enter last name"
               id="lname"
-              onChange={(e)=>setLastName(e.target.value)}
+              value={LastName}
+              onChange={(e) =>
+                dispatch(addUserDetails({ LastName: e.target.value }))
+              }
             />
-            {!lastName && showError && <ShowErrorMsg message="This field is required"/>}
+            {!LastName && showError && (
+              <ShowErrorMsg message="This field is required" />
+            )}
           </div>
 
           <div className="w-full">
@@ -147,13 +164,16 @@ export default function PersonalDetails() {
             <Select
               className="border-[1px] border-gray-300 rounded-md"
               placeholder="Gender"
-              onChange={(value)=>setGender(value)}
+              value={gender}
+              onChange={(value) => dispatch(addUserDetails({ gender: value }))}
             >
               <Option value="Male">Male</Option>
               <Option value="Female">Female</Option>
               <Option value="Other">Other</Option>
             </Select>
-            {!gender && showError && <ShowErrorMsg message="This field is required"/>}
+            {!gender && showError && (
+              <ShowErrorMsg message="This field is required" />
+            )}
           </div>
 
           <div>
@@ -168,16 +188,18 @@ export default function PersonalDetails() {
                 options={dateOptions}
                 name="dob"
                 value={dob}
-                onChange={(selectedDate) => {
-                  setDob(selectedDate[0]);
-                }}
+                onChange={(selectedDate) =>
+                  dispatch(addUserDetails({ dob: selectedDate }))
+                }
               />
               <Icon
                 className="absolute top-3 text-gray-600 right-2 text-[1.2rem]"
                 icon="mingcute:down-line"
               />
             </div>
-            {!dob && showError && <ShowErrorMsg message="This field is required"/>}
+            {!dob && showError && (
+              <ShowErrorMsg message="This field is required" />
+            )}
           </div>
         </div>
       </ThemeProvider>

@@ -16,29 +16,27 @@ import { Pagination, Autoplay } from "swiper/modules";
 import RequiredStar from "../../shared/RequiredStar/RequiredStar";
 import { useState } from "react";
 import ShowErrorMsg from "../../shared/ShowErrorMsg/ShowErrorMsg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../redux/createUserSlice";
 
 export default function Signup() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [referralCode, setReferralCode] = useState("");
   const [showError, setShowError] = useState(false)
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const dispatch = useDispatch()
+  const {Email, refferalCodes} = useSelector(state => state.createUser);
   
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(Email)) {
       return setShowError(true);
     }
 
-    if(!email || !referralCode){
+    if(!Email || !refferalCodes){
       return setShowError(true)
     }
-    dispatch(addUserDetails({Email:email, refferalCodes:referralCode}))
     navigate("/auth/otp-verification-signup");
   };
 
@@ -142,10 +140,11 @@ export default function Signup() {
                 placeholder="Email"
                 type="email"
                 id="email"
-                onChange={(e)=>setEmail(e.target.value)}
+                value={Email}
+                onChange={(e)=>dispatch(addUserDetails({Email:e.target.value}))}
               />
-              {email && !emailRegex.test(email) && <ShowErrorMsg message="Please provide valid email"/>}
-              {!email && showError && <ShowErrorMsg message="This field is required"/>}
+              {Email && !emailRegex.test(Email) && <ShowErrorMsg message="Please provide valid email"/>}
+              {!Email && showError && <ShowErrorMsg message="This field is required"/>}
             </div>
 
             <div>
@@ -160,9 +159,10 @@ export default function Signup() {
                 type="text"
                 placeholder="Enter your code here"
                 id="referralCode"
-                onChange={(e)=>setReferralCode(e.target.value)}
+                value={refferalCodes}
+                onChange={(e)=>dispatch(addUserDetails({refferalCodes:e.target.value}))}
               />
-               {!referralCode && showError && <ShowErrorMsg message="This field is required"/>}
+               {!refferalCodes && showError && <ShowErrorMsg message="This field is required"/>}
             </div>
           </div>
 

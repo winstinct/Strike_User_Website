@@ -13,66 +13,56 @@ import {
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../../redux/createUserSlice";
 
 export default function ContactDetails() {
-  const {currentStep, setCurrentStep, steps} = useContext(StepperContext)
+  const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { MobileNumber, Email } = useSelector((state) => state.createUser);
+
   const { countries } = useCountries();
   const [country, setCountry] = useState(0);
   const { name, flags, countryCallingCode } = countries[country];
   const callingCode = countries[country]?.countryCallingCode || "";
 
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [showError, setShowError] = useState(false)
+  const [showError, setShowError] = useState(false);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  console.log("mobile number===> ", mobileNumber);
 
   const handleNext = () => {
-    // validate input fields 
-    if(!mobileNumber || !email){
-      return setShowError(true)
-    }
-
-    if (!emailRegex.test(email)) {
+    // validate input fields
+    if (!MobileNumber || !Email) {
       return setShowError(true);
     }
 
-    if(mobileNumber.length !== 10){
-      return setShowError(true)
+    if (!emailRegex.test(Email)) {
+      return setShowError(true);
+    }
+
+    if (MobileNumber.length !== 10) {
+      return setShowError(true);
     }
 
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
 
-    dispatch(addUserDetails({MobileNumber:mobileNumber}))
-    navigate("/auth/personal-details-layout/personal-details")
+    navigate("/auth/personal-details-layout/personal-details");
   };
 
-  const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-    useEffect(()=>{
-      setCurrentStep(0)
-    }, [])
-  };
+  useEffect(() => {
+    dispatch(addUserDetails({ countryCode: callingCode }));
+    setCurrentStep(0);
+  }, [MobileNumber]);
 
   return (
     <div>
       <div>
         <div className="flex items-center gap-5 mb-[3rem]">
-          <div className="backBtn">
-          <Icon
-            onClick={() => navigate(-1)}
-            className="text-[2rem]"
-            icon="lets-icons:arrow-left-long"
-          />
+          <div onClick={() => navigate(-1)} className="backBtn">
+            <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
           </div>
           <h3 className="md:text-[2rem] text-[1.5rem] font-semibold">
             Contact Details
@@ -86,58 +76,60 @@ export default function ContactDetails() {
             Mobile Number
             <RequiredStar />
           </p>
-          <div className="relative flex w-full max-w-[24rem]">
-      <Menu placement="bottom-start">
-        <MenuHandler>
-          <Button
-            ripple={false}
-            variant="text"
-            color="blue-gray"
-            className="flex h-10 items-center gap-2 rounded-r-none border border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3"
-          >
-            <img
-              src={flags.svg}
-              alt={name}
-              className="h-4 w-4 rounded-full object-cover"
+          <div className="relative flex w-full">
+            <Menu placement="bottom-start">
+              <MenuHandler>
+                <Button
+                  ripple={false}
+                  variant="text"
+                  color="blue-gray"
+                  className={`flex h-[2.6rem] items-center gap-2 !border-[1px] !rounded-r-none !outline-none bg-blue-gray-500/10 pl-3 duration-300 border-gray-300`}
+                >
+                  <img
+                    src={flags.svg}
+                    alt={name}
+                    className="h-4 w-4 rounded-full object-cover"
+                  />
+                  {countryCallingCode}
+                </Button>
+              </MenuHandler>
+              <MenuList className="max-h-[20rem] max-w-[18rem]">
+                {countries.map(({ name, flags, countryCallingCode }, index) => {
+                  return (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      className="flex items-center gap-2"
+                      onClick={() => setCountry(index)}
+                    >
+                      <img
+                        src={flags.svg}
+                        alt={name}
+                        className="h-5 w-5 rounded-full object-cover"
+                      />
+                      {name}{" "}
+                      <span className="ml-auto">{countryCallingCode}</span>
+                    </MenuItem>
+                  );
+                })}
+              </MenuList>
+            </Menu>
+            <input
+              type="number"
+              placeholder="Mobile Number"
+              className={`outline-none border-[1px] rounded-r-md py-2 px-3 w-full duration-300 border-[#e7e4e4]`}
+              value={MobileNumber}
+              onChange={(e) =>
+                dispatch(addUserDetails({ MobileNumber: e.target.value }))
+              }
             />
-            {countryCallingCode}
-          </Button>
-        </MenuHandler>
-        <MenuList className="max-h-[20rem] max-w-[18rem]">
-          {countries.map(({ name, flags, countryCallingCode }, index) => {
-            return (
-              <MenuItem
-                key={name}
-                value={name}
-                className="flex items-center gap-2"
-                onClick={() => setCountry(index)}
-              >
-                <img
-                  src={flags.svg}
-                  alt={name}
-                  className="h-5 w-5 rounded-full object-cover"
-                />
-                {name} <span className="ml-auto">{countryCallingCode}</span>
-              </MenuItem>
-            );
-          })}
-        </MenuList>
-      </Menu>
-      <Input
-        type="tel"
-        placeholder="Mobile Number"
-        className="rounded-l-none !outline-none !border-t-blue-gray-200 focus:!border-t-gray-900"
-        labelProps={{
-          className: "before:content-none after:content-none",
-        }}
-        containerProps={{
-          className: "min-w-0",
-        }}
-        onChange={(e)=>setMobileNumber(e.target.value)}
-      />
-    </div>
-          {!mobileNumber && showError && <ShowErrorMsg message="This field is required"/>}
-          {mobileNumber && mobileNumber.length !== 10 && showError && <ShowErrorMsg message="Mobile number must be 10 digits"/>}
+          </div>
+          {!MobileNumber && showError && (
+            <ShowErrorMsg message="This field is required" />
+          )}
+          {MobileNumber && MobileNumber.length !== 10 && showError && (
+            <ShowErrorMsg message="Mobile number must be 10 digits" />
+          )}
         </div>
 
         <div>
@@ -146,13 +138,18 @@ export default function ContactDetails() {
             <RequiredStar />
           </label>
           <input
-            className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
+            className="border-[1px] cursor-not-allowed border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
             type="email"
             id="email"
-            onChange={(e)=>setEmail(e.target.value)}
+            readOnly
+            value={Email}
           />
-          {!email && showError && <ShowErrorMsg message="This field is required"/>}
-          {email && !emailRegex.test(email) && showError && <ShowErrorMsg message="Please provide valid email"/>}
+          {!Email && showError && (
+            <ShowErrorMsg message="This field is required" />
+          )}
+          {Email && !emailRegex.test(Email) && showError && (
+            <ShowErrorMsg message="Please provide valid email" />
+          )}
         </div>
       </div>
       <div className="flex md:h-[150px] relative md:mt-0 mt-[4rem]">

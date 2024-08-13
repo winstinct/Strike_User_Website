@@ -12,7 +12,8 @@ export default function Footer() {
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[1.5rem]">
       <div>
         <img src={strikeLogo} alt="Website Logo" className="bg-white p-[0.5rem] w-[130px] h-[50px] rounded-md mb-[0.5rem]"/>
-        <p className="text-[14px] text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit lacinia est, nec pretium dolor molestie id.</p>
+        <p className="text-[14px] text-gray-300">Play Smart, Dream Big.
+        Your Future Starts Here!</p>
       </div>
       <div>
         <h3 className="text-[1rem] font-bold">Quick Links</h3>

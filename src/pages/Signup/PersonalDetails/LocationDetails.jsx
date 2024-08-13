@@ -1,58 +1,122 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Select,
-  Option,
-} from "@material-tailwind/react";
+import { Select, Option } from "@material-tailwind/react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addUserDetails } from "../../../redux/createUserSlice";
 
 export default function LocationDetails() {
-  const {currentStep, setCurrentStep, steps} = useContext(StepperContext)
+  const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
   const navigate = useNavigate("");
-  const userData = useSelector(state => state.createUser);
- 
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  const [pinCode, setPinCode] = useState("");
-  const [address, setAddress] = useState("");
+  const dispatch = useDispatch();
+
+  const initialState = {
+    Email: "",
+    Password: "",
+    confirmPassword: "",
+    FirstName: "",
+    LastName: "",
+    gender: "",
+    dob: "",
+    location: {
+      country: "",
+      state: "",
+      city: "",
+      address: "",
+      pinCode: "",
+    },
+    MobileNumber: "",
+    imageUrl: "",
+    otp: "",
+    countryCode: "",
+    selectedFile: null,
+    refferalCodes: "",
+  };
+  const {
+    location,
+    Email,
+    Password,
+    FirstName,
+    LastName,
+    gender,
+    dob,
+    MobileNumber,
+    imageUrl,
+    countryCode,
+    refferalCodes,
+  } = useSelector((state) => state.createUser);
+  const { country, state, city, address, pinCode } = location;
+
+  // const [country, setCountry] = useState("");
+  // const [state, setState] = useState("");
+  // const [city, setCity] = useState("");
+  // const [pinCode, setPinCode] = useState("");
+  // const [address, setAddress] = useState("");
+
   const [showError, setShowError] = useState(false);
-  
+
   const handleNext = () => {
-    if(!country || !state || !city || !pinCode || !address){
-      return setShowError(true)
+    if (!country || !state || !city || !pinCode || !address) {
+      return setShowError(true);
     }
 
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
-    console.log("User Signup Data===> ", {...userData, location:{country, state, city, pinCode, address}})
+    console.log("Form Data========> ", {
+      location,
+      Email,
+      Password,
+      FirstName,
+      LastName,
+      gender,
+      dob,
+      MobileNumber: countryCode + MobileNumber,
+      imageUrl,
+      refferalCodes,
+    });
+
+    // Reset the form fields
+    dispatch(
+      addUserDetails({
+        Email: "",
+        Password: "",
+        confirmPassword: "",
+        FirstName: "",
+        LastName: "",
+        gender: "",
+        dob: "",
+        location: {
+          country: "",
+          state: "",
+          city: "",
+          address: "",
+          pinCode: "",
+        },
+        MobileNumber: "",
+        imageUrl: "",
+        otp: "",
+        countryCode: "",
+        selectedFile: "",
+        refferalCodes: "",
+      })
+    );
+
     // navigate("/auth/login")
   };
 
-  const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-    navigate(-1)
-  };
-  useEffect(()=>{
-    setCurrentStep(2)
-  }, [])
+  useEffect(() => {
+    setCurrentStep(2);
+  }, []);
   return (
     <div>
       <div>
         <div className="flex items-center gap-5 mb-[1rem]">
-        <div className="backBtn">
-          <Icon
-            onClick={() => navigate(-1)}
-            className="text-[2rem]"
-            icon="lets-icons:arrow-left-long"
-          />
+          <div onClick={() => navigate(-1)} className="backBtn">
+            <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
           </div>
           <h3 className="md:text-[2rem] text-[1.5rem] font-semibold">
             Location Details
@@ -70,13 +134,19 @@ export default function LocationDetails() {
             className="border-[1px] border-gray-300 rounded-md"
             placeholder="Country"
             value={country}
-            onChange={(value)=>setCountry(value)}
+            onChange={(value) =>
+              dispatch(
+                addUserDetails({ location: { ...location, country: value } })
+              )
+            }
           >
             <Option value="India">India</Option>
             <Option value="Nepal">Nepal</Option>
             <Option value="Mayanmar">Mayanmar</Option>
           </Select>
-          {showError && !country && <ShowErrorMsg message="This field is required"/>}
+          {showError && !country && (
+            <ShowErrorMsg message="This field is required" />
+          )}
         </div>
         <div className="w-full">
           <p className="font-medium">
@@ -87,13 +157,19 @@ export default function LocationDetails() {
             className="border-[1px] border-gray-300 rounded-md"
             placeholder="gg"
             value={state}
-            onChange={(value)=>setState(value)}
+            onChange={(value) =>
+              dispatch(
+                addUserDetails({ location: { ...location, state: value } })
+              )
+            }
           >
             <Option value="India">India</Option>
             <Option value="Nepal">Nepal</Option>
             <Option value="Mayanmar">Mayanmar</Option>
           </Select>
-          {showError && !state && <ShowErrorMsg message="This field is required"/>}
+          {showError && !state && (
+            <ShowErrorMsg message="This field is required" />
+          )}
         </div>
         <div className="w-full">
           <p className="font-medium">
@@ -104,13 +180,19 @@ export default function LocationDetails() {
             className="border-[1px] border-gray-300 rounded-md"
             placeholder="gg"
             value={city}
-            onChange={(value)=>setCity(value)}
+            onChange={(value) =>
+              dispatch(
+                addUserDetails({ location: { ...location, city: value } })
+              )
+            }
           >
             <Option value="India">India</Option>
             <Option value="Nepal">Nepal</Option>
             <Option value="Mayanmar">Mayanmar</Option>
           </Select>
-          {showError && !city && <ShowErrorMsg message="This field is required"/>}
+          {showError && !city && (
+            <ShowErrorMsg message="This field is required" />
+          )}
         </div>
         <div>
           <label className="block" htmlFor="pincode">
@@ -121,9 +203,18 @@ export default function LocationDetails() {
             className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
             type="number"
             id="pincode"
-            onChange={(e)=>setPinCode(e.target.value)}
+            value={pinCode}
+            onChange={(e) =>
+              dispatch(
+                addUserDetails({
+                  location: { ...location, pinCode: e.target.value },
+                })
+              )
+            }
           />
-          {showError && !pinCode && <ShowErrorMsg message="This field is required"/>}
+          {showError && !pinCode && (
+            <ShowErrorMsg message="This field is required" />
+          )}
         </div>
         <div className="md:col-span-2">
           <label className="block" htmlFor="address">
@@ -134,9 +225,18 @@ export default function LocationDetails() {
             className="outline-none border-[1px] border-gray-300 px-3 py-1 rounded-lg w-full"
             name="address"
             id="address"
-            onChange={(e)=>setAddress(e.target.value)}
+            value={address}
+            onChange={(e) =>
+              dispatch(
+                addUserDetails({
+                  location: { ...location, address: e.target.value },
+                })
+              )
+            }
           ></textarea>
-          {showError && !address && <ShowErrorMsg message="This field is required"/>}
+          {showError && !address && (
+            <ShowErrorMsg message="This field is required" />
+          )}
         </div>
       </div>
       <div className="flex md:h-[70px] relative md:mt-0 mt-[4rem]">
@@ -144,7 +244,7 @@ export default function LocationDetails() {
           className="submitBtn md:w-[300px] w-full absolute bottom-0 right-0"
           onClick={handleNext}
         >
-          Next
+          Submit Now
         </button>
       </div>
     </div>
