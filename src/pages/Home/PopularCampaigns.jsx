@@ -39,8 +39,8 @@ export default function PopularCampaigns() {
   };
 
   return (
-    <section className="ml-56 mr-[1rem]">
-      <header className="flex md:flex-row flex-col md:gap-1 gap-3 items-center justify-between mb-[0.5rem] mr-56">
+    <section className="mr-[1rem]">
+      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[0.5rem] mr-56">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold">
             Popular campaigns

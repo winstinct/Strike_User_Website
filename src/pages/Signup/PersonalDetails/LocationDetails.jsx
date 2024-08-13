@@ -7,6 +7,8 @@ import { StepperContext } from "../../../contexts/StepperContextProvider";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../../redux/createUserSlice";
+import { useSignupMutation } from "../../../redux/features/auth/authApi";
+import { toast } from "react-toastify";
 
 export default function LocationDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
@@ -50,15 +52,12 @@ export default function LocationDetails() {
   } = useSelector((state) => state.createUser);
   const { country, state, city, address, pinCode } = location;
 
-  // const [country, setCountry] = useState("");
-  // const [state, setState] = useState("");
-  // const [city, setCity] = useState("");
-  // const [pinCode, setPinCode] = useState("");
-  // const [address, setAddress] = useState("");
-
   const [showError, setShowError] = useState(false);
 
-  const handleNext = () => {
+  // RTK Query Hooks 
+  const [signup, {isLoading}] = useSignupMutation();
+
+  const handleSubmit = async() => {
     if (!country || !state || !city || !pinCode || !address) {
       return setShowError(true);
     }
@@ -66,7 +65,8 @@ export default function LocationDetails() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
-    console.log("Form Data========> ", {
+
+    const userInfo = {
       location,
       Email,
       Password,
@@ -77,7 +77,21 @@ export default function LocationDetails() {
       MobileNumber: countryCode + MobileNumber,
       imageUrl,
       refferalCodes,
-    });
+    }
+    console.log("Form Data========> ", userInfo);
+
+     // Call API
+     try {
+      const res = await signup(userInfo);
+      if (res?.error) {
+        console.log("User created api response===>", res);
+        return toast.error(res?.error?.data?.message);
+      } else {
+        toast.success("Created user successfully.");
+      }
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
 
     // Reset the form fields
     dispatch(
@@ -99,6 +113,7 @@ export default function LocationDetails() {
         MobileNumber: "",
         imageUrl: "",
         otp: "",
+        otpRefId: "",
         countryCode: "",
         selectedFile: "",
         refferalCodes: "",
@@ -242,7 +257,7 @@ export default function LocationDetails() {
       <div className="flex md:h-[70px] relative md:mt-0 mt-[4rem]">
         <button
           className="submitBtn md:w-[300px] w-full absolute bottom-0 right-0"
-          onClick={handleNext}
+          onClick={handleSubmit}
         >
           Submit Now
         </button>

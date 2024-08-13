@@ -8,26 +8,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 
 export default function Banner() {
   return (
-    // <section className="mx-56">
-    //   <Carousel autoPlay infiniteLoop showThumbs={false} interval={3000}>
-    //     <div>
-    //       <img
-    //         className="w-full h-[300px] rounded-2xl"
-    //         src={slider1Img}
-    //         alt=""
-    //       />
-    //     </div>
-    //     <div>
-    //       <img
-    //         className="w-full h-[300px] rounded-2xl"
-    //         src={slider2Img}
-    //         alt=""
-    //       />
-    //     </div>
-    //   </Carousel>
-    // </section>
-
-    <div className="mx-56">
+    <div className="mr-56">
       <Swiper
       modules={[Autoplay, Pagination]}
       autoplay={{

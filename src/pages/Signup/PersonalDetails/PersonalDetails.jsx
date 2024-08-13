@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Select, Option, ThemeProvider } from "@material-tailwind/react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import { selectCustomTheme } from "../../../utils/selectCutomTheme";
-
 import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../../redux/createUserSlice";
+
+import { storage, ref, uploadBytes, getDownloadURL } from "../../../Firebase";
 const dateOptions = {
   mode: "single",
   dateFormat: "d M Y",
@@ -26,6 +27,30 @@ export default function PersonalDetails() {
 
   const [showError, setShowError] = useState(false);
 
+  const handleUpload = () => {
+    if (!selecectedFile) {
+      console.log('No image selected');
+      return;
+    }
+
+    // Create a storage reference
+    const imageRef = ref(storage, `images/${selecectedFile.name}`);
+
+    // Upload the file
+    uploadBytes(imageRef, selecectedFile).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+
+      // Get the download URL
+      getDownloadURL(snapshot.ref).then((url) => {
+        dispatch(addUserDetails({imageUrl:url}));
+        console.log('File available at', url);
+      });
+    }).catch((error) => {
+      console.error('Upload failed', error);
+    });
+  };
+
+
   const handleNext = () => {
     if (!FirstName || !LastName || !dob || !selecectedFile) {
       return setShowError(true);
@@ -34,6 +59,7 @@ export default function PersonalDetails() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
+    handleUpload()
     navigate("/auth/personal-details-layout/location-details");
   };
 

@@ -197,11 +197,11 @@ export default function SetPassword() {
       {/* Slider End  */}
 
       <div className="flex flex-col justify-center md:mt-0 mt-[2rem]">
-        <div>
+        <div className="flex flex-col gap-3">
           <header>
           <div 
           onClick={()=>navigate(-1)} 
-          className="backBtn"><Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" />
+          className="backBtn mb-[0.5rem]"><Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" />
           </div>
             <h1 className="md:text-[2rem] text-[1.5rem] font-semibold">
             Set Password

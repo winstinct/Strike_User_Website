@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   Email: "",
   Password: "",
-  confirmPassword:"",
+  confirmPassword: "",
   FirstName: "",
   LastName: "",
   gender: "",
@@ -12,15 +12,16 @@ const initialState = {
     country: "",
     state: "",
     city: "",
-    address:"",
-    pinCode:""
+    address: "",
+    pinCode: "",
   },
   MobileNumber: "",
   imageUrl: "",
-  otp:"",
-  countryCode:"",
-  selectedFile:null,
-  refferalCodes:""
+  otp: "",
+  otpRefId: "",
+  countryCode: "",
+  selectedFile: null,
+  refferalCodes: "",
 };
 
 const createUserSlice = createSlice({

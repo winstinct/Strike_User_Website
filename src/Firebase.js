@@ -3,6 +3,9 @@ import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
+// import { storage, ref, uploadBytes, getDownloadURL } from '/firebase';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_apiKey,
 
@@ -24,5 +27,6 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const analytics = getAnalytics(app);
 export const database = getDatabase(app);
-
+const storage = getStorage(app);
+export { storage, ref, uploadBytes, getDownloadURL };
 export default app;

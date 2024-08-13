@@ -33,8 +33,8 @@ export default function Winners() {
     setIsEnd(swiperInstance?.isEnd);
   };
   return (
-    <section className="ml-56 mr-[1.3rem]">
-      <header className="mr-56 flex md:flex-row flex-col md:gap-1 gap-3 items-center justify-between">
+    <section className="mr-[1.3rem]">
+      <header className="mr-56 flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold">Winners</h3>
           <p>*Check winners of previous lotteries</p>

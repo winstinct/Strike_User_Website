@@ -9,9 +9,10 @@ export default function RightSideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <div
-      className={`bg-white shadow-2xl border-l-[1px] border-[#d3cccc] fixed pt-[5.5rem] bottom-0 w-52 z-10 px-1 h-[600px] overflow-visible duration-300 min-h-screen overflow-y-auto ${isCollapsed ? 'right-[-12rem]' : 'right-0'}`}
+      className={`bg-white shadow-2xl border-l-[1px] border-[#d3cccc] fixed top-0 right-0 w-52 min-h-[100vh] z-10 px-1 overflow-visible duration-300 overflow-y-auto`}
     >
-      {/* <p className="absolute top-[0.5rem] right-[11.8rem] cursor-pointer border-[1px] bg-white hover:bg-[#A967FF] duration-200 hover:text-white border-gray-300 rounded-md shadow-lg z-50">
+      {/* ================>Toggle Button Start<=================== */}
+      {/* <p className="absolute top-[5.5rem] right-[11.8rem] cursor-pointer border-[1px] bg-white hover:bg-[#A967FF] duration-200 hover:text-white border-gray-300 rounded-md shadow-lg z-50">
         {isCollapsed ? (
           <Icon
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -26,7 +27,9 @@ export default function RightSideBar() {
           />
         )}
       </p> */}
-      <div>
+       {/* ================>Toggle Button End<=================== */}
+
+      <div className="mt-[7rem]">
         <div>
           <img src={lotteryNameImg} alt="" />
           <div className="flex justify-center items-center relative my-[0.5rem]">

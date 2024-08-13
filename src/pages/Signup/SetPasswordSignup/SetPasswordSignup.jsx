@@ -200,10 +200,10 @@ export default function SetPasswordSignup() {
       </div>
       {/* Slider End  */}
 
-      <div className="flex flex-col justify-center mt-[1rem]">
-        <div>
+      <div className="flex flex-col justify-center">
+        <div className="flex flex-col gap-3">
           <header>
-            <div onClick={() => navigate(-1)} className="backBtn">
+            <div onClick={() => navigate(-1)} className="backBtn mb-[0.5rem]">
               <Icon
                 className="text-[2.5rem]"
                 icon="lets-icons:arrow-left-long"

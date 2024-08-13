@@ -8,7 +8,7 @@ export default function LotteryGames() {
   const navigate = useNavigate();
   window.scrollTo({ top: 0});
   return (
-    <section className="space-y-[2.5rem] ml-56">
+    <section className="space-y-[2.5rem]">
       <div className="flex items-center gap-5 mb-[2rem]">
       <div onClick={() => navigate(-1)} className="backBtn">
         <Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" />

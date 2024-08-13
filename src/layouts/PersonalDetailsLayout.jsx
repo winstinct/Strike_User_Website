@@ -14,7 +14,7 @@ export default function PersonalDetailsLayout() {
         <div className="flex md:flex-row flex-col gap-10">
           <div
             style={{ backgroundImage: "linear-gradient(#A967FF, #5500C3)" }}
-            className="text-white md:p-10 p-5 md:min-h-[450px] h-[300px]"
+            className="text-white md:p-10 p-5 md:min-h-[83vh] h-[300px]"
           >
             <div>
               {steps?.map(({ label, content }, index) => {
