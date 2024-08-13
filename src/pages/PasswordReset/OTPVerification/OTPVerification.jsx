@@ -38,7 +38,8 @@ export default function OTPVerification() {
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] md:pb-0 pb-[1rem]">
       {/* Slider Start  */}
-      <div className="shadow-lg rounded-xl pb-[1rem] mt-[1rem]">
+      <div className="flex flex-col justify-center md:h-[87vh]">
+      <div className="shadow-lg rounded-xl pb-[1rem] md:min-h-[95%]">
         <Swiper
           pagination={true}
           autoplay={{
@@ -58,7 +59,7 @@ export default function OTPVerification() {
                 <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                   Welcome to <span className="text-[#A967FF]">Strike</span>
                 </h3>
-                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
+                <p className="text-[1.1rem] text-[#4C4C4C] mb-[1.3rem]">
                   Purchase lottery tickets for a chance to win big and host
                   private lotteries with friends and family for unforgettable
                   moments.
@@ -98,7 +99,7 @@ export default function OTPVerification() {
                   Get Ready to{" "}
                   <span className="text-[#A967FF]">Strike it Lucky! 🚀</span>
                 </h3>
-                <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
+                <p className="text-[1.1rem] text-[#4C4C4C] mb-[1.3rem]">
                   Enjoy exclusive perks, bonuses, and rewards as a valued member
                   of the Strike community.
                 </p>
@@ -113,6 +114,7 @@ export default function OTPVerification() {
           <span className="text-[#FF0023]">financial risk;</span> Play
           responsibly.
         </p>
+      </div>
       </div>
       {/* Slider End  */}
 

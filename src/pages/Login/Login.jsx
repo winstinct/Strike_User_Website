@@ -61,8 +61,8 @@ export default function Login() {
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 md:pb-0 pb-[1rem] lg:px-[4rem] md:px-[1.5rem] px-[1rem] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem]">
       {/* Slider Start  */}
-      <div className="md:min-h-screen flex flex-col justify-center">
-        <div className="shadow-lg rounded-xl pb-[1rem] min-h-[90%] max-w-[100%]">
+      <div className="flex flex-col justify-center md:h-[87vh]">
+        <div className="shadow-lg rounded-xl pb-[1rem] md:min-h-[95%] w-full">
           <Swiper
             pagination={true}
             autoplay={{
@@ -82,7 +82,7 @@ export default function Login() {
                   <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                     Welcome to <span className="text-[#A967FF]">Strike</span>
                   </h3>
-                  <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
+                  <p className="text-[1.1rem] text-[#4C4C4C] mb-[1.3rem]">
                     Purchase lottery tickets for a chance to win big and host
                     private lotteries with friends and family for unforgettable
                     moments.
@@ -121,7 +121,7 @@ export default function Login() {
                     Get Ready to{" "}
                     <span className="text-[#A967FF]">Strike it Lucky! 🚀</span>
                   </h3>
-                  <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
+                  <p className="text-[1.1rem] text-[#4C4C4C] mb-[1.3rem]">
                     Enjoy exclusive perks, bonuses, and rewards as a valued
                     member of the Strike community.
                   </p>
