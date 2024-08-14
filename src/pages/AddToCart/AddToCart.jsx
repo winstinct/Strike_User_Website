@@ -7,7 +7,7 @@ export default function AddToCart() {
     const navigate = useNavigate()
     window.scrollTo({top:0})
   return (
-    <section className='mx-56'>
+    <section className='mr-56'>
         <div onClick={()=>navigate(-1)} className="backBtn mb-[2rem]">
             <Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" />
             </div>

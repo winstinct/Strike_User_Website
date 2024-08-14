@@ -1,0 +1,34 @@
+header ul li{
+    position: relative;
+}
+header ul li a{
+    padding: 8px 12px;
+}
+
+
+header ul li a::after{
+    content: '';
+    background-image: linear-gradient(#A967FF, #5500C3);
+    width: 0px;
+    height: 3px;
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    transition: 0.3s;
+}
+
+header ul li:hover a:not(a.active)::after{
+    content: '';
+    background-image: linear-gradient(#A967FF, #5500C3);
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+}
+
+header ul li a.active{
+    background-image: linear-gradient(#A967FF, #5500C3);
+    color:#fff;
+    border-radius: 5px;
+}

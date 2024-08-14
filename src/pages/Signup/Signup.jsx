@@ -40,7 +40,7 @@ export default function Signup() {
       return setShowError(true);
     }
 
-    if (!Email || !refferalCodes) {
+    if (!Email) {
       return setShowError(true);
     }
 
@@ -193,9 +193,9 @@ export default function Signup() {
                   dispatch(addUserDetails({ refferalCodes: e.target.value }))
                 }
               />
-              {!refferalCodes && showError && (
+              {/* {!refferalCodes && showError && (
                 <ShowErrorMsg message="This field is required" />
-              )}
+              )} */}
             </div>
           </div>
 

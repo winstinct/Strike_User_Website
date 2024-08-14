@@ -20,6 +20,7 @@ import NumberGames from "../pages/NumberGames/NumberGames";
 import WheelGames from "../pages/WheelGames/WheelGames";
 import AddToCart from "../pages/AddToCart/AddToCart";
 import CartQuantityAdjuster from "../pages/CartQuantityAdjuster/CartQuantityAdjuster";
+import ShopperBag from "../pages/ShopperBag/ShopperBag";
 
 export const router = createBrowserRouter([
   {
@@ -109,6 +110,10 @@ export const router = createBrowserRouter([
       {
         path: "cartQuantityAdjuster/:lotteryId",
         element: <CartQuantityAdjuster />,
+      },
+      {
+        path: "shopper-bag",
+        element: <ShopperBag />,
       },
     ],
   },

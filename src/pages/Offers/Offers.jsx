@@ -1,7 +1,13 @@
+import ExpiredOffers from "./ExpiredOffers/ExpiredOffers";
+import OfferBanner from "./OfferBanner";
+import OffersSection from "./OffersSection/OffersSection";
+
 export default function Offers() {
   return (
     <div>
-      <h1>Offers page comming soon..</h1>
+      <OfferBanner />
+      <OffersSection />
+      <ExpiredOffers />
     </div>
-  )
+  );
 }

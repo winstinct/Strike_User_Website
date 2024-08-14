@@ -85,7 +85,7 @@ export default function LocationDetails() {
       const res = await signup(userInfo);
       if (res?.error) {
         console.log("User created api response===>", res);
-        return toast.error(res?.error?.data?.message);
+        return toast.error(res?.error?.data?.response?.message);
       } else {
         toast.success("Created user successfully.");
       }

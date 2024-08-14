@@ -1,15 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, createContext } from "react";
 import { auth } from "../Firebase";
-import {
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { APIurls } from "../api/apiConstant";
 import { useDispatch } from "react-redux";
 import { setToken } from "../redux/authSlice";
 
-const AuthContext = React.createContext();
+const AuthContext = createContext();
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -21,28 +17,12 @@ export const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [userRole, setUserRole] = useState();
 
-  function signUp(email, password) {
-    return createUserWithEmailAndPassword(email, password);
-  }
-
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   function logout() {
     return signOut(auth);
-  }
-
-  function resetPassword(email) {
-    return sendPasswordResetEmail(auth, email);
-  }
-
-  function updateEmail(email) {
-    return currentUser.updateEmail(email);
-  }
-
-  function updatePassword(password) {
-    return currentUser.updatePassword(password);
   }
 
   function getAccessToken() {
@@ -75,9 +55,8 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
-      await getUserRoleFunc(user);
       console.log("User Token==>", user?.accessToken);
-      dispatch(setToken(user?.accessToken))
+      dispatch(setToken(user?.accessToken));
       setLoading(false);
     });
     console.log(unsubscribe);
@@ -89,12 +68,6 @@ export const AuthContextProvider = ({ children }) => {
     currentUser,
     login,
     logout,
-    resetPassword,
-    updateEmail,
-    updatePassword,
-    getAccessToken,
-    saveUserRole,
-    userRole,
   };
 
   return (
