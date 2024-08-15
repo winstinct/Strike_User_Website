@@ -171,3 +171,31 @@ div button.peer ::after,::before{
   border-right: 4px solid #FFF;
 }
 
+
+/* Private Lottery Styles  */
+.private-lotter .middle1{
+  position: absolute;
+  left: -5px;
+  width: 30px;
+  height: 60px;
+  border-radius: 0 40px 40px 0;
+  background: white;
+  border-top: 4px solid red;
+  border-bottom: 4px solid red;
+  border-right: 4px solid red;
+  border-left: 4px solid #FFF;
+}
+
+.private-lotter .middle2{
+  position: absolute;
+  right: -5px;
+  width: 30px;
+  height: 60px;
+  border-radius: 40px 0px 0px 40px;
+  background: #FFF;
+  border-top: 4px solid red;
+  border-bottom: 4px solid red;
+  border-left: 4px solid red;
+  border-right: 4px solid #FFF;
+}
+

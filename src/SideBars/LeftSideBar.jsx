@@ -6,8 +6,13 @@ import { toast } from "react-toastify";
 
 export default function LeftSideBar() {
   const { logout, currentUser } = useAuth();
+  const {displayName, email, phoneNumber} = currentUser || {};
   const navigate = useNavigate();
   const handleLogout = async () => {
+    const isLogout = confirm("Are you sure ?");
+    if(!isLogout){
+      return;
+    }
     try {
       await logout();
       toast.success("Successfully logged out.");
@@ -17,16 +22,16 @@ export default function LeftSideBar() {
     }
   };
   return (
-    <div className="px-3 pt-[6rem] w-44 min-h-[100vh] overflow-y-auto fixed left-0 top-0 shadow-2xl border-r-[1px] border-gray-300">
+    <div className="px-3 pt-[6rem] w-48 min-h-[100vh] overflow-y-auto fixed left-0 top-0 shadow-2xl border-r-[1px] border-gray-300">
       <ul className="space-y-[1rem] text-[14px]">
         {/*Display For Only Logged In User  */}
         {currentUser && (
           <div className="space-y-[1rem]">
             <li className="text-[1rem] text-center">
-              <h3 className="font-bold">Billal Hossain</h3>
+              <h3 className="font-bold">{displayName}</h3>
               <div className="text-[14px] font-medium">
-                <p>+8801311123533</p>
-                <p>billal773@gmail.com</p>
+                <p>{phoneNumber}</p>
+                <p>{email}</p>
               </div>
             </li>
             <li>

@@ -8,7 +8,6 @@ import demoUserImg from "../../assets/demo-user.jpg"
 export default function MobileHeader() {
   const { currentUser } = useAuth();
   const [isVisible, setIsVisible] = useState(false);
-  console.log("Currently logged in user from mobile header===> ", currentUser);
   return (
     <header className="fixed top-0 w-full bg-white z-50">
       <div className="lg:px-[4rem] px-[1rem] py-[1rem] shadow-lg md:hidden block relative">
@@ -55,7 +54,7 @@ export default function MobileHeader() {
               {currentUser ? (
                 <div>
                   <div className="flex items-center gap-2">
-                  <p>Billal Hossain</p>
+                  <p>{currentUser?.displayName}</p>
                   <img
                     className="w-[30px] h-[30px] rounded-full"
                     src={demoUserImg}

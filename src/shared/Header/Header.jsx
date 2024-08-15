@@ -8,7 +8,6 @@ import "./Header.css"
 
 export default function Header() {
   const { currentUser } = useAuth();
-  console.log("Currently logged in user from desktop header===> ", currentUser);
   return (
     <>
       <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] py-[0.3rem] shadow-lg fixed w-full bg-white top-0 z-50">
@@ -57,7 +56,7 @@ export default function Header() {
                 src={demoUserImg}
                 alt="user-avatar"
               />
-              <p className="text-[14px]">Billal Hossain</p>
+              <p className="text-[14px]">{currentUser?.displayName}</p>
             </div>
           ) : (
             <Link to="/auth/login">

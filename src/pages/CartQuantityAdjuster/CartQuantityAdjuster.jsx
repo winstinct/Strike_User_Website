@@ -134,20 +134,29 @@ export default function CartQuantityAdjuster() {
         <h3 className="text-[1.5rem] font-bold underline mb-[1rem]">
           Terms & Conditions
         </h3>
-        <ul className="list-disc list-inside">
-          <li>
-            Enter and stand a chance to win 13,000 Tether as prize. Don’t miss
-            the chance and grab your ticket to enter the lottery today!
-          </li>
-          <li>
-            Enter and stand a chance to win 13,000 Tether as prize. Don’t miss
-            the chance and grab your ticket to enter the lottery today!
-          </li>
-          <li>
-            Enter and stand a chance to win 13,000 Tether as prize. Don’t miss
-            the chance and grab your ticket to enter the lottery today!
-          </li>
-        </ul>
+        <div className="list-disc list-inside space-y-[1rem]">
+            <div className="flex gap-2">
+              <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
+              <p>
+                Enter and stand a chance to win 13,000 Tether as prize. Don’t
+                miss the chance and grab your ticket to enter the lottery today!
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
+              <p>
+                Enter and stand a chance to win 13,000 Tether as prize. Don’t
+                miss the chance and grab your ticket to enter the lottery today!
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
+              <p>
+                Enter and stand a chance to win 13,000 Tether as prize. Don’t
+                miss the chance and grab your ticket to enter the lottery today!
+              </p>
+            </div>
+          </div>
       </div>
     </section>
   );

@@ -76,7 +76,7 @@ export default function ExpiredOffers() {
           >
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -103,7 +103,7 @@ export default function ExpiredOffers() {
           >
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -130,7 +130,7 @@ export default function ExpiredOffers() {
           >
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -157,7 +157,7 @@ export default function ExpiredOffers() {
           >
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -184,7 +184,7 @@ export default function ExpiredOffers() {
           >
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">

@@ -21,6 +21,8 @@ import WheelGames from "../pages/WheelGames/WheelGames";
 import AddToCart from "../pages/AddToCart/AddToCart";
 import CartQuantityAdjuster from "../pages/CartQuantityAdjuster/CartQuantityAdjuster";
 import ShopperBag from "../pages/ShopperBag/ShopperBag";
+import UpComingDraws from "../pages/Tickets/UpComingDraws/UpComingDraws";
+import Winners from "../pages/Tickets/Winners/Winners";
 
 export const router = createBrowserRouter([
   {
@@ -85,11 +87,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "offers",
-        element: <Offers />,
+        element: <Offers />
       },
       {
         path: "tickets",
         element: <Tickets />,
+        children:[
+          {
+            path:"",
+            element:<UpComingDraws/>
+          },
+          {
+            path:"winners",
+            element:<Winners/>
+          },
+        ]
       },
       {
         path: "lottery-games",

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../../redux/createUserSlice";
 
 import { storage, ref, uploadBytes, getDownloadURL } from "../../../Firebase";
+import moment from "moment";
 const dateOptions = {
   mode: "single",
   dateFormat: "d M Y",
@@ -215,7 +216,7 @@ export default function PersonalDetails() {
                 name="dob"
                 value={dob}
                 onChange={(selectedDate) =>
-                  dispatch(addUserDetails({ dob: selectedDate }))
+                  dispatch(addUserDetails({ dob: moment(new Date(selectedDate)).format("DD/MM/YYYY") }))
                 }
               />
               <Icon

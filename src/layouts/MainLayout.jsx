@@ -13,7 +13,7 @@ export default function MainLayout() {
 
       {/* Main Content */}
       <div className="flex-1 mt-[5rem]">
-        <div className="py-[1.3rem] ml-[12rem]">
+        <div className="py-[1.3rem] ml-[13rem]">
           <Outlet />
         </div>
         <Footer />

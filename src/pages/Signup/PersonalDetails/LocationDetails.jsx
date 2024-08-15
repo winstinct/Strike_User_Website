@@ -9,34 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../../redux/createUserSlice";
 import { useSignupMutation } from "../../../redux/features/auth/authApi";
 import { toast } from "react-toastify";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export default function LocationDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const initialState = {
-    Email: "",
-    Password: "",
-    confirmPassword: "",
-    FirstName: "",
-    LastName: "",
-    gender: "",
-    dob: "",
-    location: {
-      country: "",
-      state: "",
-      city: "",
-      address: "",
-      pinCode: "",
-    },
-    MobileNumber: "",
-    imageUrl: "",
-    otp: "",
-    countryCode: "",
-    selectedFile: null,
-    refferalCodes: "",
-  };
+  const { login } = useAuth();
   const {
     location,
     Email,
@@ -54,10 +33,10 @@ export default function LocationDetails() {
 
   const [showError, setShowError] = useState(false);
 
-  // RTK Query Hooks 
-  const [signup, {isLoading}] = useSignupMutation();
+  // RTK Query Hooks
+  const [signup, { isLoading }] = useSignupMutation();
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     if (!country || !state || !city || !pinCode || !address) {
       return setShowError(true);
     }
@@ -77,22 +56,23 @@ export default function LocationDetails() {
       MobileNumber: countryCode + MobileNumber,
       imageUrl,
       refferalCodes,
-    }
+    };
     console.log("Form Data========> ", userInfo);
 
-     // Call API
-     try {
+    // Call API
+    try {
       const res = await signup(userInfo);
       if (res?.error) {
         console.log("User created api response===>", res);
         return toast.error(res?.error?.data?.response?.message);
       } else {
+        //Signup Completed and Forcefully make the user login now
+        await login(Email, Password);
         toast.success("Created user successfully.");
       }
     } catch (error) {
       return toast.error("There was something wrong.");
     }
-
     // Reset the form fields
     dispatch(
       addUserDetails({
@@ -119,8 +99,7 @@ export default function LocationDetails() {
         refferalCodes: "",
       })
     );
-
-    // navigate("/auth/login")
+    navigate("/");
   };
 
   useEffect(() => {

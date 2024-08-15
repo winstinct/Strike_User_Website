@@ -1,0 +1,5 @@
+.tickets .active{
+    background: #5500C3;
+    color: #fff;
+    border:1px solid #5500C3;
+}

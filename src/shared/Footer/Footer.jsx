@@ -6,7 +6,7 @@ import appStoreIcon from "../../assets/app-store.svg"
 export default function Footer() {
   return (
     <footer 
-    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[12rem] mr-56 bg-[#44009c]"
+    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[13rem] mr-56 bg-[#44009c]"
     // style={{backgroundImage: "linear-gradient(#5500C3, #A967FF)"}}
     >
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[1.5rem]">
@@ -22,13 +22,10 @@ export default function Footer() {
             <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Home</Link>
           </li>
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Account</Link>
+            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/offers">Offers</Link>
           </li>
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Wallet</Link>
-          </li>
-          <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Wallet</Link>
+            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/tickets">Tickets</Link>
           </li>
         </ul>
       </div>
@@ -61,7 +58,7 @@ export default function Footer() {
       </div>
       </div>
 
-      <div className="flex lg:flex-row flex-col lg:justify-between lg:items-center lg:mt-0 mt-5">
+      <div className="flex lg:flex-row flex-col lg:justify-between lg:items-center lg:mt-[0.3rem] mt-5">
         <p className="text-[1rem]">Download the Strike app for the ultimate experience!</p>
         <div className="flex xl:flex-row flex-col lg:gap-5 gap-2">
         <div className="flex md:flex-row flex-col md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
@@ -82,7 +79,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <p className="text-center text-[14px] text-gray-300 pt-[1rem]">© {new Date().getFullYear()} Strike x Gaming. All rights reserved.</p>
+      <p className="text-center text-[14px] text-gray-300 pt-[0.3rem]">© {new Date().getFullYear()} Strike x Gaming. All rights reserved.</p>
     </footer>
   )
 }

@@ -18,7 +18,7 @@ const swiperConfig = {
 };
 
 export default function OffersSection() {
-    const [swiperInstance, setSwiperInstance] = useState(null);
+  const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
 
@@ -35,7 +35,6 @@ export default function OffersSection() {
   };
   return (
     <section className="mr-[1.3rem]">
-      <OfferDetailsModal/>
       <header className="mr-56 flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold">Offers</h3>
@@ -75,7 +74,7 @@ export default function OffersSection() {
           >
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -96,23 +95,16 @@ export default function OffersSection() {
                   </span>{" "}
                   <span className="font-bold text-[1.5rem]">05:18:03:10</span>
                 </div>
-                <button className="flex items-center justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                  <span className="font-semibold">Learn More</span>
-                  <Icon
-                    className="text-[1.7rem]"
-                    icon="ic:round-arrow-right-alt"
-                  />
-                </button>
+                <OfferDetailsModal />
               </div>
             </div>
           </div>
         </SwiperSlide>
-
         <SwiperSlide>
           <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -133,17 +125,13 @@ export default function OffersSection() {
                   </span>{" "}
                   <span className="font-bold text-[1.5rem]">05:18:03:10</span>
                 </div>
-                <button className="flex items-center justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                  <span className="font-semibold">Learn More</span>
-                  <Icon
-                    className="text-[1.7rem]"
-                    icon="ic:round-arrow-right-alt"
-                  />
-                </button>
+                <OfferDetailsModal />
               </div>
             </div>
           </div>
         </SwiperSlide>
+
+        
         <SwiperSlide>
           <div
             style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
@@ -151,7 +139,7 @@ export default function OffersSection() {
           >
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -172,23 +160,16 @@ export default function OffersSection() {
                   </span>{" "}
                   <span className="font-bold text-[1.5rem]">05:18:03:10</span>
                 </div>
-                <button className="flex items-center justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                  <span className="font-semibold">Learn More</span>
-                  <Icon
-                    className="text-[1.7rem]"
-                    icon="ic:round-arrow-right-alt"
-                  />
-                </button>
+                <OfferDetailsModal />
               </div>
             </div>
           </div>
         </SwiperSlide>
-
         <SwiperSlide>
           <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -209,17 +190,12 @@ export default function OffersSection() {
                   </span>{" "}
                   <span className="font-bold text-[1.5rem]">05:18:03:10</span>
                 </div>
-                <button className="flex items-center justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                  <span className="font-semibold">Learn More</span>
-                  <Icon
-                    className="text-[1.7rem]"
-                    icon="ic:round-arrow-right-alt"
-                  />
-                </button>
+                <OfferDetailsModal />
               </div>
             </div>
           </div>
         </SwiperSlide>
+
         <SwiperSlide>
           <div
             style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
@@ -227,7 +203,7 @@ export default function OffersSection() {
           >
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -248,23 +224,16 @@ export default function OffersSection() {
                   </span>{" "}
                   <span className="font-bold text-[1.5rem]">05:18:03:10</span>
                 </div>
-                <button className="flex items-center justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                  <span className="font-semibold">Learn More</span>
-                  <Icon
-                    className="text-[1.7rem]"
-                    icon="ic:round-arrow-right-alt"
-                  />
-                </button>
+                <OfferDetailsModal />
               </div>
             </div>
           </div>
         </SwiperSlide>
-
         <SwiperSlide>
           <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -285,17 +254,12 @@ export default function OffersSection() {
                   </span>{" "}
                   <span className="font-bold text-[1.5rem]">05:18:03:10</span>
                 </div>
-                <button className="flex items-center justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                  <span className="font-semibold">Learn More</span>
-                  <Icon
-                    className="text-[1.7rem]"
-                    icon="ic:round-arrow-right-alt"
-                  />
-                </button>
+                <OfferDetailsModal />
               </div>
             </div>
           </div>
         </SwiperSlide>
+
         <SwiperSlide>
           <div
             style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
@@ -303,7 +267,7 @@ export default function OffersSection() {
           >
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -324,23 +288,16 @@ export default function OffersSection() {
                   </span>{" "}
                   <span className="font-bold text-[1.5rem]">05:18:03:10</span>
                 </div>
-                <button className="flex items-center justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                  <span className="font-semibold">Learn More</span>
-                  <Icon
-                    className="text-[1.7rem]"
-                    icon="ic:round-arrow-right-alt"
-                  />
-                </button>
+                <OfferDetailsModal />
               </div>
             </div>
           </div>
         </SwiperSlide>
-
         <SwiperSlide>
           <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
             <div>
               <p>Hurry up!</p>
-              <h3 className="font-bold text-[2.5rem] italic">
+              <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
               <div className="flex items-center gap-1">
@@ -361,17 +318,77 @@ export default function OffersSection() {
                   </span>{" "}
                   <span className="font-bold text-[1.5rem]">05:18:03:10</span>
                 </div>
-                <button className="flex items-center justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                  <span className="font-semibold">Learn More</span>
-                  <Icon
-                    className="text-[1.7rem]"
-                    icon="ic:round-arrow-right-alt"
-                  />
-                </button>
+                <OfferDetailsModal />
               </div>
             </div>
           </div>
         </SwiperSlide>
+
+        <SwiperSlide>
+          <div
+            style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
+            className="p-[1rem] text-white rounded-[20px] bg-white"
+          >
+            <div>
+              <p>Hurry up!</p>
+              <h3 className="font-bold text-[2rem] italic">
+                Buy ONE Get ONE
+              </h3>
+              <div className="flex items-center gap-1">
+                <div>
+                  <span>Code:</span>{" "}
+                  <span className="font-bold">BUYONEGETONE</span>
+                </div>
+                <Icon
+                  className="text-[1.5rem] cursor-pointer"
+                  icon="bitcoin-icons:copy-outline"
+                />
+              </div>
+
+              <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
+                <div className="py-[0.5rem]">
+                  <span className="font-semibold text-[1.25rem]">
+                    Offer ends in:
+                  </span>{" "}
+                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
+                </div>
+                <OfferDetailsModal />
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
+            <div>
+              <p>Hurry up!</p>
+              <h3 className="font-bold text-[2rem] italic">
+                Buy ONE Get ONE
+              </h3>
+              <div className="flex items-center gap-1">
+                <div>
+                  <span>Code:</span>{" "}
+                  <span className="font-bold">BUYONEGETONE</span>
+                </div>
+                <Icon
+                  className="text-[1.5rem] cursor-pointer"
+                  icon="bitcoin-icons:copy-outline"
+                />
+              </div>
+
+              <div className="bg-[#198754] rounded-[20px] text-center mt-[1.5rem]">
+                <div className="py-[0.5rem]">
+                  <span className="font-semibold text-[1.25rem]">
+                    Offer ends in:
+                  </span>{" "}
+                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
+                </div>
+                <OfferDetailsModal />
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+
       </Swiper>
     </section>
   );
