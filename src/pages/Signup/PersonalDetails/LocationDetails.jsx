@@ -10,6 +10,7 @@ import { addUserDetails } from "../../../redux/createUserSlice";
 import { useSignupMutation } from "../../../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../contexts/AuthContext";
+import SubmitBtnLoader from "../../../components/SubmitBtnLoader";
 
 export default function LocationDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
@@ -234,12 +235,18 @@ export default function LocationDetails() {
         </div>
       </div>
       <div className="flex md:h-[70px] relative md:mt-0 mt-[4rem]">
-        <button
-          className="submitBtn md:w-[300px] w-full absolute bottom-0 right-0"
-          onClick={handleSubmit}
-        >
-          Submit Now
-        </button>
+        {isLoading ? (
+          <div className="md:w-[300px] w-full absolute bottom-0 right-0">
+            <SubmitBtnLoader />
+          </div>
+        ) : (
+          <button
+            className="submitBtn md:w-[300px] w-full absolute bottom-0 right-0"
+            onClick={handleSubmit}
+          >
+            Submit Now
+          </button>
+        )}
       </div>
     </div>
   );
