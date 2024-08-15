@@ -65,7 +65,8 @@ export default function LocationDetails() {
       const res = await signup(userInfo);
       if (res?.error) {
         console.log("User created api response===>", res);
-        return toast.error(res?.error?.data?.response?.message);
+        // return toast.error(res?.error?.data?.response?.message);
+        return toast.error(res?.error?.data?.message);
       } else {
         //Signup Completed and Forcefully make the user login now
         await login(Email, Password);
