@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { OfferDetailsModal } from "./OfferDetailsModal";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { toast } from "react-toastify";
+import CopyCode from "./CopyCode";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -77,17 +80,7 @@ export default function OffersSection() {
               <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
+              <CopyCode code="BUYONEGETONE"/>
               <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
                 <div className="py-[0.5rem]">
                   <span className="font-semibold text-[1.25rem]">
@@ -100,38 +93,6 @@ export default function OffersSection() {
             </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
-              <div className="bg-[#198754] rounded-[20px] text-center mt-[1.5rem]">
-                <div className="py-[0.5rem]">
-                  <span className="font-semibold text-[1.25rem]">
-                    Offer ends in:
-                  </span>{" "}
-                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
-                </div>
-                <OfferDetailsModal />
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-
-        
         <SwiperSlide>
           <div
             style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
@@ -142,17 +103,7 @@ export default function OffersSection() {
               <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
+              <CopyCode code="DEMOCODE1234"/>
               <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
                 <div className="py-[0.5rem]">
                   <span className="font-semibold text-[1.25rem]">
@@ -165,37 +116,6 @@ export default function OffersSection() {
             </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
-              <div className="bg-[#198754] rounded-[20px] text-center mt-[1.5rem]">
-                <div className="py-[0.5rem]">
-                  <span className="font-semibold text-[1.25rem]">
-                    Offer ends in:
-                  </span>{" "}
-                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
-                </div>
-                <OfferDetailsModal />
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-
         <SwiperSlide>
           <div
             style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
@@ -206,17 +126,7 @@ export default function OffersSection() {
               <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
+              <CopyCode code="CODE454435AEC"/>
               <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
                 <div className="py-[0.5rem]">
                   <span className="font-semibold text-[1.25rem]">
@@ -229,37 +139,6 @@ export default function OffersSection() {
             </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
-              <div className="bg-[#198754] rounded-[20px] text-center mt-[1.5rem]">
-                <div className="py-[0.5rem]">
-                  <span className="font-semibold text-[1.25rem]">
-                    Offer ends in:
-                  </span>{" "}
-                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
-                </div>
-                <OfferDetailsModal />
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-
         <SwiperSlide>
           <div
             style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
@@ -270,17 +149,7 @@ export default function OffersSection() {
               <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
+              <CopyCode code="CODE454435AEC"/>
               <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
                 <div className="py-[0.5rem]">
                   <span className="font-semibold text-[1.25rem]">
@@ -293,37 +162,6 @@ export default function OffersSection() {
             </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
-              <div className="bg-[#198754] rounded-[20px] text-center mt-[1.5rem]">
-                <div className="py-[0.5rem]">
-                  <span className="font-semibold text-[1.25rem]">
-                    Offer ends in:
-                  </span>{" "}
-                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
-                </div>
-                <OfferDetailsModal />
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-
         <SwiperSlide>
           <div
             style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
@@ -334,17 +172,7 @@ export default function OffersSection() {
               <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
+              <CopyCode code="CODE454435AEC"/>
               <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
                 <div className="py-[0.5rem]">
                   <span className="font-semibold text-[1.25rem]">
@@ -358,24 +186,17 @@ export default function OffersSection() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="p-[1rem] gradientBg text-white rounded-[20px] bg-white">
+          <div
+            style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
+            className="p-[1rem] text-white rounded-[20px] bg-white"
+          >
             <div>
               <p>Hurry up!</p>
               <h3 className="font-bold text-[2rem] italic">
                 Buy ONE Get ONE
               </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
-              <div className="bg-[#198754] rounded-[20px] text-center mt-[1.5rem]">
+              <CopyCode code="CODE454435AEC"/>
+              <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
                 <div className="py-[0.5rem]">
                   <span className="font-semibold text-[1.25rem]">
                     Offer ends in:
@@ -387,8 +208,29 @@ export default function OffersSection() {
             </div>
           </div>
         </SwiperSlide>
-
-
+        <SwiperSlide>
+          <div
+            style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
+            className="p-[1rem] text-white rounded-[20px] bg-white"
+          >
+            <div>
+              <p>Hurry up!</p>
+              <h3 className="font-bold text-[2rem] italic">
+                Buy ONE Get ONE
+              </h3>
+              <CopyCode code="CODE454435AEC"/>
+              <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
+                <div className="py-[0.5rem]">
+                  <span className="font-semibold text-[1.25rem]">
+                    Offer ends in:
+                  </span>{" "}
+                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
+                </div>
+                <OfferDetailsModal />
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
       </Swiper>
     </section>
   );

@@ -2,7 +2,7 @@ import { baseApi } from "../../api/baseApi";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // ========== Signup API Endpoints ===========
+    // ========== Signup user API Endpoints ===========
     sendOTP: builder.mutation({
       query: (email) => {
         return {
@@ -30,7 +30,7 @@ export const authApi = baseApi.injectEndpoints({
       },
     }),
 
-    // ========== Reset Password API Endpoints ===========
+    // ========== Update Password API Endpoints ===========
     sendOTPForgotPass: builder.mutation({
       query: (email) => {
         return {
@@ -61,7 +61,7 @@ export const authApi = baseApi.injectEndpoints({
 });
 
 export const {
-  //signup
+  //Signup user
   useSendOTPMutation,
   useVerifyOTPMutation,
   useSignupMutation,

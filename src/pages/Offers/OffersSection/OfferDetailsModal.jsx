@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Dialog, DialogHeader, DialogBody } from "@material-tailwind/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { AccordionCustomIcon } from "./Accordion";
+import CopyCode from "./CopyCode";
 
 export function OfferDetailsModal() {
   const [size, setSize] = useState(null);
@@ -40,16 +41,7 @@ export function OfferDetailsModal() {
             />
           </div>
 
-          <div className="flex items-center gap-1 mb-[1rem] mt-[0.3rem]">
-            <div>
-              <span className="text-[1.2rem]">Code:</span>{" "}
-              <span className="font-bold text-[1.25rem]"> BUYONEGETONE</span>
-            </div>
-            <Icon
-              className="text-[1.5rem] cursor-pointer"
-              icon="bitcoin-icons:copy-outline"
-            />
-          </div>
+          <div className="my-[1rem]"><CopyCode code="BUYONEGETONE"/></div>
 
           <div className="text-[1.25rem]">
             <span className="text-[1.2rem]">Valid till:</span>
