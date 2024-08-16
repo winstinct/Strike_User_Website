@@ -4,10 +4,15 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import demoUserImg from "../../assets/demo-user.jpg"
+import { useDispatch, useSelector } from "react-redux";
+import NotificationModal from "../../pages/Notification/NotificationModal";
+import { toggleNotificationModal } from "../../redux/notificationSlice";
 
 export default function MobileHeader() {
   const { currentUser } = useAuth();
   const [isVisible, setIsVisible] = useState(false);
+  const dispatch = useDispatch();
+  const { showNotificationModal } = useSelector((store) => store.notification);
   return (
     <header className="fixed top-0 w-full bg-white z-50">
       <div className="lg:px-[4rem] px-[1rem] py-[1rem] shadow-lg md:hidden block relative">
@@ -15,7 +20,23 @@ export default function MobileHeader() {
           <img src={strikeLogo} className="w-[100px]" alt="Site Logo" />
           <div className="flex items-center gap-[1rem]">
             <Icon className="text-[1.3rem]" icon="fluent:local-language-20-regular" />
-            <Icon className="text-[1.3rem]" icon="mdi:bell-outline" />
+            {/* Notification Modal  */}
+          <div className="relative">
+          <button
+            onClick={() => dispatch(toggleNotificationModal())}
+            className="bg-[#F6F6F8] p-[0.5rem] rounded-full cursor-pointer"
+          >
+            <Icon
+              icon="mi:notification"
+              className="text-[1.5rem] text-[#4D4D4D]"
+            />
+          </button>
+          {showNotificationModal && (
+            <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
+              <NotificationModal />
+            </div>
+          )}
+        </div>
             <Icon className="text-[1.3rem]" icon="lets-icons:bag" />
           </div>
           {isVisible ? (

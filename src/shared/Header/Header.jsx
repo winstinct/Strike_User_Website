@@ -5,9 +5,14 @@ import MobileHeader from "./MobileHeader";
 import { useAuth } from "../../contexts/AuthContext";
 import demoUserImg from "../../assets/demo-user.jpg";
 import "./Header.css"
+import NotificationModal from "../../pages/Notification/NotificationModal";
+import { toggleNotificationModal } from "../../redux/notificationSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Header() {
   const { currentUser } = useAuth();
+  const dispatch = useDispatch();
+  const { showNotificationModal } = useSelector((store) => store.notification);
   return (
     <>
       <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] py-[0.3rem] shadow-lg fixed w-full bg-white top-0 z-50">
@@ -46,7 +51,24 @@ export default function Header() {
             </>
           )}
           <Icon className="text-[1.5rem]" icon="fluent:local-language-20-regular" />
-          <Icon className="text-[1.5rem]" icon="mdi:bell-outline" />
+          {/* Notification Modal  */}
+          <div className="relative">
+          <button
+            onClick={() => dispatch(toggleNotificationModal())}
+            className="bg-[#F6F6F8] p-[0.5rem] rounded-full cursor-pointer"
+          >
+            <Icon
+              icon="mi:notification"
+              className="text-[1.5rem] text-[#4D4D4D]"
+            />
+          </button>
+          {showNotificationModal && (
+            <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
+              <NotificationModal />
+            </div>
+          )}
+        </div>
+
           <Link to="/shopper-bag"><Icon className="text-[1.5rem]" icon="lets-icons:bag" /></Link>
           <div className="bg-gray-300 h-[50px] w-[3px]"></div>
           {currentUser ? (
