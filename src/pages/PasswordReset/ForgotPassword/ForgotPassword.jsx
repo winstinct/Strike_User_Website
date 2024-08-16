@@ -17,7 +17,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
-import { useSendOTPMutation } from "../../../redux/features/auth/authApi";
+import { useSendOTPForgotPassMutation } from "../../../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../../redux/createUserSlice";
@@ -31,7 +31,7 @@ export default function ForgotPassword() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   // RTK Query Hooks
-  const [sendOTP, { isLoading }] = useSendOTPMutation();
+  const [sendOTP, { isLoading }] = useSendOTPForgotPassMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,8 +44,7 @@ export default function ForgotPassword() {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log(res);
-        dispatch(addUserDetails({ otpRefId: res?.data?.response?.refId }));
+        dispatch(addUserDetails({ otpRefId: res?.data?.response?.refId, Email }));
         toast.success("An OTP has been sent to your email.");
       }
     } catch (error) {

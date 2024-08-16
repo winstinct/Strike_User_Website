@@ -12,7 +12,6 @@ export const authApi = baseApi.injectEndpoints({
         };
       },
     }),
-
     verifyOTP: builder.mutation({
       query: ({ otp, otpRefId }) => {
         return {
@@ -21,7 +20,6 @@ export const authApi = baseApi.injectEndpoints({
         };
       },
     }),
-
     signup: builder.mutation({
       query: (userInfo) => {
         return {
@@ -32,8 +30,43 @@ export const authApi = baseApi.injectEndpoints({
       },
     }),
 
+    // ========== Reset Password API Endpoints ===========
+    sendOTPForgotPass: builder.mutation({
+      query: (email) => {
+        return {
+          url: `/users/forgotpassotps`,
+          method: "POST",
+          body: email,
+        };
+      },
+    }),
+    verifyOTPForgotPass: builder.mutation({
+      query: ({ otp, otpRefId, Email }) => {
+        return {
+          url: `/users/forgotverify-pass?Otp_number=${otp}&&otp_reference=${otpRefId}&&email=${Email}`,
+          method: "GET",
+        };
+      },
+    }),
+    updatePassForgotPass: builder.mutation({
+      query: (passInfo) => {
+        return {
+          url: `/users/forgot-change-pass`,
+          method: "POST",
+          body: passInfo,
+        };
+      },
+    }),
   }),
 });
 
-export const { useSendOTPMutation, useVerifyOTPMutation, useSignupMutation } =
-  authApi;
+export const {
+  //signup
+  useSendOTPMutation,
+  useVerifyOTPMutation,
+  useSignupMutation,
+  //Update password
+  useSendOTPForgotPassMutation,
+  useVerifyOTPForgotPassMutation,
+  useUpdatePassForgotPassMutation,
+} = authApi;

@@ -19,8 +19,8 @@ import { useState } from "react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
 import {
-  useSendOTPMutation,
-  useVerifyOTPMutation,
+  useSendOTPForgotPassMutation,
+  useVerifyOTPForgotPassMutation
 } from "../../../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,8 +35,8 @@ export default function OTPVerification() {
   const [showError, setShowError] = useState(false);
 
   // RTK Query Hooks
-  const [verifyOTP, { isLoading }] = useVerifyOTPMutation();
-  const [sendOTP, { isLoading: isLoadingSendAgain }] = useSendOTPMutation();
+  const [verifyOTP, { isLoading }] = useVerifyOTPForgotPassMutation();
+  const [sendOTP, { isLoading: isLoadingSendAgain }] = useSendOTPForgotPassMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,9 +45,8 @@ export default function OTPVerification() {
     }
     // Call API
     try {
-      const res = await verifyOTP({ otp, otpRefId });
+      const res = await verifyOTP({ otp, otpRefId, Email });
       if (res?.error) {
-        console.log("Verify OTP Error===> ", res);
         return toast.error(res?.error?.data?.message);
       } else {
         toast.success("OTP verified successfully.");
