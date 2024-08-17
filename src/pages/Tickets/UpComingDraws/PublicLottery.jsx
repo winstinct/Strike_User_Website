@@ -79,16 +79,16 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <span className="font-medium">Won</span>
-                  <span className="text-[#A967FF] text-[1.3rem] font-bold">
-                    200 Coins
-                  </span>
+                  <div className="text-[1.3rem] font-bold">
+                    <span className="font-medium">Won: </span>
+                    <span className="text-[#A967FF]">200 Coins</span>
+                  </div>
                 </div>
                 <p className="font-medium">Order ID: #8192739182</p>
                 <p className="text-[#858585]">
-                  Announced on: 08:40 PM 18 December, 2023
+                  Announced on: 18 December, 2023
                 </p>
               </div>
             </div>
@@ -105,16 +105,16 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <span className="font-medium">Won</span>
-                  <span className="text-[#A967FF] text-[1.3rem] font-bold">
-                    200 Coins
-                  </span>
+                  <div className="text-[1.3rem] font-bold">
+                    <span className="font-medium">Won: </span>
+                    <span className="text-[#A967FF]">200 Coins</span>
+                  </div>
                 </div>
                 <p className="font-medium">Order ID: #8192739182</p>
                 <p className="text-[#858585]">
-                  Announced on: 08:40 PM 18 December, 2023
+                  Announced on: 18 December, 2023
                 </p>
               </div>
             </div>
@@ -131,16 +131,16 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <span className="font-medium">Won</span>
-                  <span className="text-[#A967FF] text-[1.3rem] font-bold">
-                    200 Coins
-                  </span>
+                  <div className="text-[1.3rem] font-bold">
+                    <span className="font-medium">Won: </span>
+                    <span className="text-[#A967FF]">200 Coins</span>
+                  </div>
                 </div>
                 <p className="font-medium">Order ID: #8192739182</p>
                 <p className="text-[#858585]">
-                  Announced on: 08:40 PM 18 December, 2023
+                  Announced on: 18 December, 2023
                 </p>
               </div>
             </div>
@@ -157,16 +157,16 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <span className="font-medium">Won</span>
-                  <span className="text-[#A967FF] text-[1.3rem] font-bold">
-                    200 Coins
-                  </span>
+                  <div className="text-[1.3rem] font-bold">
+                    <span className="font-medium">Won: </span>
+                    <span className="text-[#A967FF]">200 Coins</span>
+                  </div>
                 </div>
                 <p className="font-medium">Order ID: #8192739182</p>
                 <p className="text-[#858585]">
-                  Announced on: 08:40 PM 18 December, 2023
+                  Announced on: 18 December, 2023
                 </p>
               </div>
             </div>
@@ -183,16 +183,16 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <span className="font-medium">Won</span>
-                  <span className="text-[#A967FF] text-[1.3rem] font-bold">
-                    200 Coins
-                  </span>
+                  <div className="text-[1.3rem] font-bold">
+                    <span className="font-medium">Won: </span>
+                    <span className="text-[#A967FF]">200 Coins</span>
+                  </div>
                 </div>
                 <p className="font-medium">Order ID: #8192739182</p>
                 <p className="text-[#858585]">
-                  Announced on: 08:40 PM 18 December, 2023
+                  Announced on: 18 December, 2023
                 </p>
               </div>
             </div>
