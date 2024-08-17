@@ -7,7 +7,6 @@ export default function Footer() {
   return (
     <footer 
     className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[13rem] mr-56 bg-[#44009c]"
-    // style={{backgroundImage: "linear-gradient(#5500C3, #A967FF)"}}
     >
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[1.5rem]">
       <div>
