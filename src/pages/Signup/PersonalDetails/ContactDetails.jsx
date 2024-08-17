@@ -23,8 +23,9 @@ export default function ContactDetails() {
   const { MobileNumber, Email } = useSelector((state) => state.createUser);
 
   const { countries } = useCountries();
+  const sortedCoutnries = countries?.sort((a, b) => a.name.localeCompare(b.name));
   const [country, setCountry] = useState(0);
-  const { name, flags, countryCallingCode } = countries[country];
+  const { name, flags, countryCallingCode } = sortedCoutnries[country];
   const callingCode = countries[country]?.countryCallingCode || "";
 
   const [showError, setShowError] = useState(false);
@@ -70,7 +71,7 @@ export default function ContactDetails() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 grid-cols-1 xl:gap-[2.5rem] lg:gap-[1rem] md:gap-[0.3rem]">
+      <div className="grid md:grid-cols-2 grid-cols-1 xl:gap-[2.5rem] lg:gap-[1rem] md:gap-[0.3rem] gap-3">
         <div>
           <p className="font-medium">
             Mobile Number

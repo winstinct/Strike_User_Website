@@ -104,18 +104,6 @@ export default function SetPasswordSignup() {
       setShowError(true);
       return;
     }
-
-    // const result = await changePasswordByEmailApi({
-    //   newPassword: password,
-    //   otp_reference: reference,
-    //   email: email,
-    // });
-    // if (!result?.error) {
-    //   setPassword("");
-    //   setConfirmPassword("");
-    //   setShowError(false);
-    //   navigate("/login");
-    // }
     navigate("/auth/personal-details-layout");
   };
 

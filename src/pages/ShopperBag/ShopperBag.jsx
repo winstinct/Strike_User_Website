@@ -13,7 +13,7 @@ export default function ShopperBag() {
     setQuantity(quantity - 1);
   };
   return (
-    <div className="mr-56">
+    <div className="mr-[16.5rem]">
       <h3 className="text-[2rem] font-bold mb-[1rem]">Shopper Bag</h3>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
         <div

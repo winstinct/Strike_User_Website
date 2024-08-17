@@ -6,7 +6,7 @@ import appStoreIcon from "../../assets/app-store.svg"
 export default function Footer() {
   return (
     <footer 
-    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[13rem] mr-56 bg-[#44009c]"
+    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[13rem] mr-[16.5rem] bg-[#44009c]"
     >
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[1.5rem]">
       <div>

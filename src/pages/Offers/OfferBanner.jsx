@@ -8,7 +8,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 
 export default function OfferBanner() {
   return (
-    <div className="mr-56">
+    <div className="mr-[16.5rem]">
       <Swiper
       modules={[Autoplay, Pagination]}
       autoplay={{
