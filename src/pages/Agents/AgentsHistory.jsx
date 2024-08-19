@@ -14,7 +14,7 @@ const swiperConfig = {
   },
 };
 
-export default function DepositHistory() {
+export default function AgentsHistory() {
   const navigate = useNavigate();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
@@ -32,16 +32,8 @@ export default function DepositHistory() {
     setIsEnd(swiperInstance?.isEnd);
   };
   return (
-    <section className="mt-[0.5rem]">
-      {/* Back Button  */}
-      <div className="flex items-center gap-5 mb-[2rem]">
-        <div onClick={() => navigate(-1)} className="backBtn">
-          <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
-        </div>
-        <h3 className="text-[1.5rem] font-bold">Deposit History</h3>
-      </div>
-
-      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mr-[16.5rem]">
+    <section className="mt-[2rem]">
+      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
           <h3 className="text-[1.25rem] font-bold">History</h3>
         </div>

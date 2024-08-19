@@ -38,7 +38,7 @@ export default function AgentsLayout() {
 
         <NavLink
           className="block hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
-          to="deposit-history"
+          to="agents-history"
           end
         >
           <button>History</button>

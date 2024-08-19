@@ -42,6 +42,13 @@ import { TermsAndConditions } from "../pages/TermsAndConditions/TermsAndConditio
 import { PrivacyPolicy } from "../pages/PrivacyPolicy/PrivacyPolicy";
 import { RefundPolicy } from "../pages/RefundPolicy/RefundPolicy";
 import FAQ from "../pages/FAQ/FAQ";
+import BecomePublicAgent from "../pages/BecomePublicAgent/BecomePublicAgent";
+import BecomePrivateAgent from "../pages/BecomePrivateAgent/BecomePrivateAgent";
+import WishList from "../pages/WishList/WishList";
+import Preferences from "../pages/Preferences/Preferences";
+import ReferAndEarn from "../pages/ReferAndEarn/ReferAndEarn";
+import ChatSupport from "../pages/ChatSupport/ChatSupport";
+import AgentsHistory from "../pages/Agents/AgentsHistory";
 
 export const router = createBrowserRouter([
   {
@@ -162,6 +169,40 @@ export const router = createBrowserRouter([
         path: "refund-policy",
         element: <RefundPolicy />,
       },
+
+      // sidebar pages
+      {
+        path: "become-public-agent",
+        element: <BecomePublicAgent />,
+      },
+      {
+        path: "become-private-agent",
+        element: <BecomePrivateAgent />,
+      },
+      {
+        path: "wish-list",
+        element: <WishList />,
+      },
+      {
+        path: "deposit-history",
+        element: <DepositHistory />,
+      },
+      {
+        path: "preferences",
+        element: <Preferences />,
+      },
+      {
+        path: "faq",
+        element: <FAQ />,
+      },
+      {
+        path: "chat-support",
+        element: <ChatSupport />,
+      },
+      {
+        path: "refer-and-earn",
+        element: <ReferAndEarn />,
+      },
     ],
   },
   {
@@ -229,8 +270,8 @@ export const router = createBrowserRouter([
             element: <Agents />,
           },
           {
-            path: "deposit-history",
-            element: <DepositHistory />,
+            path: "agents-history",
+            element: <AgentsHistory />,
           },
         ],
       },
