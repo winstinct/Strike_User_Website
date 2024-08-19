@@ -1,0 +1,51 @@
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import "./AgentsLayout.css";
+export default function AgentsLayout() {
+  const navigate = useNavigate();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  return (
+    <div className="mr-[16.5rem]">
+      {/* Back button  */}
+      <div className="flex justify-between items-center">
+      <div className="flex items-center gap-5 mb-[2rem]">
+        <div onClick={() => navigate(-1)} className="backBtn">
+          <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
+        </div>
+        <h3 className="text-[1.5rem] font-bold">Agents</h3>
+      </div>
+      <div className="flex items-center gap-2 font-bold">
+      <Icon className="text-[1rem]" icon="bi:clock" />
+      <span>10:00</span>
+      </div>
+      </div>
+
+      <div
+      style={{boxShadow:"0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
+       className="text-center rounded-lg py-2 border-[1px] border-gray-300 mb-[1.5rem]">
+        <span className="font-medium">No. of Coins Requested:</span>
+        <span className="text-[1.25rem] font-bold">1000</span>
+      </div>
+
+      <div className="grid grid-cols-2 gap-5 text-[1.25rem] font-bold AgentsLayout">
+        <NavLink
+          to=""
+          className="block hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
+          end
+        >
+          <button>Agents</button>
+        </NavLink>
+
+        <NavLink
+          className="block hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
+          to="deposit-history"
+          end
+        >
+          <button>History</button>
+        </NavLink>
+      </div>
+
+      <Outlet />
+    </div>
+  );
+}

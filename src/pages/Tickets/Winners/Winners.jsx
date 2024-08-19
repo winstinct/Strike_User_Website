@@ -34,7 +34,7 @@ export default function Winners() {
   };
   return (
     <section className="mr-[1.3rem]">
-      <header className="mr-56 flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
+      <header className="mr-[16.5rem] flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold">
             Won Lottery

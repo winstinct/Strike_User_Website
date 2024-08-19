@@ -7,9 +7,12 @@ import demoUserImg from "../../assets/demo-user.jpg"
 import { useDispatch, useSelector } from "react-redux";
 import NotificationModal from "../../pages/Notification/NotificationModal";
 import { toggleNotificationModal } from "../../redux/notificationSlice";
+import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 
 export default function MobileHeader() {
   const { currentUser } = useAuth();
+  const {data, isLoading} = useGetUserDetailsQuery();
+  const userImageUrl = data?.response?.UserData?.imageUrl;
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
   const { showNotificationModal } = useSelector((store) => store.notification);
@@ -74,14 +77,16 @@ export default function MobileHeader() {
             <div className="py-2 px-5">
               {currentUser ? (
                 <div>
+                  <Link to="/profile">
                   <div className="flex items-center gap-2">
                   <p>{currentUser?.displayName}</p>
                   <img
                     className="w-[30px] h-[30px] rounded-full"
-                    src={demoUserImg}
+                    src={userImageUrl}
                     alt="user-avatar"
                   />
                 </div>
+                  </Link>
                 <button
                 style={{
                   backgroundImage: "linear-gradient(#A967FF, #5500C3)",

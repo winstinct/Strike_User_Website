@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import lotteryNameImg from "../assets/lottery-name.svg";
 import personImg from "../assets/person-illustrator.png";
 import walletImg from "../assets/wallet-illustration.svg";
-import { useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -30,11 +29,17 @@ export default function RightSideBar() {
           </div>
 
           <div className="mt-[1rem] space-y-[0.5rem]">
+          <Link to="/withdraw" className="block">
           <button className="submitBtn w-full">Withdraw Coins</button>
+          </Link>
+          <Link to="/deposit" className="block mt-[0.5rem]">
           <button className="submitBtn w-full">Deposit</button>
+          </Link>
           </div>
 
+          <Link to="withdraw/withdraw-requests-history">
           <button className="text-[#5500C3] text-[14px] font-bold text-center mt-[1rem] w-full">Withdraw Request History</button>
+          </Link>
 
           <h3 className="font-bold text-[1rem] mt-[1rem] mb-[0.5rem]">Recent Transactions</h3>
           <div className="space-y-[1.5rem]">

@@ -6,7 +6,7 @@ import appStoreIcon from "../../assets/app-store.svg"
 export default function Footer() {
   return (
     <footer 
-    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[13rem] mr-[16.5rem] bg-[#44009c]"
+    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[13.8rem] mr-[16.5rem] bg-[#44009c]"
     >
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[1.5rem]">
       <div>
@@ -33,7 +33,7 @@ export default function Footer() {
         <h3 className="text-[1rem] font-bold">Support</h3>
         <ul className="space-y-[0.3rem] mt-[0.3rem] text-[14px]">
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">F.A.Q</Link>
+            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/faq">F.A.Q</Link>
           </li>
           <li>
             <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Chat Support</Link>
@@ -45,13 +45,13 @@ export default function Footer() {
         <h3 className="text-[1rem] font-bold">Policies</h3>
         <ul className="space-y-[0.3rem] mt-[0.3rem] text-[14px]">
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Terms & Conditions</Link>
+            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/terms-and-conditions">Terms & Conditions</Link>
           </li>
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Privacy Policy</Link>
+            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/privacy-policy">Privacy Policy</Link>
           </li>
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Refund Policy</Link>
+            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/refund-policy">Refund Policy</Link>
           </li>
         </ul>
       </div>

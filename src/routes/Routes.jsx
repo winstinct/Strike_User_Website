@@ -23,6 +23,25 @@ import CartQuantityAdjuster from "../pages/CartQuantityAdjuster/CartQuantityAdju
 import ShopperBag from "../pages/ShopperBag/ShopperBag";
 import UpComingDraws from "../pages/Tickets/UpComingDraws/UpComingDraws";
 import Winners from "../pages/Tickets/Winners/Winners";
+import Withdraw from "../pages/Withdraw/Withdraw";
+import WithdrawAndDepositLayout from "../layouts/WithdrawAndDepositLayout";
+import WithdrawSubmitted from "../pages/Withdraw/WithdrawSubmitted";
+import WithdrawRequestsHistory from "../pages/Withdraw/WithdrawRequestsHistory";
+import WithdrawLayout from "../pages/Withdraw/withdrawLayout";
+import DepositLayout from "../pages/Deposit/DepositLayout";
+import Wallet from "../pages/Wallet/Wallet";
+import Deposit from "../pages/Deposit/Deposit";
+import AgentsLayout from "../pages/Agents/AgentsLayout";
+import Agents from "../pages/Agents/Agents";
+import DepositHistory from "../pages/DepositHistory/History";
+import Profile from "../pages/Profile/Profile";
+import ProfilePersonalDetails from "../pages/Profile/ProfilePersonalDetails";
+import ProfileContactDetails from "../pages/Profile/ProfileContactDetails";
+import ProfileLocationDetails from "../pages/Profile/ProfileLocationDetails";
+import { TermsAndConditions } from "../pages/TermsAndConditions/TermsAndConditions";
+import { PrivacyPolicy } from "../pages/PrivacyPolicy/PrivacyPolicy";
+import { RefundPolicy } from "../pages/RefundPolicy/RefundPolicy";
+import FAQ from "../pages/FAQ/FAQ";
 
 export const router = createBrowserRouter([
   {
@@ -87,21 +106,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "offers",
-        element: <Offers />
+        element: <Offers />,
       },
       {
         path: "tickets",
         element: <Tickets />,
-        children:[
+        children: [
           {
-            path:"",
-            element:<UpComingDraws/>
+            path: "",
+            element: <UpComingDraws />,
           },
           {
-            path:"winners",
-            element:<Winners/>
+            path: "winners",
+            element: <Winners />,
           },
-        ]
+        ],
       },
       {
         path: "lottery-games",
@@ -126,6 +145,112 @@ export const router = createBrowserRouter([
       {
         path: "shopper-bag",
         element: <ShopperBag />,
+      },
+      {
+        path: "faq",
+        element: <FAQ />,
+      },
+      {
+        path: "terms-and-conditions",
+        element: <TermsAndConditions />,
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "refund-policy",
+        element: <RefundPolicy />,
+      },
+    ],
+  },
+  {
+    path: "withdraw",
+    element: <WithdrawAndDepositLayout />,
+    children: [
+      {
+        path: "",
+        element: <Withdraw />,
+      },
+      {
+        path: "withdraw-submitted",
+        element: <WithdrawSubmitted />,
+      },
+      {
+        path: "withdraw-requests-history",
+        element: <WithdrawRequestsHistory />,
+      },
+      {
+        path: "",
+        element: <WithdrawLayout />,
+        children: [
+          {
+            path: "wallet",
+            element: <Wallet />,
+          },
+          {
+            path: "deposit",
+            element: <Deposit />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "",
+    element: <WithdrawAndDepositLayout />,
+    children: [
+      {
+        path: "",
+        element: <DepositLayout />,
+        children: [
+          {
+            path: "deposit",
+            element: <Deposit />,
+          },
+          {
+            path: "wallet",
+            element: <Wallet />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "deposit/agents",
+    element: <WithdrawAndDepositLayout />,
+    children: [
+      {
+        path: "",
+        element: <AgentsLayout />,
+        children: [
+          {
+            path: "",
+            element: <Agents />,
+          },
+          {
+            path: "deposit-history",
+            element: <DepositHistory />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "profile",
+    element: <Profile />,
+    children: [
+      {
+        path: "",
+        element: <ProfilePersonalDetails />,
+      },
+      {
+        path: "location-details",
+        element: <ProfileLocationDetails />,
+      },
+      {
+        path: "contact-details",
+        element: <ProfileContactDetails />,
       },
     ],
   },

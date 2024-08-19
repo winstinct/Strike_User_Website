@@ -22,8 +22,8 @@ export default function LeftSideBar() {
     }
   };
   return (
-    <div className="px-3 pt-[6rem] w-48 min-h-[100vh] overflow-y-auto fixed left-0 top-0 shadow-2xl border-r-[1px] border-gray-300">
-      <ul className="space-y-[1rem] text-[14px]">
+    <div className="px-3 pt-[6rem] w-52 h-[100vh] hover:overflow-y-auto fixed left-0 top-0 shadow-2xl border-r-[1px] border-gray-300">
+      <ul className="space-y-[1.3rem] text-[16px]">
         {/*Display For Only Logged In User  */}
         {currentUser && (
           <div className="space-y-[1rem]">
@@ -35,7 +35,7 @@ export default function LeftSideBar() {
               </div>
             </li>
             <li>
-              <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#a167ff]">
+              <NavLink to="/profile" className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26]">
                 <Icon className="text-[1.3rem]" icon="clarity:user-line" />
                 <span>Account Details</span>
               </NavLink>
@@ -43,7 +43,7 @@ export default function LeftSideBar() {
           </div>
         )}
         <li>
-          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#a167ff]">
+          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26]">
             <Icon className="text-[1.3rem]" icon="heroicons:user-group" />
             <span>Become an Agent</span>
           </NavLink>
@@ -54,13 +54,13 @@ export default function LeftSideBar() {
             </NavLink>
           </li> */}
         <li>
-          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#A967FF]">
+          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26]">
             <Icon className="text-[1.3rem]" icon="weui:like-outlined" />
             <span>Wishlist</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#A967FF]">
+          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26]">
             <Icon
               className="text-[1.3rem]"
               icon="material-symbols-light:history"
@@ -69,25 +69,25 @@ export default function LeftSideBar() {
           </NavLink>
         </li>
         <li>
-          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#A967FF]">
+          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26]">
             <Icon className="text-[1.3rem]" icon="weui:setting-outlined" />
             <span>Preferences</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#A967FF]">
+          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26]">
             <Icon className="text-[1.3rem]" icon="ph:question" />
             <span>F.A.Q</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#A967FF]">
+          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26]">
             <Icon className="text-[1.3rem]" icon="fluent:chat-20-regular" />
             <span>Chat Support</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#A967FF]">
+          <NavLink className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26]">
             <Icon
               className="text-[1.3rem]"
               icon="lets-icons:group-share-light"

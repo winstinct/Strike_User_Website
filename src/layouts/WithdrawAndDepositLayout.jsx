@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "../shared/Header/Header";
-import Footer from "../shared/Footer/Footer";
-import { Outlet } from "react-router-dom";
 import LeftSideBar from "../SideBars/LeftSideBar";
-import RightSideBar from "../SideBars/RightSideBar";
+import Footer from "../shared/Footer/Footer";
+import FAQRightSideBar from "../SideBars/FAQRightSideBar";
+import { Outlet } from "react-router-dom";
 
-export default function MainLayout() {
+export default function WithdrawAndDepositLayout() {
   return (
     <div className="relative min-h-screen">
       <Header />
@@ -19,7 +19,7 @@ export default function MainLayout() {
         <Footer />
       </div>
 
-      <RightSideBar />
+      <FAQRightSideBar />
     </div>
   );
 }

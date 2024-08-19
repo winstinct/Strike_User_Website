@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import "./Tickets.css";
 export default function Tickets() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
   return (
     <div>
       <div className="flex tickets md:flex-row flex-col items-center gap-5 mr-[16.5rem] mb-[1.5rem]">

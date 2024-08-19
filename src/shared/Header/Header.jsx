@@ -8,9 +8,12 @@ import "./Header.css"
 import NotificationModal from "../../pages/Notification/NotificationModal";
 import { toggleNotificationModal } from "../../redux/notificationSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 
 export default function Header() {
   const { currentUser } = useAuth();
+  const {data, isLoading} = useGetUserDetailsQuery();
+  const userImageUrl = data?.response?.UserData?.imageUrl;
   const dispatch = useDispatch();
   const { showNotificationModal } = useSelector((store) => store.notification);
   return (
@@ -72,14 +75,16 @@ export default function Header() {
           <Link to="/shopper-bag"><Icon className="text-[1.5rem]" icon="lets-icons:bag" /></Link>
           <div className="bg-gray-300 h-[50px] w-[3px]"></div>
           {currentUser ? (
+            <Link to="/profile">
             <div className="flex flex-col items-center">
               <img
                 className="w-[30px] h-[30px] rounded-full"
-                src={demoUserImg}
+                src={userImageUrl}
                 alt="user-avatar"
               />
               <p className="text-[14px]">{currentUser?.displayName}</p>
             </div>
+            </Link>
           ) : (
             <Link to="/auth/login">
               <button

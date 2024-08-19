@@ -8,12 +8,7 @@ import Winners from "./Winners";
 import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      window.scrollTo({ top: 0 });
-    }, 0);
-    return () => clearTimeout(timer);
-  }, []);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <main className="space-y-[3rem]">

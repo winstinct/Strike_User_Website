@@ -57,6 +57,17 @@ export const authApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    // User Details API Endpoints 
+    getUserDetails: builder.query({
+      query: () => {
+        return {
+          url: `/users/get-details`,
+          method: "GET"
+        };
+      },
+    }),
+
   }),
 });
 
@@ -69,4 +80,6 @@ export const {
   useSendOTPForgotPassMutation,
   useVerifyOTPForgotPassMutation,
   useUpdatePassForgotPassMutation,
+
+  useGetUserDetailsQuery
 } = authApi;
