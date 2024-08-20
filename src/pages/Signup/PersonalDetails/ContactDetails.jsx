@@ -139,7 +139,7 @@ export default function ContactDetails() {
             <RequiredStar />
           </label>
           <input
-            className="border-[1px] cursor-not-allowed border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
+            className="border-[1px] cursor-not-allowed border-[#CCC] px-[1rem] h-[45px] rounded-[6px] outline-none w-full"
             type="email"
             id="email"
             readOnly

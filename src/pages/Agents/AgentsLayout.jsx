@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import "./AgentsLayout.css";
+import { setActiveStyle } from "../../utils/setActiveStyle";
 export default function AgentsLayout() {
   const navigate = useNavigate();
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -27,8 +27,9 @@ export default function AgentsLayout() {
         <span className="text-[1.25rem] font-bold">1000</span>
       </div>
 
-      <div className="grid grid-cols-2 gap-5 text-[1.25rem] font-bold AgentsLayout">
+      <div className="grid grid-cols-2 gap-5 text-[1.25rem] font-bold">
         <NavLink
+          style={setActiveStyle}
           to=""
           className="block hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
           end
@@ -37,6 +38,7 @@ export default function AgentsLayout() {
         </NavLink>
 
         <NavLink
+          style={setActiveStyle}
           className="block hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
           to="agents-history"
           end

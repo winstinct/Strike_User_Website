@@ -10,28 +10,35 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { personalDetailsSchema } from "../../schemas/personalDetailsSchema";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 import ThreeDotsLoader from "../../components/ThreeDotsLoader";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import { genderOptions } from "../../options/genderOptions";
 
-const genderOptions = [
-  {
-    label: "Male",
-    value: "Male",
-  },
-  {
-    label: "Female",
-    value: "Female",
-  },
-  {
-    label: "Other",
-    value: "Other",
-  },
-];
+
+function parseDate(dateString) {
+  // Split the date string into components
+  const [day, month, year] = dateString?.split('/').map(Number);
+  
+  // Note: Month is zero-based in JavaScript's Date object (0 = January, 1 = February, etc.)
+  // Therefore, we need to subtract 1 from the month value
+  const date = new Date(year, month - 1, day);
+  
+  // Check if the created date is valid
+  if (date?.getFullYear() === year && date?.getMonth() === month - 1 && date?.getDate() === day) {
+    console.log("Date===> ", date)
+    return date;
+  } else {
+    throw new Error('Invalid date');
+  }
+}
 
 export default function ProfilePersonalDetails() {
   const {data, isLoading} = useGetUserDetailsQuery();
   const {FirstName, LastName, Gender, imageUrl, dob, email} = data?.response?.UserData || {};
-
+  // console.log("Date of Birth===> ", dob);
   const [selectedFile, setSelectedFile] = useState(imageUrl);
   const [showError, setShowError] = useState(false);
+  const [startDate, setStartDate] = useState(new Date())
 
   let defaultValues = {
     FirstName, 

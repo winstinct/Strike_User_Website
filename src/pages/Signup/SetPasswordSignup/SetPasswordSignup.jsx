@@ -214,7 +214,7 @@ export default function SetPasswordSignup() {
               </label>
               <div className="relative">
                 <input
-                  className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
+                  className="border-[1px] border-[#CCC] px-[1rem] h-[45px] rounded-[6px] outline-none w-full"
                   placeholder="Enter New password"
                   type={isNewPasswordVisible ? "text" : "password"}
                   id="newPassword"
@@ -254,7 +254,7 @@ export default function SetPasswordSignup() {
               </label>
               <div className="relative">
                 <input
-                  className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
+                  className="border-[1px] border-[#CCC] px-[1rem] h-[45px] rounded-[6px] outline-none w-full"
                   placeholder="Re-Enter New password"
                   type={isConfirmPasswordVisible ? "text" : "password"}
                   id="confirmPassword"

@@ -72,12 +72,13 @@ export default function Login() {
             modules={[Pagination, Autoplay]}
           >
             <SwiperSlide>
-              <div>
+              <div className="flex flex-col">
                 <img
                   src={slider1Img}
-                  className="w-full h-[300px] rounded-t-xl"
+                  className="w-full rounded-t-xl h-[300px]"
                   alt="Slider-1"
                 />
+
                 <div className="md:mx-[2rem] mx-[0.5rem]">
                   <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                     Welcome to <span className="text-[#A967FF]">Strike</span>
@@ -155,7 +156,7 @@ export default function Login() {
                 <RequiredStar />
               </label>
               <input
-                className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
+                className="border-[1px] border-[#CCC] px-[1rem] h-[45px] rounded-[6px] outline-none w-full"
                 placeholder="Email"
                 type="email"
                 id="email"
@@ -180,7 +181,7 @@ export default function Login() {
               </label>
               <div className="relative">
                 <input
-                  className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
+                  className="border-[1px] border-[#CCC] px-[1rem] h-[45px] rounded-[6px] outline-none w-full"
                   placeholder="Enter password"
                   type={isPasswordVisible ? "text" : "password"}
                   id="password"
@@ -190,13 +191,13 @@ export default function Login() {
                 {isPasswordVisible ? (
                   <Icon
                     onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                    className="absolute top-[6px] right-2 text-[1.8rem] text-[#CCCCCC] cursor-pointer"
+                    className="absolute top-[9px] right-2 text-[1.8rem] text-[#CCCCCC] cursor-pointer"
                     icon="mdi:eye-off"
                   />
                 ) : (
                   <Icon
                     onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                    className="absolute top-[6px] right-2 text-[1.8rem] text-[#CCCCCC] cursor-pointer"
+                    className="absolute top-[9px] right-2 text-[1.8rem] text-[#CCCCCC] cursor-pointer"
                     icon="mdi:eye"
                   />
                 )}

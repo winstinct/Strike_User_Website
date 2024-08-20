@@ -10,7 +10,7 @@ import { useFormContext } from "react-hook-form";
 import { useCountries } from "use-react-countries";
 import Error from "../UI/Error";
 import { useDispatch } from "react-redux";
-import { addUserInfo } from "../../redux/createUserSlice";
+import { addUserDetails } from "../../redux/createUserSlice";
 
 export default function StrikePhone({ label, name: fieldName }) {
   const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export default function StrikePhone({ label, name: fieldName }) {
   const inputValue = watch(fieldName);
   useEffect(() => {
     setValue("countryCode", countryCallingCode);
-    inputValue && dispatch(addUserInfo({[fieldName]:inputValue}))
+    inputValue && dispatch(addUserDetails({[fieldName]:inputValue}))
   }, [countryCallingCode, dispatch, inputValue]);
 
   return (

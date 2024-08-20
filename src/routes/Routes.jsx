@@ -49,6 +49,11 @@ import Preferences from "../pages/Preferences/Preferences";
 import ReferAndEarn from "../pages/ReferAndEarn/ReferAndEarn";
 import ChatSupport from "../pages/ChatSupport/ChatSupport";
 import AgentsHistory from "../pages/Agents/AgentsHistory";
+import PersonalDetailsPublicAgent from "../pages/BecomePublicAgent/PersonalDetailsPublicAgent";
+import BankDetailsPublicAgent from "../pages/BecomePublicAgent/BankDetailsPublicAgent";
+import NotificationSettings from "../pages/Preferences/NotificationSettings";
+import PrivacySettings from "../pages/Preferences/PrivacySettings";
+import ChangePasswordPreference from "../pages/Preferences/ChangePasswordPreference";
 
 export const router = createBrowserRouter([
   {
@@ -174,6 +179,16 @@ export const router = createBrowserRouter([
       {
         path: "become-public-agent",
         element: <BecomePublicAgent />,
+        children:[
+          {
+            path:"",
+            element:<PersonalDetailsPublicAgent/>
+          },
+          {
+            path:"bank-details-public-agent",
+            element:<BankDetailsPublicAgent/>
+          },
+        ]
       },
       {
         path: "become-private-agent",
@@ -190,6 +205,20 @@ export const router = createBrowserRouter([
       {
         path: "preferences",
         element: <Preferences />,
+        children:[
+          {
+            path:"",
+            element:<NotificationSettings/>
+          },
+          {
+            path:"privacy-settings",
+            element:<PrivacySettings/>
+          }
+        ]
+      },
+      {
+        path:"privacy/change-password",
+        element:<ChangePasswordPreference/>
       },
       {
         path: "faq",

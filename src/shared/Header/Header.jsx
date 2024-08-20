@@ -18,10 +18,10 @@ export default function Header() {
   const { showNotificationModal } = useSelector((store) => store.notification);
   return (
     <>
-      <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] py-[0.3rem] shadow-lg fixed w-full bg-white top-0 z-50">
+      <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] py-[0.8rem] shadow-lg fixed w-full bg-white top-0 z-50">
         <div>
           <Link to="/">
-            <img src={strikeLogo} className="min-w-[130px]" alt="Site Logo" />
+            <img src={strikeLogo} className="w-[130px]" alt="Site Logo" />
           </Link>
         </div>
         <ul className="flex items-center large lg:gap-[3rem] gap-[1.5rem] text-[1rem] font-medium">
@@ -92,7 +92,7 @@ export default function Header() {
                   backgroundImage: "linear-gradient(#A967FF, #5500C3)",
                   boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
                 }}
-                className="text-white rounded-[50px] lg:py-[1rem] py-[0.5rem] lg:px-[3rem] px-[1.5rem]"
+                className="text-white rounded-[50px] px-[1.5rem] py-[0.5rem]"
               >
                 Login/Signup
               </button>

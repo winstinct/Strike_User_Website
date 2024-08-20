@@ -9,7 +9,9 @@ export default function StrikeDatePicker({ name, label, required }) {
   const {
     control,
     formState: { errors },
+    watch
   } = useFormContext();
+  // console.log("Selected Date=======> ", watch("dob") && watch("dob")[0])
   return (
     <div>
       <label className="block" htmlFor={name}>
@@ -24,11 +26,13 @@ export default function StrikeDatePicker({ name, label, required }) {
         <Controller
           name={name}
           control={control}
-          render={({ field: { onChange, value }, field }) => {
+          render={({ field: { onChange, value, onBlur, ref }, field }) => {
             return (
               <Flatpickr
                 {...field}
-                onChange={onChange}
+                onChange={(value)=>onChange(value[0])}
+                onBlur={onBlur}
+                ref={ref}
                 className="outline-none cursor-pointer w-full"
               />
             );

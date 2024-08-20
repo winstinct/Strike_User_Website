@@ -158,7 +158,7 @@ export default function ForgotPassword() {
                 <RequiredStar />
               </label>
               <input
-                className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
+                className="border-[1px] border-[#CCC] px-[1rem] h-[45px] rounded-[6px] outline-none w-full"
                 placeholder="Email"
                 type="email"
                 id="email"
