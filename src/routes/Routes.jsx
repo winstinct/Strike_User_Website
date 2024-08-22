@@ -54,6 +54,7 @@ import BankDetailsPublicAgent from "../pages/BecomePublicAgent/BankDetailsPublic
 import NotificationSettings from "../pages/Preferences/NotificationSettings";
 import PrivacySettings from "../pages/Preferences/PrivacySettings";
 import ChangePasswordPreference from "../pages/Preferences/ChangePasswordPreference";
+import VerticalResponsive from "../pages/VerticalResponsive";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
       {
         path: "set-password-signup",
         element: <SetPasswordSignup />,
+      },
+      {
+        path: "vertical-responsive",
+        element: <VerticalResponsive />,
       },
     ],
   },

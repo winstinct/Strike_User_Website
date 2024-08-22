@@ -3,6 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 
 export default function BecomePublicAgent() {
+  window.scrollTo({top:0, behavior:"smooth"})
   return (
     <main className="mr-[16.5rem]">
       <h3 className="text-[2rem] font-bold italic">Become an Agent</h3>

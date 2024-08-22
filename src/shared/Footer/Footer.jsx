@@ -36,7 +36,7 @@ export default function Footer() {
             <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/faq">F.A.Q</Link>
           </li>
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Chat Support</Link>
+            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/chat-support">Chat Support</Link>
           </li>
         </ul>
       </div>

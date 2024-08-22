@@ -18,6 +18,7 @@ const swiperConfig = {
 };
 
 export default function DepositHistory() {
+  window.scrollTo({top:0, behavior:"smooth"})
   const navigate = useNavigate();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);

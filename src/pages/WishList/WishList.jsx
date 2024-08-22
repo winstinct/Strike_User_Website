@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link } from "react-router-dom";
 
 export default function WishList() {
+  window.scrollTo({top:0, behavior:"smooth"})
   return (
     <div className="mr-[16.5rem]">
       <h3 className="text-[2rem] font-bold italic mb-[1rem]">Wishlist</h3>

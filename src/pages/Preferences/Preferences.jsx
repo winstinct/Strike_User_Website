@@ -3,6 +3,7 @@ import { setActiveStyle } from "../../utils/setActiveStyle";
 import { NavLink, Outlet } from "react-router-dom";
 
 export default function Preferences() {
+  window.scrollTo({top:0, behavior:"smooth"})
   return (
     <main className="mr-[16.5rem]">
       <h3 className="text-[2rem] font-bold italic">Preferences</h3>
