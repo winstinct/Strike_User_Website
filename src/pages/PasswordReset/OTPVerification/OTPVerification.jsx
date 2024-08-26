@@ -73,10 +73,10 @@ export default function OTPVerification() {
     }
   };
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[4rem] md:px-[1.5rem] px-[1rem] min-h-[500px] xl:gap-[7.5rem] lg:gap-[5rem] md:gap-[2rem] gap-[1rem] md:pb-0 pb-[1rem]">
-      {/* Slider Start  */}
-      <div className="flex flex-col justify-center md:h-[87vh]">
-        <div className="shadow-lg rounded-xl pb-[1rem] md:min-h-[95%]">
+    <div className="md:grid md:grid-cols-2 grid-cols-1 md:gap-10 md:mx-[5rem] mx-5">
+       {/* Slider Start  */}
+       <div className="md:flex flex-col md:justify-center md:min-h-[calc(100vh-6rem)]">
+        <div className="shadow-lg rounded-xl w-full pb-[1rem]">
           <Swiper
             pagination={true}
             autoplay={{
@@ -86,17 +86,18 @@ export default function OTPVerification() {
             modules={[Pagination, Autoplay]}
           >
             <SwiperSlide>
-              <div>
+              <div className="flex flex-col md:h-[calc(100vh-9rem)]">
                 <img
                   src={slider1Img}
-                  className="w-full h-[300px] rounded-t-xl"
+                  className="w-full rounded-t-xl md:min-h-[70%] flex-1"
                   alt="Slider-1"
                 />
+
                 <div className="md:mx-[2rem] mx-[0.5rem]">
                   <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                     Welcome to <span className="text-[#A967FF]">Strike</span>
                   </h3>
-                  <p className="text-[1.1rem] text-[#4C4C4C] mb-[1.3rem]">
+                  <p className="text-[1.1rem] text-[#4C4C4C]">
                     Purchase lottery tickets for a chance to win big and host
                     private lotteries with friends and family for unforgettable
                     moments.
@@ -106,10 +107,10 @@ export default function OTPVerification() {
             </SwiperSlide>
 
             <SwiperSlide>
-              <div>
+              <div className="flex flex-col md:h-[calc(100vh-9rem)]">
                 <img
                   src={slider2Img}
-                  className="w-full h-[300px] rounded-t-xl"
+                   className="w-full rounded-t-xl md:min-h-[70%] flex-1"
                   alt="Slider-2"
                 />
                 <div className="md:mx-[2rem] mx-[0.5rem]">
@@ -124,10 +125,10 @@ export default function OTPVerification() {
             </SwiperSlide>
 
             <SwiperSlide>
-              <div>
+              <div className="flex flex-col md:h-[calc(100vh-9rem)]">
                 <img
                   src={slider3Img}
-                  className="w-full h-[300px] rounded-t-xl"
+                   className="w-full rounded-t-xl md:min-h-[70%] flex-1"
                   alt="Slider-3"
                 />
                 <div className="md:mx-[2rem] mx-[0.5rem]">

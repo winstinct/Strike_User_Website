@@ -19,6 +19,10 @@ body {
   border-radius: 5px !important;
 }
 
+.swiper-pagination{
+ position:relative !important;
+}
+
 
 
 
