@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import slider1Img from "../../assets/slider-1.png";
 import slider2Img from "../../assets/slider-2.png";
 import slider3Img from "../../assets/slider-3.png";
@@ -32,6 +32,9 @@ export default function Login() {
   const [isProcessing, setIsProcessing] = useState(false);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  const from = useLocation()?.state?.from;
+  console.log("Destination==========> ", from)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,7 +54,7 @@ export default function Login() {
       await login(email, password);
       setIsProcessing(false);
       toast.success("Login success!", { autoClose: 3000 });
-      navigate("/");
+      navigate(from || "/");
     } catch (error) {
       setIsProcessing(false);
       toast.error("Credentials (Password/Email) are not correct!");

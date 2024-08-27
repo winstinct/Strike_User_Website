@@ -55,6 +55,7 @@ import NotificationSettings from "../pages/Preferences/NotificationSettings";
 import PrivacySettings from "../pages/Preferences/PrivacySettings";
 import ChangePasswordPreference from "../pages/Preferences/ChangePasswordPreference";
 import VerticalResponsive from "../pages/VerticalResponsive";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -153,7 +154,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "addToCart/:lotteryId",
-        element: <AddToCart />,
+        element: <PrivateRoute><AddToCart /></PrivateRoute>,
       },
       {
         path: "cartQuantityAdjuster/:lotteryId",
@@ -183,7 +184,7 @@ export const router = createBrowserRouter([
       // sidebar pages
       {
         path: "become-public-agent",
-        element: <BecomePublicAgent />,
+        element: <PrivateRoute><BecomePublicAgent /></PrivateRoute>,
         children:[
           {
             path:"",
@@ -197,15 +198,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "become-private-agent",
-        element: <BecomePrivateAgent />,
+        element: <PrivateRoute><BecomePrivateAgent /></PrivateRoute>,
       },
       {
         path: "wish-list",
-        element: <WishList />,
+        element: <PrivateRoute><WishList /></PrivateRoute>,
       },
       {
         path: "deposit-history",
-        element: <DepositHistory />,
+        element: <PrivateRoute><DepositHistory /></PrivateRoute>,
       },
       {
         path: "preferences",
@@ -235,7 +236,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "refer-and-earn",
-        element: <ReferAndEarn />,
+        element: <PrivateRoute><ReferAndEarn /></PrivateRoute>,
       },
     ],
   },
