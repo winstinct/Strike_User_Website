@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import strikeLogo from "../../assets/strike-logo.svg";
 import playStoreIcon from "../../assets/play-store.svg"
 import appStoreIcon from "../../assets/app-store.svg"
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function Footer() {
   return (
     <footer 
-    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[13.8rem] mr-[16.5rem] bg-[#44009c]"
+    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[13.8rem] mr-[16.5rem] bg-[#44009c] relative"
     >
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[1.5rem]">
       <div>
@@ -79,6 +80,7 @@ export default function Footer() {
       </div>
 
       <p className="text-center text-[14px] text-gray-300 pt-[0.3rem]">© {new Date().getFullYear()} Strike x Gaming. All rights reserved.</p>
+      <div onClick={()=>window.scrollTo({top:0, behavior:"smooth"})} className="absolute right-1 bottom-1 cursor-pointer"><Icon className="text-[2rem]" icon="noto:top-arrow" /></div>
     </footer>
   )
 }

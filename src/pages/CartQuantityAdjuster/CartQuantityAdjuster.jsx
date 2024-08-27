@@ -57,19 +57,19 @@ export default function CartQuantityAdjuster() {
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-2 my-[1rem]">
-              <div className="bg-gray-500 w-[23px] h-[23px] flex justify-center items-center rounded-full text-white">
+            <div className="flex justify-center items-center gap-1 my-[1rem]">
+              <div className="bg-gray-500 w-[15px] h-[15px] flex justify-center items-center rounded-full text-white">
                 <Icon className="text-[2rem]" icon="bi:exclamation" />
               </div>
-              <p>The lottery end time will be extended if unsold.</p>
+              <p className="text-[14px] text-gray-600">The lottery end time will be extended if unsold.</p>
             </div>
 
             <div className="rounded-[50px] py-[0.5rem] border-[1px] border-gray-300 flex justify-between items-center px-8">
               <p className="font-bold text-[18px]">INR 250</p>
-              <div className="flex justify-center">
+              <div className="flex items-center justify-center">
                 <button
                   onClick={handleDecrease}
-                  className="text-[#7647B2] text-[2rem]"
+                  className="text-[#7647B2] hover:bg-[#7647B2] hover:text-white duration-300 border-[1px] border-[#7647B2] w-[30px] h-[30px] rounded-full flex justify-center items-center text-[2rem]"
                 >
                   <Icon icon="ic:baseline-minus" />
                 </button>
@@ -82,7 +82,7 @@ export default function CartQuantityAdjuster() {
                 />
                 <button
                   onClick={handleIncrease}
-                  className="text-[#7647B2] text-[2rem]"
+                  className="text-[#7647B2] ml-[-1rem] hover:bg-[#7647B2] hover:text-white duration-300 border-[1px] border-[#7647B2] w-[30px] h-[30px] rounded-full flex justify-center items-center text-[2rem]"
                 >
                   <Icon icon="ic:baseline-plus" />
                 </button>

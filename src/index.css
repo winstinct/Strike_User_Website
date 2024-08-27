@@ -141,13 +141,9 @@ div button.peer ::after,::before{
   border-radius: 8px;
   border: 4px solid transparent;
   background-clip: content-box;
-  background-color: #888;
+  background-color: #d4cece;
   /* background-color: transparent; */
 }
-*::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}
-
 
 /* Lottery shape styles  */
 .middle1{

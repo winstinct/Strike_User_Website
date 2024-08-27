@@ -38,7 +38,6 @@ export default function Banner() {
             />
           </div>
         </SwiperSlide>
-        <div className="h-[30px]"></div>
       </Swiper>
     </div>
   );

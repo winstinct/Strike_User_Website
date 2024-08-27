@@ -104,9 +104,9 @@ export default function LeftSideBar() {
           <li>
             <div
               onClick={handleLogout}
-              className="flex items-center font-medium gap-[0.3rem] cursor-pointer text-red-500"
+              className="flex items-center font-medium gap-[0.3rem] cursor-pointer text-red-500 ml-3"
             >
-              <Icon className="text-[1.3rem]" icon="ic:baseline-logout" />
+              <Icon className="text-[1.1rem]" icon="ic:baseline-logout" />
               <span>Logout</span>
             </div>
           </li>

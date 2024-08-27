@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import MobileHeader from "./MobileHeader";
 import { useAuth } from "../../contexts/AuthContext";
 import demoUserImg from "../../assets/demo-user.jpg";
-import "./Header.css"
+import "./Header.css";
 import NotificationModal from "../../pages/Notification/NotificationModal";
 import { toggleNotificationModal } from "../../redux/notificationSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 
 export default function Header() {
   const { currentUser } = useAuth();
-  const {data, isLoading} = useGetUserDetailsQuery();
+  const { data, isLoading } = useGetUserDetailsQuery();
   const userImageUrl = data?.response?.UserData?.imageUrl;
   const dispatch = useDispatch();
   const { showNotificationModal } = useSelector((store) => store.notification);
@@ -25,9 +25,9 @@ export default function Header() {
           </Link>
         </div>
         <ul className="flex items-center large lg:gap-[3rem] gap-[1.5rem] text-[1rem] font-medium">
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
           <li>
             <NavLink to="/offers">Offers</NavLink>
           </li>
@@ -53,37 +53,43 @@ export default function Header() {
               <div className="bg-gray-300 h-[50px] w-[3px]"></div>
             </>
           )}
-          <Icon className="text-[1.5rem]" icon="fluent:local-language-20-regular" />
+          <Icon
+            className="text-[1.5rem]"
+            icon="fluent:local-language-20-regular"
+          />
           {/* Notification Modal  */}
-          <div className="relative">
-          <button
-            onClick={() => dispatch(toggleNotificationModal())}
-            className="bg-[#F6F6F8] p-[0.5rem] rounded-full cursor-pointer"
-          >
-            <Icon
-              icon="mi:notification"
-              className="text-[1.5rem] text-[#4D4D4D]"
-            />
-          </button>
-          {showNotificationModal && (
-            <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
-              <NotificationModal />
-            </div>
+          {currentUser && (
+           <> <div className="relative">
+           <button
+             onClick={() => dispatch(toggleNotificationModal())}
+             className="bg-[#F6F6F8] p-[0.5rem] rounded-full cursor-pointer"
+           >
+             <Icon
+               icon="mi:notification"
+               className="text-[1.5rem] text-[#4D4D4D]"
+             />
+           </button>
+           {showNotificationModal && (
+             <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
+               <NotificationModal />
+             </div>
+           )}
+         </div>
+         <Link to="/shopper-bag">
+         <Icon className="text-[1.5rem]" icon="lets-icons:bag" />
+       </Link></>
           )}
-        </div>
-
-          <Link to="/shopper-bag"><Icon className="text-[1.5rem]" icon="lets-icons:bag" /></Link>
           <div className="bg-gray-300 h-[50px] w-[3px]"></div>
           {currentUser ? (
             <Link to="/profile">
-            <div className="flex flex-col items-center">
-              <img
-                className="w-[30px] h-[30px] rounded-full"
-                src={userImageUrl}
-                alt="user-avatar"
-              />
-              <p className="text-[14px]">{currentUser?.displayName}</p>
-            </div>
+              <div className="flex flex-col items-center">
+                <img
+                  className="w-[30px] h-[30px] rounded-full"
+                  src={userImageUrl}
+                  alt="user-avatar"
+                />
+                <p className="text-[14px]">{currentUser?.displayName}</p>
+              </div>
             </Link>
           ) : (
             <Link to="/auth/login">

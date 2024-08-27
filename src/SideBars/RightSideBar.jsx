@@ -9,7 +9,7 @@ export default function RightSideBar() {
   const { currentUser } = useAuth();
   return (
     <div
-      className={`bg-white shadow-2xl border-l-[1px] border-[#d3cccc] fixed top-0 right-0 w-64 z-10 px-1 duration-300 h-[100vh] overflow-y-auto`}
+      className={`bg-white shadow-2xl border-l-[1px] border-[#d3cccc] fixed top-0 right-0 w-64 z-10 px-1 duration-300 h-[100vh] overflow-y-auto right-sidebar`}
     >
       {currentUser ? (
         <div className="mt-[6rem] pb-[1rem] px-2">

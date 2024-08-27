@@ -40,16 +40,16 @@ export default function AddToCart() {
                     <p>AED500</p>
                 </div>
                 <div className="flex justify-between items-center text-[#858585]">
-                    <p className="text-[#212529]">Total</p>
+                    <p className="text-[#212529] font-bold">Total</p>
                     <p className="text-[#212529] font-bold italic">AED500</p>
                 </div>
                 </div>
 
-                <div className="flex justify-center items-center gap-2 my-[1rem]">
-                <div className="bg-gray-500 w-[23px] h-[23px] flex justify-center items-center rounded-full text-white">
+                <div className="flex justify-center items-center gap-1 my-[1rem]">
+                <div className="bg-gray-500 w-[15px] h-[15px] flex justify-center items-center rounded-full text-white">
                     <Icon className="text-[2rem]" icon="bi:exclamation" />
                 </div>
-                <p>The lottery end time will be extended if unsold.</p>
+                <p className="text-[14px] text-gray-600">The lottery end time will be extended if unsold.</p>
                 </div>
 
                 <Link to ={`/cartQuantityAdjuster/lotteryId`}>

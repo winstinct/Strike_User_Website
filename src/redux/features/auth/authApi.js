@@ -58,7 +58,7 @@ export const authApi = baseApi.injectEndpoints({
       },
     }),
 
-    // User Details API Endpoints 
+    // User Details API Endpoint
     getUserDetails: builder.query({
       query: () => {
         return {
@@ -66,6 +66,18 @@ export const authApi = baseApi.injectEndpoints({
           method: "GET"
         };
       },
+      providesTags:["USER-DETAILS"]
+    }),
+    // Update User API Endpoint
+    updateUserDetails: builder.mutation({
+      query: (updateData) => {
+        return {
+          url: `/users/edit-user`,
+          method: "POST",
+          body:updateData
+        };
+      },
+      invalidatesTags:["USER-DETAILS"]
     }),
 
   }),
@@ -81,5 +93,6 @@ export const {
   useVerifyOTPForgotPassMutation,
   useUpdatePassForgotPassMutation,
 
-  useGetUserDetailsQuery
+  useGetUserDetailsQuery,
+  useUpdateUserDetailsMutation
 } = authApi;
