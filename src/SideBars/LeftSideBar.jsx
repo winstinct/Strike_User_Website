@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useAuth } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -85,10 +85,10 @@ export default function LeftSideBar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/chat-support" className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26] p-2 rounded-md">
+          <Link to="https://dashboard.tawk.to/login#/chat" target="_blank" className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26] p-2 rounded-md">
             <Icon className="text-[1.3rem]" icon="fluent:chat-20-regular" />
             <span>Chat Support</span>
-          </NavLink>
+          </Link>
         </li>
         <li>
           <NavLink to="/refer-and-earn" className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26] p-2 rounded-md">

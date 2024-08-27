@@ -47,7 +47,6 @@ import BecomePrivateAgent from "../pages/BecomePrivateAgent/BecomePrivateAgent";
 import WishList from "../pages/WishList/WishList";
 import Preferences from "../pages/Preferences/Preferences";
 import ReferAndEarn from "../pages/ReferAndEarn/ReferAndEarn";
-import ChatSupport from "../pages/ChatSupport/ChatSupport";
 import AgentsHistory from "../pages/Agents/AgentsHistory";
 import PersonalDetailsPublicAgent from "../pages/BecomePublicAgent/PersonalDetailsPublicAgent";
 import BankDetailsPublicAgent from "../pages/BecomePublicAgent/BankDetailsPublicAgent";
@@ -210,7 +209,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "preferences",
-        element: <Preferences />,
+        element: <PrivateRoute><Preferences /></PrivateRoute>,
         children:[
           {
             path:"",
@@ -229,10 +228,6 @@ export const router = createBrowserRouter([
       {
         path: "faq",
         element: <FAQ />,
-      },
-      {
-        path: "chat-support",
-        element: <ChatSupport />,
       },
       {
         path: "refer-and-earn",
