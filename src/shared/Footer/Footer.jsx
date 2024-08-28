@@ -7,7 +7,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 export default function Footer() {
   return (
     <footer 
-    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg ml-[13.8rem] marginRight gradientBg relative"
+    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg gradientBg relative"
     >
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[1.5rem]">
       <div>

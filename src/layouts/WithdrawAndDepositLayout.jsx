@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../shared/Header/Header";
 import LeftSideBar from "../SideBars/LeftSideBar";
 import Footer from "../shared/Footer/Footer";
@@ -13,10 +12,10 @@ export default function WithdrawAndDepositLayout() {
 
       {/* Main Content */}
       <div className="flex-1 mt-[5rem]">
-        <div className="py-[1.3rem] ml-[13.8rem]">
-          <Outlet />
-        </div>
+        <div className="py-[1.3rem] mx-[18rem]">
+        <Outlet />
         <Footer />
+        </div>
       </div>
 
       <FAQRightSideBar />

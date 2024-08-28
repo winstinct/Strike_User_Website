@@ -16,7 +16,7 @@ export default function LotteryGames() {
       </div>
 
       {/* filter buttons  */}
-      <div className="flex flex-wrap gap-5 text-center marginRight">
+      <div className="flex flex-wrap gap-5 text-center">
         <div className="flex-1 rounded-full py-2 bg-[#5500C3] text-white border-[1px] cursor-pointer border-[#5500C3] duration-300 min-w-[120px]">
           Public Lottery
         </div>

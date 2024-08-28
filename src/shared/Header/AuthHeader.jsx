@@ -7,13 +7,13 @@ import "./Header.css";
 export default function AuthHeader() {
   return (
     <>
-      <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] py-[0.8rem] shadow-lg fixed w-full bg-white top-0 z-50">
+      <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] py-[0.8rem] border-b-[1px] border-b-[#D9D9D9] fixed w-full bg-white top-0 z-50">
         <div>
           <Link to="/">
             <img src={strikeLogo} className="w-[130px]" alt="Site Logo" />
           </Link>
         </div>
-        <ul className="flex items-center large lg:gap-[3rem] gap-[1.5rem] text-[1rem] font-medium">
+        <ul className="flex items-center gap-[3rem] text-[1.25rem] font-medium">
           <li>
             <NavLink to="/">Home</NavLink>
           </li>

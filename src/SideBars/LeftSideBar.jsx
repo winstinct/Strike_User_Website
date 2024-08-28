@@ -23,12 +23,14 @@ export default function LeftSideBar() {
     }
   };
   return (
-    <div className="px-3 pt-[6rem] w-52 h-[100vh] overflow-y-auto fixed left-0 top-0 shadow-2xl border-r-[1px] border-gray-300">
+    <div 
+    style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
+    className="px-3 pt-[6rem] w-[16rem] bg-white h-[100vh] overflow-y-auto fixed left-0 top-0">
       <ul className="space-y-[0.2rem] text-[16px] left-sidebar">
         {/*Display For Only Logged In User  */}
         {currentUser && (
           <div className="space-y-[1rem]">
-            <li className="text-[1rem] text-center">
+            <li className="text-[1rem] ml-3">
               <h3 className="font-bold">{displayName}</h3>
               <div className="text-[14px] font-medium">
                 <p>{phoneNumber}</p>
@@ -52,11 +54,12 @@ export default function LeftSideBar() {
             <span>Become Agent</span>
           </NavLink>
         </li>
-        {/* <li>
-            <NavLink className="flex items-center font-medium gap-[0.8rem] hover:text-[#A967FF]">
-            <span>Become a Private Lottery Agent</span>
+        <li>
+            <NavLink to="/become-private-agent" className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26] p-2 rounded-md">
+            <Icon className="text-[1.3rem]" icon="heroicons:user-group" />
+            <span>Become Private Agent</span>
             </NavLink>
-          </li> */}
+          </li>
         <li>
           <NavLink to="/wish-list" className="flex items-center font-medium gap-[0.3rem] hover:text-[#2e8e26] p-2 rounded-md">
             <Icon className="text-[1.3rem]" icon="weui:like-outlined" />

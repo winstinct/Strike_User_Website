@@ -115,7 +115,7 @@ export default function ChangePasswordPreference() {
   };
 
   return (
-    <div className="flex flex-col justify-center md:mt-0 mt-[2rem] mr-[16.5rem]">
+    <div className="flex flex-col justify-center md:mt-0 mt-[2rem]">
       <div className="flex flex-col gap-3">
         <header>
           <div onClick={() => navigate(-1)} className="backBtn mb-[0.5rem]">

@@ -58,7 +58,7 @@ const customStyles = {
 export default function ReferAndEarn() {
   window.scrollTo({ top: 0, behavior: "smooth" });
   return (
-    <main className="mr-[16.5rem]">
+    <main>
       <div
         style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
         className="rounded-lg p-3"

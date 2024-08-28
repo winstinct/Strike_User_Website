@@ -7,11 +7,8 @@ const swiperConfig = {
   slidesPerView: 1,
   spaceBetween: 20,
   breakpoints: {
-    900: {
-      slidesPerView: 2,
-    },
     1200: {
-      slidesPerView: 3,
+      slidesPerView: 2,
     },
   },
 };
@@ -34,7 +31,7 @@ export default function PublicLottery() {
   };
   return (
     <section>
-      <header className="marginRight flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
+      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold">
             Public Lottery

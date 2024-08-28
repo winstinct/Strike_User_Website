@@ -9,7 +9,8 @@ export default function RightSideBar() {
   const { currentUser } = useAuth();
   return (
     <div
-      className={`bg-white shadow-2xl border-l-[1px] border-[#d3cccc] fixed top-0 right-0 w-64 z-10 px-1 duration-300 h-[100vh] overflow-y-auto right-sidebar`}
+      style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
+      className={`bg-white fixed top-0 right-0 w-[16rem] z-10 px-1 duration-300 h-[100vh] overflow-y-auto right-sidebar`}
     >
       {currentUser ? (
         <div className="mt-[6rem] pb-[1rem] px-2">
@@ -28,12 +29,12 @@ export default function RightSideBar() {
           </div>
           </div>
 
-          <div className="mt-[1rem] space-y-[0.5rem]">
+          <div className="mt-[1rem] space-y-[1rem]">
           <Link to="/withdraw" className="block">
-          <button className="submitBtn w-full">Withdraw Coins</button>
+          <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">Withdraw Coins</button>
           </Link>
           <Link to="/deposit" className="block mt-[0.5rem]">
-          <button className="submitBtn w-full">Deposit</button>
+          <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">Deposit</button>
           </Link>
           </div>
 

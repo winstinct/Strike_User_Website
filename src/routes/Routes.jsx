@@ -198,6 +198,16 @@ export const router = createBrowserRouter([
       {
         path: "become-private-agent",
         element: <PrivateRoute><BecomePrivateAgent /></PrivateRoute>,
+        children:[
+          {
+            path:"",
+            element:<PersonalDetailsPublicAgent/>
+          },
+          {
+            path:"bank-details-public-agent",
+            element:<BankDetailsPublicAgent/>
+          },
+        ]
       },
       {
         path: "wish-list",

@@ -25,7 +25,7 @@ export default function Wallet() {
 
       <div>
         <Link to="/withdraw" className="block lg:w-[50%] md:w-[70%] w-full mx-auto">
-          <button className="submitBtn w-full">Withdraw Coins</button>
+          <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">Withdraw Coins</button>
         </Link>
       </div>
 

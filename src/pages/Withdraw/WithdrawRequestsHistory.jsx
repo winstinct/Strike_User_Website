@@ -8,7 +8,7 @@ const swiperConfig = {
   slidesPerView: 1,
   spaceBetween: 20,
   breakpoints: {
-    1080: {
+    1200: {
       slidesPerView: 2,
     },
   },
@@ -33,7 +33,7 @@ export default function WithdrawRequestsHistory() {
     setIsEnd(swiperInstance?.isEnd);
   };
   return (
-    <section className="mr-[16.5rem]">
+    <section>
       {/* Back button  */}
       <div className="flex items-center gap-5 mb-[2rem]">
         <div onClick={() => navigate(-1)} className="backBtn">

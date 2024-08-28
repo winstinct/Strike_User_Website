@@ -4,7 +4,7 @@ import { setActiveStyle } from "../../utils/setActiveStyle";
 export default function BecomePublicAgent() {
   window.scrollTo({top:0, behavior:"smooth"})
   return (
-    <main className="mr-[16.5rem]">
+    <main>
       <h3 className="text-[2rem] font-bold italic">Become an Agent</h3>
       <div>
         <div className="flex items-center gap-2">
@@ -26,7 +26,7 @@ export default function BecomePublicAgent() {
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 my-[1.5rem]">
         <NavLink
           style={setActiveStyle}
-          className="border-[1px] border-gray-300 rounded-3xl py-3 hover:bg-[#5500C3] duration-300 text-[1.25rem] font-bold italic hover:text-white block text-center"
+          className="border-[1px] border-gray-300 hover:border-[#5500C3] rounded-full py-3 hover:text-[#5500C3] duration-300 text-[1.25rem] font-bold italic block text-center"
           to=""
           end
         >
@@ -34,7 +34,7 @@ export default function BecomePublicAgent() {
         </NavLink>
         <NavLink
           style={setActiveStyle}
-          className="border-[1px] border-gray-300 rounded-3xl py-3 hover:bg-[#5500C3] duration-300 text-[1.25rem] font-bold italic hover:text-white block text-center"
+          className="border-[1px] border-gray-300 hover:border-[#5500C3] rounded-full py-3 hover:text-[#5500C3] duration-300 text-[1.25rem] font-bold italic block text-center"
           to="bank-details-public-agent"
           end
         >

@@ -7,7 +7,7 @@ const swiperConfig = {
   slidesPerView: 1,
   spaceBetween: 20,
   breakpoints: {
-    1080: {
+    1200: {
       slidesPerView: 2,
     },
   },

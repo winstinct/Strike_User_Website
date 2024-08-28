@@ -4,7 +4,7 @@ import animatedSubmitImg from "../../assets/animated-success.gif"
 export default function WithdrawSubmitted() {
     window.scrollTo({top:0, behavior:'smooth'})
   return (
-    <div className='mr-[16.5rem] text-center'>
+    <div className='text-center'>
        <div className="flex justify-center"><img className="w-[150px] h-[150px]" src={animatedSubmitImg} alt="submitted icon" /></div>
         <div className="mb-[2rem] space-y-[0.5rem]">
         <h3 className='text-[1.25rem] font-bold'>Withdraw Request Submitted!</h3>
@@ -34,10 +34,10 @@ export default function WithdrawSubmitted() {
 
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 mt-[1.5rem] lg:mx-14">
             <Link to="/withdraw/withdraw-requests-history">
-            <button className="submitBtn w-full">View Withdraw Requests</button>
+            <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">View Withdraw Requests</button>
             </Link>
             <Link to="/withdraw/wallet">
-            <button className="submitBtn w-full">Back to Wallet</button>
+            <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">Back to Wallet</button>
             </Link>
         </div>
     </div>

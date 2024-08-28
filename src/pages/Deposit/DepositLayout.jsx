@@ -5,7 +5,7 @@ export default function DepositLayout() {
   const navigate = useNavigate();
   window.scrollTo({ top: 0, behavior: "smooth" });
   return (
-    <div className="mr-[16.5rem]">
+    <div>
       {/* Back button  */}
       <div className="flex items-center gap-5 mb-[2rem]">
         <div onClick={() => navigate(-1)} className="backBtn">

@@ -18,7 +18,7 @@ export default function Withdraw() {
         </div>
 
         {/* form  */}
-        <div className="mr-[16.5rem]">
+        <div>
           <form className="grid lg:grid-cols-2 grid-cols-1 gap-5">
             <div>
               <label className="block" htmlFor="withdrawCoins">
@@ -87,7 +87,7 @@ export default function Withdraw() {
 
           <div className="flex justify-center mt-[1rem]">
             <Link to="/withdraw/withdraw-submitted">
-            <button className="submitBtn w-[300px]">Withdraw</button>
+            <button className="rounded-full py-2 cursor-pointer gradientBg text-white min-w-[300px]">Withdraw</button>
             </Link>
           </div>
         </div>

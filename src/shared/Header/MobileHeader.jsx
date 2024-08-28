@@ -18,7 +18,7 @@ export default function MobileHeader() {
   const { showNotificationModal } = useSelector((store) => store.notification);
   return (
     <header className="fixed top-0 w-full bg-white z-50">
-      <div className="lg:px-[4rem] px-[1rem] py-[1rem] shadow-lg md:hidden block relative">
+      <div className="lg:px-[4rem] px-[1rem] py-[1rem] border-b-[1px] border-b-[#D9D9D9]  md:hidden block relative">
         <div className="flex items-center justify-between">
           <img src={strikeLogo} className="w-[100px]" alt="Site Logo" />
           <div className="flex items-center gap-[1rem]">

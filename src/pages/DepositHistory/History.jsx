@@ -8,11 +8,8 @@ const swiperConfig = {
   slidesPerView: 1,
   spaceBetween: 20,
   breakpoints: {
-    900: {
-      slidesPerView: 2,
-    },
     1200: {
-      slidesPerView: 3,
+      slidesPerView: 2,
     },
   },
 };
@@ -45,7 +42,7 @@ export default function DepositHistory() {
         <h3 className="text-[1.5rem] font-bold">Deposit History</h3>
       </div>
 
-      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mr-[16.5rem]">
+      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
           <h3 className="text-[1.25rem] font-bold">History</h3>
         </div>

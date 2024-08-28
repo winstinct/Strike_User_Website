@@ -12,11 +12,11 @@ export default function MainLayout() {
       <LeftSideBar />
 
       {/* Main Content */}
-      <div className="flex-1 mt-[5rem]">
-        <div className="py-[1.3rem] ml-[13.8rem]">
-          <Outlet />
-        </div>
+      <div className="flex-1 mt-[5.5rem]">
+        <div className="py-[1.3rem] mx-[18rem]">
+        <Outlet />
         <Footer />
+        </div>
       </div>
 
       <RightSideBar />

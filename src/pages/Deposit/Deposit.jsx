@@ -102,12 +102,12 @@ export default function Deposit() {
         <div className="grid lg:grid-cols-2 gap-5 font-bold text-[1.5rem]">
         <button
         style={{boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)"}}
-         className="border-[1px] hover:bg-[#5500C3] hover:text-white duration-300 border-gray-300 rounded-[20px] py-8 w-full">Crypto</button>
+         className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full">Crypto</button>
 
         <Link to="/deposit/agents">
         <button
         style={{boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)"}}
-         className="border-[1px] hover:bg-[#5500C3] hover:text-white duration-300 border-gray-300 rounded-[20px] py-8 w-full">Agent</button>
+         className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full">Agent</button>
         </Link>
 
         </div>

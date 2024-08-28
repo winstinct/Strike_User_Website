@@ -5,7 +5,7 @@ export default function WithdrawLayout() {
   const navigate = useNavigate();
   window.scrollTo({ top: 0, behavior: "smooth" });
   return (
-    <div className="mr-[16.5rem]">
+    <div>
       {/* Back button  */}
       <div className="flex items-center gap-5 mb-[2rem]">
         <div onClick={() => navigate(-1)} className="backBtn">
@@ -17,7 +17,7 @@ export default function WithdrawLayout() {
         <NavLink
           style={setActiveStyle}
           to="wallet"
-          className="block hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
+          className="rounded-full py-2 cursor-pointer border-[1px] border-gray-300 hover:text-[#5500C3] hover:border-[#5500C3] w-full text-center"
           end
         >
           <button>Wallet</button>
@@ -25,7 +25,7 @@ export default function WithdrawLayout() {
 
         <NavLink
           style={setActiveStyle}
-          className="block hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
+          className="rounded-full py-2 cursor-pointer border-[1px] border-gray-300 hover:text-[#5500C3] hover:border-[#5500C3] w-full text-center"
           to="deposit"
           end
         >

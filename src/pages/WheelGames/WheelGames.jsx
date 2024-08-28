@@ -6,7 +6,7 @@ export default function WheelGames() {
   const navigate = useNavigate();
   window.scrollTo({ top: 0 });
   return (
-    <section className="mr-56 mb-[2rem]">
+    <section className="mb-[2rem]">
       <div className="flex items-center gap-5">
         <div onClick={() => navigate(-1)} className="backBtn">
           <Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" />
