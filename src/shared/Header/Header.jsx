@@ -3,7 +3,6 @@ import strikeLogo from "../../assets/strike-logo.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import MobileHeader from "./MobileHeader";
 import { useAuth } from "../../contexts/AuthContext";
-import demoUserImg from "../../assets/demo-user.jpg";
 import "./Header.css";
 import NotificationModal from "../../pages/Notification/NotificationModal";
 import { toggleNotificationModal } from "../../redux/notificationSlice";
@@ -12,7 +11,7 @@ import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 
 export default function Header() {
   const { currentUser } = useAuth();
-  const { data, isLoading } = useGetUserDetailsQuery();
+  const { data } = useGetUserDetailsQuery();
   const userImageUrl = data?.response?.UserData?.imageUrl;
   const dispatch = useDispatch();
   const { showNotificationModal } = useSelector((store) => store.notification);

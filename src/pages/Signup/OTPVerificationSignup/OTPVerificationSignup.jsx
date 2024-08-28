@@ -1,4 +1,4 @@
-import { Link, useAsyncError, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import slider1Img from "../../../assets/slider-1.png";
 import slider2Img from "../../../assets/slider-2.png";
 import slider3Img from "../../../assets/slider-3.png";
@@ -196,7 +196,7 @@ export default function OTPVerificationSignup() {
               numInputs={6}
               shouldAutoFocus={true}
               containerStyle="otp-container"
-              renderInput={(props, index) => (
+              renderInput={(props) => (
                 <input {...props} className="otp-input" />
               )}
             />

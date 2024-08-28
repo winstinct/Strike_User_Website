@@ -1,14 +1,13 @@
 import slider1Img from "../../assets/home-banner1.png";
 import slider2Img from "../../assets/slider-2.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
 export default function OfferBanner() {
   return (
-    <div className="mr-[16.5rem]">
+    <div className="marginRight">
       <Swiper
       modules={[Autoplay, Pagination]}
       autoplay={{

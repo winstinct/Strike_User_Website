@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import PropTypes from 'prop-types';
 
 const CopiedToast = () => {
   return (
@@ -40,4 +41,8 @@ export default function CopyCodeReferAndEarn({ code }) {
       </div>
     </div>
   );
+}
+
+CopyCodeReferAndEarn.propTypes = {
+  code:PropTypes.string
 }

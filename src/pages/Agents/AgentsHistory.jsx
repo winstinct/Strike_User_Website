@@ -1,8 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { useNavigate } from "react-router-dom";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -15,7 +14,6 @@ const swiperConfig = {
 };
 
 export default function AgentsHistory() {
-  const navigate = useNavigate();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);

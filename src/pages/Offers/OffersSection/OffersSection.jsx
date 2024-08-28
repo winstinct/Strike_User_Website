@@ -1,10 +1,8 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { OfferDetailsModal } from "./OfferDetailsModal";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import { toast } from "react-toastify";
 import CopyCode from "./CopyCode";
 
 const swiperConfig = {
@@ -37,8 +35,8 @@ export default function OffersSection() {
     setIsEnd(swiperInstance?.isEnd);
   };
   return (
-    <section className="mr-[1.3rem]">
-      <header className="mr-[16.5rem] flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
+    <section>
+      <header className="marginRight flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold">Offers</h3>
           <p>*Available offers</p>

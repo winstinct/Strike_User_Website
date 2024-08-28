@@ -58,7 +58,6 @@ export default function LocationDetails() {
       imageUrl,
       refferalCodes,
     };
-    console.log("Form Data========> ", userInfo);
 
     // Call API
     try {

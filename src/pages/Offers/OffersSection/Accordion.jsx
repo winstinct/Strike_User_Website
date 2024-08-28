@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   Accordion,
   AccordionHeader,
@@ -24,6 +25,10 @@ function Icon({ id, open }) {
       />
     </svg>
   );
+}
+Icon.propTypes = {
+  id:PropTypes.number,
+  open:PropTypes.number
 }
 
 export function AccordionCustomIcon() {

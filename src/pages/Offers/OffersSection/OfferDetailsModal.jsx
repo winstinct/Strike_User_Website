@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogHeader, DialogBody } from "@material-tailwind/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { AccordionCustomIcon } from "./Accordion";

@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import RequiredStar from "../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../shared/ShowErrorMsg/ShowErrorMsg";
 import { useUpdatePassForgotPassMutation } from "../../redux/features/auth/authApi";

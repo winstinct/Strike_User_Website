@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import PopularCampaigns from "./PopularCampaigns";
 import PublicLotteries from "./PublicLotteries";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +16,7 @@ export default function LotteryGames() {
       </div>
 
       {/* filter buttons  */}
-      <div className="flex flex-wrap gap-5 text-center mr-[16.5rem]">
+      <div className="flex flex-wrap gap-5 text-center marginRight">
         <div className="flex-1 rounded-full py-2 bg-[#5500C3] text-white border-[1px] cursor-pointer border-[#5500C3] duration-300 min-w-[120px]">
           Public Lottery
         </div>

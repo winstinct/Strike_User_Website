@@ -33,8 +33,8 @@ export default function ExpiredOffers() {
     setIsEnd(swiperInstance?.isEnd);
   };
   return (
-    <section className="mr-[1.3rem] mt-[2rem]">
-      <header className="mr-[16.5rem] flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
+    <section className="mt-[2rem]">
+      <header className="marginRight flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold">
             Expired Offers

@@ -1,6 +1,7 @@
 import Avatar from 'react-avatar';
+import PropTypes from 'prop-types';
 
-export default function NotificationModalCard({ name }) {
+export default function NotificationModalCard({name}) {
    return (
       <div className='flex gap-[0.5rem] py-[0.5rem] px-[1rem] border-b border-[#DCDEE4]'>
          <Avatar name={name} size="40" round={true} />
@@ -17,4 +18,8 @@ export default function NotificationModalCard({ name }) {
          </div>
       </div>
    )
+}
+
+NotificationModalCard.propTypes = {
+   name: PropTypes.string,
 }

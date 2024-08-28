@@ -1,4 +1,3 @@
-import React from "react";
 import StrikeForm from "../../components/Form/StrikeForm";
 import StrikeInput from "../../components/Form/StrikeInput";
 import StrikeSelect from "../../components/Form/StrikeSelect";

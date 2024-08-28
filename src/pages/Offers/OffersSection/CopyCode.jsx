@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-
+import PropTypes from 'prop-types';
 const CopiedToast = () => {
   return (
     <div className="absolute right-0 top-0 bg-[#D49C17] text-white font-bold py-1 px-2 rounded-lg flex items-center justify-between">
@@ -39,4 +39,7 @@ export default function CopyCode({ code }) {
       </div>
     </div>
   );
+}
+CopyCode.propTypes = {
+  code:PropTypes.string
 }

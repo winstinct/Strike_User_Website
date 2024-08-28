@@ -45,9 +45,9 @@ export default function NotificationModal() {
             </button>
          </div>
          <div>
-            <NotificationModalCard name={"Sri Nagesh"} />
-            <NotificationModalCard name={"Billal Hossain"} />
-            <NotificationModalCard name={"Manikanta Putta"} />
+            <NotificationModalCard name="Sri Nagesh" />
+            <NotificationModalCard name="Billal Hossain" />
+            <NotificationModalCard name="Manikanta Putta" />
             {/* <NotificationModalCard name={"Madhu Adimulam"} /> */}
          </div>
          <div className='text-[#696F8C] flex items-center justify-center py-[1rem] font-semibold'>

@@ -1,4 +1,3 @@
-import React from "react";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 import { NavLink, Outlet } from "react-router-dom";
 

@@ -16,30 +16,40 @@ import "react-datepicker/dist/react-datepicker.css";
 import { genderOptions } from "../../options/genderOptions";
 import { toast } from "react-toastify";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
-
+import { storage, ref, uploadBytes, getDownloadURL } from "../../Firebase";
 export default function ProfilePersonalDetails() {
   // RTK Query Hooks
-  const { data, isLoading } = useGetUserDetailsQuery();
+  const { data } = useGetUserDetailsQuery();
   const [updateUser, { isLoading: isLoadingUpdateUser }] =
     useUpdateUserDetailsMutation();
 
   const { FirstName, LastName, Gender, imageUrl, dob, email } =
     data?.response?.UserData || {};
-    console.log("User Details===> ", data?.response?.UserData)
-  const [selectedFile, setSelectedFile] = useState(imageUrl);
+  const [selectedFile, setSelectedFile] = useState();
   const [showError, setShowError] = useState(false);
 
-  let defaultValues = {
-    FirstName,
-    LastName,
-    gender: { label: Gender, value: Gender },
-    imageUrl,
-    dob,
-  };
 
-  if (isLoading) {
-    return <ThreeDotsLoader />;
-  }
+  const handleUpload = async() => {
+    if (!selectedFile) {
+      console.log('No image selected');
+      return;
+    }
+  
+    // Create a storage reference
+    const imageRef = ref(storage, `images/${selectedFile.name}`);
+  
+    try {
+      // Upload the file
+      const snapshot = await uploadBytes(imageRef, selectedFile);
+  
+      // Get the download URL
+      const url = await getDownloadURL(snapshot.ref);
+      console.log('File available at', url);
+      return url;
+    } catch (error) {
+      console.error('Upload failed', error);
+    }
+  };
 
   const handleSubmitPersonalDetails = async (formData) => {
     if (!selectedFile) {
@@ -50,7 +60,8 @@ export default function ProfilePersonalDetails() {
     //  return;
     // Call API
     try {
-      const res = await updateUser({formData, gender:formData.gender.value});
+      const imageUrl = await handleUpload();
+      const res = await updateUser({...formData, gender:formData.gender.value, imageUrl});
       if (res?.error) {
         console.log("User updated api response===>", res);
         // return toast.error(res?.error?.data?.response?.message);
@@ -63,8 +74,17 @@ export default function ProfilePersonalDetails() {
     }
   };
 
+
+  let defaultValues = {
+    FirstName,
+    LastName,
+    gender: { label: Gender, value: Gender },
+    imageUrl,
+    dob,
+  }
+
   return (
-    <StrikeForm
+    defaultValues.FirstName ? (<StrikeForm
       onSubmit={handleSubmitPersonalDetails}
       resolver={yupResolver(personalDetailsSchema)}
       defaultValues={defaultValues}
@@ -91,7 +111,7 @@ export default function ProfilePersonalDetails() {
                       }}
                       className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none"
                     >
-                      +
+                      <Icon className="text-[0.8rem]" icon="clarity:edit-solid" />
                     </div>
                     <input
                       onChange={(e) => setSelectedFile(e.target.files[0])}
@@ -121,9 +141,7 @@ export default function ProfilePersonalDetails() {
                 <div className="border-[4px] border-[#CCCCCC] w-[130px] h-[130px] rounded-full flex justify-center items-center relative">
                   <img
                     className="w-[130px] h-[130px] rounded-full p-1"
-                    src={
-                      imageUrl ? imageUrl : URL.createObjectURL(selectedFile)
-                    }
+                    src={URL?.createObjectURL(selectedFile)}
                     alt="Profile Photo"
                   />
                   <div
@@ -177,6 +195,6 @@ export default function ProfilePersonalDetails() {
           </button>
         )}
       </div>
-    </StrikeForm>
+    </StrikeForm>) : <ThreeDotsLoader/>
   );
 }

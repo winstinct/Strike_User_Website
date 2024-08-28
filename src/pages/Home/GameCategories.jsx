@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function GameCategories() {
   return (
-    <section className="flex flex-wrap gap-5 text-white mr-[16.5rem]">
+    <section className="flex flex-wrap gap-5 text-white marginRight">
       <Link
         className="gradientBg text-center xl:py-8 lg:py-5 md:py-3 py-2 text-[1.25rem] cursor-pointer rounded-lg flex-1 min-w-[120px]"
         to="/lottery-games"

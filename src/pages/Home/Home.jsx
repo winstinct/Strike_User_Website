@@ -5,7 +5,6 @@ import LotteryCategories from "./LotteryCategories";
 import PopularCampaigns from "./PopularCampaigns";
 import PublicLotteries from "./PublicLotteries";
 import Winners from "./Winners";
-import { useEffect } from "react";
 
 export default function Home() {
   window.scrollTo({ top: 0, behavior: "smooth" });

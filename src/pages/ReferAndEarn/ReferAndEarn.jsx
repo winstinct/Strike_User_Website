@@ -1,4 +1,3 @@
-import React from "react";
 import CopyCodeReferAndEarn from "./CopyCodeReferAndEarn";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Progress } from "@material-tailwind/react";

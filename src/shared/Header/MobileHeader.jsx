@@ -3,7 +3,7 @@ import strikeLogo from "../../assets/strike-logo.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import demoUserImg from "../../assets/demo-user.jpg"
+import demoUserImg from "../../assets/demo-user.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import NotificationModal from "../../pages/Notification/NotificationModal";
 import { toggleNotificationModal } from "../../redux/notificationSlice";
@@ -11,7 +11,7 @@ import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 
 export default function MobileHeader() {
   const { currentUser } = useAuth();
-  const {data, isLoading} = useGetUserDetailsQuery();
+  const { data, isLoading } = useGetUserDetailsQuery();
   const userImageUrl = data?.response?.UserData?.imageUrl;
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
@@ -22,25 +22,32 @@ export default function MobileHeader() {
         <div className="flex items-center justify-between">
           <img src={strikeLogo} className="w-[100px]" alt="Site Logo" />
           <div className="flex items-center gap-[1rem]">
-            <Icon className="text-[1.3rem]" icon="fluent:local-language-20-regular" />
-            {/* Notification Modal  */}
-          <div className="relative">
-          <button
-            onClick={() => dispatch(toggleNotificationModal())}
-            className="bg-[#F6F6F8] p-[0.5rem] rounded-full cursor-pointer"
-          >
             <Icon
-              icon="mi:notification"
-              className="text-[1.5rem] text-[#4D4D4D]"
+              className="text-[1.3rem]"
+              icon="fluent:local-language-20-regular"
             />
-          </button>
-          {showNotificationModal && (
-            <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
-              <NotificationModal />
-            </div>
-          )}
-        </div>
-            <Icon className="text-[1.3rem]" icon="lets-icons:bag" />
+            {/* Notification Modal  */}
+            {currentUser && (
+              <>
+                <div className="relative">
+                  <button
+                    onClick={() => dispatch(toggleNotificationModal())}
+                    className="bg-[#F6F6F8] p-[0.5rem] rounded-full cursor-pointer"
+                  >
+                    <Icon
+                      icon="mi:notification"
+                      className="text-[1.5rem] text-[#4D4D4D]"
+                    />
+                  </button>
+                  {showNotificationModal && (
+                    <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
+                      <NotificationModal />
+                    </div>
+                  )}
+                </div>
+                <Icon className="text-[1.3rem]" icon="lets-icons:bag" />
+              </>
+            )}
           </div>
           {isVisible ? (
             <Icon
@@ -78,25 +85,28 @@ export default function MobileHeader() {
               {currentUser ? (
                 <div>
                   <Link to="/profile">
-                  <div className="flex items-center gap-2">
-                  <p>{currentUser?.displayName}</p>
-                  <img
-                    className="w-[30px] h-[30px] rounded-full"
-                    src={userImageUrl}
-                    alt="user-avatar"
-                  />
-                </div>
+                    <div className="flex items-center gap-2">
+                      <p>{currentUser?.displayName}</p>
+                      <img
+                        className="w-[30px] h-[30px] rounded-full"
+                        src={userImageUrl}
+                        alt="user-avatar"
+                      />
+                    </div>
                   </Link>
-                <button
-                style={{
-                  backgroundImage: "linear-gradient(#A967FF, #5500C3)",
-                  boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
-                }}
-                className="cursor-default mt-[2rem] rounded-[50px] py-[0.6rem] text-white flex justify-between items-center max-w-[180px]"
-              >
-                <Icon className="ml-3 text-[1.3rem]" icon="lets-icons:wallet" />
-                <span className="mr-3">10600.00 Coins</span>
-              </button>
+                  <button
+                    style={{
+                      backgroundImage: "linear-gradient(#A967FF, #5500C3)",
+                      boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
+                    }}
+                    className="cursor-default mt-[2rem] rounded-[50px] py-[0.6rem] text-white flex justify-between items-center max-w-[180px]"
+                  >
+                    <Icon
+                      className="ml-3 text-[1.3rem]"
+                      icon="lets-icons:wallet"
+                    />
+                    <span className="mr-3">10600.00 Coins</span>
+                  </button>
                 </div>
               ) : (
                 <Link to="/auth/login">

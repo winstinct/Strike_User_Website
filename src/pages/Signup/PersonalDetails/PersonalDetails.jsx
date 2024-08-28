@@ -22,7 +22,7 @@ export default function PersonalDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { FirstName, LastName, gender, dob, imageUrl, selecectedFile } =
+  const { FirstName, LastName, gender, dob, selecectedFile } =
     useSelector((state) => state.createUser);
     console.log("Selected File===>", selecectedFile)
 

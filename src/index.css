@@ -9,6 +9,12 @@ body {
 }
 
 
+/* Margin Right on specifiec UIs  */
+.marginRight{
+  margin-right: 16.8rem;
+}
+
+
 /* Override swiper pagination bullet bg color  */
 .swiper-pagination-bullet-active{
   background: #A967FF !important;
@@ -21,6 +27,7 @@ body {
 
 .swiper-pagination{
  position:relative !important;
+ top:2px !important;
 }
 
 

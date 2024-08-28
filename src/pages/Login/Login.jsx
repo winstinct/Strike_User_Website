@@ -28,12 +28,10 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
-  const [passwordErr, setPasswordErr] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const from = useLocation()?.state?.from;
-  console.log("Destination==========> ", from)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +47,6 @@ export default function Login() {
 
     //Login by firebase
     try {
-      setPasswordErr(false);
       setIsProcessing(true);
       await login(email, password);
       setIsProcessing(false);

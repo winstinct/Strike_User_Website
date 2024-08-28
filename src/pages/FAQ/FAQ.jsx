@@ -62,7 +62,7 @@ export default function FAQ() {
     <div className="mr-[16.8rem]">
       <h3 className="font-bold text-[2rem] italic">F.A.Q</h3>
       {faqs?.map((qna) => (
-        <AccordionFaq qna={qna} />
+        <AccordionFaq key={qna.id} qna={qna} />
       ))}
     </div>
   );
