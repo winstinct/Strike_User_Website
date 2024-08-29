@@ -10,7 +10,7 @@ export default function RightSideBar() {
   return (
     <div
       style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
-      className={`bg-white fixed top-0 right-0 w-[18rem] z-10 px-2 duration-300 h-[100vh] overflow-y-auto right-sidebar`}
+      className={`bg-white fixed top-0 right-0 w-[18rem] z-10 px-2 duration-300 h-[100vh] overflow-y-auto right-sidebar pb-[3rem]`}
     >
       {currentUser ? (
         <div className="mt-[6rem] pb-[1rem] px-2">
