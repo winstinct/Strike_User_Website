@@ -12,53 +12,53 @@ export default function Footer() {
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[1.5rem]">
       <div>
         <img src={strikeLogo} alt="Website Logo" className="bg-white p-[0.5rem] w-[130px] h-[50px] rounded-md mb-[0.5rem]"/>
-        <p className="text-[14px] text-gray-300">Play Smart, Dream Big.
+        <p className="text-[14px] text-[#fff]">Play Smart, Dream Big.
         Your Future Starts Here!</p>
       </div>
       <div>
-        <h3 className="text-[1rem] font-bold">Quick Links</h3>
-        <ul className="space-y-[0.3rem] mt-[0.3rem] text-[14px]">
+        <h3 className="text-[1.1rem] font-bold">Quick Links</h3>
+        <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="">Home</Link>
+            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="">Home</Link>
           </li>
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/offers">Offers</Link>
+            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/offers">Offers</Link>
           </li>
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/tickets">Tickets</Link>
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="text-[1rem] font-bold">Support</h3>
-        <ul className="space-y-[0.3rem] mt-[0.3rem] text-[14px]">
-          <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/faq">F.A.Q</Link>
-          </li>
-          <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/chat-support">Chat Support</Link>
+            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/tickets">Tickets</Link>
           </li>
         </ul>
       </div>
 
       <div>
-        <h3 className="text-[1rem] font-bold">Policies</h3>
-        <ul className="space-y-[0.3rem] mt-[0.3rem] text-[14px]">
+        <h3 className="text-[1.1rem] font-bold">Support</h3>
+        <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/terms-and-conditions">Terms & Conditions</Link>
+            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/faq">F.A.Q</Link>
           </li>
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/privacy-policy">Privacy Policy</Link>
+            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/chat-support">Chat Support</Link>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="text-[1.1rem] font-bold">Policies</h3>
+        <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
+          <li>
+            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/terms-and-conditions">Terms & Conditions</Link>
           </li>
           <li>
-            <Link className="hover:underline text-gray-300 hover:text-gray-100" to="/refund-policy">Refund Policy</Link>
+            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/privacy-policy">Privacy Policy</Link>
+          </li>
+          <li>
+            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/refund-policy">Refund Policy</Link>
           </li>
         </ul>
       </div>
       </div>
 
-      <div className="flex lg:flex-row flex-col lg:justify-between lg:items-center lg:mt-[0.3rem] mt-5">
+      <div className="flex lg:flex-row flex-col lg:justify-between lg:items-center lg:mt-[0.3rem] pt-[2rem] pb-[1.5rem]">
         <p className="text-[1rem]">Download the Strike app for the ultimate experience!</p>
         <div className="flex xl:flex-row flex-col lg:gap-5 gap-2">
         <div className="flex md:flex-row flex-col md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
