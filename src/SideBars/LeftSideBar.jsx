@@ -123,7 +123,7 @@ export default function LeftSideBar() {
                 stroke-linecap="round"
               />
             </svg>
-            <p>Become Private Agent</p>
+            <p>Be a Private Lottery Agent</p>
           </NavLink>
         </li>
         <li>
