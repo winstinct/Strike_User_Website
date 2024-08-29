@@ -61,7 +61,7 @@ export const AuthContextProvider = ({ children }) => {
     });
     console.log(unsubscribe);
 
-    return unsubscribe;
+    return ()=>unsubscribe();
   }, []);
 
   const value = {

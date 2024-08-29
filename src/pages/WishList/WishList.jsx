@@ -64,7 +64,7 @@ export default function WishList() {
       <button className="bg-black text-white rounded-full p-2 mt-3 w-full">Remove from Wishlist</button>
       </div>
       </div>
-      <div className="w-full bg-gray-300 h-[1.5px] my-5"></div>
+      <div className="w-full bg-gray-300 h-[1.5px] my-10"></div>
       {/* wishlist-1  */}
       <div className="flex xl:flex-row flex-col gap-5">
       <div className="grid xl:grid-cols-2 gap-3 flex-1">
@@ -120,7 +120,7 @@ export default function WishList() {
       <button className="bg-black text-white rounded-full p-2 mt-3 w-full">Remove from Wishlist</button>
       </div>
       </div>
-      <div className="w-full bg-gray-300 h-[1.5px] my-5"></div>
+      <div className="w-full bg-gray-300 h-[1.5px] my-10"></div>
       {/* wishlist-1  */}
       <div className="flex xl:flex-row flex-col gap-5">
       <div className="grid xl:grid-cols-2 gap-3 flex-1">
@@ -176,7 +176,7 @@ export default function WishList() {
       <button className="bg-black text-white rounded-full p-2 mt-3 w-full">Remove from Wishlist</button>
       </div>
       </div>
-      <div className="w-full bg-gray-300 h-[1.5px] my-5"></div>
+      <div className="w-full bg-gray-300 h-[1.5px] my-10"></div>
       {/* wishlist-1  */}
       <div className="flex xl:flex-row flex-col gap-5">
       <div className="grid xl:grid-cols-2 gap-3 flex-1">
@@ -232,7 +232,7 @@ export default function WishList() {
       <button className="bg-black text-white rounded-full p-2 mt-3 w-full">Remove from Wishlist</button>
       </div>
       </div>
-      <div className="w-full bg-gray-300 h-[1.5px] my-5"></div>
+      <div className="w-full bg-gray-300 h-[1.5px] my-10"></div>
       {/* wishlist-1  */}
       <div className="flex xl:flex-row flex-col gap-5">
       <div className="grid xl:grid-cols-2 gap-3 flex-1">
@@ -288,7 +288,7 @@ export default function WishList() {
       <button className="bg-black text-white rounded-full p-2 mt-3 w-full">Remove from Wishlist</button>
       </div>
       </div>
-      <div className="w-full bg-gray-300 h-[1.5px]"></div>
+      <div className="w-full bg-gray-300 h-[1.5px] my-10"></div>
     </div>
   );
 }

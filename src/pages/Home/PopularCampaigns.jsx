@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useGetPrivateLotteriesQuery } from "../../redux/features/lottery/lotteryApi";
+import ThreeDotsLoader from "../../components/ThreeDotsLoader";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -33,6 +35,9 @@ export default function PopularCampaigns() {
     setIsBeginning(swiperInstance?.isBeginning);
     setIsEnd(swiperInstance?.isEnd);
   };
+
+  const {data, isLoading} = useGetPrivateLotteriesQuery();
+  console.log("Private Lotteries===> ", data?.response?.lottery)
 
   return (
     <section>
@@ -87,6 +92,7 @@ export default function PopularCampaigns() {
           </button>
         </div>
       </header>
+      {isLoading && <ThreeDotsLoader/>}
       <Swiper
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}

@@ -43,7 +43,7 @@ export function AccordionFaq({qna}) {
             {qna?.question}
           </AccordionHeader>
           <AccordionBody className="border-b-[2px] border-gray-200">
-            <p className="text-[0.9rem] text-[#000] faq font-['Inter']">
+            <p className="text-[0.9rem] text-[#000] faq font-['Inter'] font-medium">
               {qna?.answer}
             </p>
           </AccordionBody>

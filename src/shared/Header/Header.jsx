@@ -52,6 +52,7 @@ export default function Header() {
               <div className="bg-gray-300 h-[50px] w-[3px]"></div>
             </>
           )}
+          <div className="flex items-center gap-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
@@ -67,7 +68,6 @@ export default function Header() {
           {/* Notification Modal  */}
           {currentUser && (
             <>
-              {" "}
               <div className="relative">
                 <button
                   onClick={() => dispatch(toggleNotificationModal())}
@@ -134,16 +134,17 @@ export default function Header() {
               </Link>
             </>
           )}
+          </div>
           <div className="bg-gray-300 h-[50px] w-[3px]"></div>
           {currentUser ? (
             <Link to="/profile">
-              <div className="flex flex-col items-center">
+              <div className="flex items-center gap-2">
+                <p className="text-[14px]">{currentUser?.displayName}</p>
                 <img
                   className="w-[30px] h-[30px] rounded-full"
                   src={userImageUrl}
                   alt="user-avatar"
                 />
-                <p className="text-[14px]">{currentUser?.displayName}</p>
               </div>
             </Link>
           ) : (

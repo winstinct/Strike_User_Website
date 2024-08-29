@@ -19,7 +19,7 @@ import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import { storage, ref, uploadBytes, getDownloadURL } from "../../Firebase";
 export default function ProfilePersonalDetails() {
   // RTK Query Hooks
-  const { data } = useGetUserDetailsQuery();
+  const { data, isLoading } = useGetUserDetailsQuery();
   const [updateUser, { isLoading: isLoadingUpdateUser }] =
     useUpdateUserDetailsMutation();
 
@@ -74,6 +74,10 @@ export default function ProfilePersonalDetails() {
     }
   };
 
+  if(isLoading){
+    return <ThreeDotsLoader/>
+  }
+
 
   let defaultValues = {
     FirstName,
@@ -84,7 +88,7 @@ export default function ProfilePersonalDetails() {
   }
 
   return (
-    defaultValues.FirstName ? (<StrikeForm
+    <StrikeForm
       onSubmit={handleSubmitPersonalDetails}
       resolver={yupResolver(personalDetailsSchema)}
       defaultValues={defaultValues}
@@ -195,6 +199,6 @@ export default function ProfilePersonalDetails() {
           </button>
         )}
       </div>
-    </StrikeForm>) : <ThreeDotsLoader/>
+    </StrikeForm>
   );
 }
