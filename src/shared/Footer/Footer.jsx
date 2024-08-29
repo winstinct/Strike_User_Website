@@ -59,7 +59,7 @@ export default function Footer() {
       </div>
 
       <div className="flex lg:flex-row flex-col lg:justify-between lg:items-center lg:mt-[0.3rem] pt-[2rem] pb-[1.5rem]">
-        <p className="text-[1rem]">Download the Strike app for the ultimate experience!</p>
+        <p className="text-[1rem] font-medium">Download the Strike app for the ultimate experience!</p>
         <div className="flex xl:flex-row flex-col lg:gap-5 gap-2">
         <div className="flex md:flex-row flex-col md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
           <img className="w-[30px]" src={playStoreIcon} alt="Playstore icon" />
