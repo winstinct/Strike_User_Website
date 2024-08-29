@@ -4,6 +4,7 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
+import PropTypes from 'prop-types';
 
 function Icon({ id, open }) {
   return (
@@ -36,16 +37,25 @@ export function AccordionFaq({qna}) {
           <AccordionHeader
             className={`${
               !open ? "border-b-[2px] border-gray-200" : "border-b border-transparent"
-            } pb-2 text-[1rem] faq`}
+            } pb-2 text-[1rem] faq font-['Inter']`}
             onClick={() => handleOpen(qna.id)}
           >
             {qna?.question}
           </AccordionHeader>
           <AccordionBody className="border-b-[2px] border-gray-200">
-            <p className="text-[0.9rem] md:font-light font-normal text-[#000] faq">
+            <p className="text-[0.9rem] text-[#000] faq font-['Inter']">
               {qna?.answer}
             </p>
           </AccordionBody>
         </Accordion>
   );
+}
+
+Icon.propTypes = {
+  id:PropTypes.number,
+  open:PropTypes.number
+}
+
+AccordionFaq.propTypes = {
+  qna:PropTypes.object
 }

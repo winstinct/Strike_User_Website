@@ -12,7 +12,7 @@ export default function Withdraw() {
           <div onClick={() => navigate(-1)} className="backBtn">
             <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
           </div>
-          <h3 className="md:text-[2rem] text-[1.5rem] font-semibold">
+          <h3 className="md:text-[2rem] text-[1.5rem] font-semibold italic">
             Withdraw
           </h3>
         </div>
@@ -86,7 +86,7 @@ export default function Withdraw() {
           </div>
 
           <div className="flex justify-center mt-[1rem]">
-            <Link to="/withdraw/withdraw-submitted">
+            <Link to="/withdraw-submitted">
             <button className="rounded-full py-2 cursor-pointer gradientBg text-white min-w-[300px]">Withdraw</button>
             </Link>
           </div>

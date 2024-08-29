@@ -33,7 +33,7 @@ export default function PublicLottery() {
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
-          <h3 className="md:text-[2.5rem] text-[2rem] font-bold">
+          <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
             Public Lottery
           </h3>
         </div>
@@ -76,7 +76,7 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1 italic">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
                   <div className="text-[1.3rem] font-bold">
                     <span className="font-medium">Won: </span>
@@ -102,7 +102,7 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1 italic">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
                   <div className="text-[1.3rem] font-bold">
                     <span className="font-medium">Won: </span>
@@ -128,7 +128,7 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1 italic">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
                   <div className="text-[1.3rem] font-bold">
                     <span className="font-medium">Won: </span>
@@ -154,7 +154,7 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1 italic">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
                   <div className="text-[1.3rem] font-bold">
                     <span className="font-medium">Won: </span>
@@ -180,7 +180,7 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center gap-1 italic">
                   <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
                   <div className="text-[1.3rem] font-bold">
                     <span className="font-medium">Won: </span>

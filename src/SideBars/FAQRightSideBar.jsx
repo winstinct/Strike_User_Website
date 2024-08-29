@@ -56,11 +56,12 @@ const faqs = [
 export default function FAQRightSideBar() {
   return (
     <div
-      className={`bg-white shadow-2xl border-l-[1px] border-[#d3cccc] fixed top-0 right-0 w-[16rem] z-10 px-1 duration-300 h-[100vh] overflow-y-auto`}
+      style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
+      className={`bg-white border-l-[1px] border-[#d3cccc] fixed top-0 right-0 w-[18rem] z-10 px-2 pb-[3rem] duration-300 h-[100vh] overflow-y-auto`}
     >
       <div className="mt-[6rem] px-2 pb-[2rem]">
         {
-          faqs?.map(qna => <AccordionFaq qna={qna}/>)
+          faqs?.map(qna => <AccordionFaq key={qna?.id} qna={qna}/>)
         }
       </div>
     </div>

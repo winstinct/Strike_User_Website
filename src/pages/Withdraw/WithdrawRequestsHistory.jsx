@@ -72,7 +72,7 @@ export default function WithdrawRequestsHistory() {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
-        className="w-full m-3"
+        className="w-full"
       >
         <SwiperSlide>
           <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">

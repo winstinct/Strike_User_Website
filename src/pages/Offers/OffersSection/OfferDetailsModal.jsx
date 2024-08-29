@@ -27,13 +27,13 @@ export function OfferDetailsModal() {
       >
         <DialogHeader className="rounded-t-[30px] flex justify-center items-center">
           <span className="text-[1.5rem] font-semibold">Offer ends in:</span>
-          <span className="text-[#25BF17] text-[2.5rem] font-bold">
+          <span className="text-[#25BF17] text-[2.5rem] font-bold italic">
             10:18:03:10
           </span>
         </DialogHeader>
         <DialogBody className="gradientBg rounded-[30px] text-white">
           <div className="flex justify-between items-center">
-            <h3 className="text-[3rem] font-bold">Buy ONE Get ONE</h3>
+            <h3 className="text-[3rem] font-bold italic">Buy ONE Get ONE</h3>
             <Icon
               className="text-[1.5rem] text-gray-300 hover:text-white cursor-pointer"
               icon="maki:cross"
@@ -41,7 +41,7 @@ export function OfferDetailsModal() {
             />
           </div>
 
-          <div className="my-[1rem]"><CopyCode code="BUYONEGETONE"/></div>
+          <div className="my-[1rem] border-dashed border-spacing-8 rounded-lg border-[0.1rem] border-gray-400 px-3 py-1 inline-block"><CopyCode code="BUYONEGETONE"/></div>
 
           <div className="text-[1.25rem]">
             <span className="text-[1.2rem]">Valid till:</span>

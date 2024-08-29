@@ -9,18 +9,18 @@ export default function Tickets() {
         <NavLink
         style={setActiveStyle}
           to=""
-          className="border-[1px] border-gray-300 hover:border-[#5500C3] py-[0.5rem] rounded-full w-full hover:text-[#5500C3] duration-300 shadow-sm p-1 flex justify-center items-center text-[1.25rem] font-bold"
+          className="border-[1px] italic border-gray-300 hover:border-[#5500C3] py-[0.5rem] rounded-full w-full hover:text-[#5500C3] duration-300 shadow-sm p-1 flex justify-center items-center text-[1.25rem] font-bold"
           end
         >
-          <button>Upcoming Draws</button>
+          Upcoming Draws
         </NavLink>
         <NavLink
         style={setActiveStyle}
           to="winners"
-          className="border-[1px] border-gray-300 hover:border-[#5500C3] py-[0.5rem] rounded-full w-full hover:text-[#5500C3] duration-300 shadow-sm p-1 flex justify-center items-center text-[1.25rem] font-bold"
+          className="border-[1px] italic border-gray-300 hover:border-[#5500C3] py-[0.5rem] rounded-full w-full hover:text-[#5500C3] duration-300 shadow-sm p-1 flex justify-center items-center text-[1.25rem] font-bold"
           end
         >
-          <button>Winners</button>
+          Winners
         </NavLink>
       </div>
       <Outlet />

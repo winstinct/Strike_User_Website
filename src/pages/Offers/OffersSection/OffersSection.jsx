@@ -35,7 +35,7 @@ export default function OffersSection() {
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
-          <h3 className="md:text-[2.5rem] text-[2rem] font-bold">Offers</h3>
+          <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">Offers</h3>
           <p>*Available offers</p>
         </div>
         <div className="flex gap-5 text-[2rem]">

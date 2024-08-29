@@ -33,7 +33,7 @@ export default function ExpiredOffers() {
     <section className="mt-[2rem]">
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
-          <h3 className="md:text-[2.5rem] text-[2rem] font-bold">
+          <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
             Expired Offers
           </h3>
           <p>*Offers expired recently</p>
@@ -64,7 +64,7 @@ export default function ExpiredOffers() {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
-        className="w-full m-3"
+        className="w-full"
       >
         <SwiperSlide>
           <div

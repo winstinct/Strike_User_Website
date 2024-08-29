@@ -33,7 +33,7 @@ export default function Winners() {
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
-          <h3 className="md:text-[2.5rem] text-[2rem] font-bold">Winners</h3>
+          <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">Winners</h3>
           <p>*Check winners of previous lotteries</p>
         </div>
         <div className="flex gap-5 text-[2rem]">
@@ -58,7 +58,7 @@ export default function Winners() {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
-        className="w-full m-3"
+        className="w-full"
       >
         <SwiperSlide>
           <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">

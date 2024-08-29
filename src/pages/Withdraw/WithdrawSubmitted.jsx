@@ -33,10 +33,10 @@ export default function WithdrawSubmitted() {
         </div>
 
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 mt-[1.5rem] lg:mx-14">
-            <Link to="/withdraw/withdraw-requests-history">
+            <Link to="/withdraw-requests-history">
             <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">View Withdraw Requests</button>
             </Link>
-            <Link to="/withdraw/wallet">
+            <Link to="/wallet">
             <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">Back to Wallet</button>
             </Link>
         </div>

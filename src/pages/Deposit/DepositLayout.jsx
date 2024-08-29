@@ -16,18 +16,18 @@ export default function DepositLayout() {
       <div className="grid grid-cols-2 gap-5 text-[1.25rem] font-bold DepositLayout">
         <NavLink
           to="wallet"
-          className="block hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
+          className="block italic hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
           end
         >
-          <button>Wallet</button>
+        Wallet
         </NavLink>
 
         <NavLink
-          className="block hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
+          className="block italic hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
           to="deposit"
           end
         >
-          <button>Deposit</button>
+          Deposit
         </NavLink>
       </div>
 

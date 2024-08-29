@@ -24,7 +24,6 @@ import ShopperBag from "../pages/ShopperBag/ShopperBag";
 import UpComingDraws from "../pages/Tickets/UpComingDraws/UpComingDraws";
 import Winners from "../pages/Tickets/Winners/Winners";
 import Withdraw from "../pages/Withdraw/Withdraw";
-import WithdrawAndDepositLayout from "../layouts/WithdrawAndDepositLayout";
 import WithdrawSubmitted from "../pages/Withdraw/WithdrawSubmitted";
 import WithdrawRequestsHistory from "../pages/Withdraw/WithdrawRequestsHistory";
 import WithdrawLayout from "../pages/Withdraw/withdrawLayout";
@@ -113,6 +112,13 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
+
+
+
+
+
+
   {
     path: "/",
     element: <MainLayout />,
@@ -153,7 +159,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "addToCart/:lotteryId",
-        element: <PrivateRoute><AddToCart /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddToCart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "cartQuantityAdjuster/:lotteryId",
@@ -183,57 +193,77 @@ export const router = createBrowserRouter([
       // sidebar pages
       {
         path: "become-public-agent",
-        element: <PrivateRoute><BecomePublicAgent /></PrivateRoute>,
-        children:[
+        element: (
+          <PrivateRoute>
+            <BecomePublicAgent />
+          </PrivateRoute>
+        ),
+        children: [
           {
-            path:"",
-            element:<PersonalDetailsPublicAgent/>
+            path: "",
+            element: <PersonalDetailsPublicAgent />,
           },
           {
-            path:"bank-details-public-agent",
-            element:<BankDetailsPublicAgent/>
+            path: "bank-details-public-agent",
+            element: <BankDetailsPublicAgent />,
           },
-        ]
+        ],
       },
       {
         path: "become-private-agent",
-        element: <PrivateRoute><BecomePrivateAgent /></PrivateRoute>,
-        children:[
+        element: (
+          <PrivateRoute>
+            <BecomePrivateAgent />
+          </PrivateRoute>
+        ),
+        children: [
           {
-            path:"",
-            element:<PersonalDetailsPublicAgent/>
+            path: "",
+            element: <PersonalDetailsPublicAgent />,
           },
           {
-            path:"bank-details-public-agent",
-            element:<BankDetailsPublicAgent/>
+            path: "bank-details-public-agent",
+            element: <BankDetailsPublicAgent />,
           },
-        ]
+        ],
       },
       {
         path: "wish-list",
-        element: <PrivateRoute><WishList /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <WishList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "deposit-history",
-        element: <PrivateRoute><DepositHistory /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <DepositHistory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "preferences",
-        element: <PrivateRoute><Preferences /></PrivateRoute>,
-        children:[
+        element: (
+          <PrivateRoute>
+            <Preferences />
+          </PrivateRoute>
+        ),
+        children: [
           {
-            path:"",
-            element:<NotificationSettings/>
+            path: "",
+            element: <NotificationSettings />,
           },
           {
-            path:"privacy-settings",
-            element:<PrivacySettings/>
-          }
-        ]
+            path: "privacy-settings",
+            element: <PrivacySettings />,
+          },
+        ],
       },
       {
-        path:"privacy/change-password",
-        element:<ChangePasswordPreference/>
+        path: "privacy/change-password",
+        element: <ChangePasswordPreference />,
       },
       {
         path: "faq",
@@ -241,16 +271,34 @@ export const router = createBrowserRouter([
       },
       {
         path: "refer-and-earn",
-        element: <PrivateRoute><ReferAndEarn /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <ReferAndEarn />
+          </PrivateRoute>
+        ),
       },
-    ],
-  },
-  {
-    path: "withdraw",
-    element: <WithdrawAndDepositLayout />,
-    children: [
+
       {
-        path: "",
+        path: "profile",
+        element: <Profile />,
+        children: [
+          {
+            path: "",
+            element: <ProfilePersonalDetails />,
+          },
+          {
+            path: "location-details",
+            element: <ProfileLocationDetails />,
+          },
+          {
+            path: "contact-details",
+            element: <ProfileContactDetails />,
+          },
+        ],
+      },
+
+      {
+        path: "withdraw",
         element: <Withdraw />,
       },
       {
@@ -262,11 +310,11 @@ export const router = createBrowserRouter([
         element: <WithdrawRequestsHistory />,
       },
       {
-        path: "",
+        path: "wallet",
         element: <WithdrawLayout />,
         children: [
           {
-            path: "wallet",
+            path: "",
             element: <Wallet />,
           },
           {
@@ -275,12 +323,7 @@ export const router = createBrowserRouter([
           },
         ],
       },
-    ],
-  },
-  {
-    path: "",
-    element: <WithdrawAndDepositLayout />,
-    children: [
+
       {
         path: "",
         element: <DepositLayout />,
@@ -295,14 +338,9 @@ export const router = createBrowserRouter([
           },
         ],
       },
-    ],
-  },
-  {
-    path: "deposit/agents",
-    element: <WithdrawAndDepositLayout />,
-    children: [
+
       {
-        path: "",
+        path: "agents",
         element: <AgentsLayout />,
         children: [
           {
@@ -317,22 +355,14 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "profile",
-    element: <Profile />,
-    children: [
-      {
-        path: "",
-        element: <ProfilePersonalDetails />,
-      },
-      {
-        path: "location-details",
-        element: <ProfileLocationDetails />,
-      },
-      {
-        path: "contact-details",
-        element: <ProfileContactDetails />,
-      },
-    ],
-  },
+
+
+
+
+
+
+
+
+
+
 ]);

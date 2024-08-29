@@ -63,141 +63,32 @@ export default function PrivateLottery() {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
-        className="w-full m-3"
+        className="w-full"
       >
         <SwiperSlide>
           <div>
             <div className="bg-red-500 p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-red-500">
-              <h3 className="mb-3">Private Lottery</h3>
+              <h3 className="mb-3 italic">Private Lottery</h3>
             </div>
 
             <div className="flex justify-center private-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-red-500 rounded-2xl bg-white relative min-h-[200px]">
               <div className="middle1"></div>
               <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold"><span className="text-[#A967FF]">WIN:</span> <span className="text-[1.5rem]">AED10000 Cash</span></p>
-                <div className="flex justify-center items-center font-semibold text-[14px] gap-1">
+              <div className="space-y-[0.5rem]">
+                
+                <div className="space-y-[0.5rem] ml-2">
+                <p className="font-bold italic"><span className="text-[#A967FF]">WIN:</span> <span>AED10000 Cash</span></p>
+                <div className="font-semibold text-[14px] gap-1">
                 Purchased on: 06-12-2023
                 </div>
                 <p className="font-medium text-[14px]"><span>Order ID:</span> <span>#8192739182</span></p>
-                <div>
-                <span className="font-semibold">Winner Announced in:</span> 
-                <span className="text-[#A967FF] text-[1.5rem] font-bold">10:18:03:10</span>
                 </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            <div className="bg-red-500 p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-red-500">
-              <h3 className="mb-3">Private Lottery</h3>
-            </div>
 
-            <div className="flex justify-center private-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-red-500 rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold"><span className="text-[#A967FF]">WIN:</span> <span className="text-[1.5rem]">AED10000 Cash</span></p>
-                <div className="flex justify-center items-center font-semibold text-[14px] gap-1">
-                Purchased on: 06-12-2023
-                </div>
-                <p className="font-medium text-[14px]"><span>Order ID:</span> <span>#8192739182</span></p>
-                <div>
+                <div 
+                className="bg-white px-3 py-1 rounded-lg"
+                style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)"}}>
                 <span className="font-semibold">Winner Announced in:</span> 
-                <span className="text-[#A967FF] text-[1.5rem] font-bold">10:18:03:10</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            <div className="bg-red-500 p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-red-500">
-              <h3 className="mb-3">Private Lottery</h3>
-            </div>
-
-            <div className="flex justify-center private-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-red-500 rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold"><span className="text-[#A967FF]">WIN:</span> <span className="text-[1.5rem]">AED10000 Cash</span></p>
-                <div className="flex justify-center items-center font-semibold text-[14px] gap-1">
-                Purchased on: 06-12-2023
-                </div>
-                <p className="font-medium text-[14px]"><span>Order ID:</span> <span>#8192739182</span></p>
-                <div>
-                <span className="font-semibold">Winner Announced in:</span> 
-                <span className="text-[#A967FF] text-[1.5rem] font-bold">10:18:03:10</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            <div className="bg-red-500 p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-red-500">
-              <h3 className="mb-3">Private Lottery</h3>
-            </div>
-
-            <div className="flex justify-center private-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-red-500 rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold"><span className="text-[#A967FF]">WIN:</span> <span className="text-[1.5rem]">AED10000 Cash</span></p>
-                <div className="flex justify-center items-center font-semibold text-[14px] gap-1">
-                Purchased on: 06-12-2023
-                </div>
-                <p className="font-medium text-[14px]"><span>Order ID:</span> <span>#8192739182</span></p>
-                <div>
-                <span className="font-semibold">Winner Announced in:</span> 
-                <span className="text-[#A967FF] text-[1.5rem] font-bold">10:18:03:10</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            <div className="bg-red-500 p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-red-500">
-              <h3 className="mb-3">Private Lottery</h3>
-            </div>
-
-            <div className="flex justify-center private-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-red-500 rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold"><span className="text-[#A967FF]">WIN:</span> <span className="text-[1.5rem]">AED10000 Cash</span></p>
-                <div className="flex justify-center items-center font-semibold text-[14px] gap-1">
-                Purchased on: 06-12-2023
-                </div>
-                <p className="font-medium text-[14px]"><span>Order ID:</span> <span>#8192739182</span></p>
-                <div>
-                <span className="font-semibold">Winner Announced in:</span> 
-                <span className="text-[#A967FF] text-[1.5rem] font-bold">10:18:03:10</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            <div className="bg-red-500 p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-red-500">
-              <h3 className="mb-3">Private Lottery</h3>
-            </div>
-
-            <div className="flex justify-center private-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-red-500 rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold"><span className="text-[#A967FF]">WIN:</span> <span className="text-[1.5rem]">AED10000 Cash</span></p>
-                <div className="flex justify-center items-center font-semibold text-[14px] gap-1">
-                Purchased on: 06-12-2023
-                </div>
-                <p className="font-medium text-[14px]"><span>Order ID:</span> <span>#8192739182</span></p>
-                <div>
-                <span className="font-semibold">Winner Announced in:</span> 
-                <span className="text-[#A967FF] text-[1.5rem] font-bold">10:18:03:10</span>
+                <span className="text-[#A967FF] text-[1.5rem] font-bold italic">10:18:03:10</span>
                 </div>
               </div>
             </div>

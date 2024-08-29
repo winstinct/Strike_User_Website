@@ -39,7 +39,7 @@ export default function DepositHistory() {
         <div onClick={() => navigate(-1)} className="backBtn">
           <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
         </div>
-        <h3 className="text-[1.5rem] font-bold">Deposit History</h3>
+        <h3 className="text-[1.5rem] font-bold italic">Deposit History</h3>
       </div>
 
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
@@ -72,7 +72,7 @@ export default function DepositHistory() {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
-        className="w-full m-3"
+        className="w-full"
       >
         <SwiperSlide>
           <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">

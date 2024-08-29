@@ -17,7 +17,7 @@ export default function CartQuantityAdjuster() {
 
   return (
     <section>
-      <div onClick={() => navigate(-1)} className="backBtn mb-[2rem]">
+      <div onClick={() => navigate("/")} className="backBtn mb-[2rem]">
         <Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" />
       </div>
       <div>

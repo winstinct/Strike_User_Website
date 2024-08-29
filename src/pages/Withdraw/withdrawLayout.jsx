@@ -13,14 +13,14 @@ export default function WithdrawLayout() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-5 text-[1.25rem] font-bold">
+      <div className="grid grid-cols-2 gap-5 text-[1.25rem] font-bold italic">
         <NavLink
           style={setActiveStyle}
-          to="wallet"
+          to=""
           className="rounded-full py-2 cursor-pointer border-[1px] border-gray-300 hover:text-[#5500C3] hover:border-[#5500C3] w-full text-center"
           end
         >
-          <button>Wallet</button>
+          Wallet
         </NavLink>
 
         <NavLink
@@ -29,7 +29,7 @@ export default function WithdrawLayout() {
           to="deposit"
           end
         >
-          <button>Deposit</button>
+          Deposit
         </NavLink>
       </div>
 
