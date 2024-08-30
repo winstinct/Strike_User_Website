@@ -39,6 +39,13 @@ const customStyles = {
     ...provided,
     color: "#333",
   }),
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    color: "#000", // Change this to the color you want for the arrow
+    "&:hover": {
+      color: "#000", // Optional: change color on hover if desired
+    },
+  }),
 };
 
 export default function StrikeSelect({ name, label, options, required }) {

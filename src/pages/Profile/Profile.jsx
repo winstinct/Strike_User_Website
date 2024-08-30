@@ -6,10 +6,13 @@ export default function Profile() {
     <main>
       <section>
         <h3 className="text-[2rem] font-bold italic">Account Details</h3>
-        <section className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mt-[1.5rem] mb-[1.5rem]">
+        <section 
+        style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
+        className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 my-[2rem] gap-5 rounded-[20px]"
+        >
           <NavLink
             style={setActiveStyle}
-            className="block border-[1px] border-gray-300 hover:border-[#5500C3] font-bold text-[1.25rem] italic hover:text-[#5500C3] duration-300 py-3 rounded-[10px] w-full text-center"
+            className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
             to="/profile"
             end
           >
@@ -17,7 +20,7 @@ export default function Profile() {
           </NavLink>
           <NavLink
             style={setActiveStyle}
-            className="block border-[1px] border-gray-300 hover:border-[#5500C3] font-bold text-[1.25rem] italic hover:text-[#5500C3] duration-300 py-3 rounded-[10px] w-full text-center"
+            className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
             to="/profile/location-details"
             end
           >
@@ -25,7 +28,7 @@ export default function Profile() {
           </NavLink>
           <NavLink
             style={setActiveStyle}
-            className="block border-[1px] border-gray-300 hover:border-[#5500C3] font-bold text-[1.25rem] italic hover:text-[#5500C3] duration-300 py-3 rounded-[10px] w-full text-center"
+            className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
             to="/profile/contact-details"
             end
           >

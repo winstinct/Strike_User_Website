@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import "./DepositLayout.css"
+import "./DepositLayout.css";
 export default function DepositLayout() {
   const navigate = useNavigate();
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -13,17 +13,20 @@ export default function DepositLayout() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-5 text-[1.25rem] font-bold DepositLayout">
+      <div
+        style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
+        className="grid md:grid-cols-2 grid-cols-1 my-[2rem] gap-5 rounded-[20px] DepositLayout"
+      >
         <NavLink
           to="wallet"
-          className="block italic hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
+          className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
           end
         >
-        Wallet
+          Wallet
         </NavLink>
 
         <NavLink
-          className="block italic hover:bg-[#5500C3] hover:text-white duration-300 text-center border-[1px] border-gray-300 rounded-[30px] py-[0.6rem] w-full"
+          className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
           to="deposit"
           end
         >

@@ -13,11 +13,14 @@ export default function WithdrawLayout() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-5 text-[1.25rem] font-bold italic">
+      <div
+        style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
+        className="grid md:grid-cols-2 grid-cols-1 my-[2rem] gap-5 rounded-[20px]"
+      >
         <NavLink
           style={setActiveStyle}
           to=""
-          className="rounded-full py-2 cursor-pointer border-[1px] border-gray-300 hover:text-[#5500C3] hover:border-[#5500C3] w-full text-center"
+          className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
           end
         >
           Wallet
@@ -25,7 +28,7 @@ export default function WithdrawLayout() {
 
         <NavLink
           style={setActiveStyle}
-          className="rounded-full py-2 cursor-pointer border-[1px] border-gray-300 hover:text-[#5500C3] hover:border-[#5500C3] w-full text-center"
+          className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
           to="deposit"
           end
         >
