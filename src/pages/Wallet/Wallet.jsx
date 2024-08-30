@@ -37,10 +37,10 @@ export default function Wallet() {
         </Link>
       </div>
 
-      <h3 className="font-bold text-[1rem] mt-[1rem] mb-[0.5rem]">Recent Transactions</h3>
-          <div className="space-y-[0.5rem]">
+      <h3 className="font-bold text-[1rem] mt-[2.5rem] mb-[1rem]">Recent Transactions</h3>
+          <div className="space-y-[1rem]">
             {/* transaction-1  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex md:flex-row flex-col justify-between  md:items-center text-[13px]">
               <div className="flex md:flex-row flex-col md:items-center md:gap-2 gap-1 font-semibold">
               <p>Type Of Transaction</p>
@@ -56,7 +56,7 @@ export default function Wallet() {
              </div>
           </div>
             {/* transaction-1  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex md:flex-row flex-col justify-between  md:items-center text-[13px]">
               <div className="flex md:flex-row flex-col md:items-center md:gap-2 gap-1 font-semibold">
               <p>Type Of Transaction</p>
@@ -72,39 +72,7 @@ export default function Wallet() {
              </div>
           </div>
             {/* transaction-1  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
-             <div className="flex md:flex-row flex-col justify-between  md:items-center text-[13px]">
-              <div className="flex md:flex-row flex-col md:items-center md:gap-2 gap-1 font-semibold">
-              <p>Type Of Transaction</p>
-              <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[70px] text-center rounded-md my-1 font-medium">Pending</p>
-              </div>
-              <p className="text-red-500">-10 Coins</p>
-             </div>
-             <div>
-             <div className="text-gray-600 text-[12px]">
-             <span>29 Feb 2024</span>
-             <span className="ml-3">11:21 AM</span>
-             </div>
-             </div>
-          </div>
-            {/* transaction-1  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
-             <div className="flex md:flex-row flex-col justify-between  md:items-center text-[13px]">
-              <div className="flex md:flex-row flex-col md:items-center md:gap-2 gap-1 font-semibold">
-              <p>Type Of Transaction</p>
-              <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[70px] text-center rounded-md my-1 font-medium">Pending</p>
-              </div>
-              <p className="text-red-500">-10 Coins</p>
-             </div>
-             <div>
-             <div className="text-gray-600 text-[12px]">
-             <span>29 Feb 2024</span>
-             <span className="ml-3">11:21 AM</span>
-             </div>
-             </div>
-          </div>
-            {/* transaction-1  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex md:flex-row flex-col justify-between  md:items-center text-[13px]">
               <div className="flex md:flex-row flex-col md:items-center md:gap-2 gap-1 font-semibold">
               <p>Type Of Transaction</p>

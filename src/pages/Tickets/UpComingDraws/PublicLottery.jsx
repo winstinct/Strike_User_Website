@@ -31,7 +31,7 @@ export default function PublicLottery() {
   };
   return (
     <section>
-      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
+      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[1rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
             Public Lottery
@@ -86,7 +86,7 @@ export default function PublicLottery() {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
-        className="w-full m-3"
+        className="w-full"
       >
         <SwiperSlide>
           <div>

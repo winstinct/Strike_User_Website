@@ -42,7 +42,7 @@ export default function DepositHistory() {
         <h3 className="text-[1.5rem] font-bold italic">Deposit History</h3>
       </div>
 
-      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
+      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
         <div>
           <h3 className="text-[1.25rem] font-bold">History</h3>
         </div>
@@ -101,7 +101,7 @@ export default function DepositHistory() {
           <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
             <div className="middle1"></div>
             <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
+            <div className="text-left space-y-[0.5rem] text-[14px] ml-5">
               <p className="font-medium text-[14px]">
                 Ticket ID:{" "}
                 <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
@@ -147,7 +147,7 @@ export default function DepositHistory() {
           <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
             <div className="middle1"></div>
             <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
+            <div className="text-left space-y-[0.5rem] text-[14px] ml-5">
               <p className="font-medium text-[14px]">
                 Ticket ID:{" "}
                 <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
@@ -193,7 +193,7 @@ export default function DepositHistory() {
           <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
             <div className="middle1"></div>
             <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
+            <div className="text-left space-y-[0.5rem] text-[14px] ml-5">
               <p className="font-medium text-[14px]">
                 Ticket ID:{" "}
                 <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
@@ -239,53 +239,7 @@ export default function DepositHistory() {
           <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
             <div className="middle1"></div>
             <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
-              <p className="font-medium text-[14px]">
-                Ticket ID:{" "}
-                <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
-              </p>
-              <div>
-                <span>Status: </span>
-                <span className="font-bold text-[#25BF17]">PROCESSED</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <p>Payment Proof:</p>
-                <div className="text-[#5500C3] font-bold flex items-center gap-1 cursor-pointer">
-                  <p>View</p>
-                  <Icon className="text-[1.3rem]" icon="hugeicons:view" />
-                </div>
-              </div>
-              <div className="flex items-center gap-1">
-                <p>Remarks:</p>
-                <div className="text-[#5500C3] font-bold flex items-center gap-1 cursor-pointer">
-                  <p>View Remarks</p>
-                  <Icon className="text-[1.3rem]" icon="hugeicons:view" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  Date and Time:{" "}
-                  <span className="font-bold">13 June, 2024 07:13 PM</span>
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-              <div className="flex items-center text-[#5500C3] gap-1 cursor-pointer">
-                <p>Notify Agent</p>
-                <Icon icon="mdi:bell-outline" />
-              </div>
-              <div className="flex items-center text-red-500 gap-1 cursor-pointer">
-                <p>Report Agent</p>
-                <Icon icon="zondicons:exclamation-outline" />
-              </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
+            <div className="text-left space-y-[0.5rem] text-[14px] ml-5">
               <p className="font-medium text-[14px]">
                 Ticket ID:{" "}
                 <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>

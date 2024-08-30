@@ -31,7 +31,7 @@ export default function ExpiredOffers() {
   };
   return (
     <section className="mt-[2rem]">
-      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
+      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
             Expired Offers
