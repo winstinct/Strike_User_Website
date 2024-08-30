@@ -13,13 +13,13 @@ export default function WheelGames() {
         </div>
         <h3 className="text-[1.5rem] font-bold">Wheel Games</h3>
       </div>
-      <div className="text-center space-y-[0.5rem]">
+      <div className="text-center space-y-[0.8rem] mt-[1.5rem]">
         <div className="flex justify-center">
           <img className="h-[300px]" src={wheelGameImg} alt="" />
         </div>
         <h3 className="text-[1.5rem] font-bold">What's Coming 🚀</h3>
         <p>We're cooking up something special for you. Stay tuned! 🚀</p>
-        <div>
+        <div className="pt-[1rem]">
           <Link to="/">
             <button className="submitBtn w-[250px]">Home</button>
           </Link>

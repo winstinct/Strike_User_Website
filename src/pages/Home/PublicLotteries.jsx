@@ -14,7 +14,7 @@ const swiperConfig = {
   slidesPerView: 1,
   spaceBetween: 10,
   breakpoints: {
-    1350: {
+    1200: {
       slidesPerView: 2,
     },
   },
@@ -160,31 +160,20 @@ export default function PublicLotteries() {
                   </div>
 
                   <div
-                    className="rounded-3xl flex flex-col items-center text-center relative border-[#caafaf38] border-[1px] h-[105px]"
-                    style={{
-                      boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
-                    }}
-                  >
-                    <div className="absolute top-0 py-[0.1rem] px-1">
-                      <div className="font-bold text-[1.25rem]">
-                        <span>Deal ends in:</span>{" "}
-                        <span className="text-red-500">{moment(expieryDate).format('LTS')}</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-1">
-                        <div className="bg-gray-500 w-[15px] h-[15px] flex justify-center items-center rounded-full text-white">
-                          <Icon className="text-[2rem]" icon="bi:exclamation" />
-                        </div>
-                        <span className="text-[#858585] text-[12px]">
-                          The lottery end time will be extended if unsold.
-                        </span>
-                      </div>
-                    </div>
-                    <div className="absolute bottom-0 w-full xl:mt-0 mt-[1rem]">
-                      <Link to={`/addToCart/lotteryId`}>
-                        <button className="submitBtn w-full">Buy Now</button>
-                      </Link>
-                    </div>
+                className="text-center rounded-[20px]"
+                style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)" }}
+              >
+                <div className="pt-[1rem]"><span className="font-semibold">Deal ends in:</span> <span className="text-[1.25rem] text-[#E0170B] font-bold">{moment(expieryDate).format('LTS')}</span></div>
+                <div className="text-[11px] text-[#858585] py-[0.8rem] flex items-center justify-center gap-1 flex-wrap">
+                <Icon icon="zondicons:exclamation-solid" />
+                  <span>The lottery end time will be extended if unsold.</span>
                   </div>
+                <div className="">
+                  <Link to={`/addToCart/lotteryId`}>
+                    <button className="submitBtn w-full">Buy Now</button>
+                  </Link>
+                </div>
+              </div>
 
                   <div className="flex gap-3 text-[12px] font-semibold">
                     <button className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2">

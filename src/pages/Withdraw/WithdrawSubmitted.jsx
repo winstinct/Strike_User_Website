@@ -12,7 +12,7 @@ export default function WithdrawSubmitted() {
         </div>
         <div 
         style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
-        className='space-y-[0.8rem] border-[1px] border-gray-300 rounded-lg p-3 lg:max-w-[80%] lg:mx-auto'>
+        className='space-y-[0.8rem] border-[1px] border-gray-300 rounded-lg p-5 lg:max-w-[80%] lg:mx-auto'>
             <h3 className='font-bold text-[20px] text-left'>Payment Details</h3>
             <div className='text-[14px] text-gray-500 flex md:flex-row flex-col justify-between items-center font-medium'>
                 <p>Coins Requested</p>

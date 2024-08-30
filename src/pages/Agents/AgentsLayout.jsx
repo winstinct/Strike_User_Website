@@ -7,8 +7,8 @@ export default function AgentsLayout() {
   return (
     <div>
       {/* Back button  */}
-      <div className="flex justify-between items-center">
-        <div className="flex items-center gap-5 mb-[2rem]">
+      <div className="flex justify-between items-center mb-[2rem]">
+        <div className="flex items-center gap-5">
           <div onClick={() => navigate(-1)} className="backBtn">
             <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
           </div>
@@ -22,7 +22,7 @@ export default function AgentsLayout() {
 
       <div
         style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
-        className="text-center rounded-[12px] p-1"
+        className="text-center rounded-[12px] p-2"
       >
         <span className="font-medium">No. of Coins Requested:</span>
         <span className="text-[1.25rem] font-bold px-1">1000</span>

@@ -3,8 +3,8 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 export default function Agents() {
   return (
     <div className="mt-[2rem]">
-      <h3 className="text-[1.25rem] font-semibold mb-[0.3rem]">Available Agents</h3>
-      <div className="space-y-[1rem]">
+      <h3 className="text-[1.25rem] font-semibold mb-[1rem]">Available Agents</h3>
+      <div className="space-y-[1.5rem]">
         {/* Agent-1  */}
       <div
         style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}

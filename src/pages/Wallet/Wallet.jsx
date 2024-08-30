@@ -29,7 +29,7 @@ export default function Wallet() {
         </Link>
       </div>
 
-      <div className="mt-[0.3rem]">
+      <div className="mt-[1rem]">
         <Link to="/withdraw/withdraw-requests-history">
           <button className="text-[#5500C3] text-[14px] font-bold text-center w-full">
             Withdraw Request History
@@ -37,7 +37,7 @@ export default function Wallet() {
         </Link>
       </div>
 
-      <h3 className="font-bold text-[1rem] mt-[2.5rem] mb-[1rem]">Recent Transactions</h3>
+      <h3 className="font-bold text-[1rem] mt-[4rem] mb-[2rem]">Recent Transactions</h3>
           <div className="space-y-[1rem]">
             {/* transaction-1  */}
           <div className="border-b-[1px] border-b-gray-300 pb-5">
