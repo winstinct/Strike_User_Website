@@ -42,58 +42,72 @@ export default function RightSideBar() {
           <button className="text-[#5500C3] text-[14px] font-bold text-center mt-[1rem] w-full">Withdraw Request History</button>
           </Link>
 
-          <h3 className="font-bold text-[1rem] mt-[1rem] mb-[0.5rem]">Recent Transactions</h3>
+          <h3 className="font-bold text-[1.1rem] my-[1.5rem]">Recent Transactions</h3>
           <div className="space-y-[1.5rem]">
             {/* transaction-1  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex justify-between items-center text-[13px]">
               <p>Type Of Transaction</p>
               <p className="text-red-500">-10 Coins</p>
              </div>
              <div>
-             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-1">pending</p>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
              <div className="text-gray-600 text-[14px]">
              <span>29 Feb 2024</span>
              <span className="ml-3">11:21 AM</span>
              </div>
              </div>
           </div>
-          {/* transaction-2  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+            {/* transaction-1  */}
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex justify-between items-center text-[13px]">
               <p>Type Of Transaction</p>
               <p className="text-red-500">-10 Coins</p>
              </div>
              <div>
-             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-1">pending</p>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
              <div className="text-gray-600 text-[14px]">
              <span>29 Feb 2024</span>
              <span className="ml-3">11:21 AM</span>
              </div>
              </div>
           </div>
-          {/* transaction-3  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+            {/* transaction-1  */}
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex justify-between items-center text-[13px]">
               <p>Type Of Transaction</p>
               <p className="text-red-500">-10 Coins</p>
              </div>
              <div>
-             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-1">pending</p>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
              <div className="text-gray-600 text-[14px]">
              <span>29 Feb 2024</span>
              <span className="ml-3">11:21 AM</span>
              </div>
              </div>
           </div>
-          {/* transaction-4  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+            {/* transaction-1  */}
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex justify-between items-center text-[13px]">
               <p>Type Of Transaction</p>
               <p className="text-red-500">-10 Coins</p>
              </div>
              <div>
-             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-1">pending</p>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
+             <div className="text-gray-600 text-[14px]">
+             <span>29 Feb 2024</span>
+             <span className="ml-3">11:21 AM</span>
+             </div>
+             </div>
+          </div>
+            {/* transaction-1  */}
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
+             <div className="flex justify-between items-center text-[13px]">
+              <p>Type Of Transaction</p>
+              <p className="text-red-500">-10 Coins</p>
+             </div>
+             <div>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
              <div className="text-gray-600 text-[14px]">
              <span>29 Feb 2024</span>
              <span className="ml-3">11:21 AM</span>
