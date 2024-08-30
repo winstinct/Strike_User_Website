@@ -111,6 +111,52 @@ export default function OffersSection() {
             </div>
           </div>
         </SwiperSlide>
+        <SwiperSlide>
+          <div
+            style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
+            className="p-[1rem] text-white rounded-[20px] bg-white"
+          >
+            <div>
+              <p>Hurry up!</p>
+              <h3 className="font-bold text-[2rem] italic">
+                Buy ONE Get ONE
+              </h3>
+              <CopyCode code="BUYONEGETONE"/>
+              <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
+                <div className="py-[0.5rem]">
+                  <span className="font-semibold text-[1.25rem]">
+                    Offer ends in:
+                  </span>{" "}
+                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
+                </div>
+                <OfferDetailsModal />
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div
+            style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
+            className="p-[1rem] text-white rounded-[20px] bg-white"
+          >
+            <div>
+              <p>Hurry up!</p>
+              <h3 className="font-bold text-[2rem] italic">
+                Buy ONE Get ONE
+              </h3>
+              <CopyCode code="BUYONEGETONE"/>
+              <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
+                <div className="py-[0.5rem]">
+                  <span className="font-semibold text-[1.25rem]">
+                    Offer ends in:
+                  </span>{" "}
+                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
+                </div>
+                <OfferDetailsModal />
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
       </Swiper>
     </section>
   );

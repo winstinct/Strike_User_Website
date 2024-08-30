@@ -99,12 +99,10 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1 italic">
-                  <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <div className="text-[1.3rem] font-bold">
-                    <span className="font-medium">Won: </span>
-                    <span className="text-[#A967FF]">200 Coins</span>
-                  </div>
+                <div className="flex justify-center items-center flex-wrap gap-1 italic">
+                  <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
+                    <span className="font-medium text-[1rem]">Won</span>
+                    <span className="text-[#A967FF] text-[1.25rem]">200 Coins</span>
                 </div>
                 <p className="font-medium">Order ID: #8192739182</p>
                 <p className="text-[#858585]">
@@ -125,12 +123,10 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1 italic">
-                  <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <div className="text-[1.3rem] font-bold">
-                    <span className="font-medium">Won: </span>
-                    <span className="text-[#A967FF]">200 Coins</span>
-                  </div>
+                <div className="flex justify-center items-center flex-wrap gap-1 italic">
+                  <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
+                    <span className="font-medium text-[1rem]">Won</span>
+                    <span className="text-[#A967FF] text-[1.25rem]">200 Coins</span>
                 </div>
                 <p className="font-medium">Order ID: #8192739182</p>
                 <p className="text-[#858585]">
@@ -151,64 +147,10 @@ export default function PublicLottery() {
               <div className="middle2"></div>
               <div className="text-center space-y-[0.5rem]">
                 <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1 italic">
-                  <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <div className="text-[1.3rem] font-bold">
-                    <span className="font-medium">Won: </span>
-                    <span className="text-[#A967FF]">200 Coins</span>
-                  </div>
-                </div>
-                <p className="font-medium">Order ID: #8192739182</p>
-                <p className="text-[#858585]">
-                  Announced on: 18 December, 2023
-                </p>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
-              <h3 className="mb-3">Better Luck Next Time</h3>
-            </div>
-
-            <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[4px] border-[#A967FF] rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1 italic">
-                  <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <div className="text-[1.3rem] font-bold">
-                    <span className="font-medium">Won: </span>
-                    <span className="text-[#A967FF]">200 Coins</span>
-                  </div>
-                </div>
-                <p className="font-medium">Order ID: #8192739182</p>
-                <p className="text-[#858585]">
-                  Announced on: 18 December, 2023
-                </p>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
-              <h3 className="mb-3">Better Luck Next Time</h3>
-            </div>
-
-            <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[4px] border-[#A967FF] rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold">Winner Details</p>
-                <div className="flex flex-col justify-center items-center gap-1 italic">
-                  <h3 className="text-[1.3rem] font-bold">Putta Manikanta</h3>
-                  <div className="text-[1.3rem] font-bold">
-                    <span className="font-medium">Won: </span>
-                    <span className="text-[#A967FF]">200 Coins</span>
-                  </div>
+                <div className="flex justify-center items-center flex-wrap gap-1 italic">
+                  <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
+                    <span className="font-medium text-[1rem]">Won</span>
+                    <span className="text-[#A967FF] text-[1.25rem]">200 Coins</span>
                 </div>
                 <p className="font-medium">Order ID: #8192739182</p>
                 <p className="text-[#858585]">
