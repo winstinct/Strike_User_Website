@@ -44,7 +44,7 @@ export function AccordionCustomIcon() {
             !open
               ? "border-b border-[#a967ff5b]"
               : "border-b border-transparent"
-          } pb-2 faq text-gray-300 hover:text-white text-[1rem]`}
+          } pb-2 faq text-white hover:text-white text-[1rem]`}
           onClick={() => handleOpen(1)}
         >
           Eligible Lottery
@@ -70,12 +70,12 @@ export function AccordionCustomIcon() {
             !open
               ? "border-b border-[#a967ff5b]"
               : "border-b border-transparent"
-          } pb-2 faq text-gray-300 hover:text-white text-[1rem]`}
+          } pb-2 faq text-white hover:text-white text-[1rem]`}
           onClick={() => handleOpen(2)}
         >
           Terms & Conditions
         </AccordionHeader>
-        <AccordionBody className="border-b border-none text-gray-300">
+        <AccordionBody className="border-b border-none text-white">
           <div className="list-disc list-inside space-y-[1rem]">
             <div className="flex gap-2">
               <div className="min-w-[8px] h-[8px] rounded-full bg-gray-300 mt-1"></div>
