@@ -38,32 +38,32 @@ export default function Deposit() {
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
           <p
             onClick={(e) => setAmount(e.target.innerText)}
-            className={`text-center border-[1px] border-gray-300 hover:bg-[#5500C3] hover:text-white duration-300 rounded-lg p-2 font-semibold cursor-pointer ${
-              amount == 500 ? "bg-[#5500C3] text-white" : ""
+            className={`text-center border-[1px] border-gray-300 hover:border-[#A967FF] duration-300 rounded-lg p-2 font-semibold cursor-pointer ${
+              amount == 500 ? "gradientBg text-white" : ""
             }`}
           >
             500
           </p>
           <p
             onClick={(e) => setAmount(e.target.innerText)}
-            className={`text-center border-[1px] border-gray-300 hover:bg-[#5500C3] hover:text-white duration-300 rounded-lg p-2 font-semibold cursor-pointer ${
-              amount == 1000 ? "bg-[#5500C3] text-white" : ""
+            className={`text-center border-[1px] border-gray-300 hover:border-[#A967FF] duration-300 rounded-lg p-2 font-semibold cursor-pointer ${
+              amount == 1000 ? "gradientBg text-white" : ""
             }`}
           >
             1000
           </p>
           <p
             onClick={(e) => setAmount(e.target.innerText)}
-            className={`text-center border-[1px] border-gray-300 hover:bg-[#5500C3] hover:text-white duration-300 rounded-lg p-2 font-semibold cursor-pointer ${
-              amount == 2000 ? "bg-[#5500C3] text-white" : ""
+            className={`text-center border-[1px] border-gray-300 hover:border-[#A967FF] duration-300 rounded-lg p-2 font-semibold cursor-pointer ${
+              amount == 2000 ? "gradientBg text-white" : ""
             }`}
           >
             2000
           </p>
           <p
             onClick={(e) => setAmount(e.target.innerText)}
-            className={`text-center border-[1px] border-gray-300 hover:bg-[#5500C3] hover:text-white duration-300 rounded-lg p-2 font-semibold cursor-pointer ${
-              amount == 5000 ? "bg-[#5500C3] text-white" : ""
+            className={`text-center border-[1px] border-gray-300 hover:border-[#A967FF] duration-300 rounded-lg p-2 font-semibold cursor-pointer ${
+              amount == 5000 ? "gradientBg text-white" : ""
             }`}
           >
             5000
@@ -93,25 +93,32 @@ export default function Deposit() {
           placeholder="Custom Amount"
           type="number"
           value={amount}
-          onChange={(e)=>setAmount(e.target.value)}
+          onChange={(e) => setAmount(e.target.value)}
         />
       </div>
 
-      <div className="mt-[1.5rem]">
-        <h3 className="font-medium mb-[0.3rem]">Select Payment Method</h3>
-        <div className="grid lg:grid-cols-2 gap-5 font-bold text-[1.5rem]">
-        <button
-        style={{boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)"}}
-         className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full">Crypto</button>
+      {amount && (
+        <div className="mt-[1.5rem]">
+          <h3 className="font-medium mb-[0.3rem]">Select Payment Method</h3>
+          <div className="grid lg:grid-cols-2 gap-5 font-bold text-[1.5rem]">
+            <button
+              style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
+              className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full"
+            >
+              Crypto
+            </button>
 
-        <Link to="/agents">
-        <button
-        style={{boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)"}}
-         className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full">Agent</button>
-        </Link>
-
+            <Link to="/agents">
+              <button
+                style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
+                className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full"
+              >
+                Agent
+              </button>
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
