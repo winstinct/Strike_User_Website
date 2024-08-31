@@ -9,10 +9,10 @@ export default function CartQuantityAdjuster() {
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrease = () => {
-    setQuantity(quantity+1)
+    setQuantity(quantity + 1);
   };
   const handleDecrease = () => {
-    setQuantity(quantity-1)
+    setQuantity(quantity - 1);
   };
 
   return (
@@ -58,10 +58,10 @@ export default function CartQuantityAdjuster() {
             </div>
 
             <div className="flex justify-center items-center gap-1 my-[1rem]">
-              <div className="bg-gray-500 w-[15px] h-[15px] flex justify-center items-center rounded-full text-white">
-                <Icon className="text-[2rem]" icon="bi:exclamation" />
-              </div>
-              <p className="text-[14px] text-gray-600">The lottery end time will be extended if unsold.</p>
+            <Icon className="text-gray-500 text-[12px]" icon="zondicons:exclamation-solid" />
+              <p className="text-[11px] text-gray-600">
+                The lottery end time will be extended if unsold.
+              </p>
             </div>
 
             <div className="rounded-[50px] py-[0.5rem] border-[1px] border-gray-300 flex justify-between items-center px-8">
@@ -69,7 +69,8 @@ export default function CartQuantityAdjuster() {
               <div className="flex items-center justify-center">
                 <button
                   onClick={handleDecrease}
-                  className="text-[#7647B2] hover:bg-[#7647B2] hover:text-white duration-300 border-[1px] border-[#7647B2] w-[30px] h-[30px] rounded-full flex justify-center items-center text-[2rem]"
+                  disabled={quantity == 0 ? true : false}
+                  className={`text-[#7647B2] hover:bg-[#7647B2] hover:text-white duration-300 border-[1px] border-[#7647B2] w-[30px] h-[30px] rounded-full flex justify-center items-center text-[2rem] ${quantity==0 && 'bg-gray-400 border-gray-400 text-gray-200 hover:text-gray-200 hover:bg-gray-400'}`}
                 >
                   <Icon icon="ic:baseline-minus" />
                 </button>
@@ -209,28 +210,28 @@ export default function CartQuantityAdjuster() {
           Terms & Conditions
         </h3>
         <div className="list-disc list-inside space-y-[1rem]">
-            <div className="flex gap-2">
-              <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
-              <p>
-                Enter and stand a chance to win 13,000 Tether as prize. Don’t
-                miss the chance and grab your ticket to enter the lottery today!
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
-              <p>
-                Enter and stand a chance to win 13,000 Tether as prize. Don’t
-                miss the chance and grab your ticket to enter the lottery today!
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
-              <p>
-                Enter and stand a chance to win 13,000 Tether as prize. Don’t
-                miss the chance and grab your ticket to enter the lottery today!
-              </p>
-            </div>
+          <div className="flex gap-2">
+            <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
+            <p>
+              Enter and stand a chance to win 13,000 Tether as prize. Don’t miss
+              the chance and grab your ticket to enter the lottery today!
+            </p>
           </div>
+          <div className="flex gap-2">
+            <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
+            <p>
+              Enter and stand a chance to win 13,000 Tether as prize. Don’t miss
+              the chance and grab your ticket to enter the lottery today!
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
+            <p>
+              Enter and stand a chance to win 13,000 Tether as prize. Don’t miss
+              the chance and grab your ticket to enter the lottery today!
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
