@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import slider1Img from "../../../assets/slider-1.png";
-import slider2Img from "../../../assets/slider-2.png";
-import slider3Img from "../../../assets/slider-3.png";
+import slider1Img from "../../../assets/updated-slider-1.svg";
+import slider2Img from "../../../assets/updated-slider-2.svg";
+import slider3Img from "../../../assets/updated-slider-3.svg";
 import OtpInput from "react-otp-input";
 import "./OTPStyles.css";
 // Slider
@@ -20,7 +20,7 @@ import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
 import {
   useSendOTPForgotPassMutation,
-  useVerifyOTPForgotPassMutation
+  useVerifyOTPForgotPassMutation,
 } from "../../../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,13 +30,14 @@ import SubmitBtnLoader from "../../../components/SubmitBtnLoader";
 export default function OTPVerification() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {otpRefId, Email} = useSelector(state => state.createUser)
+  const { otpRefId, Email } = useSelector((state) => state.createUser);
   const [otp, setOtp] = useState("");
   const [showError, setShowError] = useState(false);
 
   // RTK Query Hooks
   const [verifyOTP, { isLoading }] = useVerifyOTPForgotPassMutation();
-  const [sendOTP, { isLoading: isLoadingSendAgain }] = useSendOTPForgotPassMutation();
+  const [sendOTP, { isLoading: isLoadingSendAgain }] =
+    useSendOTPForgotPassMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,10 +74,13 @@ export default function OTPVerification() {
     }
   };
   return (
-    <div className="md:grid md:grid-cols-2 grid-cols-1 md:gap-10 md:mx-[5rem] mx-5">
-       {/* Slider Start  */}
-       <div className="md:flex flex-col md:justify-center md:min-h-[calc(100vh-6rem)]">
-        <div className="shadow-lg rounded-xl w-full pb-[1rem]">
+    <div className="md:grid md:grid-cols-2 grid-cols-1 md:gap-10 md:mx-[2rem] lg:mx-[5rem] mx-5">
+      {/* Slider Start  */}
+      <div className="md:flex flex-col md:justify-center md:min-h-[calc(100vh-6rem)] md:max-h-[calc(100vh-6rem)]">
+        <div
+          className="rounded-xl w-full pb-[1rem] lg:max-w-[85%] xl:max-w-[70%] md:h-screen relative"
+          style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
+        >
           <Swiper
             pagination={true}
             autoplay={{
@@ -86,10 +90,10 @@ export default function OTPVerification() {
             modules={[Pagination, Autoplay]}
           >
             <SwiperSlide>
-              <div className="flex flex-col md:h-[calc(100vh-9rem)]">
+              <div className="flex flex-col">
                 <img
                   src={slider1Img}
-                  className="w-full rounded-t-xl md:min-h-[70%] flex-1"
+                  className="w-full rounded-t-xl flex-1"
                   alt="Slider-1"
                 />
 
@@ -97,7 +101,7 @@ export default function OTPVerification() {
                   <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
                     Welcome to <span className="text-[#A967FF]">Strike</span>
                   </h3>
-                  <p className="text-[1.1rem] text-[#4C4C4C]">
+                  <p className="text-[0.9rem] md:text-[1.1rem] text-[#4C4C4C]">
                     Purchase lottery tickets for a chance to win big and host
                     private lotteries with friends and family for unforgettable
                     moments.
@@ -107,14 +111,14 @@ export default function OTPVerification() {
             </SwiperSlide>
 
             <SwiperSlide>
-              <div className="flex flex-col md:h-[calc(100vh-9rem)]">
+              <div className="flex flex-col">
                 <img
                   src={slider2Img}
-                   className="w-full rounded-t-xl md:min-h-[70%] flex-1"
+                  className="w-full rounded-t-xl flex-1"
                   alt="Slider-2"
                 />
                 <div className="md:mx-[2rem] mx-[0.5rem]">
-                  <h3 className="text-[1.5rem] font-bold mt-[0.5rem]">
+                  <h3 className="text-[0.9rem] md:text-[1.5rem] font-bold mt-[0.5rem]">
                     Play and <span className="text-[#A967FF]">Win 🤩</span>
                   </h3>
                   <p className="text-[1.1rem] text-[#4C4C4C] mb-[0.5rem]">
@@ -125,10 +129,10 @@ export default function OTPVerification() {
             </SwiperSlide>
 
             <SwiperSlide>
-              <div className="flex flex-col md:h-[calc(100vh-9rem)]">
+              <div className="flex flex-col">
                 <img
                   src={slider3Img}
-                   className="w-full rounded-t-xl md:min-h-[70%] flex-1"
+                  className="w-full rounded-t-xl flex-1"
                   alt="Slider-3"
                 />
                 <div className="md:mx-[2rem] mx-[0.5rem]">
@@ -136,7 +140,7 @@ export default function OTPVerification() {
                     Get Ready to{" "}
                     <span className="text-[#A967FF]">Strike it Lucky! 🚀</span>
                   </h3>
-                  <p className="text-[1.1rem] text-[#4C4C4C] mb-[1.3rem]">
+                  <p className="text-[0.9rem] md:text-[1.1rem] text-[#4C4C4C] mb-[1.3rem]">
                     Enjoy exclusive perks, bonuses, and rewards as a valued
                     member of the Strike community.
                   </p>
@@ -144,7 +148,7 @@ export default function OTPVerification() {
               </div>
             </SwiperSlide>
           </Swiper>
-          <p className="text-[14px] text-center px-[0.2rem]">
+          <p className="text-[14px] text-center px-[0.2rem] md:absolute md:bottom-0 mb-4">
             Users must be <span className="text-[#FF0023]">18 or older</span>.
             Participation involves{" "}
             <span className="text-[#FF0023]">financial risk;</span> Play
@@ -154,7 +158,7 @@ export default function OTPVerification() {
       </div>
       {/* Slider End  */}
 
-      <div className="flex flex-col justify-center md:mt-0 mt-[2rem]">
+      <div className="flex flex-col justify-center md:mt-0 mt-[2rem] md:pb-0 pb-[2rem] lg:max-w-[85%] xl:max-w-[70%]">
         <div>
           <header>
             <div onClick={() => navigate(-1)} className="backBtn mb-[2rem]">
@@ -199,7 +203,7 @@ export default function OTPVerification() {
               numInputs={6}
               shouldAutoFocus={true}
               containerStyle="otp-container"
-              renderInput={(props, index) => (
+              renderInput={(props) => (
                 <input {...props} className="otp-input" />
               )}
             />
