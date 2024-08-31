@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import slider1Img from "../../../assets/slider-1.png";
-import slider2Img from "../../../assets/slider-2.png";
-import slider3Img from "../../../assets/slider-3.png";
+import slider1Img from "../../../assets/updated-slider-1.svg";
+import slider2Img from "../../../assets/updated-slider-2.svg";
+import slider3Img from "../../../assets/updated-slider-3.svg";
 import OtpInput from "react-otp-input";
 import "./OTPStyles.css";
 // Slider
@@ -75,7 +75,7 @@ export default function OTPVerificationSignup() {
   };
 
   return (
-    <div className="md:grid md:grid-cols-2 grid-cols-1 md:gap-10 md-[2rem] lg:mx-[5rem] mx-5">
+    <div className="md:grid md:grid-cols-2 grid-cols-1 md:gap-10 md:mx-[2rem] lg:mx-[5rem] mx-5">
       {/* Slider Start  */}
       <div className="md:flex flex-col md:justify-center md:min-h-[calc(100vh-6rem)] md:max-h-[calc(100vh-6rem)]">
         <div
