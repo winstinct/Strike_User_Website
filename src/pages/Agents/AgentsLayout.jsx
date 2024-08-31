@@ -50,9 +50,9 @@ export default function AgentsLayout() {
           </div>
           <div className="w-[75px]">
             <Countdown
-              date={Date.now() + 60000 * 1}
+              date={Date.now() + 60000 * 10}
               zeroPadTime={false}
-              onComplete={()=>navigate("/wallet")}
+              onComplete={()=>navigate("/deposit")}
               renderer={({ seconds, minutes, hours }) => (
                 <div className="text-[1.5rem]">
                   <span>{zeroPad(minutes)}</span>
