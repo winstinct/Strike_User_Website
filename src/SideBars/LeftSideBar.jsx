@@ -1,8 +1,6 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
-import "./LeftSideBar.css";
 import { setActiveStyle } from "../utils/setActiveStyle";
 
 export default function LeftSideBar() {
@@ -25,7 +23,7 @@ export default function LeftSideBar() {
   return (
     <div
       style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
-      className="px-3 pt-[6rem] w-[18rem] bg-white h-[100vh] overflow-y-auto fixed left-0 top-0 pb-[4rem] left-sidebar"
+      className="px-3 pt-[6rem] w-[18rem] bg-white h-[100vh] overflow-y-auto fixed left-0 top-0 pb-[4rem]"
     >
       <ul className="space-y-[1rem] text-[16px]">
         {/*Display For Only Logged In User  */}
@@ -42,6 +40,7 @@ export default function LeftSideBar() {
               <NavLink
                 to="/profile"
                 className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
+                style={setActiveStyle}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -72,6 +71,7 @@ export default function LeftSideBar() {
           <NavLink
             className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
             to="/become-public-agent"
+            style={setActiveStyle}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -143,6 +143,7 @@ export default function LeftSideBar() {
           <NavLink
             className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
             to="/wish-list"
+            style={setActiveStyle}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -163,6 +164,7 @@ export default function LeftSideBar() {
           <NavLink
             className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
             to="/deposit-history"
+            style={setActiveStyle}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -183,6 +185,7 @@ export default function LeftSideBar() {
           <NavLink
             className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
             to="/preferences"
+            style={setActiveStyle}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -203,6 +206,7 @@ export default function LeftSideBar() {
           <NavLink
             className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
             to="/faq"
+            style={setActiveStyle}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -258,6 +262,7 @@ export default function LeftSideBar() {
           <NavLink
             className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
             to="/refer-and-earn"
+            style={setActiveStyle}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
