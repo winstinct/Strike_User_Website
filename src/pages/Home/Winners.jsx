@@ -2,6 +2,8 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useGetWinnersQuery } from "../../redux/features/lottery/lotteryApi";
+import moment from "moment";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -29,11 +31,16 @@ export default function Winners() {
     setIsBeginning(swiperInstance?.isBeginning);
     setIsEnd(swiperInstance?.isEnd);
   };
+
+  const { data, isLoading } = useGetWinnersQuery();
+  console.log("Winners ====> ", data?.response?.fetchWinnerss);
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
         <div>
-          <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">Winners</h3>
+          <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
+            Winners
+          </h3>
           <p>*Check winners of previous lotteries</p>
         </div>
         <div className="flex gap-5 text-[2rem]">
@@ -87,126 +94,40 @@ export default function Winners() {
         {...swiperConfig}
         className="w-full"
       >
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-center space-y-[0.5rem]">
-              <p className="font-bold">Congratulations</p>
-              <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
-              <p>
-                <span className="font-medium">Won</span>{" "}
-                <span className="text-[#A967FF] text-[1.25rem] font-bold">
-                  200 Coins
-                </span>
-              </p>
-              <p className="font-medium">Order ID: #8192739182</p>
-              <p className="text-[#858585]">
-                Announced on: 08:40 PM 18 December, 2023
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-center space-y-[0.5rem]">
-              <p className="font-bold">Congratulations</p>
-              <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
-              <p>
-                <span className="font-medium">Won</span>{" "}
-                <span className="text-[#A967FF] text-[1.25rem] font-bold">
-                  200 Coins
-                </span>
-              </p>
-              <p className="font-medium">Order ID: #8192739182</p>
-              <p className="text-[#858585]">
-                Announced on: 08:40 PM 18 December, 2023
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-center space-y-[0.5rem]">
-              <p className="font-bold">Congratulations</p>
-              <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
-              <p>
-                <span className="font-medium">Won</span>{" "}
-                <span className="text-[#A967FF] text-[1.25rem] font-bold">
-                  200 Coins
-                </span>
-              </p>
-              <p className="font-medium">Order ID: #8192739182</p>
-              <p className="text-[#858585]">
-                Announced on: 08:40 PM 18 December, 2023
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-center space-y-[0.5rem]">
-              <p className="font-bold">Congratulations</p>
-              <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
-              <p>
-                <span className="font-medium">Won</span>{" "}
-                <span className="text-[#A967FF] text-[1.25rem] font-bold">
-                  200 Coins
-                </span>
-              </p>
-              <p className="font-medium">Order ID: #8192739182</p>
-              <p className="text-[#858585]">
-                Announced on: 08:40 PM 18 December, 2023
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-center space-y-[0.5rem]">
-              <p className="font-bold">Congratulations</p>
-              <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
-              <p>
-                <span className="font-medium">Won</span>{" "}
-                <span className="text-[#A967FF] text-[1.25rem] font-bold">
-                  200 Coins
-                </span>
-              </p>
-              <p className="font-medium">Order ID: #8192739182</p>
-              <p className="text-[#858585]">
-                Announced on: 08:40 PM 18 December, 2023
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-center space-y-[0.5rem]">
-              <p className="font-bold">Congratulations</p>
-              <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
-              <p>
-                <span className="font-medium">Won</span>{" "}
-                <span className="text-[#A967FF] text-[1.25rem] font-bold">
-                  200 Coins
-                </span>
-              </p>
-              <p className="font-medium">Order ID: #8192739182</p>
-              <p className="text-[#858585]">
-                Announced on: 08:40 PM 18 December, 2023
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
+        {data?.response?.fetchWinnerss?.map(
+          ({ UserID, transID, createdAt, winningAmount }) => (
+            <SwiperSlide>
+              <div className="flex justify-center h-[250px] items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
+                <div className="middle1"></div>
+                <div className="middle2"></div>
+                <div className="text-center space-y-[0.5rem]">
+                  <p className="font-bold">Congratulations</p>
+                  <h3 className="text-[1.25rem] font-bold">
+                    {UserID?.FirstName ? (
+                      <div>
+                        <span>{UserID?.FirstName}</span>
+                        <span className="ml-1">{UserID?.LastName}</span>
+                      </div>
+                    ) : (
+                      <span>Not found!</span>
+                    )}
+                  </h3>
+                  <p>
+                    <span className="font-medium">Won</span>{" "}
+                    <span className="text-[#A967FF] text-[1.25rem] font-bold">
+                      {winningAmount} Coins
+                    </span>
+                  </p>
+                  <p className="font-medium">Order ID: {transID}</p>
+                  <p className="text-[#858585]">
+                    {/* Announced on: 08:40 PM 18 December, 2023 */}
+                    Announced on: {moment(createdAt).format("LLL")}
+                  </p>
+                </div>
+              </div>
+            </SwiperSlide>
+          )
+        )}
       </Swiper>
     </section>
   );

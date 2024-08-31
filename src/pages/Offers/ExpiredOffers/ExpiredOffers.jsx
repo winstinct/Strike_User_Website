@@ -2,6 +2,8 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
+import { useGetOffersQuery } from "../../../redux/features/lottery/lotteryApi";
+import CopyCode from "../OffersSection/CopyCode";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -29,6 +31,11 @@ export default function ExpiredOffers() {
     setIsBeginning(swiperInstance?.isBeginning);
     setIsEnd(swiperInstance?.isEnd);
   };
+  const { data, isLoading } = useGetOffersQuery();
+  const expiredOffers = data?.response?.offer?.filter(
+    ({ ExpieryDate }) => new Date(ExpieryDate).getTime() < new Date().getTime()
+  );
+  console.log("Expired offers ==> ", expiredOffers);
   return (
     <section className="mt-[3.5rem]">
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
@@ -89,141 +96,31 @@ export default function ExpiredOffers() {
         {...swiperConfig}
         className="w-full"
       >
-        <SwiperSlide>
-          <div
-            style={{ backgroundImage: "linear-gradient(#FF0000, #AD0000)" }}
-            className="p-[1rem] text-white rounded-[20px] bg-white"
-          >
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
+        {expiredOffers?.map(({ ExpieryDate, coupon_code, title }) => (
+          <SwiperSlide>
+            <div
+              style={{ backgroundImage: "linear-gradient(#FF0000, #AD0000)" }}
+              className="p-[1rem] text-white rounded-[20px] bg-white"
+            >
+              <div>
+                <p>Hurry up!</p>
+                <h3 className="font-bold text-[2rem] italic">{title}</h3>
+                <div className="flex items-center gap-1">
+                  <div>
+                    <CopyCode code={coupon_code} />
+                  </div>
                 </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
 
-              <button className="flex items-center mt-[2rem] justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                Expired
-              </button>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{ backgroundImage: "linear-gradient(#FF0000, #AD0000)" }}
-            className="p-[1rem] text-white rounded-[20px] bg-white"
-          >
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
+                <button
+                  disabled
+                  className="flex items-center mt-[2rem] justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]"
+                >
+                  Expired
+                </button>
               </div>
-
-              <button className="flex items-center mt-[2rem] justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                Expired
-              </button>
             </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{ backgroundImage: "linear-gradient(#FF0000, #AD0000)" }}
-            className="p-[1rem] text-white rounded-[20px] bg-white"
-          >
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
-              <button className="flex items-center mt-[2rem] justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                Expired
-              </button>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{ backgroundImage: "linear-gradient(#FF0000, #AD0000)" }}
-            className="p-[1rem] text-white rounded-[20px] bg-white"
-          >
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
-              <button className="flex items-center mt-[2rem] justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                Expired
-              </button>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{ backgroundImage: "linear-gradient(#FF0000, #AD0000)" }}
-            className="p-[1rem] text-white rounded-[20px] bg-white"
-          >
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <div className="flex items-center gap-1">
-                <div>
-                  <span>Code:</span>{" "}
-                  <span className="font-bold">BUYONEGETONE</span>
-                </div>
-                <Icon
-                  className="text-[1.5rem] cursor-pointer"
-                  icon="bitcoin-icons:copy-outline"
-                />
-              </div>
-
-              <button className="flex items-center mt-[2rem] justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]">
-                Expired
-              </button>
-            </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   );

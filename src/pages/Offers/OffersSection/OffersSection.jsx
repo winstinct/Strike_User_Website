@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { OfferDetailsModal } from "./OfferDetailsModal";
 import CopyCode from "./CopyCode";
+import { useGetOffersQuery } from "../../../redux/features/lottery/lotteryApi";
+import moment from "moment";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -31,6 +33,9 @@ export default function OffersSection() {
     setIsBeginning(swiperInstance?.isBeginning);
     setIsEnd(swiperInstance?.isEnd);
   };
+
+  const {data, isLoading} = useGetOffersQuery();
+  console.log("All offers ==> ", data?.response?.offer)
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
@@ -88,75 +93,31 @@ export default function OffersSection() {
         {...swiperConfig}
         className="w-full m-3"
       >
-        <SwiperSlide>
-          <div
-            style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
-            className="p-[1rem] text-white rounded-[20px] bg-white"
-          >
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <CopyCode code="BUYONEGETONE"/>
-              <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
-                <div className="py-[0.5rem]">
-                  <span className="font-semibold text-[1.25rem]">
-                    Offer ends in:
-                  </span>{" "}
-                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
+        {
+          data?.response?.offer?.map(({ExpieryDate, coupon_code, title})=>(<SwiperSlide>
+            <div
+              style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
+              className="p-[1rem] text-white rounded-[20px] bg-white"
+            >
+              <div>
+                <p>Hurry up!</p>
+                <h3 className="font-bold text-[2rem] italic">
+                  {title}
+                </h3>
+                <CopyCode code={coupon_code}/>
+                <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
+                  <div className="py-[0.5rem]">
+                    <span className="font-semibold text-[1.25rem]">
+                      Offer ends in:
+                    </span>{" "}
+                    <span className="font-bold text-[1.5rem]">{moment(ExpieryDate).format('lll')}</span>
+                  </div>
+                  <OfferDetailsModal />
                 </div>
-                <OfferDetailsModal />
               </div>
             </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
-            className="p-[1rem] text-white rounded-[20px] bg-white"
-          >
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <CopyCode code="BUYONEGETONE"/>
-              <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
-                <div className="py-[0.5rem]">
-                  <span className="font-semibold text-[1.25rem]">
-                    Offer ends in:
-                  </span>{" "}
-                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
-                </div>
-                <OfferDetailsModal />
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
-            className="p-[1rem] text-white rounded-[20px] bg-white"
-          >
-            <div>
-              <p>Hurry up!</p>
-              <h3 className="font-bold text-[2rem] italic">
-                Buy ONE Get ONE
-              </h3>
-              <CopyCode code="BUYONEGETONE"/>
-              <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
-                <div className="py-[0.5rem]">
-                  <span className="font-semibold text-[1.25rem]">
-                    Offer ends in:
-                  </span>{" "}
-                  <span className="font-bold text-[1.5rem]">05:18:03:10</span>
-                </div>
-                <OfferDetailsModal />
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>))
+        }
       </Swiper>
     </section>
   );

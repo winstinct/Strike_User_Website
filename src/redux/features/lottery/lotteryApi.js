@@ -20,8 +20,30 @@ export const lotteryApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    getWinners: builder.query({
+      query: () => {
+        return {
+          url: `/users/fetch-winners-slider`,
+          method: "GET",
+        };
+      },
+    }),
+
+    getOffers: builder.query({
+      query: () => {
+        return {
+          url: `/users/all-offers`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetPublicLotteriesQuery, useGetPrivateLotteriesQuery } =
-  lotteryApi;
+export const {
+  useGetPublicLotteriesQuery,
+  useGetPrivateLotteriesQuery,
+  useGetWinnersQuery,
+  useGetOffersQuery,
+} = lotteryApi;
