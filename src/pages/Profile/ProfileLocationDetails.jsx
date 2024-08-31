@@ -59,7 +59,7 @@ export default function ProfileLocationDetails() {
   }
   return (
     <StrikeForm onSubmit={handleSubmitLocationDetails} resolver={yupResolver(locationDetailsSchema)} defaultValues={defaultValues}>
-    <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
+    <div className="grid lg:grid-cols-2 grid-cols-1 gap-[2.5rem] gap-y-[1.5rem]">
       <StrikeSelect options={countryOptions} name="country" label="Country" required={true}/>
       <StrikeSelect options={stateOptions} name="state" label="State" required={true}/>
       <StrikeSelect options={cityOptions} name="city" label="City" required={true}/>
@@ -72,7 +72,7 @@ export default function ProfileLocationDetails() {
             <SubmitBtnLoader />
           </div>
         ) : (
-          <button type="submit" className="submitBtn w-[10rem] mt-[1.5rem]">
+          <button type="submit" className="submitBtn w-[22rem] mt-[1.5rem]">
             Save
           </button>
         )}

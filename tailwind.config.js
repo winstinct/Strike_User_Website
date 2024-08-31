@@ -8,7 +8,7 @@ module.exports = withMT({
     extend: {
       extend: {
         fontFamily: {
-          inter: ["Inter", "sans-serif"]
+          'serif': ['Inter', 'sans-serif']
         },
         boxShadow: {
           '2xl': '0px 0px 8px 0px rgba(0, 0, 0, 0.10)',
@@ -19,3 +19,4 @@ module.exports = withMT({
   },
   plugins: [],
 });
+

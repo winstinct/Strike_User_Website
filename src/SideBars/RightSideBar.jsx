@@ -9,7 +9,8 @@ export default function RightSideBar() {
   const { currentUser } = useAuth();
   return (
     <div
-      className={`bg-white shadow-2xl border-l-[1px] border-[#d3cccc] fixed top-0 right-0 w-64 z-10 px-1 duration-300 h-[100vh] overflow-y-auto right-sidebar`}
+      style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
+      className={`bg-white fixed top-0 right-0 w-[18rem] z-10 px-2 duration-300 h-[100vh] overflow-y-auto right-sidebar pb-[3rem]`}
     >
       {currentUser ? (
         <div className="mt-[6rem] pb-[1rem] px-2">
@@ -28,71 +29,85 @@ export default function RightSideBar() {
           </div>
           </div>
 
-          <div className="mt-[1rem] space-y-[0.5rem]">
+          <div className="mt-[1rem] space-y-[1rem]">
           <Link to="/withdraw" className="block">
-          <button className="submitBtn w-full">Withdraw Coins</button>
+          <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">Withdraw Coins</button>
           </Link>
           <Link to="/deposit" className="block mt-[0.5rem]">
-          <button className="submitBtn w-full">Deposit</button>
+          <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">Deposit</button>
           </Link>
           </div>
 
-          <Link to="withdraw/withdraw-requests-history">
+          <Link to="/withdraw-requests-history">
           <button className="text-[#5500C3] text-[14px] font-bold text-center mt-[1rem] w-full">Withdraw Request History</button>
           </Link>
 
-          <h3 className="font-bold text-[1rem] mt-[1rem] mb-[0.5rem]">Recent Transactions</h3>
+          <h3 className="font-bold text-[1.1rem] my-[1.5rem]">Recent Transactions</h3>
           <div className="space-y-[1.5rem]">
             {/* transaction-1  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex justify-between items-center text-[13px]">
               <p>Type Of Transaction</p>
               <p className="text-red-500">-10 Coins</p>
              </div>
              <div>
-             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-1">pending</p>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
              <div className="text-gray-600 text-[14px]">
              <span>29 Feb 2024</span>
              <span className="ml-3">11:21 AM</span>
              </div>
              </div>
           </div>
-          {/* transaction-2  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+            {/* transaction-1  */}
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex justify-between items-center text-[13px]">
               <p>Type Of Transaction</p>
               <p className="text-red-500">-10 Coins</p>
              </div>
              <div>
-             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-1">pending</p>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
              <div className="text-gray-600 text-[14px]">
              <span>29 Feb 2024</span>
              <span className="ml-3">11:21 AM</span>
              </div>
              </div>
           </div>
-          {/* transaction-3  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+            {/* transaction-1  */}
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex justify-between items-center text-[13px]">
               <p>Type Of Transaction</p>
               <p className="text-red-500">-10 Coins</p>
              </div>
              <div>
-             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-1">pending</p>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
              <div className="text-gray-600 text-[14px]">
              <span>29 Feb 2024</span>
              <span className="ml-3">11:21 AM</span>
              </div>
              </div>
           </div>
-          {/* transaction-4  */}
-          <div className="border-b-[1px] border-b-gray-300 pb-1">
+            {/* transaction-1  */}
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
              <div className="flex justify-between items-center text-[13px]">
               <p>Type Of Transaction</p>
               <p className="text-red-500">-10 Coins</p>
              </div>
              <div>
-             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-1">pending</p>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
+             <div className="text-gray-600 text-[14px]">
+             <span>29 Feb 2024</span>
+             <span className="ml-3">11:21 AM</span>
+             </div>
+             </div>
+          </div>
+            {/* transaction-1  */}
+          <div className="border-b-[1px] border-b-gray-300 pb-5">
+             <div className="flex justify-between items-center text-[13px]">
+              <p>Type Of Transaction</p>
+              <p className="text-red-500">-10 Coins</p>
+             </div>
+             <div>
+             <p className="bg-[#FEA40033] text-[#FEA400] text-[12px] p-[3px] w-[60px] text-center rounded-md my-2">pending</p>
              <div className="text-gray-600 text-[14px]">
              <span>29 Feb 2024</span>
              <span className="ml-3">11:21 AM</span>

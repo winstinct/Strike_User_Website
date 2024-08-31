@@ -19,7 +19,7 @@ import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import { storage, ref, uploadBytes, getDownloadURL } from "../../Firebase";
 export default function ProfilePersonalDetails() {
   // RTK Query Hooks
-  const { data } = useGetUserDetailsQuery();
+  const { data, isLoading } = useGetUserDetailsQuery();
   const [updateUser, { isLoading: isLoadingUpdateUser }] =
     useUpdateUserDetailsMutation();
 
@@ -74,6 +74,10 @@ export default function ProfilePersonalDetails() {
     }
   };
 
+  if(isLoading){
+    return <ThreeDotsLoader/>
+  }
+
 
   let defaultValues = {
     FirstName,
@@ -84,12 +88,12 @@ export default function ProfilePersonalDetails() {
   }
 
   return (
-    defaultValues.FirstName ? (<StrikeForm
+    <StrikeForm
       onSubmit={handleSubmitPersonalDetails}
       resolver={yupResolver(personalDetailsSchema)}
       defaultValues={defaultValues}
     >
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-[2.5rem] gap-y-[1.5rem]">
         <div className="lg:col-span-2">
           {/* Upload File Input  */}
           {!selectedFile && (
@@ -98,7 +102,7 @@ export default function ProfilePersonalDetails() {
                 <div>
                   <div
                     onClick={() => document.getElementById("file").click()}
-                    className="border-[4px] border-[#CCCCCC] w-[130px] h-[130px] rounded-full flex justify-center items-center relative cursor-pointer"
+                    className="gradientBg w-[130px] h-[130px] rounded-full flex justify-center items-center relative cursor-pointer"
                   >
                     <Icon
                       className="text-[4rem] text-gray-300"
@@ -109,9 +113,9 @@ export default function ProfilePersonalDetails() {
                         backgroundImage: "linear-gradient(#A967FF, #5500C3)",
                         boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
                       }}
-                      className="absolute bottom-2 right-1 text-[1.3rem] w-[22px] cursor-pointer h-[22px] flex justify-center items-center text-white rounded-full select-none"
+                      className="absolute bottom-1 right-0 text-[1.3rem] w-[35px] cursor-pointer h-[35px] flex justify-center items-center text-white rounded-full select-none border-[3px] border-[#fff]"
                     >
-                      <Icon className="text-[0.8rem]" icon="clarity:edit-solid" />
+                      <Icon className="text-[1rem]" icon="clarity:edit-solid" />
                     </div>
                     <input
                       onChange={(e) => setSelectedFile(e.target.files[0])}
@@ -125,7 +129,7 @@ export default function ProfilePersonalDetails() {
                   )}
                 </div>
               </div>
-              <div className="text-center">
+              <div className="text-center mt-[1.5rem]">
                 <h3 className="font-bold text-[1.2rem]">
                   {FirstName} {LastName}
                 </h3>
@@ -155,7 +159,7 @@ export default function ProfilePersonalDetails() {
                   </div>
                 </div>
               </div>
-              <div className="text-center">
+              <div className="text-center mt-[1.5rem]">
                 <h3 className="font-bold text-[1.2rem]">
                   {FirstName} {LastName}
                 </h3>
@@ -190,11 +194,11 @@ export default function ProfilePersonalDetails() {
             <SubmitBtnLoader />
           </div>
         ) : (
-          <button type="submit" className="submitBtn w-[10rem] mt-[1.5rem]">
+          <button type="submit" className="submitBtn w-[22rem] mt-[1.5rem]">
             Save
           </button>
         )}
       </div>
-    </StrikeForm>) : <ThreeDotsLoader/>
+    </StrikeForm>
   );
 }

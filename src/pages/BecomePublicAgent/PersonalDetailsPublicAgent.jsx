@@ -19,7 +19,7 @@ export default function PersonalDetailsPublicAgent() {
   }
   return (
     <StrikeForm onSubmit={handleSubmitPersonalDetails} resolver={yupResolver(personalDetailsPublicAgentSchema)}>
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-[2.5rem] gap-y-[1.5rem]">
         <StrikeInput type="text" name="firstName" label="First Name" required={true}/>
         <StrikeInput type="text" name="lastName" label="Last Name" required={true}/>
         <StrikeSelect options={genderOptions} name="gender" label="Gender" required={true}/>
@@ -32,8 +32,8 @@ export default function PersonalDetailsPublicAgent() {
         <StrikeInput type="text" name="pinCode" label="Pin Code" required={true}/>
         <div className="lg:col-span-2"><StrikeTextArea name="address" label="Address" required={true}/></div>
       </div>
-      <div className="flex justify-center items-center mt-[0.5rem]">
-        <button type="submit" className="submitBtn w-[16rem]">
+      <div className="flex justify-center items-center mt-[1rem]">
+        <button type="submit" className="submitBtn w-[22rem]">
           Next
         </button>
       </div>

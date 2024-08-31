@@ -33,6 +33,8 @@ export default function NotificationSettings() {
             onHandleColor="#fff"
             activeBoxShadow="0 0 0 0"
             value={false}
+            uncheckedIcon={false}
+            checkedIcon={false}
           />
         </div>
       </div>
@@ -58,6 +60,8 @@ export default function NotificationSettings() {
             onHandleColor="#fff"
             activeBoxShadow="0 0 0 0"
             value={false}
+            uncheckedIcon={false}
+            checkedIcon={false}
           />
         </div>
       </div>
@@ -85,6 +89,8 @@ export default function NotificationSettings() {
             onHandleColor="#fff"
             activeBoxShadow="0 0 0 0"
             value={false}
+            uncheckedIcon={false}
+            checkedIcon={false}
           />
         </div>
       </div>
@@ -111,6 +117,8 @@ export default function NotificationSettings() {
             onHandleColor="#fff"
             activeBoxShadow="0 0 0 0"
             value={false}
+            uncheckedIcon={false}
+            checkedIcon={false}
           />
         </div>
       </div>
@@ -137,6 +145,8 @@ export default function NotificationSettings() {
             onHandleColor="#fff"
             activeBoxShadow="0 0 0 0"
             value={false}
+            uncheckedIcon={false}
+            checkedIcon={false}
           />
         </div>
       </div>

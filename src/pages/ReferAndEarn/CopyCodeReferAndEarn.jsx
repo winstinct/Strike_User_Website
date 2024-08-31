@@ -17,7 +17,7 @@ export default function CopyCodeReferAndEarn({ code }) {
   return (
     <div className="relative">
       {copied && <CopiedToast />}
-      <div className="flex items-center justify-between bg-[#ebdbdb] rounded-lg p-2">
+      <div className="flex items-center justify-between bg-[#ebdbdb] rounded-lg p-2 border-[#9E5AF8] border-[0.1rem] border-spacing-10 border-dashed">
           <p>{code}</p>
         <div className="flex items-center">
           <p className="text-gray-600 text-[14px]">tap to copy</p>

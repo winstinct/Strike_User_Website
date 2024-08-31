@@ -13,7 +13,7 @@ export default function ShopperBag() {
     setQuantity(quantity - 1);
   };
   return (
-    <div className="mr-[16.5rem]">
+    <div>
       <h3 className="text-[2rem] font-bold mb-[1rem]">Shopper Bag</h3>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
         <div
@@ -111,16 +111,14 @@ export default function ShopperBag() {
             <button className="submitBtn w-[130px] h-[40px] flex justify-center items-center">Apply</button>
           </div>
 
-          <div
+          {/* <div
             style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
             className="rounded-2xl flex justify-between items-center p-3 mb-5"
           >
             <Icon className="text-[2rem] text-[#13E700]" icon="lets-icons:check-fill" />
             <p>You saved ₹100 with “STRIKE1234”</p>
             <Icon className="text-red-500 cursor-pointer" icon="maki:cross" />
-          </div>
-
-
+          </div> */}
 
           <div
             style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
