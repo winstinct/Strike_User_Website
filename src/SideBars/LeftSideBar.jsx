@@ -39,7 +39,7 @@ export default function LeftSideBar() {
             <li>
               <NavLink
                 to="/profile"
-                className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
+                className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
                 style={setActiveStyle}
               >
                 <svg
@@ -69,7 +69,7 @@ export default function LeftSideBar() {
         )}
         <li>
           <NavLink
-            className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
+            className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
             to="/become-public-agent"
             style={setActiveStyle}
           >
@@ -141,7 +141,7 @@ export default function LeftSideBar() {
         </li> */}
         <li>
           <NavLink
-            className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
+            className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
             to="/wish-list"
             style={setActiveStyle}
           >
@@ -162,7 +162,7 @@ export default function LeftSideBar() {
         </li>
         <li>
           <NavLink
-            className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
+            className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
             to="/deposit-history"
             style={setActiveStyle}
           >
@@ -183,7 +183,7 @@ export default function LeftSideBar() {
         </li>
         <li>
           <NavLink
-            className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
+            className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
             to="/preferences"
             style={setActiveStyle}
           >
@@ -204,7 +204,7 @@ export default function LeftSideBar() {
         </li>
         <li>
           <NavLink
-            className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
+            className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
             to="/faq"
             style={setActiveStyle}
           >
@@ -229,7 +229,7 @@ export default function LeftSideBar() {
           <NavLink
             to="https://dashboard.tawk.to/login#/chat"
             target="_blank"
-            className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
+            className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -260,7 +260,7 @@ export default function LeftSideBar() {
         </li>
         <li>
           <NavLink
-            className="flex items-center font-medium gap-[0.8rem] hover:text-[#2e8e26] p-2 rounded-md"
+            className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
             to="/refer-and-earn"
             style={setActiveStyle}
           >

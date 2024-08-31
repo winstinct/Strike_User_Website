@@ -14,14 +14,14 @@ function CustomIcon({ id, open }) {
         <Icon
           className={`${
             id === open ? "rotate-180" : ""
-          } h-8 w-8 transition-transform`}
+          } h-7 w-7 transition-transform`}
           icon="ic:round-minus"
         />
       ) : (
         <Icon
           className={`${
             id === open ? "rotate-180" : ""
-          } h-8 w-8 transition-transform`}
+          } h-7 w-7 transition-transform`}
           icon="ic:round-plus"
         />
       )}
@@ -44,13 +44,13 @@ export function AccordionFaq({ qna }) {
           !open
             ? "border-b-[2px] border-gray-200"
             : "border-b border-transparent"
-        } pb-5 text-[1.5rem] faq font-['Inter']`}
+        } pb-5 text-[1.25rem] faq font-['Inter']`}
         onClick={() => handleOpen(qna.id)}
       >
         {qna?.question}
       </AccordionHeader>
       <AccordionBody className="border-b-[2px] border-gray-200">
-        <p className="text-[1.25rem] text-[#000] faq font-['Inter'] font-medium">
+        <p className="text-[1rem] text-[#000] faq font-['Inter'] font-medium">
           {qna?.answer}
         </p>
       </AccordionBody>
