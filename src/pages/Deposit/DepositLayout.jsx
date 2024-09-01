@@ -8,7 +8,7 @@ export default function DepositLayout() {
     <div>
       {/* Back button  */}
       <div className="flex items-center gap-5 mb-[2rem]">
-        <div onClick={() => navigate(-1)} className="backBtn">
+        <div onClick={() => navigate("/")} className="backBtn">
           <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
         </div>
       </div>

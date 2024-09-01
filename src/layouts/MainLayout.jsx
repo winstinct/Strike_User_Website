@@ -6,6 +6,7 @@ import RightSideBar from "../SideBars/RightSideBar";
 import FAQRightSideBar from "../SideBars/FAQRightSideBar";
 import { isRenderFaqSidebar } from "../utils/isRenderFaqSidebar";
 import MobileNavBar from "../shared/MobileNavBar/MobileNavBar";
+import { isRenderMobileNavBar } from "../utils/isRenderMobileNavBar";
 
 export default function MainLayout() {
   const location = useLocation();
@@ -17,7 +18,7 @@ export default function MainLayout() {
         <Outlet />
         <div className="my-[3rem]">
           <Footer />
-        <MobileNavBar/>
+          {isRenderMobileNavBar(location) && <MobileNavBar />}
         </div>
       </div>
       {isRenderFaqSidebar(location) ? <FAQRightSideBar /> : <RightSideBar />}

@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { AccordionFaq } from "../../shared/Accordion/AccordionFaq";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const faqs = [
   {
@@ -58,9 +60,15 @@ const faqs = [
 
 export default function FAQ() {
   window.scrollTo({ top: 0, behavior: "smooth" });
+  const navigate = useNavigate();
   return (
     <div>
-      <h3 className="font-bold text-[2rem] italic">F.A.Q</h3>
+      <div className="flex items-center gap-5">
+        <div onClick={() => navigate("/menu")} className="backBtn md:hidden block">
+          <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
+        </div>
+        <h3 className="text-[2rem] font-bold italic">F.A.Q</h3>
+      </div>
       {faqs?.map((qna) => (
         <AccordionFaq key={qna.id} qna={qna} />
       ))}

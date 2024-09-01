@@ -1,6 +1,7 @@
 import CopyCodeReferAndEarn from "./CopyCodeReferAndEarn";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Progress } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
 const options = [
@@ -57,9 +58,15 @@ const customStyles = {
 
 export default function ReferAndEarn() {
   window.scrollTo({ top: 0, behavior: "smooth" });
+  const navigate = useNavigate()
   return (
     <main>
-      <h3 className="font-bold text-[2rem] italic mb-[2rem]">Refer and Earn</h3>
+      <div className="flex items-center gap-5 mb-5">
+        <div onClick={() => navigate("/menu")} className="backBtn md:hidden block">
+          <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
+        </div>
+        <h3 className="text-[2rem] font-bold italic">Refer and Earn</h3>
+      </div>
       <div
         style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
         className="rounded-lg p-3"

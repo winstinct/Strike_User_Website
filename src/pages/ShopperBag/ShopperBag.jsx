@@ -1,10 +1,11 @@
 import { useState } from "react";
 import lotteryImg from "../../assets/popular-lottery.jpeg";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ShopperBag() {
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
 
   const handleIncrease = () => {
     setQuantity(quantity + 1);
@@ -14,7 +15,12 @@ export default function ShopperBag() {
   };
   return (
     <div>
-      <h3 className="text-[2rem] font-bold mb-[1rem]">Shopper Bag</h3>
+      <div className="flex items-center gap-5 mb-5">
+        <div onClick={() => navigate("/")} className="backBtn md:hidden block">
+          <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
+        </div>
+        <h3 className="text-[2rem] font-bold italic">Shopper Bag</h3>
+      </div>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
         <div
           style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
@@ -101,14 +107,17 @@ export default function ShopperBag() {
         </div>
 
         <div>
-
-
           <div
             style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
             className="rounded-2xl flex justify-between items-center p-3 mb-5 gap-5"
           >
-            <input className="border-[1px] border-gray-300 rounded-lg p-2 outline-none w-full" type="text" />
-            <button className="submitBtn w-[130px] h-[40px] flex justify-center items-center">Apply</button>
+            <input
+              className="border-[1px] border-gray-300 rounded-lg p-2 outline-none w-full"
+              type="text"
+            />
+            <button className="submitBtn w-[130px] h-[40px] flex justify-center items-center">
+              Apply
+            </button>
           </div>
 
           {/* <div
@@ -141,9 +150,7 @@ export default function ShopperBag() {
               </div>
 
               <Link to={`/cartQuantityAdjuster/lotteryId`}>
-                <button className="submitBtn w-full mt-[1rem]">
-                  Checkout
-                </button>
+                <button className="submitBtn w-full mt-[1rem]">Checkout</button>
               </Link>
             </div>
           </div>

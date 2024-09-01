@@ -1,14 +1,22 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { setActiveStyle } from "../../utils/setActiveStyle";
+import { Icon } from "@iconify/react/dist/iconify.js";
 export default function Profile() {
+  const navigate = useNavigate()
   window.scrollTo({ top: 0, behavior: "smooth" });
   return (
     <main>
       <section>
-        <h3 className="text-[2rem] font-bold italic">Account Details</h3>
-        <section 
-        style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
-        className="grid grid-cols-3 my-[2rem] gap-5 rounded-[20px]"
+        <div className="flex items-center gap-5">
+            <div onClick={() => navigate("/menu")} className="backBtn md:hidden block">
+              <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
+            </div>
+          <h3 className="text-[2rem] font-bold italic">Account Details</h3>
+        </div>
+
+        <section
+          style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
+          className="grid grid-cols-3 my-[2rem] gap-5 rounded-[20px]"
         >
           <NavLink
             style={setActiveStyle}
