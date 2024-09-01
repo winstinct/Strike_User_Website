@@ -30,7 +30,7 @@ export default function Wallet() {
       </div>
 
       <div className="mt-[1rem]">
-        <Link to="/withdraw/withdraw-requests-history">
+        <Link to="/withdraw-requests-history">
           <button className="text-[#5500C3] text-[14px] font-bold text-center w-full">
             Withdraw Request History
           </button>

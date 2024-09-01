@@ -12,7 +12,7 @@ export default function Tickets() {
         <NavLink
           style={setActiveStyle}
           to=""
-          className="block font-bold text-[1.25rem] italic py-3 px-1 rounded-[20px] w-full text-center"
+          className="block font-bold md:text-[1.25rem] text-[1.1rem] italic py-3 px-1 rounded-[20px] w-full text-center"
           end
         >
           Upcoming Draws
@@ -20,7 +20,7 @@ export default function Tickets() {
         <NavLink
           style={setActiveStyle}
           to="winners"
-          className="block font-bold text-[1.25rem] italic py-3 px-1 rounded-[20px] w-full text-center"
+          className="block font-bold md:text-[1.25rem] text-[1.1rem] italic py-3 px-1 rounded-[20px] w-full text-center"
           end
         >
           Winners

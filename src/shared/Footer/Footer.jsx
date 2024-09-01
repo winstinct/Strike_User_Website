@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import strikeLogo from "../../assets/strike-logo.svg";
 import playStoreIcon from "../../assets/play-store.svg"
 import appStoreIcon from "../../assets/app-store.svg"
-import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function Footer() {
   return (

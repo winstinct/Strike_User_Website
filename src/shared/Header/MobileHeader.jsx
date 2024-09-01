@@ -68,6 +68,7 @@ export default function MobileHeader() {
                       </div>
                     )}
                   </div>
+                  <Link to="/shopper-bag">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -99,6 +100,7 @@ export default function MobileHeader() {
                       stroke-width="2"
                     />
                   </svg>
+                  </Link>
                 </>
               ) : (
                 <Link to="/auth/login">

@@ -25,7 +25,7 @@ export default function Deposit() {
       </div>
 
       <div>
-        <Link to="">
+        <Link to="/deposit-history">
           <button className="text-[#5500C3] text-[14px] font-bold text-center w-full">
             Deposit History
           </button>
@@ -35,7 +35,7 @@ export default function Deposit() {
       {/* Form  */}
       <div className="mt-[1.5rem]">
         <h3 className="font-medium mb-[0.3rem]">Select Amount</h3>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
+        <div className="grid grid-cols-4 gap-5">
           <p
             onClick={(e) => setAmount(e.target.innerText)}
             className={`text-center border-[1px] border-gray-300 hover:border-[#A967FF] duration-300 rounded-lg p-2 font-semibold cursor-pointer ${

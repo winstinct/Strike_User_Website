@@ -15,7 +15,7 @@ export default function DepositLayout() {
 
       <div
         style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
-        className="grid md:grid-cols-2 grid-cols-1 my-[2rem] gap-5 rounded-[20px] DepositLayout"
+        className="grid grid-cols-2 my-[2rem] gap-5 rounded-[20px] DepositLayout"
       >
         <NavLink
           to="wallet"
