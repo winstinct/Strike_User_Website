@@ -5,6 +5,7 @@ import LeftSideBar from "../SideBars/LeftSideBar";
 import RightSideBar from "../SideBars/RightSideBar";
 import FAQRightSideBar from "../SideBars/FAQRightSideBar";
 import { isRenderFaqSidebar } from "../utils/isRenderFaqSidebar";
+import MobileNavBar from "../shared/MobileNavBar/MobileNavBar";
 
 export default function MainLayout() {
   const location = useLocation();
@@ -12,10 +13,11 @@ export default function MainLayout() {
     <div className="relative min-h-screen">
       <Header />
       <LeftSideBar />
-      <div className="flex-1 mt-[7rem] mx-[20rem]">
+      <div className="flex-1 md:mt-[7rem] mt-[2rem] md:mx-[20rem] mx-[1rem]">
         <Outlet />
         <div className="my-[3rem]">
           <Footer />
+        <MobileNavBar/>
         </div>
       </div>
       {isRenderFaqSidebar(location) ? <FAQRightSideBar /> : <RightSideBar />}

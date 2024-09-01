@@ -7,12 +7,12 @@ export default function Tickets() {
     <div>
       <div
         style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
-        className="grid md:grid-cols-2 grid-cols-1 my-[2.5rem] gap-5 rounded-[20px]"
+        className="grid grid-cols-2 my-[2.5rem] md:gap-5 gap-1 rounded-[20px]"
       >
         <NavLink
           style={setActiveStyle}
           to=""
-          className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
+          className="block font-bold text-[1.25rem] italic py-3 px-1 rounded-[20px] w-full text-center"
           end
         >
           Upcoming Draws
@@ -20,7 +20,7 @@ export default function Tickets() {
         <NavLink
           style={setActiveStyle}
           to="winners"
-          className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
+          className="block font-bold text-[1.25rem] italic py-3 px-1 rounded-[20px] w-full text-center"
           end
         >
           Winners

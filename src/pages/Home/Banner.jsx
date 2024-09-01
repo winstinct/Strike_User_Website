@@ -22,7 +22,7 @@ export default function Banner() {
         <SwiperSlide>
           <div>
             <img
-              className="rounded-2xl"
+              className="rounded-2xl w-full"
               src={buyOneGetOneBanner}
               alt=""
             />
@@ -31,7 +31,7 @@ export default function Banner() {
         <SwiperSlide>
           <div>
             <img
-              className="rounded-2xl"
+              className="rounded-2xl w-full"
               src={buyOneGetOneBanner}
               alt=""
             />

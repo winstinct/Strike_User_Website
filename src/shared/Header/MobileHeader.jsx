@@ -1,113 +1,105 @@
-import { Link, NavLink } from "react-router-dom";
 import strikeLogo from "../../assets/strike-logo.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import demoUserImg from "../../assets/demo-user.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import NotificationModal from "../../pages/Notification/NotificationModal";
 import { toggleNotificationModal } from "../../redux/notificationSlice";
-import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
+import { Link } from "react-router-dom";
 
 export default function MobileHeader() {
   const { currentUser } = useAuth();
-  const { data, isLoading } = useGetUserDetailsQuery();
-  const userImageUrl = data?.response?.UserData?.imageUrl;
-  const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
   const { showNotificationModal } = useSelector((store) => store.notification);
   return (
-    <header className="fixed top-0 w-full bg-white z-50">
-      <div className="lg:px-[4rem] px-[1rem] py-[1rem] border-b-[1px] border-b-[#D9D9D9]  md:hidden block relative">
-        <div className="flex items-center justify-between">
-          <img src={strikeLogo} className="w-[100px]" alt="Site Logo" />
-          <div className="flex items-center gap-[1rem]">
-            <Icon
-              className="text-[1.3rem]"
-              icon="fluent:local-language-20-regular"
-            />
-            {/* Notification Modal  */}
-            {currentUser && (
-              <>
-                <div className="relative">
-                  <button
-                    onClick={() => dispatch(toggleNotificationModal())}
-                    className="bg-[#F6F6F8] p-[0.5rem] rounded-full cursor-pointer"
-                  >
-                    <Icon
-                      icon="mi:notification"
-                      className="text-[1.5rem] text-[#4D4D4D]"
-                    />
-                  </button>
-                  {showNotificationModal && (
-                    <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
-                      <NotificationModal />
-                    </div>
-                  )}
-                </div>
-                <Icon className="text-[1.3rem]" icon="lets-icons:bag" />
-              </>
-            )}
-          </div>
-          {isVisible ? (
-            <Icon
-              className="text-[2.5rem] cursor-pointer border-[1px] border-gray-300 rounded-md"
-              icon="bitcoin-icons:cross-outline"
-              onClick={() => setIsVisible(!isVisible)}
-            />
-          ) : (
-            <Icon
-              className="text-[2.5rem] cursor-pointer border-[1px] border-gray-300 rounded-md"
-              icon="ic:sharp-menu"
-              onClick={() => setIsVisible(!isVisible)}
-            />
-          )}
-        </div>
-
-        {isVisible && (
-          <div className="flex flex-col justify-center gap-[1rem] py-[1.5rem] absolute left-0 z-50 bg-white w-full shadow-lg">
-            <NavLink onClick={() => setIsVisible(!isVisible)} to="/">
-              <p className="hover:bg-gray-300 py-2 px-5 cursor-pointer select-none">
-                Home
-              </p>
-            </NavLink>
-            <NavLink onClick={() => setIsVisible(!isVisible)} to="/offers">
-              <p className="hover:bg-gray-300 py-2 px-5 cursor-pointer select-none">
-                Offers
-              </p>
-            </NavLink>
-            <NavLink onClick={() => setIsVisible(!isVisible)} to="/tickets">
-              <p className="hover:bg-gray-300 py-2 px-5 cursor-pointer select-none">
-                Tickets
-              </p>
-            </NavLink>
-            <div className="py-2 px-5">
+    <div className="mx-[1rem] mt-[2rem]">
+      <header
+        style={{ boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.20)" }}
+        className="top-0 w-full bg-white rounded-[20px] px-[1.5rem] py-[1rem] md:hidden block"
+      >
+        <div>
+          <div className="flex items-center justify-between">
+            <Link to="/">
+              <img src={strikeLogo} className="w-[100px]" alt="Site Logo" />
+            </Link>
+            <div className="flex items-center gap-[1rem]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+              >
+                <path
+                  d="M11.1438 2.21436C10.9164 2.21436 10.6984 2.30466 10.5377 2.46541C10.3769 2.62615 10.2866 2.84417 10.2866 3.0715C10.2866 3.29883 10.3769 3.51684 10.5377 3.67759C10.6984 3.83834 10.9164 3.92864 11.1438 3.92864H15.4286V6.0715C15.4286 6.78121 15.1578 7.28607 14.7429 7.62893C14.3092 7.98636 13.6586 8.21436 12.8572 8.21436C12.6299 8.21436 12.4118 8.30466 12.2511 8.46541C12.0903 8.62615 12 8.84417 12 9.0715C12 9.29883 12.0903 9.51684 12.2511 9.67759C12.4118 9.83834 12.6299 9.92864 12.8572 9.92864C13.9672 9.92864 15.0318 9.61407 15.8349 8.95064C16.6543 8.27178 17.1429 7.27664 17.1429 6.0715V3.0715C17.1429 2.84417 17.0526 2.62615 16.8918 2.46541C16.7311 2.30466 16.5131 2.21436 16.2858 2.21436H11.1438ZM9.36689 7.02721C9.30232 6.87 9.19246 6.73554 9.05129 6.64091C8.91011 6.54628 8.74399 6.49576 8.57404 6.49576C8.40408 6.49576 8.23796 6.54628 8.09679 6.64091C7.95561 6.73554 7.84576 6.87 7.78118 7.02721L1.77947 21.6021C1.69285 21.8123 1.69332 22.0484 1.78077 22.2584C1.86821 22.4683 2.03547 22.6349 2.24575 22.7215C2.45603 22.8081 2.6921 22.8076 2.90204 22.7202C3.11197 22.6327 3.27857 22.4655 3.36518 22.2552L4.91404 18.4924H12.234L13.7829 22.2552C13.8258 22.3593 13.8888 22.454 13.9682 22.5338C14.0477 22.6136 14.1421 22.6769 14.246 22.7202C14.35 22.7635 14.4614 22.7859 14.5741 22.7861C14.6867 22.7863 14.7982 22.7644 14.9023 22.7215C15.0064 22.6786 15.1011 22.6156 15.1809 22.5362C15.2607 22.4567 15.324 22.3623 15.3673 22.2584C15.4106 22.1544 15.433 22.0429 15.4332 21.9303C15.4335 21.8177 15.4115 21.7062 15.3686 21.6021L13.6886 17.5221C13.6692 17.3753 13.6118 17.2362 13.5223 17.1184L9.36689 7.02721ZM11.5278 16.7789H5.61947L8.57404 9.60464L11.5278 16.7789ZM18.8572 2.21436C19.0845 2.21436 19.3025 2.30466 19.4633 2.46541C19.624 2.62615 19.7143 2.84417 19.7143 3.0715V7.35721H21.4286C21.6559 7.35721 21.874 7.44752 22.0347 7.60826C22.1954 7.76901 22.2858 7.98703 22.2858 8.21436C22.2858 8.44168 22.1954 8.6597 22.0347 8.82045C21.874 8.98119 21.6559 9.0715 21.4286 9.0715H19.7143V16.7858C19.7143 17.0131 19.624 17.2311 19.4633 17.3919C19.3025 17.5526 19.0845 17.6429 18.8572 17.6429C18.6299 17.6429 18.4118 17.5526 18.2511 17.3919C18.0903 17.2311 18 17.0131 18 16.7858V3.0715C18 2.84417 18.0903 2.62615 18.2511 2.46541C18.4118 2.30466 18.6299 2.21436 18.8572 2.21436Z"
+                  fill="black"
+                />
+              </svg>
+              {/* Notification Modal  */}
               {currentUser ? (
-                <div>
-                  <Link to="/profile">
-                    <div className="flex items-center gap-2">
-                      <p>{currentUser?.displayName}</p>
-                      <img
-                        className="w-[30px] h-[30px] rounded-full"
-                        src={userImageUrl}
-                        alt="user-avatar"
-                      />
-                    </div>
-                  </Link>
-                  <button
-                    style={{
-                      backgroundImage: "linear-gradient(#A967FF, #5500C3)",
-                      boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
-                    }}
-                    className="cursor-default mt-[2rem] rounded-[50px] py-[0.6rem] text-white flex justify-between items-center max-w-[180px]"
+                <>
+                  <div className="relative">
+                    <button
+                      onClick={() => dispatch(toggleNotificationModal())}
+                      className="cursor-pointer"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="25"
+                        viewBox="0 0 24 25"
+                        fill="none"
+                      >
+                        <path
+                          d="M6.44784 8.46942C6.76219 5.64032 9.15349 3.5 12 3.5V3.5C14.8465 3.5 17.2378 5.64032 17.5522 8.46942L17.804 10.7356C17.8072 10.7645 17.8088 10.779 17.8104 10.7933C17.9394 11.9169 18.3051 13.0005 18.8836 13.9725C18.8909 13.9849 18.8984 13.9973 18.9133 14.0222L19.4914 14.9856C20.0159 15.8599 20.2782 16.297 20.2216 16.6559C20.1839 16.8946 20.061 17.1117 19.8757 17.2668C19.5971 17.5 19.0873 17.5 18.0678 17.5H5.93223C4.91268 17.5 4.40291 17.5 4.12434 17.2668C3.93897 17.1117 3.81609 16.8946 3.77841 16.6559C3.72179 16.297 3.98407 15.8599 4.50862 14.9856L5.08665 14.0222C5.10161 13.9973 5.10909 13.9849 5.11644 13.9725C5.69488 13.0005 6.06064 11.9169 6.18959 10.7933C6.19123 10.779 6.19283 10.7645 6.19604 10.7356L6.44784 8.46942Z"
+                          stroke="#1A1A1A"
+                          stroke-width="2"
+                        />
+                        <path
+                          d="M8 17.5C8 18.0253 8.10346 18.5454 8.30448 19.0307C8.5055 19.516 8.80014 19.957 9.17157 20.3284C9.54301 20.6999 9.98396 20.9945 10.4693 21.1955C10.9546 21.3965 11.4747 21.5 12 21.5C12.5253 21.5 13.0454 21.3965 13.5307 21.1955C14.016 20.9945 14.457 20.6999 14.8284 20.3284C15.1999 19.957 15.4945 19.516 15.6955 19.0307C15.8965 18.5454 16 18.0253 16 17.5"
+                          stroke="#1A1A1A"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </button>
+                    {showNotificationModal && (
+                      <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
+                        <NotificationModal />
+                      </div>
+                    )}
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="25"
+                    viewBox="0 0 24 25"
+                    fill="none"
                   >
-                    <Icon
-                      className="ml-3 text-[1.3rem]"
-                      icon="lets-icons:wallet"
+                    <path
+                      d="M8 8.5L8 7.5C8 5.29086 9.79086 3.5 12 3.5V3.5C14.2091 3.5 16 5.29086 16 7.5L16 8.5"
+                      stroke="#212529"
+                      stroke-width="2"
+                      stroke-linecap="round"
                     />
-                    <span className="mr-3">10600.00 Coins</span>
-                  </button>
-                </div>
+                    <path
+                      d="M15 14.5V12.5"
+                      stroke="#212529"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M9 14.5V12.5"
+                      stroke="#212529"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M4 12.5C4 10.6144 4 9.67157 4.58579 9.08579C5.17157 8.5 6.11438 8.5 8 8.5H16C17.8856 8.5 18.8284 8.5 19.4142 9.08579C20 9.67157 20 10.6144 20 12.5V13.5C20 17.2712 20 19.1569 18.8284 20.3284C17.6569 21.5 15.7712 21.5 12 21.5V21.5C8.22876 21.5 6.34315 21.5 5.17157 20.3284C4 19.1569 4 17.2712 4 13.5V12.5Z"
+                      stroke="#212529"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </>
               ) : (
                 <Link to="/auth/login">
                   <button
@@ -115,8 +107,7 @@ export default function MobileHeader() {
                       backgroundImage: "linear-gradient(#A967FF, #5500C3)",
                       boxShadow: "0px -4px 10px 0px rgba(0, 0, 0, 0.08)",
                     }}
-                    className="text-white rounded-[50px] lg:py-[1rem] py-[0.5rem] lg:px-[3rem] px-[1.5rem]"
-                    onClick={() => setIsVisible(!isVisible)}
+                    className="text-white rounded-[50px] px-[1.5rem] py-[0.5rem]"
                   >
                     Login/Signup
                   </button>
@@ -124,8 +115,8 @@ export default function MobileHeader() {
               )}
             </div>
           </div>
-        )}
-      </div>
-    </header>
+        </div>
+      </header>
+    </div>
   );
 }

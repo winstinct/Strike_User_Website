@@ -58,10 +58,10 @@ export default function Footer() {
       </div>
       </div>
 
-      <div className="flex lg:flex-row flex-col lg:justify-between lg:items-center lg:mt-[0.3rem] pt-[2rem] pb-[1.5rem]">
+      <div className="flex lg:flex-row flex-col lg:justify-between lg:items-center lg:mt-[0.3rem] pt-[2rem] pb-[1.5rem] md:gap-0 gap-3">
         <p className="text-[1rem] font-medium">Download the Strike app for the ultimate experience!</p>
-        <div className="flex xl:flex-row flex-col lg:gap-5 gap-2">
-        <div className="flex md:flex-row flex-col md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
+        <div className="flex  lg:gap-5 gap-2">
+        <div className="flex  md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
           <img className="w-[30px]" src={playStoreIcon} alt="Playstore icon" />
           <div>
             <p className="text-[10px] font-medium">GET IT ON</p>
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex md:flex-row flex-col md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
+        <div className="flex  md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
           <img className="w-[30px]" src={appStoreIcon} alt="Playstore icon" />
           <div>
             <p className="text-[10px] font-medium">GET IT ON</p>
@@ -80,7 +80,6 @@ export default function Footer() {
       </div>
 
       <p className="text-center text-[14px] text-gray-300 pt-[0.3rem]">© {new Date().getFullYear()} Strike x Gaming. All rights reserved.</p>
-      <div onClick={()=>window.scrollTo({top:0, behavior:"smooth"})} className="absolute right-1 bottom-1 cursor-pointer"><Icon className="text-[2rem]" icon="noto:top-arrow" /></div>
     </footer>
   )
 }

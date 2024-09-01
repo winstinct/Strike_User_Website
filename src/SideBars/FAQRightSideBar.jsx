@@ -57,7 +57,7 @@ export default function FAQRightSideBar() {
   return (
     <div
       style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
-      className={`bg-white border-l-[1px] border-[#d3cccc] fixed top-0 right-0 w-[18rem] z-10 px-2 pb-[3rem] duration-300 h-[100vh] overflow-y-auto`}
+      className={`bg-white border-l-[1px] border-[#d3cccc] fixed top-0 right-0 w-[18rem] z-10 px-2 pb-[3rem] duration-300 h-[100vh] overflow-y-auto md:block hidden`}
     >
       <div className="mt-[6rem] px-2 pb-[2rem]">
         {

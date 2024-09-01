@@ -54,6 +54,7 @@ import PrivacySettings from "../pages/Preferences/PrivacySettings";
 import ChangePasswordPreference from "../pages/Preferences/ChangePasswordPreference";
 import VerticalResponsive from "../pages/VerticalResponsive";
 import PrivateRoute from "./PrivateRoute";
+import MobileMenu from "../shared/MobileMenu/MobileMenu";
 
 export const router = createBrowserRouter([
   {
@@ -120,6 +121,10 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+      },
+      {
+        path: "menu",
+        element: <MobileMenu />,
       },
       {
         path: "offers",

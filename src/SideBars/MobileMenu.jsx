@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { setActiveStyle } from "../utils/setActiveStyle";
 
-export default function LeftSideBar() {
+export default function MobileMenu() {
   const { logout, currentUser } = useAuth();
   const { displayName, email, phoneNumber } = currentUser || {};
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function LeftSideBar() {
   return (
     <div
       style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
-      className="px-4 pt-[6rem] w-[18rem] bg-white h-[100vh] overflow-y-auto fixed left-0 top-0 pb-[4rem] md:block hidden"
+      className="px-4 pt-[6rem] w-[18rem] bg-white h-[100vh] overflow-y-auto fixed left-0 top-0 pb-[4rem]"
     >
       <ul className="space-y-[1.5rem] text-[16px]">
         {/*Display For Only Logged In User  */}
