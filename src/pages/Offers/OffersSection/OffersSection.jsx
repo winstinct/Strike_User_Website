@@ -94,7 +94,7 @@ export default function OffersSection() {
         className="w-full m-3"
       >
         {
-          data?.response?.offer?.map(({ExpieryDate, coupon_code, title})=>(<SwiperSlide>
+          data?.response?.offer?.map(({ExpieryDate, coupon_code, title, _id})=>(<SwiperSlide>
             <div
               style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
               className="p-[1rem] text-white rounded-[20px] bg-white"
@@ -110,9 +110,9 @@ export default function OffersSection() {
                     <span className="font-semibold text-[1.25rem]">
                       Offer ends in:
                     </span>{" "}
-                    <span className="font-bold text-[1.5rem]">{moment(ExpieryDate).format('lll')}</span>
+                    <span className="font-bold text-[1.5rem]">{moment(ExpieryDate).format('LT')}</span>
                   </div>
-                  <OfferDetailsModal />
+                  <OfferDetailsModal offerId={_id}/>
                 </div>
               </div>
             </div>

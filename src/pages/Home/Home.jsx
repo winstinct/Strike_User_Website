@@ -5,6 +5,7 @@ import LotteryCategories from "./LotteryCategories";
 import PopularCampaigns from "./PopularCampaigns";
 import PublicLotteries from "./PublicLotteries";
 import Winners from "./Winners";
+import { Outlet } from "react-router-dom";
 
 export default function Home() {
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -14,8 +15,7 @@ export default function Home() {
       <Banner />
       <GameCategories />
       <LotteryCategories />
-      <PopularCampaigns />
-      <PublicLotteries />
+      <Outlet/>
       <Winners />
     </main>
   );

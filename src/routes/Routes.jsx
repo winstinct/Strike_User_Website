@@ -55,6 +55,8 @@ import ChangePasswordPreference from "../pages/Preferences/ChangePasswordPrefere
 import VerticalResponsive from "../pages/VerticalResponsive";
 import PrivateRoute from "./PrivateRoute";
 import MobileMenu from "../shared/MobileMenu/MobileMenu";
+import PublicLotteries from "../pages/Home/PublicLotteries";
+import PopularCampaigns from "../pages/Home/PopularCampaigns";
 
 export const router = createBrowserRouter([
   {
@@ -121,6 +123,20 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+        children: [
+          {
+            path: "",
+            element: <PublicLotteries />,
+          },
+          {
+            path: "private-lotteries",
+            element: <PrivateRoute><PopularCampaigns /></PrivateRoute>,
+          },
+          {
+            path: "soldout-lotteries",
+            element: <h1>Sold Out Lotteries</h1>,
+          },
+        ],
       },
       {
         path: "menu",
@@ -132,7 +148,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "tickets",
-        element: <Tickets />,
+        element: (
+          <PrivateRoute>
+            <Tickets />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "",
@@ -147,6 +167,20 @@ export const router = createBrowserRouter([
       {
         path: "lottery-games",
         element: <LotteryGames />,
+        children:[
+          {
+            path:"",
+            element:<PublicLotteries/>
+          },
+          {
+            path:"private-lotteries",
+            element:<PrivateRoute><PopularCampaigns/></PrivateRoute>
+          },
+          {
+            path:"soldout-lotteries",
+            element:<h1>Sold Out Lotteries</h1>
+          },
+        ]
       },
       {
         path: "number-games",
@@ -354,14 +388,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
-
-
-
-
-
-
-
-
-
 ]);

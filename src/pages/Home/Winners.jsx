@@ -109,7 +109,7 @@ export default function Winners() {
                         <span className="ml-1">{UserID?.LastName}</span>
                       </div>
                     ) : (
-                      <span>Not found!</span>
+                      <span>Unknown User</span>
                     )}
                   </h3>
                   <p>

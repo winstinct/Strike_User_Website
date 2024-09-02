@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import lotteryImg from "../../assets/lottery.png";
 import { Progress } from "@material-tailwind/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,6 +8,8 @@ import { Link } from "react-router-dom";
 import { useGetPrivateLotteriesQuery } from "../../redux/features/lottery/lotteryApi";
 import ThreeDotsLoader from "../../components/ThreeDotsLoader";
 import moment from "moment/moment";
+import { useAddToWishlistMutation } from "../../redux/features/wishlist/wishlistApi";
+import Countdown from "react-countdown";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -37,8 +38,11 @@ export default function PopularCampaigns() {
     setIsEnd(swiperInstance?.isEnd);
   };
 
+  // RTK Query Hooks 
   const {data, isLoading} = useGetPrivateLotteriesQuery();
   console.log("Private Lotteries===> ", data?.response?.lottery)
+
+  const [addToWishlistApi, {isLoading:isLoadingAddWishlist}] = useAddToWishlistMutation();
 
   return (
     <section>
@@ -109,6 +113,7 @@ export default function PopularCampaigns() {
             winneramount,
             lottaryPurchase,
             Totaltickets,
+            winnerSlot
           }) => (
             <SwiperSlide key={_id}>
               <div
@@ -146,34 +151,52 @@ export default function PopularCampaigns() {
                       className="border-[1px] border-[#d8d4d442] p-2 rounded-2xl font-semibold"
                     >
                       <div>
-                        <span className="text-[#FF2222] text-[1.2rem] bold">{lottaryPurchase?.length} </span>
+                        <span className="text-[#FF2222] text-[1.2rem] bold">{winnerSlot} </span>
                         <span className="text-gray-700">SOLD OUT OF </span>
-                        <span className="text-[1.2rem] bold">{data?.response?.LottaryCount}</span>
+                        <span className="text-[1.2rem] bold">{Totaltickets}</span>
                       </div>
                       <Progress
                         className="mt-[3px]"
                         size="sm"
                         color="red"
-                        value={50}
+                        value={winnerSlot}
                       />
                     </div>
                   </div>
 
                   <div
-                className="text-center rounded-[20px]"
-                style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)" }}
-              >
-                <div className="pt-[1rem]"><span className="font-semibold">Deal ends in:</span> <span className="text-[1.25rem] text-[#E0170B] font-bold">{moment(expieryDate).format('LTS')}</span></div>
-                <div className="text-[11px] text-[#858585] py-[0.8rem] flex items-center justify-center gap-1 flex-wrap">
-                <Icon icon="zondicons:exclamation-solid" />
-                  <span>The lottery end time will be extended if unsold.</span>
+                    className="text-center rounded-[20px]"
+                    style={{
+                      boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
+                    }}
+                  >
+                    <div className="pt-[1rem] flex items-center justify-center gap-1">
+                      <span className="font-semibold">Deal ends in:</span>{" "}
+                      <Countdown
+                        date={new Date(expieryDate).getTime()}
+                        zeroPadTime={false}
+                        renderer={({ days, hours, minutes, seconds }) => (
+                          <div className="text-[1.25rem] text-[#E0170B] font-bold italic flex gap-1">
+                            <span>{days}d</span>
+                            <span>{hours}h</span>
+                            <span>{minutes}m</span>
+                            <span>{seconds}s</span>
+                          </div>
+                        )}
+                      />
+                    </div>
+                    <div className="text-[11px] text-[#858585] py-[0.8rem] flex items-center justify-center gap-1 flex-wrap">
+                      <Icon icon="zondicons:exclamation-solid" />
+                      <span>
+                        The lottery end time will be extended if unsold.
+                      </span>
+                    </div>
+                    <div className="">
+                      <Link to={`/addToCart/lotteryId`}>
+                        <button className="submitBtn w-full">Buy Now</button>
+                      </Link>
+                    </div>
                   </div>
-                <div className="">
-                  <Link to={`/addToCart/lotteryId`}>
-                    <button className="submitBtn w-full">Buy Now</button>
-                  </Link>
-                </div>
-              </div>
 
                   <div className="flex gap-3 text-[12px] font-semibold">
                     <button className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2">

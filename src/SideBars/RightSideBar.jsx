@@ -4,9 +4,13 @@ import personImg from "../assets/person-illustrator.png";
 import walletImg from "../assets/wallet-illustration.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useAuth } from "../contexts/AuthContext";
+import { useGetUserDetailsQuery } from "../redux/features/auth/authApi";
 
 export default function RightSideBar() {
   const { currentUser } = useAuth();
+  const {data, isLoading} = useGetUserDetailsQuery();
+  const {wallet} = data?.response?.UserData || {};
+  console.log("Total Wallet ===> ", wallet)
   return (
     <div
       style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
@@ -16,11 +20,11 @@ export default function RightSideBar() {
         <div className="mt-[6rem] pb-[1rem] px-2">
           <div className="gradientBg text-white text-center rounded-[20px] p-2">
           <p className="text-[12px]">Available Balance in Wallet</p>
-          <h3 className="font-bold italic"><span className="text-[2rem]">100.00</span> <span className="text-[1.25rem]">Coins</span></h3>
+          <h3 className="font-bold italic"><span className="text-[2rem]">{wallet}</span> <span className="text-[1.25rem]">Coins</span></h3>
           <div className="flex flex-col items-center justify-center space-y-[0.5rem]">
           <div className="bg-white text-black w-full p-1 rounded-lg">
             <span>INR</span>
-            <span className="text-[1.25rem] font-semibold ml-2">100</span>
+            <span className="text-[1.25rem] font-semibold ml-2">0.0</span>
           </div>
           <div className="bg-white text-black flex items-center justify-center gap-2 w-full rounded-lg p-1">
             <Icon className="text-[2rem]" icon="token-branded:usdt" />

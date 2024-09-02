@@ -47,7 +47,7 @@ export default function Header() {
                 className="cursor-default rounded-[50px] py-[0.6rem] text-white flex justify-between items-center max-w-[180px]"
               >
                 <Icon className="ml-3 text-[1.3rem]" icon="lets-icons:wallet" />
-                <span className="mr-3">10600.00 Coins</span>
+                <span className="mr-3">{data?.response?.UserData?.wallet} Coins</span>
               </button>
               <div className="bg-gray-300 h-[50px] w-[3px]"></div>
             </>

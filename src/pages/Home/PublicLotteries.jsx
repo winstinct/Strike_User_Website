@@ -1,6 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import lotteryImg from "../../assets/lottery.png";
-import { Progress } from "@material-tailwind/react";
+import { button, Progress } from "@material-tailwind/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
@@ -9,6 +8,10 @@ import { useGetPublicLotteriesQuery } from "../../redux/features/lottery/lottery
 import { useSelector } from "react-redux";
 import moment from "moment/moment";
 import ThreeDotsLoader from "../../components/ThreeDotsLoader";
+import { useAddToWishlistMutation } from "../../redux/features/wishlist/wishlistApi";
+import { toast } from "react-toastify";
+import Countdown, { zeroPad } from "react-countdown";
+import { ThreeDots } from "react-loader-spinner";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -39,6 +42,26 @@ export default function PublicLotteries() {
 
   // RTK Query Hooks
   const { data, isLoading } = useGetPublicLotteriesQuery();
+  const activeLotteris = data?.response?.Lottary?.filter(
+    ({ expieryDate }) => new Date(expieryDate).getTime() >= new Date().getTime()
+  );
+
+  const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
+    useAddToWishlistMutation();
+
+  const handleAddToWishlist = async (uniqueId) => {
+    try {
+      const res = await addToWishlistApi(uniqueId);
+      if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      } else {
+        console.log(res);
+        toast.success("Added to wishlist successfully.");
+      }
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
+  };
 
   return (
     <section>
@@ -93,13 +116,13 @@ export default function PublicLotteries() {
           </button>
         </div>
       </header>
-      {isLoading && <ThreeDotsLoader/>}
+      {isLoading && <ThreeDotsLoader />}
       <Swiper
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
         className="w-full m-3"
       >
-        {data?.response?.Lottary?.map(
+        {activeLotteris?.map(
           ({
             _id,
             Name,
@@ -107,8 +130,10 @@ export default function PublicLotteries() {
             expieryDate,
             ticketPrice,
             winneramount,
-            lottaryPurchase,
             Totaltickets,
+            winnerSlot,
+            UniqueID,
+            whitelist,
           }) => (
             <SwiperSlide key={_id}>
               <div
@@ -146,47 +171,102 @@ export default function PublicLotteries() {
                       className="border-[1px] border-[#d8d4d442] p-2 rounded-2xl font-semibold"
                     >
                       <div>
-                        <span className="text-[#FF2222] text-[1.2rem] bold">{lottaryPurchase?.length} </span>
+                        <span className="text-[#FF2222] text-[1.2rem] bold">
+                          {winnerSlot}{" "}
+                        </span>
                         <span className="text-gray-700">SOLD OUT OF </span>
-                        <span className="text-[1.2rem] bold">{data?.response?.LottaryCount}</span>
+                        <span className="text-[1.2rem] bold">
+                          {Totaltickets}
+                        </span>
                       </div>
                       <Progress
                         className="mt-[3px]"
                         size="sm"
                         color="red"
-                        value={50}
+                        value={winnerSlot}
                       />
                     </div>
                   </div>
 
                   <div
-                className="text-center rounded-[20px]"
-                style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)" }}
-              >
-                <div className="pt-[1rem]"><span className="font-semibold">Deal ends in:</span> <span className="text-[1.25rem] text-[#E0170B] font-bold">{moment(expieryDate).format('LTS')}</span></div>
-                <div className="text-[11px] text-[#858585] py-[0.8rem] flex items-center justify-center gap-1 flex-wrap">
-                <Icon icon="zondicons:exclamation-solid" />
-                  <span>The lottery end time will be extended if unsold.</span>
+                    className="text-center rounded-[20px]"
+                    style={{
+                      boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
+                    }}
+                  >
+                    <div className="pt-[1rem] flex items-center justify-center gap-1">
+                      <span className="font-semibold">Deal ends in:</span>{" "}
+                      <Countdown
+                        date={new Date(expieryDate).getTime()}
+                        zeroPadTime={false}
+                        renderer={({ days, hours, minutes, seconds }) => (
+                          <div className="text-[1.25rem] text-[#E0170B] font-bold italic flex gap-1">
+                            <span>{days}d</span>
+                            <span>{hours}h</span>
+                            <span>{minutes}m</span>
+                            <span>{seconds}s</span>
+                          </div>
+                        )}
+                      />
+                    </div>
+                    <div className="text-[11px] text-[#858585] py-[0.8rem] flex items-center justify-center gap-1 flex-wrap">
+                      <Icon icon="zondicons:exclamation-solid" />
+                      <span>
+                        The lottery end time will be extended if unsold.
+                      </span>
+                    </div>
+                    <div className="">
+                      <Link to={`/addToCart/lotteryId`}>
+                        <button className="submitBtn w-full">Buy Now</button>
+                      </Link>
+                    </div>
                   </div>
-                <div className="">
-                  <Link to={`/addToCart/lotteryId`}>
-                    <button className="submitBtn w-full">Buy Now</button>
-                  </Link>
-                </div>
-              </div>
 
                   <div className="flex gap-3 text-[12px] font-semibold">
                     <button className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2">
                       <Icon className="text-[1rem]" icon="lucide:share" />
                       Share
                     </button>
-                    <button className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2">
-                      <Icon
-                        className="text-[1rem]"
-                        icon="mdi:favourite-border"
-                      />
-                      Save
-                    </button>
+                    {isLoadingAddWishlist ? (
+                      <button className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center h-[40px]">
+                        <ThreeDots
+                          visible={true}
+                          height="30"
+                          width="30"
+                          align="center"
+                          color="#5500C3"
+                          radius="9"
+                          ariaLabel="three-dots-loading"
+                          wrapperClass=""
+                          wrapperStyle={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: "100%",
+                            width: "100%",
+                            padding: "10px", // Example padding
+                          }}
+                        />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleAddToWishlist(UniqueID)}
+                        className={`bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2 h-[40px] ${
+                          whitelist.length > 0 ? "text-red-500" : ""
+                        }`}
+                        disabled={
+                          isLoadingAddWishlist || whitelist.length > 0
+                            ? true
+                            : false
+                        }
+                      >
+                        <Icon
+                          className="text-[1rem]"
+                          icon="mdi:favourite-border"
+                        />
+                        {whitelist.length > 0 ? "Saved" : "Save"}
+                      </button>
+                    )}
                   </div>
                 </footer>
               </div>

@@ -3,10 +3,15 @@ import { Dialog, DialogHeader, DialogBody } from "@material-tailwind/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { AccordionCustomIcon } from "./Accordion";
 import CopyCode from "./CopyCode";
+import { useGetSpecificOfferQuery } from "../../../redux/features/lottery/lotteryApi";
+import moment from "moment";
 
-export function OfferDetailsModal() {
+export function OfferDetailsModal({offerId}) {
   const [size, setSize] = useState(null);
   const handleOpen = (value) => setSize(value);
+  const {data} = useGetSpecificOfferQuery(offerId)
+  console.log("Specific offer ===> ", data?.response?.offer)
+  const {ExpieryDate, coupon_code, title, _id} = data?.response?.offer || {};
   return (
     <>
       <div className="mb-3 flex gap-3">
@@ -28,7 +33,7 @@ export function OfferDetailsModal() {
         <DialogHeader className="rounded-t-[30px] flex justify-center items-center">
           <span className="text-[1.5rem] font-semibold">Offer ends in:</span>
           <span className="text-[#25BF17] text-[2.5rem] font-bold italic">
-            10:18:03:10
+            {moment(ExpieryDate).format('lll')}
           </span>
         </DialogHeader>
         <DialogBody
@@ -36,7 +41,7 @@ export function OfferDetailsModal() {
           className="rounded-[30px] text-white"
         >
           <div className="flex justify-between items-center">
-            <h3 className="text-[3rem] font-bold italic">Buy ONE Get ONE</h3>
+            <h3 className="text-[3rem] font-bold italic">{title}</h3>
             <Icon
               className="text-[1.5rem] text-white hover:text-white cursor-pointer"
               icon="maki:cross"
@@ -45,14 +50,14 @@ export function OfferDetailsModal() {
           </div>
 
           <div className="my-[1rem] border-dashed border-spacing-8 rounded-lg border-[0.1rem] border-gray-200 px-3 py-1 inline-block">
-            <CopyCode code="BUYONEGETONE" />
+            <CopyCode code={coupon_code} />
           </div>
 
           <div className="text-[1.25rem]">
             <span className="text-[1.2rem]">Valid till:</span>
             <span className="text-[1.25rem] font-bold">
               {" "}
-              10th October, 2023
+              {moment(ExpieryDate).format('LL')}
             </span>
           </div>
 

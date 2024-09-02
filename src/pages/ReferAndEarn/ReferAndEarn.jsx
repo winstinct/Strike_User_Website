@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Progress } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
+import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 
 const options = [
   {
@@ -59,6 +60,8 @@ const customStyles = {
 export default function ReferAndEarn() {
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate()
+  const {data, isLoading} = useGetUserDetailsQuery();
+  const {refferal, wallet} = data?.response?.UserData || {};
   return (
     <main>
       <div className="flex items-center gap-5 mb-5">
@@ -78,7 +81,7 @@ export default function ReferAndEarn() {
           </p>
 
           <div>
-            <CopyCodeReferAndEarn code="SUD31SA" />
+            <CopyCodeReferAndEarn code={refferal?.refferalCode} />
           </div>
         </div>
         <div className="flex items-center justify-center gap-8 text-[1.5rem] mt-[0.8rem]">
@@ -136,7 +139,7 @@ export default function ReferAndEarn() {
       <div className="gradientBg text-white text-center rounded-[20px] p-2 mt-[2rem]">
         <p className="text-[1rem] font-semibold">Total Earnings</p>
         <h3 className="font-bold italic">
-          <span className="text-[2rem]">100.00</span>{" "}
+          <span className="text-[2rem]">{wallet}</span>{" "}
           <span className="text-[1.25rem]">Coins</span>
         </h3>
         <p className="text-[14px]">Invite more and keep earning</p>

@@ -19,9 +19,6 @@ export default function AuthHeader() {
           <li>
             <NavLink to="/offers">Offers</NavLink>
           </li>
-          <li>
-            <NavLink to="/tickets">Tickets</NavLink>
-          </li>
         </ul>
 
         <div className="flex items-center lg:gap-[1rem] gap-[0.5rem]">
