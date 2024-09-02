@@ -1,5 +1,4 @@
 import buyOneGetOneBanner from "../../assets/buyOneGetOne.svg";
-import slider2Img from "../../assets/slider-2.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";

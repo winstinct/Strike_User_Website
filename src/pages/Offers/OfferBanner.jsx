@@ -1,5 +1,4 @@
-import slider1Img from "../../assets/home-banner1.png";
-import slider2Img from "../../assets/slider-2.png";
+import buyOneGetOneBanner from "../../assets/buyOneGetOne.svg";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -22,8 +21,8 @@ export default function OfferBanner() {
         <SwiperSlide>
           <div>
             <img
-              className="w-full h-[300px] rounded-2xl"
-              src={slider1Img}
+              className="w-full rounded-2xl"
+              src={buyOneGetOneBanner}
               alt=""
             />
           </div>
@@ -31,8 +30,8 @@ export default function OfferBanner() {
         <SwiperSlide>
           <div>
             <img
-              className="w-full h-[300px] rounded-2xl"
-              src={slider2Img}
+              className="w-full rounded-2xl"
+              src={buyOneGetOneBanner}
               alt=""
             />
           </div>
