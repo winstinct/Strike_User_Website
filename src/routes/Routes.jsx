@@ -191,7 +191,7 @@ export const router = createBrowserRouter([
         element: <WheelGames />,
       },
       {
-        path: "addToCart/:lotteryId",
+        path: "addToCart/:uniqueId",
         element: (
           <PrivateRoute>
             <AddToCart />
@@ -199,7 +199,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "cartQuantityAdjuster/:lotteryId",
+        path: "cartQuantityAdjuster/:uniqueId",
         element: <CartQuantityAdjuster />,
       },
       {

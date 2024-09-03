@@ -2,7 +2,15 @@ import { baseApi } from "../../api/baseApi";
 
 export const lotteryApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // ========== Lottery API Endpoints ===========
+    getAllBanners: builder.query({
+      query: () => {
+        return {
+          url: `/users/fetch-banners`,
+          method: "GET",
+        };
+      },
+    }),
+
     getPublicLotteries: builder.query({
       query: () => {
         return {
@@ -10,7 +18,17 @@ export const lotteryApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags:["public-lotteries"]
+      providesTags: ["public-lotteries"],
+    }),
+
+    getSinglePublicLottery: builder.query({
+      query: (uniqueId) => {
+        return {
+          url: `/users/get-singlelottary/${uniqueId}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["public-lotteries"],
     }),
 
     getPrivateLotteries: builder.query({
@@ -20,7 +38,17 @@ export const lotteryApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags:["private-lotteries"]
+      providesTags: ["private-lotteries"],
+    }),
+
+    getSinglePrivateLottery: builder.query({
+      query: (privateLotteryId) => {
+        return {
+          url: `/users/single-private-lottery/${privateLotteryId}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["private-lotteries"],
     }),
 
     getWinners: builder.query({
@@ -48,9 +76,6 @@ export const lotteryApi = baseApi.injectEndpoints({
         };
       },
     }),
-
-
-
   }),
 });
 
@@ -59,5 +84,8 @@ export const {
   useGetPrivateLotteriesQuery,
   useGetWinnersQuery,
   useGetOffersQuery,
-  useGetSpecificOfferQuery
+  useGetSpecificOfferQuery,
+  useGetAllBannersQuery,
+  useGetSinglePublicLotteryQuery,
+  useGetSinglePrivateLotteryQuery,
 } = lotteryApi;

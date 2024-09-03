@@ -1,35 +1,224 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import puchaseLotteryImg from "../../assets/purchaseLottery.svg";
 import { Progress } from "@material-tailwind/react";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Countdown from "react-countdown";
+import { toast } from "react-toastify";
+import { ThreeDots } from "react-loader-spinner";
+import {
+  useAddToWishlistMutation,
+  useRemoveFromWishlistMutation,
+} from "../../redux/features/wishlist/wishlistApi";
+import { useGetSinglePublicLotteryQuery } from "../../redux/features/lottery/lotteryApi";
+import {
+  useGetAllCartItemsQuery,
+  useRemoveItemFromCartMutation,
+  useUpdateCartItemQuantityMutation,
+} from "../../redux/features/cart/cartApi";
 
 export default function CartQuantityAdjuster() {
   const navigate = useNavigate();
-  const [quantity, setQuantity] = useState(1);
+  const { uniqueId } = useParams();
+  const {data} = useGetSinglePublicLotteryQuery(uniqueId)
+  console.log(data?.response?.LottaryData?.whitelist)
+  const {
+    data: cartItems,
+    isLoading: isLoadingCartItems,
+    isError,
+  } = useGetAllCartItemsQuery();
+  console.log(
+    "All cart items===> ",
+    cartItems?.response?.cart?.find(
+      (item) => item?.lotteryId?.UniqueID == uniqueId
+    )
+  );
+  const { quantity, totalAmount, lotteryId, _id } =
+    cartItems?.response?.cart?.find(
+      (item) => item?.lotteryId?.UniqueID == uniqueId
+    ) || {};
 
-  const handleIncrease = () => {
-    setQuantity(quantity + 1);
+  const {
+    lottaryImage,
+    Name,
+    ticketPrice,
+    winnerSlot,
+    expieryDate,
+    Totaltickets,
+    UniqueID,
+    winneramount,
+    lottaryType,
+    termsandcondi,
+    whitelist,
+  } = lotteryId || {};
+  console.log(whitelist, 'whitelisted')
+
+  const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
+    useAddToWishlistMutation();
+
+  const handleAddToWishlist = async (uniqueId) => {
+    try {
+      const res = await addToWishlistApi(uniqueId);
+      if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      } else {
+        console.log(res);
+        toast.success("Added to wishlist successfully.", {autoClose:1000});
+      }
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
   };
-  const handleDecrease = () => {
-    setQuantity(quantity - 1);
+
+  const [removeFromWishlistApi, { isLoading: isLoadingRemoveFromWishlist }] =
+    useRemoveFromWishlistMutation();
+
+  const handleRemoveFromWishlist = async (uniqueId) => {
+    try {
+      const res = await removeFromWishlistApi(uniqueId);
+      if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      } else {
+        console.log(res);
+        toast.success("Removed from wishlist successfully.", {autoClose:1000});
+      }
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
+  };
+
+  const [
+    removeItemFromCartApi,
+    { isLoading: isLoadingRemoveCartFromQuantity },
+  ] = useRemoveItemFromCartMutation();
+
+  const [updateCartItemQuantityApi, { isLoading }] =
+    useUpdateCartItemQuantityMutation();
+
+  const handleIncrease = async () => {
+    try {
+      const res = await updateCartItemQuantityApi({
+        quantity: { quantity: quantity + 1 },
+        lotteryId: lotteryId?._id,
+        cartId: _id,
+      });
+      if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      } else {
+        toast.success("Increased successfully.", { autoClose: 1000 });
+        console.log("total quantitiy===>", res);
+      }
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
+  };
+
+  const handleDecrease = async () => {
+    try {
+      const res = await updateCartItemQuantityApi({
+        quantity: { quantity: quantity - 1 },
+        lotteryId: lotteryId?._id,
+        cartId: _id,
+      });
+      if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      } else {
+        console.log(
+          "Current Cart Item after decreased ==> ",
+          res?.data?.response?.cart?.quantity
+        );
+        if (res?.data?.response?.cart?.quantity == 0) {
+          await removeItemFromCartApi(res?.data?.response?.cart?._id);
+          navigate(`/addToCart/${UniqueID}`)
+        }
+        toast.success("Decreased successfully.", { autoClose: 1000 });
+      }
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
   };
 
   return (
     <section>
-      <div onClick={() => navigate("/")} className="backBtn mb-[2rem]">
+      <div onClick={() => navigate(-1)} className="backBtn mb-[2rem]">
         <Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" />
       </div>
       <div>
-        <img src={puchaseLotteryImg} alt="" />
+        <img
+          className="h-[250px] min-w-[100%] rounded-lg"
+          src={lottaryImage}
+          alt=""
+        />
       </div>
 
       <div className="flex justify-between items-center mt-[3rem] mb-[1rem]">
-        <h3 className="text-[2rem] font-bold">Lottery Title</h3>
-        <Icon
-          className="text-[2rem] cursor-pointer"
-          icon="mdi:favourite-border"
-        />
+        <h3 className="text-[2rem] font-bold">{Name}</h3>
+        <div>
+          {(isLoadingAddWishlist || isLoadingRemoveFromWishlist) && (
+            <ThreeDots
+              visible={true}
+              height="30"
+              width="30"
+              align="center"
+              color="#5500C3"
+              radius="9"
+              ariaLabel="three-dots-loading"
+              wrapperClass=""
+              wrapperStyle={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+                width: "100%",
+                padding: "10px", // Example padding
+              }}
+            />
+          )}
+
+          {data?.response?.LottaryData?.whitelist?.length == 0 &&
+            !isLoadingAddWishlist &&
+            !isLoadingRemoveFromWishlist && (
+              <button
+                onClick={() => handleAddToWishlist(UniqueID)}
+                className="cursor-pointer"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                >
+                  <path
+                    d="M7.41787 23.1802L19.0056 34.0656C19.4047 34.4406 19.6043 34.628 19.8396 34.6742C19.9456 34.695 20.0546 34.695 20.1606 34.6742C20.3959 34.628 20.5954 34.4406 20.9946 34.0656L32.5823 23.1802C35.8426 20.1175 36.2385 15.0775 33.4964 11.5433L32.9808 10.8787C29.7005 6.65081 23.1161 7.35986 20.8112 12.1893C20.4856 12.8714 19.5146 12.8714 19.189 12.1893C16.884 7.35986 10.2996 6.65081 7.01932 10.8787L6.50373 11.5433C3.76166 15.0775 4.15757 20.1175 7.41787 23.1802Z"
+                    stroke="black"
+                    stroke-width="3.75"
+                  />
+                </svg>
+              </button>
+            )}
+
+          {data?.response?.LottaryData?.whitelist?.length > 0 &&
+            !isLoadingAddWishlist &&
+            !isLoadingRemoveFromWishlist && (
+              <button
+                onClick={() => handleRemoveFromWishlist(UniqueID)}
+                className="cursor-pointer"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="#FF0023"
+                >
+                  <path
+                    d="M7.41787 23.1802L19.0056 34.0656C19.4047 34.4406 19.6043 34.628 19.8396 34.6742C19.9456 34.695 20.0546 34.695 20.1606 34.6742C20.3959 34.628 20.5954 34.4406 20.9946 34.0656L32.5823 23.1802C35.8426 20.1175 36.2385 15.0775 33.4964 11.5433L32.9808 10.8787C29.7005 6.65081 23.1161 7.35986 20.8112 12.1893C20.4856 12.8714 19.5146 12.8714 19.189 12.1893C16.884 7.35986 10.2996 6.65081 7.01932 10.8787L6.50373 11.5433C3.76166 15.0775 4.15757 20.1175 7.41787 23.1802Z"
+                    stroke="#FF0023"
+                    stroke-width="3.75"
+                  />
+                </svg>
+              </button>
+            )}
+        </div>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-5">
@@ -37,53 +226,63 @@ export default function CartQuantityAdjuster() {
           style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
           className="rounded-2xl"
         >
-          <div className="bg-[#FF0023] rounded-t-2xl text-center text-white text-[1.5rem] font-bold p-[0.5rem]">
-            <h3>Deal ends in: 00:18:03:10</h3>
+          <div className="pt-[1rem] flex items-center justify-center gap-1">
+            <span className="font-semibold">Deal ends in:</span>{" "}
+            {expieryDate && (
+              <Countdown
+                date={new Date(expieryDate).getTime()}
+                zeroPadTime={false}
+                renderer={({ days, hours, minutes, seconds }) => (
+                  <div className="text-[1.25rem] text-[#E0170B] font-bold italic flex gap-1">
+                    <span>{days}d</span>
+                    <span>{hours}h</span>
+                    <span>{minutes}m</span>
+                    <span>{seconds}s</span>
+                  </div>
+                )}
+              />
+            )}
           </div>
 
           <div className="p-[0.8rem]">
             <div className="space-y-[1rem]">
               <div className="flex justify-between items-center text-[#858585]">
                 <p>Subtotal</p>
-                <p>AED500</p>
+                <p>{totalAmount}</p>
               </div>
               <div className="flex justify-between items-center text-[#858585]">
-                <p>Tax</p>
-                <p>AED500</p>
-              </div>
-              <div className="flex justify-between items-center text-[#858585]">
-                <p className="text-[#212529]">Total</p>
-                <p className="text-[#212529] font-bold italic">AED500</p>
+                <p className="text-[#212529] font-bold">Total</p>
+                <p className="text-[#212529] font-bold italic">{totalAmount}</p>
               </div>
             </div>
 
             <div className="flex justify-center items-center gap-1 my-[1rem]">
-            <Icon className="text-gray-500 text-[12px]" icon="zondicons:exclamation-solid" />
-              <p className="text-[11px] text-gray-600">
+              <div className="bg-gray-500 w-[10px] h-[10px] flex justify-center items-center rounded-full text-white">
+                <Icon className="text-[2rem]" icon="bi:exclamation" />
+              </div>
+              <p className="text-[10px] text-gray-600">
                 The lottery end time will be extended if unsold.
               </p>
             </div>
 
+            {/* Adjust Quantitiy  */}
             <div className="rounded-[50px] py-[0.5rem] border-[1px] border-gray-300 flex justify-between items-center px-8">
-              <p className="font-bold text-[18px]">INR 250</p>
-              <div className="flex items-center justify-center">
+              <p className="font-bold text-[18px]">INR {totalAmount}</p>
+              <div className="flex items-center justify-center gap-5">
                 <button
                   onClick={handleDecrease}
                   disabled={quantity == 0 ? true : false}
-                  className={`text-[#7647B2] hover:bg-[#7647B2] hover:text-white duration-300 border-[1px] border-[#7647B2] w-[30px] h-[30px] rounded-full flex justify-center items-center text-[2rem] ${quantity==0 && 'bg-gray-400 border-gray-400 text-gray-200 hover:text-gray-200 hover:bg-gray-400'}`}
+                  className={`text-[#7647B2] hover:bg-[#7647B2] hover:text-white duration-300 border-[1px] border-[#7647B2] w-[30px] h-[30px] rounded-full flex justify-center items-center text-[2rem] ${
+                    quantity == 0 &&
+                    "bg-gray-400 border-gray-400 text-gray-200 hover:text-gray-200 hover:bg-gray-400"
+                  }`}
                 >
                   <Icon icon="ic:baseline-minus" />
                 </button>
-                <input
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  readOnly
-                  className="outline-none p-2 w-[60px] rounded-md text-center font-bold text-[1.25rem]"
-                  type="number"
-                />
+                <p className="text-[1.5rem] text-center">{quantity}</p>
                 <button
                   onClick={handleIncrease}
-                  className="text-[#7647B2] ml-[-1rem] hover:bg-[#7647B2] hover:text-white duration-300 border-[1px] border-[#7647B2] w-[30px] h-[30px] rounded-full flex justify-center items-center text-[2rem]"
+                  className="text-[#7647B2] hover:bg-[#7647B2] hover:text-white duration-300 border-[1px] border-[#7647B2] w-[30px] h-[30px] rounded-full flex justify-center items-center text-[2rem]"
                 >
                   <Icon icon="ic:baseline-plus" />
                 </button>
@@ -96,18 +295,23 @@ export default function CartQuantityAdjuster() {
           <div className="p-2 rounded-2xl font-semibold space-y-[1rem]">
             <div className="text-center">
               <span className="text-[#FF2222] text-[1.5rem] font-bold">
-                150{" "}
+                {winnerSlot}{" "}
               </span>
               <span className="text-gray-700">SOLD OUT OF</span>
-              <span className="text-[1.5rem] font-bold"> 300</span>
+              <span className="text-[1.5rem] font-bold"> {Totaltickets}</span>
             </div>
-            <Progress className="mt-[3px]" size="sm" color="red" value={50} />
+            <Progress
+              className="mt-[3px]"
+              size="sm"
+              color="red"
+              value={winnerSlot}
+            />
           </div>
 
           <div>
             <div className="font-bold bg-[#FF0023] text-white text-[1.25rem] flex justify-between items-center rounded-2xl p-[1.5rem]">
-              <p>Prize Details</p>
-              <p>USDT5,000.00</p>
+              <p>Prize Details:</p>
+              <p>IND {winneramount}</p>
             </div>
 
             <div className="flex justify-center items-center gap-5 text-[2rem] mt-[1rem]">
@@ -201,7 +405,7 @@ export default function CartQuantityAdjuster() {
         </div>
         <div className="text-[1.25rem] flex justify-between items-center border-t-[1px] border-b-[1px] border-gray-300 py-[1rem]">
           <p className="text-[#858585] font-medium">Type</p>
-          <p className="text-[#FF0023] font-bold">Private</p>
+          <p className="text-[#FF0023] font-bold">{lottaryType}</p>
         </div>
       </div>
 
@@ -209,7 +413,7 @@ export default function CartQuantityAdjuster() {
         <h3 className="text-[1.5rem] font-bold underline mb-[1rem]">
           Terms & Conditions
         </h3>
-        <div className="list-disc list-inside space-y-[1rem]">
+        {/* <div className="list-disc list-inside space-y-[1rem]">
           <div className="flex gap-2">
             <div className="min-w-[8px] h-[8px] rounded-full bg-black mt-1"></div>
             <p>
@@ -231,7 +435,8 @@ export default function CartQuantityAdjuster() {
               the chance and grab your ticket to enter the lottery today!
             </p>
           </div>
-        </div>
+        </div> */}
+        <p>{termsandcondi}</p>
       </div>
     </section>
   );

@@ -216,7 +216,7 @@ export default function PublicLotteries() {
                       </span>
                     </div>
                     <div className="">
-                      <Link to={`/addToCart/lotteryId`}>
+                      <Link to={`/addToCart/${UniqueID}`}>
                         <button className="submitBtn w-full">Buy Now</button>
                       </Link>
                     </div>
