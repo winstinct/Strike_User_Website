@@ -5,12 +5,139 @@ import walletImg from "../assets/wallet-illustration.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useAuth } from "../contexts/AuthContext";
 import { useGetUserDetailsQuery } from "../redux/features/auth/authApi";
+import { useState } from "react";
+import { useChangeCurrencyQuery, useConvertCurrencyQuery } from "../redux/features/lottery/lotteryApi";
+
+
+const currencyCodes = [
+  "INR",
+  "USD",
+  "EUR",
+  "CAD",
+  "AED",
+  "AFN",
+  "ALL",
+  "AMD",
+  "ARS",
+  "AUD",
+  "AZN",
+  "BAM",
+  "BDT",
+  "BGN",
+  "BHD",
+  "BIF",
+  "BND",
+  "BOB",
+  "BRL",
+  "BWP",
+  "BYR",
+  "BZD",
+  "CDF",
+  "CHF",
+  "CLP",
+  "CNY",
+  "COP",
+  "CRC",
+  "CVE",
+  "CZK",
+  "DJF",
+  "DKK",
+  "DOP",
+  "DZD",
+  "EEK",
+  "EGP",
+  "ERN",
+  "ETB",
+  "GBP",
+  "GEL",
+  "GHS",
+  "GNF",
+  "GTQ",
+  "HKD",
+  "HNL",
+  "HRK",
+  "HUF",
+  "IDR",
+  "ILS",
+  "IQD",
+  "IRR",
+  "ISK",
+  "JMD",
+  "JOD",
+  "JPY",
+  "KES",
+  "KHR",
+  "KMF",
+  "KRW",
+  "KWD",
+  "KZT",
+  "LBP",
+  "LKR",
+  "LTL",
+  "LVL",
+  "LYD",
+  "MAD",
+  "MDL",
+  "MGA",
+  "MKD",
+  "MMK",
+  "MOP",
+  "MUR",
+  "MXN",
+  "MYR",
+  "MZN",
+  "NAD",
+  "NGN",
+  "NIO",
+  "NOK",
+  "NPR",
+  "NZD",
+  "OMR",
+  "PAB",
+  "PEN",
+  "PHP",
+  "PKR",
+  "PLN",
+  "PYG",
+  "QAR",
+  "RON",
+  "RSD",
+  "RUB",
+  "RWF",
+  "SAR",
+  "SDG",
+  "SEK",
+  "SGD",
+  "SOS",
+  "SYP",
+  "THB",
+  "TND",
+  "TOP",
+  "TRY",
+  "TTD",
+  "TWD",
+  "TZS",
+  "UAH",
+  "UGX",
+  "UYU",
+  "UZS",
+  "VEF",
+  "VND",
+  "XAF",
+  "XOF",
+  "YER",
+  "ZAR"
+]
 
 export default function RightSideBar() {
   const { currentUser } = useAuth();
   const {data, isLoading} = useGetUserDetailsQuery();
   const {wallet} = data?.response?.UserData || {};
-  console.log("Total Wallet ===> ", wallet)
+  const [selectedCurrency, setSelectedCurrency] = useState("INR")
+  const {data:convertCurrencyData} = useConvertCurrencyQuery(selectedCurrency);
+  const convertedTotalCurrencyValue = convertCurrencyData?.response?.convertedAmount * wallet;
+  // const {data:changeCurrencyData} = useChangeCurrencyQuery(selectedCurrency);
+  console.log(convertCurrencyData?.response?.convertedAmount * wallet)
   return (
     <div
       style={{boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)"}}
@@ -23,8 +150,12 @@ export default function RightSideBar() {
           <h3 className="font-bold italic"><span className="text-[2rem]">{wallet}</span> <span className="text-[1.25rem]">Coins</span></h3>
           <div className="flex flex-col items-center justify-center space-y-[0.5rem]">
           <div className="bg-white text-black w-full p-1 rounded-lg">
-            <span>INR</span>
-            <span className="text-[1.25rem] font-semibold ml-2">0.0</span>
+            <select defaultValue={selectedCurrency} onChange={(e)=>setSelectedCurrency(e.target.value)} name="currencies" id="currencies" className="outline-none cursor-pointer text-center px-2 font-medium">
+              {
+                currencyCodes?.map(code => (<option key={code} value={code}>{code}</option>))
+              }
+            </select>
+            <span className="text-[1.25rem] font-semibold ml-2">{convertedTotalCurrencyValue}</span>
           </div>
           <div className="bg-white text-black flex items-center justify-center gap-2 w-full rounded-lg p-1">
             <Icon className="text-[2rem]" icon="token-branded:usdt" />

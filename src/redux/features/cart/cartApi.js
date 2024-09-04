@@ -43,6 +43,28 @@ export const cartApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["cart"],
     }),
+
+    applyCouponCode: builder.mutation({
+      query: (couponData) => {
+        return {
+          url: `/users/apply-coupon`,
+          method: "POST",
+          body: couponData,
+        };
+      },
+      invalidatesTags: ["cart"],
+    }),
+
+    checkoutCartItems: builder.mutation({
+      query: (cartData) => {
+        return {
+          url: `/users/buy-ticket`,
+          method: "POST",
+          body: cartData,
+        };
+      },
+      invalidatesTags: ["cart"],
+    }),
   }),
 });
 
@@ -51,4 +73,6 @@ export const {
   useAddItemToCartMutation,
   useUpdateCartItemQuantityMutation,
   useRemoveItemFromCartMutation,
+  useApplyCouponCodeMutation,
+  useCheckoutCartItemsMutation,
 } = cartApi;

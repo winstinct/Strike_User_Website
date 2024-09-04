@@ -76,6 +76,25 @@ export const lotteryApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    convertCurrency: builder.query({
+      query: (currencyCode) => {
+        return {
+          url: `/users/convert-currency?currency=${currencyCode}`,
+          method: "GET",
+        };
+      },
+    }),
+
+    changeCurrency: builder.query({
+      query: (currencyCode) => {
+        return {
+          url: `/users/currency/preference?currency=${currencyCode}`,
+          method: "GET",
+        };
+      },
+    }),
+
   }),
 });
 
@@ -88,4 +107,6 @@ export const {
   useGetAllBannersQuery,
   useGetSinglePublicLotteryQuery,
   useGetSinglePrivateLotteryQuery,
+  useConvertCurrencyQuery,
+  useChangeCurrencyQuery
 } = lotteryApi;
