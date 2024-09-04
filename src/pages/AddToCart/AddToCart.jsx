@@ -13,6 +13,7 @@ import { useAddItemToCartMutation } from "../../redux/features/cart/cartApi";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 
 export default function AddToCart() {
+  window.scrollTo({behavior:'smooth', top:0})
   const navigate = useNavigate();
   const { uniqueId } = useParams();
   const { data } = useGetSinglePublicLotteryQuery(uniqueId);
@@ -190,8 +191,8 @@ export default function AddToCart() {
           <div className="p-[0.8rem]">
             <div className="space-y-[1rem]">
               <div className="flex justify-between items-center text-[#858585]">
-                <p className="text-[#212529] font-bold">Total</p>
-                <p className="text-[#212529] font-bold italic">{ticketPrice}</p>
+                <p className="text-[#212529] font-bold px-4">Total</p>
+                <p className="text-[#212529] font-bold italic px-4">{ticketPrice}</p>
               </div>
             </div>
 

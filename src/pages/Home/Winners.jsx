@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useGetWinnersQuery } from "../../redux/features/lottery/lotteryApi";
 import moment from "moment";
+import WinnersSkeleton from "./WinnersSkeleton";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -88,7 +89,7 @@ export default function Winners() {
         </div>
       </header>
 
-      <Swiper
+      {isLoading ? <WinnersSkeleton/> : (<Swiper
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
@@ -128,7 +129,7 @@ export default function Winners() {
             </SwiperSlide>
           )
         )}
-      </Swiper>
+      </Swiper>)}
     </section>
   );
 }

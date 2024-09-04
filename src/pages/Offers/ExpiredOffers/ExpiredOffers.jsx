@@ -4,6 +4,7 @@ import "swiper/css";
 import { useState } from "react";
 import { useGetOffersQuery } from "../../../redux/features/lottery/lotteryApi";
 import CopyCode from "../OffersSection/CopyCode";
+import ExpiredOfferSkeleton from "./ExpiredOfferSkeleton";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -90,38 +91,42 @@ export default function ExpiredOffers() {
         </div>
       </header>
 
-      <Swiper
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => setSwiperInstance(swiper)}
-        {...swiperConfig}
-        className="w-full"
-      >
-        {expiredOffers?.map(({ ExpieryDate, coupon_code, title }) => (
-          <SwiperSlide>
-            <div
-              style={{ backgroundImage: "linear-gradient(#FF0000, #AD0000)" }}
-              className="p-[1rem] text-white rounded-[20px] bg-white"
-            >
-              <div>
-                <p>Hurry up!</p>
-                <h3 className="font-bold text-[2rem] italic">{title}</h3>
-                <div className="flex items-center gap-1">
-                  <div>
-                    <CopyCode code={coupon_code} />
+      {isLoading ? (
+        <ExpiredOfferSkeleton />
+      ) : (
+        <Swiper
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => setSwiperInstance(swiper)}
+          {...swiperConfig}
+          className="w-full"
+        >
+          {expiredOffers?.map(({ ExpieryDate, coupon_code, title }) => (
+            <SwiperSlide>
+              <div
+                style={{ backgroundImage: "linear-gradient(#FF0000, #AD0000)" }}
+                className="p-[1rem] text-white rounded-[20px] bg-white"
+              >
+                <div>
+                  <p>Hurry up!</p>
+                  <h3 className="font-bold text-[2rem] italic">{title}</h3>
+                  <div className="flex items-center gap-1">
+                    <div>
+                      <CopyCode code={coupon_code} />
+                    </div>
                   </div>
-                </div>
 
-                <button
-                  disabled
-                  className="flex items-center mt-[2rem] justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]"
-                >
-                  Expired
-                </button>
+                  <button
+                    disabled
+                    className="flex items-center mt-[2rem] justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]"
+                  >
+                    Expired
+                  </button>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </section>
   );
 }

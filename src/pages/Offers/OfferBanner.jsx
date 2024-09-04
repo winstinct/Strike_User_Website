@@ -4,12 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { useGetAllBannersQuery } from "../../redux/features/lottery/lotteryApi";
 import { Link } from "react-router-dom";
-import ThreeDotsLoader from "../../components/ThreeDotsLoader";
+import BannerSekeleton from "../Home/BannerSekeleton";
 
 export default function OfferBanner() {
   const { data, isLoading, isError } = useGetAllBannersQuery();
   if (isLoading && !isError) {
-    return <ThreeDotsLoader />;
+    return <BannerSekeleton />;
   }
   if (!isLoading && isError) {
     return (

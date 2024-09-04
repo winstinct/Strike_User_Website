@@ -6,6 +6,7 @@ import { OfferDetailsModal } from "./OfferDetailsModal";
 import CopyCode from "./CopyCode";
 import { useGetOffersQuery } from "../../../redux/features/lottery/lotteryApi";
 import moment from "moment";
+import ValidOfferSkeleton from "./ValidOfferSkeleton";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -88,7 +89,7 @@ export default function OffersSection() {
         </div>
       </header>
 
-      <Swiper
+      {isLoading ? <ValidOfferSkeleton/> : (<Swiper
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
         className="w-full m-3"
@@ -118,7 +119,7 @@ export default function OffersSection() {
             </div>
           </SwiperSlide>))
         }
-      </Swiper>
+      </Swiper>)}
     </section>
   );
 }

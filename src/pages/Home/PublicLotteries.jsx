@@ -1,17 +1,16 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { button, Progress } from "@material-tailwind/react";
+import { Progress } from "@material-tailwind/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetPublicLotteriesQuery } from "../../redux/features/lottery/lotteryApi";
-import { useSelector } from "react-redux";
-import moment from "moment/moment";
 import ThreeDotsLoader from "../../components/ThreeDotsLoader";
 import { useAddToWishlistMutation } from "../../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
 import Countdown, { zeroPad } from "react-countdown";
 import { ThreeDots } from "react-loader-spinner";
+import PublicLotterySkeleton from "./PublicLotterySkeleton";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -116,7 +115,7 @@ export default function PublicLotteries() {
           </button>
         </div>
       </header>
-      {isLoading && <ThreeDotsLoader />}
+      {isLoading && <PublicLotterySkeleton />}
       <Swiper
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
@@ -147,10 +146,10 @@ export default function PublicLotteries() {
                     alt=""
                   />
                 </header>
-                <footer className="space-y-[1.5rem] mt-[1rem]">
-                  <h3 className="text-[1.25rem] font-bold">{Name}</h3>
-                  <div className="flex items-center justify-between text-[14px]">
-                    <div>
+                <footer className="space-y-[0.5rem] mt-[1rem]">
+                  <h3 className="text-[1.25rem] font-bold text-center">{Name}</h3>
+                  <div className="flex flex-col gap-3 items-center justify-between text-[14px]">
+                    <div className="text-center space-y-2">
                       <div>
                         Buy Credit for:
                         <span className="text-[#FF2222] font-bold">
@@ -168,19 +167,19 @@ export default function PublicLotteries() {
                       style={{
                         boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
                       }}
-                      className="border-[1px] border-[#d8d4d442] p-2 rounded-2xl font-semibold"
+                      className="border-[1px] border-[#d8d4d442] p-3 rounded-2xl font-semibold w-full mb-2 text-center"
                     >
-                      <div>
-                        <span className="text-[#FF2222] text-[1.2rem] bold">
+                      <div className="space-x-2">
+                        <span className="text-[#FF2222] text-[1rem] bold">
                           {winnerSlot}{" "}
                         </span>
                         <span className="text-gray-700">SOLD OUT OF </span>
-                        <span className="text-[1.2rem] bold">
+                        <span className="text-[1rem] bold">
                           {Totaltickets}
                         </span>
                       </div>
                       <Progress
-                        className="mt-[3px]"
+                        className="mt-[10px]"
                         size="sm"
                         color="red"
                         value={winnerSlot}

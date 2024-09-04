@@ -8,6 +8,10 @@ import NotificationModal from "../../pages/Notification/NotificationModal";
 import { toggleNotificationModal } from "../../redux/notificationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
+import { useGetAllCartItemsQuery } from "../../redux/features/cart/cartApi";
+const getTotalCartItemsPrice = (items) => {
+  return items?.reduce((total, item) => item?.totalAmount + total, 0);
+};
 
 export default function Header() {
   const { currentUser } = useAuth();
@@ -15,6 +19,9 @@ export default function Header() {
   const userImageUrl = data?.response?.UserData?.imageUrl;
   const dispatch = useDispatch();
   const { showNotificationModal } = useSelector((store) => store.notification);
+  const { data:cartData, isLoading, isError } = useGetAllCartItemsQuery();
+
+  console.log("cart toal value==> ", cartData?.response?.cart?.length)
   return (
     <>
       <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] py-[0.8rem] border-b-[1px] border-b-[#D9D9D9] fixed w-full bg-white top-0 z-50">
