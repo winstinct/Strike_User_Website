@@ -216,39 +216,6 @@ export default function LeftSideBar() {
         </li>
         <li>
           <NavLink
-            to="https://dashboard.tawk.to/login#/chat"
-            target="_blank"
-            className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="24"
-              viewBox="0 0 25 24"
-              fill="none"
-            >
-              <path
-                d="M4.5 12C4.5 7.58172 8.08172 4 12.5 4V4C16.9183 4 20.5 7.58172 20.5 12V17.0909C20.5 17.9375 20.5 18.3608 20.3739 18.6989C20.1712 19.2425 19.7425 19.6712 19.1989 19.8739C18.8608 20 18.4375 20 17.5909 20H12.5C8.08172 20 4.5 16.4183 4.5 12V12Z"
-                stroke="currentColor"
-              />
-              <path
-                d="M9.5 11L15.5 11"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12.5 15H15.5"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <p>Chat Support</p>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
             className="flex items-center font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
             to="/refer-and-earn"
             style={setActiveStyle}
