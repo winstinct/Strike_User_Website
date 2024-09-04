@@ -185,9 +185,7 @@ export default function ShopperBag() {
         </div>
         <h3 className="text-[2rem] font-bold italic">Shopper Bag</h3>
       </div>
-      <ShopperBagSkeleton/>
-      {/* {content} */}
-
+      {content}
     </div>
   );
 }
