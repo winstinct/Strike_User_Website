@@ -5,12 +5,13 @@ import "swiper/css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetPublicLotteriesQuery } from "../../redux/features/lottery/lotteryApi";
-import ThreeDotsLoader from "../../components/ThreeDotsLoader";
 import { useAddToWishlistMutation } from "../../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
-import Countdown, { zeroPad } from "react-countdown";
+import Countdown from "react-countdown";
 import { ThreeDots } from "react-loader-spinner";
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
+import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
+import { useSelector } from "react-redux";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -26,6 +27,11 @@ export default function PublicLotteries() {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
+
+  const { convertedAmount, currencyCode } = useSelector(
+    (state) => state.convertedCoin
+  );
+  console.log("Converted Aamount===> ", convertedAmount, currencyCode);
 
   const handleNext = () => {
     swiperInstance?.slideNext();
@@ -44,6 +50,9 @@ export default function PublicLotteries() {
   const activeLotteris = data?.response?.Lottary?.filter(
     ({ expieryDate }) => new Date(expieryDate).getTime() >= new Date().getTime()
   );
+  const { data: userData, isLoading: isLoadingUserDetailsApi } =
+    useGetUserDetailsQuery();
+  const currency = userData?.response?.UserData?.Currency;
 
   const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
     useAddToWishlistMutation();
@@ -135,6 +144,7 @@ export default function PublicLotteries() {
             whitelist,
           }) => (
             <SwiperSlide key={_id}>
+              <Link to={`/addToCart/${UniqueID}`}>
               <div
                 className="p-[0.6rem] rounded-xl m-1"
                 style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
@@ -147,14 +157,19 @@ export default function PublicLotteries() {
                   />
                 </header>
                 <footer className="space-y-[0.5rem] mt-[1rem]">
-                  <h3 className="text-[1.25rem] font-bold text-center">{Name}</h3>
+                  <h3 className="text-[1.25rem] font-bold text-center">
+                    {Name}
+                  </h3>
                   <div className="flex flex-col gap-3 items-center justify-between text-[14px]">
                     <div className="text-center space-y-2">
                       <div>
                         Buy Credit for:
                         <span className="text-[#FF2222] font-bold">
                           {" "}
-                          INR {ticketPrice}
+                          {currencyCode}{" "}
+                          {convertedAmount &&
+                            ticketPrice &&
+                            (ticketPrice * convertedAmount).toFixed(2)}
                         </span>
                       </div>
                       <div>
@@ -174,9 +189,7 @@ export default function PublicLotteries() {
                           {winnerSlot}{" "}
                         </span>
                         <span className="text-gray-700">SOLD OUT OF </span>
-                        <span className="text-[1rem] bold">
-                          {Totaltickets}
-                        </span>
+                        <span className="text-[1rem] bold">{Totaltickets}</span>
                       </div>
                       <Progress
                         className="mt-[10px]"
@@ -269,6 +282,7 @@ export default function PublicLotteries() {
                   </div>
                 </footer>
               </div>
+              </Link>
             </SwiperSlide>
           )
         )}

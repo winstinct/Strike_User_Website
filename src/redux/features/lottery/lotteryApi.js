@@ -86,13 +86,14 @@ export const lotteryApi = baseApi.injectEndpoints({
       },
     }),
 
-    changeCurrency: builder.query({
+    changeCurrency: builder.mutation({
       query: (currencyCode) => {
         return {
           url: `/users/currency/preference?currency=${currencyCode}`,
           method: "GET",
         };
       },
+      invalidatesTags:["USER-DETAILS"]
     }),
 
   }),
@@ -108,5 +109,5 @@ export const {
   useGetSinglePublicLotteryQuery,
   useGetSinglePrivateLotteryQuery,
   useConvertCurrencyQuery,
-  useChangeCurrencyQuery
+  useChangeCurrencyMutation,
 } = lotteryApi;
