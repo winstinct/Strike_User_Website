@@ -12,6 +12,70 @@ import { toast } from "react-toastify";
 import { useAuth } from "../../../contexts/AuthContext";
 import SubmitBtnLoader from "../../../components/SubmitBtnLoader";
 
+const indianStatesArray = [
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Andaman and Nicobar Islands",
+  "Chandigarh",
+  "Puducherry"
+];
+
+
+const indianCitiesArray = [
+  "Mumbai",
+  "Delhi",
+  "Bengaluru",
+  "Chennai",
+  "Kolkata",
+  "Hyderabad",
+  "Pune",
+  "Jaipur",
+  "Ahmedabad",
+  "Chandigarh"
+];
+
+
+const countriesArray = [
+  "India",
+  "United States",
+  "China",
+  "Japan",
+  "Germany",
+  "United Kingdom",
+  "France",
+  "Brazil",
+  "Canada",
+  "Australia"
+];
+
+
+
 export default function LocationDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
   const navigate = useNavigate();
@@ -135,9 +199,9 @@ export default function LocationDetails() {
               )
             }
           >
-            <Option value="India">India</Option>
-            <Option value="Nepal">Nepal</Option>
-            <Option value="Mayanmar">Mayanmar</Option>
+            {
+              countriesArray.map(country => (<Option key={country} value={country}>{country}</Option>))
+            }
           </Select>
           {showError && !country && (
             <ShowErrorMsg message="This field is required" />
@@ -158,9 +222,9 @@ export default function LocationDetails() {
               )
             }
           >
-            <Option value="India">India</Option>
-            <Option value="Nepal">Nepal</Option>
-            <Option value="Mayanmar">Mayanmar</Option>
+            {
+              indianStatesArray.map(state => (<Option key={state} value={state}>{state}</Option>))
+            }
           </Select>
           {showError && !state && (
             <ShowErrorMsg message="This field is required" />
@@ -181,9 +245,9 @@ export default function LocationDetails() {
               )
             }
           >
-            <Option value="India">India</Option>
-            <Option value="Nepal">Nepal</Option>
-            <Option value="Mayanmar">Mayanmar</Option>
+            {
+              indianCitiesArray.map(city => (<Option key={city} value={city}>{city}</Option>))
+            }
           </Select>
           {showError && !city && (
             <ShowErrorMsg message="This field is required" />
