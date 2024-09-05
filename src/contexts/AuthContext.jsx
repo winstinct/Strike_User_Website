@@ -55,6 +55,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
+      await getUserRoleFunc(user)
       console.log("User Token==>", user?.accessToken);
       dispatch(setToken(user?.accessToken));
       setLoading(false);
@@ -69,6 +70,7 @@ export const AuthContextProvider = ({ children }) => {
     loading,
     login,
     logout,
+    userRole
   };
 
   return (

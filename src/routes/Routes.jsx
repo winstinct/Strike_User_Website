@@ -57,6 +57,7 @@ import PrivateRoute from "./PrivateRoute";
 import MobileMenu from "../shared/MobileMenu/MobileMenu";
 import PublicLotteries from "../pages/Home/PublicLotteries";
 import PopularCampaigns from "../pages/Home/PopularCampaigns";
+import AddToCartPrivateLottery from "../pages/AddToCart/AddToCartPrivateLottery";
 
 export const router = createBrowserRouter([
   {
@@ -130,11 +131,19 @@ export const router = createBrowserRouter([
           },
           {
             path: "private-lotteries",
-            element: <PrivateRoute><PopularCampaigns /></PrivateRoute>,
+            element: (
+              <PrivateRoute>
+                <PopularCampaigns />
+              </PrivateRoute>
+            ),
           },
           {
             path: "soldout-lotteries",
-            element: <h1>Sold Out Lotteries</h1>,
+            element: (
+              <h3 className="font-medium text-[1.5rem] text-center py-5 text-gray-500">
+                Sold out lottery is not available.
+              </h3>
+            ),
           },
         ],
       },
@@ -167,20 +176,24 @@ export const router = createBrowserRouter([
       {
         path: "lottery-games",
         element: <LotteryGames />,
-        children:[
+        children: [
           {
-            path:"",
-            element:<PublicLotteries/>
+            path: "",
+            element: <PublicLotteries />,
           },
           {
-            path:"private-lotteries",
-            element:<PrivateRoute><PopularCampaigns/></PrivateRoute>
+            path: "private-lotteries",
+            element: (
+              <PrivateRoute>
+                <PopularCampaigns />
+              </PrivateRoute>
+            ),
           },
           {
-            path:"soldout-lotteries",
-            element:<h1>Sold Out Lotteries</h1>
+            path: "soldout-lotteries",
+            element: <h1>Sold Out Lotteries</h1>,
           },
-        ]
+        ],
       },
       {
         path: "number-games",
@@ -195,6 +208,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddToCart />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "private-lottery/addToCart/:uniqueId",
+        element: (
+          <PrivateRoute>
+            <AddToCartPrivateLottery />
           </PrivateRoute>
         ),
       },

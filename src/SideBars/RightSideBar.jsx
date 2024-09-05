@@ -7,6 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useGetUserDetailsQuery } from "../redux/features/auth/authApi";
 import {
   useChangeCurrencyMutation,
+  useConvertCoinsIntoCryptoQuery,
   useConvertCurrencyQuery,
 } from "../redux/features/lottery/lotteryApi";
 import { toast } from "react-toastify";
@@ -140,10 +141,17 @@ export default function RightSideBar() {
   const { data, isLoading } = useGetUserDetailsQuery();
   const { wallet, Currency } = data?.response?.UserData || {};
 
+  // RTK Query Hooks
+  const { data: cryptoConvertedData } = useConvertCoinsIntoCryptoQuery(
+    { amount: wallet, currencyType: Currency },
+    { skip: isLoading }
+  );
+  const cryptoConvertedValue =
+    cryptoConvertedData?.response?.usdtAmt.toFixed(2);
+
   const { data: convertedCurrencyData } = useConvertCurrencyQuery(Currency);
   const convertedTotalAmount =
     convertedCurrencyData?.response?.convertedAmount * wallet;
-
   const [changeCurrencyApi] = useChangeCurrencyMutation();
 
   const handleChangeCurrency = async (e) => {
@@ -160,9 +168,13 @@ export default function RightSideBar() {
     }
   };
 
-  console.log("Current Currency===> ", Currency);
   useEffect(() => {
-    dispatch(addConvertedCoinDetails({ currencyCode: Currency, convertedAmount: convertedCurrencyData?.response?.convertedAmount }));
+    dispatch(
+      addConvertedCoinDetails({
+        currencyCode: Currency,
+        convertedAmount: convertedCurrencyData?.response?.convertedAmount,
+      })
+    );
   }, [data, convertedCurrencyData]);
 
   return (
@@ -199,7 +211,9 @@ export default function RightSideBar() {
               </div>
               <div className="bg-white text-black flex items-center justify-center gap-2 w-full rounded-lg p-1">
                 <Icon className="text-[2rem]" icon="token-branded:usdt" />
-                <span className="text-[1.25rem] font-semibold">1.21</span>
+                <span className="text-[1.25rem] font-semibold">
+                  {cryptoConvertedValue}
+                </span>
               </div>
             </div>
           </div>

@@ -11,9 +11,7 @@ import {
 } from "../../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
 import Countdown from "react-countdown";
-import { ThreeDots } from "react-loader-spinner";
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
-import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 import { useSelector } from "react-redux";
 
 const swiperConfig = {
@@ -52,6 +50,7 @@ export default function PublicLotteries() {
   const activeLotteris = data?.response?.Lottary?.filter(
     ({ expieryDate }) => new Date(expieryDate).getTime() >= new Date().getTime()
   );
+  console.log("All Public Lotteries==> ", activeLotteris)
 
   const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
     useAddToWishlistMutation();
@@ -72,7 +71,6 @@ export default function PublicLotteries() {
 
   const { data: wishListData, isLoading: isLoadingWishListData } =
     useGetWishlistQuery();
-  console.log("Wishlist Data==> ", wishListData?.response?.wishlistArray);
 
   return (
     <section>
@@ -144,7 +142,7 @@ export default function PublicLotteries() {
             Totaltickets,
             winnerSlot,
             UniqueID,
-            whitelist,
+            lottaryPurchase
           }) => (
             <SwiperSlide key={_id}>
               <div
@@ -192,7 +190,7 @@ export default function PublicLotteries() {
                         >
                           <div className="space-x-2">
                             <span className="text-[#FF2222] text-[1rem] bold">
-                              {winnerSlot}{" "}
+                              {lottaryPurchase?.length}{" "}
                             </span>
                             <span className="text-gray-700">SOLD OUT OF </span>
                             <span className="text-[1rem] bold">
@@ -203,7 +201,7 @@ export default function PublicLotteries() {
                             className="mt-[10px]"
                             size="sm"
                             color="red"
-                            value={winnerSlot}
+                            value={lottaryPurchase?.length}
                           />
                         </div>
                       </div>

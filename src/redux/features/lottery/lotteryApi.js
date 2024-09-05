@@ -93,8 +93,40 @@ export const lotteryApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      invalidatesTags:["USER-DETAILS"]
+      invalidatesTags: ["USER-DETAILS"],
     }),
+
+    convertCoinsIntoCrypto: builder.query({
+      query: ({ amount, currencyType }) => {
+        return {
+          url: `/users/convert-inr-to-usdt?amount=${amount}&currencyType=${currencyType}`,
+          method: "GET",
+        };
+      },
+      invalidatesTags: ["USER-DETAILS"],
+    }),
+
+    getTicketHistory: builder.query({
+      query: () => {
+        return {
+          url: `/users/fetch-upcoming-tickets`,
+          method: "GET",
+        };
+      },
+    }),
+
+    //TODO: Apis to be integrated 
+    getTicketHistory: builder.query({
+      query: () => {
+        return {
+          url: `/users/fetch-upcoming-tickets`,
+          method: "GET",
+        };
+      },
+    }),
+
+
+
 
   }),
 });
@@ -110,4 +142,6 @@ export const {
   useGetSinglePrivateLotteryQuery,
   useConvertCurrencyQuery,
   useChangeCurrencyMutation,
+  useConvertCoinsIntoCryptoQuery,
+  useGetTicketHistoryQuery
 } = lotteryApi;

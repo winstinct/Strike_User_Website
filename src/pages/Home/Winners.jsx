@@ -34,7 +34,6 @@ export default function Winners() {
   };
 
   const { data, isLoading } = useGetWinnersQuery();
-  console.log("Winners ====> ", data?.response?.fetchWinnerss);
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
