@@ -7,8 +7,11 @@ import {
 } from "../../redux/features/lottery/lotteryApi";
 import { toast } from "react-toastify";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
+import { useDispatch } from "react-redux";
+import { addWithdrawCoinDetails } from "../../redux/withdrawCoinSlice";
 
 export default function Withdraw() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   // window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -30,7 +33,6 @@ export default function Withdraw() {
     useWithdrawCoinsMutation();
 
   const onSubmit = async (data) => {
-    console.log("form data===> ", data)
     try {
       const convertCurrencyRes = await convertINRIntoUSDTApi(
         data.withdrawalAmt
@@ -40,13 +42,23 @@ export default function Withdraw() {
       if (convertCurrencyRes?.error) {
         return toast.error(convertCurrencyRes?.error?.data?.message);
       }
-      const withdrawCoinRes = await winthdrawCoinsApi({ ...data, withdrawalAmt:Number(data.withdrawalAmt), cryptoValue:Number(cryptoValue) });
+      const withdrawCoinRes = await winthdrawCoinsApi({
+        ...data,
+        withdrawalAmt: Number(data.withdrawalAmt),
+        cryptoValue: Number(cryptoValue),
+      });
       if (withdrawCoinRes?.error) {
         return toast.error(withdrawCoinRes?.error?.data?.message);
       }
+      dispatch(
+        addWithdrawCoinDetails({
+          ...data,
+          withdrawalAmt: Number(data.withdrawalAmt),
+          cryptoValue: Number(cryptoValue),
+        })
+      );
       navigate("/withdraw-submitted");
     } catch (error) {
-      console.log("The errror is ==> ", error);
       return toast.error("There was something wrong.");
     }
   };

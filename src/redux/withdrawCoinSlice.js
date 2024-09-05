@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  withdrawCoinDetails:{}
+  withdrawCoinDetails: {},
 };
 
 const withdrawCoinSlice = createSlice({
@@ -9,7 +9,7 @@ const withdrawCoinSlice = createSlice({
   initialState: initialState,
   reducers: {
     addWithdrawCoinDetails(state, action) {
-      return (state = { ...state, ...action.payload });
+      state.withdrawCoinDetails = { ...action.payload };
     },
   },
 });

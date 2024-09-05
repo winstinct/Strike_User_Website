@@ -5,7 +5,7 @@ export const lotteryApi = baseApi.injectEndpoints({
     getAllBanners: builder.query({
       query: () => {
         return {
-          url: `/users/fetch-banners`,
+          url: `/users/fetch-all-banners`,
           method: "GET",
         };
       },
@@ -54,7 +54,7 @@ export const lotteryApi = baseApi.injectEndpoints({
     getWinners: builder.query({
       query: () => {
         return {
-          url: `/users/fetch-winners-slider`,
+          url: `/users/fetch-winners-slider-public`,
           method: "GET",
         };
       },
@@ -63,7 +63,7 @@ export const lotteryApi = baseApi.injectEndpoints({
     getOffers: builder.query({
       query: () => {
         return {
-          url: `/users/all-offers`,
+          url: `/users/fetch-all-offers`,
           method: "GET",
         };
       },
@@ -151,6 +151,7 @@ export const lotteryApi = baseApi.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["USER-DETAILS"],
     }),
   }),
 });
