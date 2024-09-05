@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useNavigate } from "react-router-dom";
+import { useGetWithdrawRequestHistoryQuery } from "../../redux/features/lottery/lotteryApi";
+import WithdrawRequestHistorySkeleton from "./WithdrawRequestHistorySkeleton";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -16,7 +18,7 @@ const swiperConfig = {
 
 export default function WithdrawRequestsHistory() {
   const navigate = useNavigate();
-  window.scrollTo({top:0, behavior:'smooth'})
+  window.scrollTo({ top: 0, behavior: "smooth" });
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -32,6 +34,9 @@ export default function WithdrawRequestsHistory() {
     setIsBeginning(swiperInstance?.isBeginning);
     setIsEnd(swiperInstance?.isEnd);
   };
+
+  const { data, isLoading } = useGetWithdrawRequestHistoryQuery();
+  console.log(data?.response?.withdrawList);
   return (
     <section>
       {/* Back button  */}
@@ -39,7 +44,9 @@ export default function WithdrawRequestsHistory() {
         <div onClick={() => navigate(-1)} className="backBtn">
           <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
         </div>
-        <h3 className="md:text-[2rem] text-[1.25rem] font-semibold">Withdraw Request History</h3>
+        <h3 className="md:text-[2rem] text-[1.25rem] font-semibold">
+          Withdraw Request History
+        </h3>
       </div>
 
       <header className="flex md:flex-row flex-col mb-[1rem] md:gap-1 gap-3 md:items-center justify-between">
@@ -91,158 +98,62 @@ export default function WithdrawRequestsHistory() {
         </div>
       </header>
 
-      <Swiper
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => setSwiperInstance(swiper)}
-        {...swiperConfig}
-        className="w-full"
-      >
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
-              <p className="font-medium text-[14px]">
-                Withdrawal ID:{" "}
-                <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
-              </p>
-              <p>
-                Coins Requested:{" "}
-                <span className="text-[#5500C3] font-bold">1.11K</span>
-              </p>
-              <p>
-                Status:{" "}
-                <span className="text-[#25BF17] font-bold">APPROVED</span>
-              </p>
-              <div>
-                <p>
-                  Crypto Amount:{" "}
-                  <span className="text-[#5500C3] font-bold">13.32</span>
-                </p>
-              </div>
-              <div>
-                Crypto Address: <span className="font-bold">fw</span>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
-              <p className="font-medium text-[14px]">
-                Withdrawal ID:{" "}
-                <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
-              </p>
-              <p>
-                Coins Requested:{" "}
-                <span className="text-[#5500C3] font-bold">1.11K</span>
-              </p>
-              <p>
-                Status:{" "}
-                <span className="text-[#25BF17] font-bold">APPROVED</span>
-              </p>
-              <div>
-                <p>
-                  Crypto Amount:{" "}
-                  <span className="text-[#5500C3] font-bold">13.32</span>
-                </p>
-              </div>
-              <div>
-                Crypto Address: <span className="font-bold">fw</span>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
-              <p className="font-medium text-[14px]">
-                Withdrawal ID:{" "}
-                <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
-              </p>
-              <p>
-                Coins Requested:{" "}
-                <span className="text-[#5500C3] font-bold">1.11K</span>
-              </p>
-              <p>
-                Status:{" "}
-                <span className="text-[#25BF17] font-bold">APPROVED</span>
-              </p>
-              <div>
-                <p>
-                  Crypto Amount:{" "}
-                  <span className="text-[#5500C3] font-bold">13.32</span>
-                </p>
-              </div>
-              <div>
-                Crypto Address: <span className="font-bold">fw</span>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
-              <p className="font-medium text-[14px]">
-                Withdrawal ID:{" "}
-                <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
-              </p>
-              <p>
-                Coins Requested:{" "}
-                <span className="text-[#5500C3] font-bold">1.11K</span>
-              </p>
-              <p>
-                Status:{" "}
-                <span className="text-[#25BF17] font-bold">APPROVED</span>
-              </p>
-              <div>
-                <p>
-                  Crypto Amount:{" "}
-                  <span className="text-[#5500C3] font-bold">13.32</span>
-                </p>
-              </div>
-              <div>
-                Crypto Address: <span className="font-bold">fw</span>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px]">
-              <p className="font-medium text-[14px]">
-                Withdrawal ID:{" "}
-                <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
-              </p>
-              <p>
-                Coins Requested:{" "}
-                <span className="text-[#5500C3] font-bold">1.11K</span>
-              </p>
-              <p>
-                Status:{" "}
-                <span className="text-[#25BF17] font-bold">APPROVED</span>
-              </p>
-              <div>
-                <p>
-                  Crypto Amount:{" "}
-                  <span className="text-[#5500C3] font-bold">13.32</span>
-                </p>
-              </div>
-              <div>
-                Crypto Address: <span className="font-bold">fw</span>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+      {isLoading ? (
+        <WithdrawRequestHistorySkeleton />
+      ) : (
+        <Swiper
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => setSwiperInstance(swiper)}
+          {...swiperConfig}
+          className="w-full"
+        >
+          {data?.response?.withdrawList?.map(
+            ({
+              _id,
+              withdrawalAmt,
+              cryptoValue,
+              cryptoWalletAddress,
+              withdrawalId,
+              status,
+            }) => (
+              <SwiperSlide ke={_id}>
+                <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
+                  <div className="middle1"></div>
+                  <div className="middle2"></div>
+                  <div className="text-left space-y-[0.5rem] ml-3 text-[14px]">
+                    <p className="font-medium text-[14px]">
+                      Withdrawal ID:{" "}
+                      <span className="font-bold">{withdrawalId}</span>
+                    </p>
+                    <p>
+                      Coins Requested:{" "}
+                      <span className="text-[#5500C3] font-bold">
+                        {withdrawalAmt}
+                      </span>
+                    </p>
+                    <p>
+                      Status:{" "}
+                      <span className="text-[#25BF17] font-bold">{status}</span>
+                    </p>
+                    <div>
+                      <p>
+                        Crypto Amount:{" "}
+                        <span className="text-[#5500C3] font-bold">
+                          {cryptoValue}
+                        </span>
+                      </p>
+                    </div>
+                    <div>
+                      Crypto Address:{" "}
+                      <span className="font-bold">{cryptoWalletAddress}</span>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            )
+          )}
+        </Swiper>
+      )}
     </section>
   );
 }

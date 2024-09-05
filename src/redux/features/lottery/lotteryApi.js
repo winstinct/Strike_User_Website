@@ -106,6 +106,15 @@ export const lotteryApi = baseApi.injectEndpoints({
       invalidatesTags: ["USER-DETAILS"],
     }),
 
+    convertINRIntoUSDT: builder.mutation({
+      query: (amount) => {
+        return {
+          url: `/users/convert-inr-to-usdt?amount=${amount}&currencyType=INR`,
+          method: "GET",
+        };
+      },
+    }),
+
     getTicketHistory: builder.query({
       query: () => {
         return {
@@ -115,19 +124,34 @@ export const lotteryApi = baseApi.injectEndpoints({
       },
     }),
 
-    //TODO: Apis to be integrated 
-    getTicketHistory: builder.query({
+    //TODO: Apis to be integrated
+    getRecentTransactions: builder.query({
       query: () => {
         return {
-          url: `/users/fetch-upcoming-tickets`,
+          url: `/users/fetch-coin-records`,
           method: "GET",
         };
       },
     }),
 
+    getWithdrawRequestHistory: builder.query({
+      query: () => {
+        return {
+          url: `/users/getCoinWithdrawHistory`,
+          method: "GET",
+        };
+      },
+    }),
 
-
-
+    withdrawCoins: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/users/withdrawCoins`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -143,5 +167,9 @@ export const {
   useConvertCurrencyQuery,
   useChangeCurrencyMutation,
   useConvertCoinsIntoCryptoQuery,
-  useGetTicketHistoryQuery
+  useGetTicketHistoryQuery,
+  useGetRecentTransactionsQuery,
+  useGetWithdrawRequestHistoryQuery,
+  useConvertINRIntoUSDTMutation,
+  useWithdrawCoinsMutation,
 } = lotteryApi;
