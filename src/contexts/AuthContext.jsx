@@ -56,7 +56,6 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
       await getUserRoleFunc(user)
-      console.log("User Token==>", user?.accessToken);
       dispatch(setToken(user?.accessToken));
       setLoading(false);
     });

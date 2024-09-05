@@ -63,7 +63,7 @@ export const cartApi = baseApi.injectEndpoints({
           body: cartData,
         };
       },
-      invalidatesTags: ["cart"],
+      invalidatesTags: ["cart", "USER-DETAILS"],
     }),
   }),
 });

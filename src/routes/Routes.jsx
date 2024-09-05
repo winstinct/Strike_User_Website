@@ -58,6 +58,7 @@ import MobileMenu from "../shared/MobileMenu/MobileMenu";
 import PublicLotteries from "../pages/Home/PublicLotteries";
 import PopularCampaigns from "../pages/Home/PopularCampaigns";
 import AddToCartPrivateLottery from "../pages/AddToCart/AddToCartPrivateLottery";
+import PurchaseSuccess from "../pages/AddToCart/PurchaseSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -210,6 +211,10 @@ export const router = createBrowserRouter([
             <AddToCart />
           </PrivateRoute>
         ),
+      },
+      {
+        path:"/purchase-success",
+        element:<PurchaseSuccess/>
       },
       {
         path: "private-lottery/addToCart/:uniqueId",

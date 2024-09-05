@@ -56,11 +56,7 @@ export default function ShopperBag() {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        // toast.success(res?.data?.message, { autoClose: 5000 });
-        toast.success(
-          "Purchase successful! Order receipt has been sent to your email.",
-          { autoClose: 5000 }
-        );
+        navigate("/purchase-success")
       }
     } catch (error) {
       return toast.error("There was something wrong.");

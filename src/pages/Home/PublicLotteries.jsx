@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import Countdown from "react-countdown";
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
 import { useSelector } from "react-redux";
+import { useAuth } from "../../contexts/AuthContext";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -25,6 +26,7 @@ const swiperConfig = {
 };
 
 export default function PublicLotteries() {
+  const { currentUser } = useAuth();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -50,7 +52,7 @@ export default function PublicLotteries() {
   const activeLotteris = data?.response?.Lottary?.filter(
     ({ expieryDate }) => new Date(expieryDate).getTime() >= new Date().getTime()
   );
-  console.log("All Public Lotteries==> ", activeLotteris)
+  console.log("All Public Lotteries==> ", activeLotteris);
 
   const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
     useAddToWishlistMutation();
@@ -142,7 +144,7 @@ export default function PublicLotteries() {
             Totaltickets,
             winnerSlot,
             UniqueID,
-            lottaryPurchase
+            lottaryPurchase,
           }) => (
             <SwiperSlide key={_id}>
               <div
@@ -250,30 +252,35 @@ export default function PublicLotteries() {
                     Share
                   </button>
 
-                  <button
-                    onClick={() => handleAddToWishlist(UniqueID)}
-                    className={`bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2 h-[40px] ${
-                      wishListData?.response?.wishlistArray?.find(
+                  {currentUser && (
+                    <button
+                      onClick={() => handleAddToWishlist(UniqueID)}
+                      className={`bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2 h-[40px] ${
+                        wishListData?.response?.wishlistArray?.find(
+                          (item) => item._id == _id
+                        )
+                          ? "text-red-500"
+                          : ""
+                      }`}
+                      disabled={
+                        wishListData?.response?.wishlistArray?.find(
+                          (item) => item._id == _id
+                        )
+                          ? true
+                          : false
+                      }
+                    >
+                      <Icon
+                        className="text-[1rem]"
+                        icon="mdi:favourite-border"
+                      />
+                      {wishListData?.response?.wishlistArray?.find(
                         (item) => item._id == _id
                       )
-                        ? "text-red-500"
-                        : ""
-                    }`}
-                    disabled={
-                      wishListData?.response?.wishlistArray?.find(
-                        (item) => item._id == _id
-                      )
-                        ? true
-                        : false
-                    }
-                  >
-                    <Icon className="text-[1rem]" icon="mdi:favourite-border" />
-                    {wishListData?.response?.wishlistArray?.find(
-                      (item) => item._id == _id
-                    )
-                      ? "Saved"
-                      : "Save"}
-                  </button>
+                        ? "Saved"
+                        : "Save"}
+                    </button>
+                  )}
                 </div>
               </div>
             </SwiperSlide>
