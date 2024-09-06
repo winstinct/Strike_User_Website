@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPublicAgentPersonalDetails } from "../../redux/becomePublicAgentDetailsSlice";
 
 export default function PersonalDetailsPublicAgent() {
+  console.log("I am from personal details public agent===> ")
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function PersonalDetailsPublicAgent() {
     (state) => state.publicAgentDetails
   );
 
-  const { data, isLoading } = useGetUserDetailsQuery();
+  const { data, isLoading, isSuccess } = useGetUserDetailsQuery();
   const {
     FirstName,
     LastName,
@@ -34,6 +35,13 @@ export default function PersonalDetailsPublicAgent() {
     email,
     mobileNumber,
   } = data?.response?.UserData || {};
+  console.log("direct data ==> ", data)
+
+
+
+  if (isLoading) {
+    return <ThreeDotsLoader />;
+  }
 
   const apiData = {
     FirstName,
@@ -50,12 +58,17 @@ export default function PersonalDetailsPublicAgent() {
   };
 
   useEffect(() => {
+   if(!isLoading && isSuccess){
     dispatch(addPublicAgentPersonalDetails(apiData));
-  }, []);
+   }
+  }, [data, dispatch, addPublicAgentPersonalDetails, isLoading, isSuccess]);
 
-  if (isLoading) {
-    return <ThreeDotsLoader />;
-  }
+  
+
+  console.log("Fetched agent details data===============> ", apiData)
+
+
+ 
 
   const handleSubmitPersonalDetails = (data) => {
     console.log("Sumitted Data Public Agent=====> ", data);
@@ -65,7 +78,7 @@ export default function PersonalDetailsPublicAgent() {
     <StrikeForm
       onSubmit={handleSubmitPersonalDetails}
       resolver={yupResolver(personalDetailsPublicAgentSchema)}
-      defaultValues={publicAgentPersonalDetails}
+      defaultValues={publicAgentPersonalDetails?.FirstName ? publicAgentPersonalDetails : apiData}
     >
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-[2.5rem] gap-y-[1.5rem]">
         <StrikeInput
@@ -83,7 +96,7 @@ export default function PersonalDetailsPublicAgent() {
           formName="publicAgentPersonalDetails"
         />
         <StrikeSelect
-          optioformName="publicAgentPersonalDetails"
+          options={genderOptions}
           name="Gender"
           label="Gender"
           required={true}
