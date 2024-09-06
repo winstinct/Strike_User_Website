@@ -12,4 +12,5 @@ if (type === "PROD") {
 export const APIurls = {
   getRoles: `${baseUrl}/api/v2/get-roles`,
   fetchRoles: `${baseUrl}/api/v2/roles`,
+  submitTicket: `${baseUrl}/users/submit-ticket`
 };

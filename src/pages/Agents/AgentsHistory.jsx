@@ -2,6 +2,9 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useGetAllAgentsTicketsQuery } from "../../redux/features/transactions/transactionsApi";
+import moment from "moment";
+import ViewRemarksModal from "./ViewRemarksModal";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -17,6 +20,22 @@ export default function AgentsHistory() {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
+
+  const { data, isLoading, isError } = useGetAllAgentsTicketsQuery();
+  if (!isLoading && isError) {
+    return (
+      <h1 className="text-center text-red-500 py-[5rem]">
+        There was something wrong!
+      </h1>
+    );
+  }
+  if (data?.length === 0) {
+    return (
+      <h1 className="text-center py-[5rem]">There are no records to display</h1>
+    );
+  }
+
+  console.log("Agents Tickets", data);
 
   const handleNext = () => {
     swiperInstance?.slideNext();
@@ -86,7 +105,63 @@ export default function AgentsHistory() {
         {...swiperConfig}
         className="w-full m-3"
       >
-        <SwiperSlide>
+        {data?.response?.agentTicket.map((item) => (
+          <SwiperSlide key={item.ticket_id}>
+            <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
+              <div className="middle1"></div>
+              <div className="middle2"></div>
+              <div className="text-left space-y-[0.5rem] text-[14px] ml-5">
+                <p className="font-medium text-[14px]">
+                  Ticket ID: <span className="font-bold">{item.ticket_id}</span>
+                </p>
+                <div>
+                  <span>Status: </span>
+                  <span
+                    className={`font-bold ${
+                      item.status === "REJECTED"
+                        ? "text-gray-600"
+                        : "text-[#25BF17]"
+                    }`}
+                  >
+                    {item.status}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <p>Payment Proof:</p>
+                  <a href={item.Payment_Image} target="_blank">
+                    <div className="text-[#5500C3] font-bold flex items-center gap-1 cursor-pointer">
+                      <p>View</p>
+                      <Icon className="text-[1.3rem]" icon="hugeicons:view" />
+                    </div>
+                  </a>
+                </div>
+                <div className="flex items-center gap-1">
+                  <p>Remarks:</p>
+                  <ViewRemarksModal remarks={item.remarks}/>
+                </div>
+                <div>
+                  <p>
+                    Date and Time:{" "}
+                    <span className="font-bold">
+                      {moment(item.createdAt).format("HH:MM A, DD MMM, YYYY")}
+                    </span>
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center text-[#5500C3] gap-1 cursor-pointer">
+                    <p>Notify Agent</p>
+                    <Icon icon="mdi:bell-outline" />
+                  </div>
+                  <div className="flex items-center text-red-500 gap-1 cursor-pointer">
+                    <p>Report Agent</p>
+                    <Icon icon="zondicons:exclamation-outline" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+        {/* <SwiperSlide>
           <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
             <div className="middle1"></div>
             <div className="middle2"></div>
@@ -131,99 +206,7 @@ export default function AgentsHistory() {
               </div>
             </div>
           </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px] ml-5">
-              <p className="font-medium text-[14px]">
-                Ticket ID:{" "}
-                <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
-              </p>
-              <div>
-                <span>Status: </span>
-                <span className="font-bold text-[#25BF17]">PROCESSED</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <p>Payment Proof:</p>
-                <div className="text-[#5500C3] font-bold flex items-center gap-1 cursor-pointer">
-                  <p>View</p>
-                  <Icon className="text-[1.3rem]" icon="hugeicons:view" />
-                </div>
-              </div>
-              <div className="flex items-center gap-1">
-                <p>Remarks:</p>
-                <div className="text-[#5500C3] font-bold flex items-center gap-1 cursor-pointer">
-                  <p>View Remarks</p>
-                  <Icon className="text-[1.3rem]" icon="hugeicons:view" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  Date and Time:{" "}
-                  <span className="font-bold">13 June, 2024 07:13 PM</span>
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-              <div className="flex items-center text-[#5500C3] gap-1 cursor-pointer">
-                <p>Notify Agent</p>
-                <Icon icon="mdi:bell-outline" />
-              </div>
-              <div className="flex items-center text-red-500 gap-1 cursor-pointer">
-                <p>Report Agent</p>
-                <Icon icon="zondicons:exclamation-outline" />
-              </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
-            <div className="middle1"></div>
-            <div className="middle2"></div>
-            <div className="text-left space-y-[0.5rem] text-[14px] ml-5">
-              <p className="font-medium text-[14px]">
-                Ticket ID:{" "}
-                <span className="font-bold">DJE455JKDKJ5KKKSDJ4444</span>
-              </p>
-              <div>
-                <span>Status: </span>
-                <span className="font-bold text-[#25BF17]">PROCESSED</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <p>Payment Proof:</p>
-                <div className="text-[#5500C3] font-bold flex items-center gap-1 cursor-pointer">
-                  <p>View</p>
-                  <Icon className="text-[1.3rem]" icon="hugeicons:view" />
-                </div>
-              </div>
-              <div className="flex items-center gap-1">
-                <p>Remarks:</p>
-                <div className="text-[#5500C3] font-bold flex items-center gap-1 cursor-pointer">
-                  <p>View Remarks</p>
-                  <Icon className="text-[1.3rem]" icon="hugeicons:view" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  Date and Time:{" "}
-                  <span className="font-bold">13 June, 2024 07:13 PM</span>
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-              <div className="flex items-center text-[#5500C3] gap-1 cursor-pointer">
-                <p>Notify Agent</p>
-                <Icon icon="mdi:bell-outline" />
-              </div>
-              <div className="flex items-center text-red-500 gap-1 cursor-pointer">
-                <p>Report Agent</p>
-                <Icon icon="zondicons:exclamation-outline" />
-              </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </section>
   );
