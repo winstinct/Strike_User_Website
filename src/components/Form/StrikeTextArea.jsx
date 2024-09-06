@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import Error from "../UI/Error";
 import RedStar from "../UI/RedStar";
+import { addPublicAgentPersonalDetails } from "../../redux/becomePublicAgentDetailsSlice";
+import { useDispatch } from "react-redux";
 
-export default function StrikeTextArea({ name, label, required }) {
+export default function StrikeTextArea({ name, label, required, formName }) {
+  const dispatch = useDispatch()
   const {
     register,
     formState: { errors },
+    watch
   } = useFormContext();
+
+  let inputValue = watch(name)
+  useEffect(() => {
+    if(formName=="publicAgentPersonalDetails"){
+      inputValue && dispatch(addPublicAgentPersonalDetails({ [name]: inputValue }));
+    }
+  }, [inputValue, dispatch, name]);
+
   return (
     <div className="md:col-span-2">
       <label className="block" htmlFor="firstName">

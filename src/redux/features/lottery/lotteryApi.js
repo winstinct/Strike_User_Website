@@ -153,6 +153,16 @@ export const lotteryApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["USER-DETAILS"],
     }),
+
+    becomePublicAgent: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/users/agent-request`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -173,4 +183,5 @@ export const {
   useGetWithdrawRequestHistoryQuery,
   useConvertINRIntoUSDTMutation,
   useWithdrawCoinsMutation,
+  useBecomePublicAgentMutation,
 } = lotteryApi;

@@ -4,6 +4,7 @@ import Select from "react-select";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addUserDetails } from "../../redux/createUserSlice";
+import { addPublicAgentBankDetails, addPublicAgentPersonalDetails } from "../../redux/becomePublicAgentDetailsSlice";
 import RedStar from "../UI/RedStar";
 
 const customStyles = {
@@ -48,7 +49,7 @@ const customStyles = {
   }),
 };
 
-export default function StrikeSelect({ name, label, options, required }) {
+export default function StrikeSelect({ name, label, options, required, formName }) {
   const dispatch = useDispatch()
   const {
     control,
@@ -57,9 +58,17 @@ export default function StrikeSelect({ name, label, options, required }) {
   } = useFormContext();
 
   const inputValue = watch(name);
-  useEffect(()=>{
-    inputValue && dispatch(addUserDetails({[name]:inputValue}))
-  }, [inputValue, dispatch])
+
+  useEffect(() => {
+    if (formName == "publicAgentPersonalDetails") {
+      inputValue &&
+        dispatch(addPublicAgentPersonalDetails({ [name]: inputValue }));
+    } else if (formName == "publicAgentBankDetails") {
+      inputValue && dispatch(addPublicAgentBankDetails({ [name]: inputValue }));
+    } else {
+      inputValue && dispatch(addUserDetails({ [name]: inputValue }));
+    }
+  }, [inputValue, dispatch, name]);
 
   return (
     <div>
