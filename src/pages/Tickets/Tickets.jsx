@@ -23,7 +23,7 @@ export default function Tickets() {
           className="block font-bold md:text-[1.25rem] text-[1.1rem] italic py-3 px-1 rounded-[20px] w-full text-center"
           end
         >
-          Winners
+          Winnings
         </NavLink>
       </div>
       <Outlet />

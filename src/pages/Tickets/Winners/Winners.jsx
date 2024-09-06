@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import wonLotteryTexure from "../../../assets/won-lottery-texure.png";
 import "swiper/css";
+import { useGetUserWinningsQuery } from "../../../redux/features/lottery/lotteryApi";
+import moment from "moment";
 const swiperConfig = {
   slidesPerView: 1,
   spaceBetween: 20,
@@ -29,6 +31,9 @@ export default function Winners() {
     setIsBeginning(swiperInstance?.isBeginning);
     setIsEnd(swiperInstance?.isEnd);
   };
+
+  const { data } = useGetUserWinningsQuery();
+  console.log("User winnings ===========> ", data?.response?.fetchWinnerss);
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2.5rem]">
@@ -88,196 +93,48 @@ export default function Winners() {
         {...swiperConfig}
         className="w-full"
       >
-        <SwiperSlide>
-          <div
-            style={{
-              backgroundImage: `url(${wonLotteryTexure})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 65%",
-            }}
-            className="border-[3px] border-[#5500C3] rounded-[10px] pb-[1.5rem]"
-          >
-            <div className="bg-[#5500C3] italic h-[100px] text-[1.5rem] text-white font-bold flex justify-center items-center rounded-b-[100%] rounded-t-[10px] relative">
-              <p>Congratulations!</p>
-              <Icon
-                className="text-[2.5rem] absolute bottom-[-1rem] border-[2px] border-[#11061d] rounded-full shadow-lg p-1 bg-white"
-                icon="noto:trophy"
-              />
-            </div>
+        {data?.response?.fetchWinnerss?.map(({UserData:{FirstName, LastName}={}, lottaryId:{Currency, LottarySerial, winneramount}={}, updatedAt}) => (
+          <SwiperSlide>
+            <div
+              style={{
+                backgroundImage: `url(${wonLotteryTexure})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "100% 55%",
+              }}
+              className="border-[3px] border-[#5500C3] rounded-[10px] pb-[1.5rem]"
+            >
+              <div className="bg-[#5500C3] italic h-[100px] text-[1.5rem] text-white font-bold flex justify-center items-center rounded-b-[100%] rounded-t-[10px] relative">
+                <p>Congratulations!</p>
+                <Icon
+                  className="text-[2.5rem] absolute bottom-[-1rem] border-[2px] border-[#11061d] rounded-full shadow-lg p-1 bg-white"
+                  icon="noto:trophy"
+                />
+              </div>
 
-            <div className="text-center space-y-[1rem] mt-[2rem]">
-              <h3 className="text-[1.25rem] italic font-bold italic">
-                Putta Manikanta
-              </h3>
-              <div>
-                <p className="font-medium text-[1rem]">
-                  <span>Order ID:</span> <span>#8192739182</span>
-                </p>
-                <p className="text-[#858585] text-[12px]">
-                  Announced on: 08:40 PM 18 December, 2023
-                </p>
-              </div>
-              <div>
-                <p className="font-medium text-[1rem]">WON:</p>
-                <p className="text-[1.5rem] text-[#5500C3] font-bold italic">
-                  INR 10000
-                </p>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{
-              backgroundImage: `url(${wonLotteryTexure})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 65%",
-            }}
-            className="border-[3px] border-[#5500C3] rounded-[10px] pb-[1.5rem]"
-          >
-            <div className="bg-[#5500C3] italic h-[100px] text-[1.5rem] text-white font-bold flex justify-center items-center rounded-b-[100%] rounded-t-[10px] relative">
-              <p>Congratulations!</p>
-              <Icon
-                className="text-[2.5rem] absolute bottom-[-1rem] border-[2px] border-[#11061d] rounded-full shadow-lg p-1 bg-white"
-                icon="noto:trophy"
-              />
-            </div>
-
-            <div className="text-center space-y-[1rem] mt-[2rem]">
-              <h3 className="text-[1.25rem] italic font-bold italic">
-                Putta Manikanta
-              </h3>
-              <div>
-                <p className="font-medium text-[1rem]">
-                  <span>Order ID:</span> <span>#8192739182</span>
-                </p>
-                <p className="text-[#858585] text-[12px]">
-                  Announced on: 08:40 PM 18 December, 2023
-                </p>
-              </div>
-              <div>
-                <p className="font-medium text-[1rem]">WON:</p>
-                <p className="text-[1.5rem] text-[#5500C3] font-bold italic">
-                  INR 10000
-                </p>
+              <div className="text-center space-y-[1rem] mt-[2rem]">
+                <h3 className="text-[1.25rem] italic font-bold">
+                  <span>{FirstName}</span>
+                  <span className="ml-1">{LastName}</span>
+                </h3>
+                <div>
+                  <p className="font-medium text-[1rem]">
+                    <span>Order ID:</span> <span>{LottarySerial}</span>
+                  </p>
+                  <p className="text-[#858585] text-[12px]">
+                    Announced on: {moment(updatedAt).format("LLL")}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-medium text-[1rem]">WON:</p>
+                  <p className="text-[1.5rem] text-[#5500C3] font-bold italic">
+                    <span>{Currency}</span>
+                    <span>{winneramount}</span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{
-              backgroundImage: `url(${wonLotteryTexure})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 65%",
-            }}
-            className="border-[3px] border-[#5500C3] rounded-[10px] pb-[1.5rem]"
-          >
-            <div className="bg-[#5500C3] italic h-[100px] text-[1.5rem] text-white font-bold flex justify-center items-center rounded-b-[100%] rounded-t-[10px] relative">
-              <p>Congratulations!</p>
-              <Icon
-                className="text-[2.5rem] absolute bottom-[-1rem] border-[2px] border-[#11061d] rounded-full shadow-lg p-1 bg-white"
-                icon="noto:trophy"
-              />
-            </div>
-
-            <div className="text-center space-y-[1rem] mt-[2rem]">
-              <h3 className="text-[1.25rem] italic font-bold italic">
-                Putta Manikanta
-              </h3>
-              <div>
-                <p className="font-medium text-[1rem]">
-                  <span>Order ID:</span> <span>#8192739182</span>
-                </p>
-                <p className="text-[#858585] text-[12px]">
-                  Announced on: 08:40 PM 18 December, 2023
-                </p>
-              </div>
-              <div>
-                <p className="font-medium text-[1rem]">WON:</p>
-                <p className="text-[1.5rem] text-[#5500C3] font-bold italic">
-                  INR 10000
-                </p>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{
-              backgroundImage: `url(${wonLotteryTexure})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 65%",
-            }}
-            className="border-[3px] border-[#5500C3] rounded-[10px] pb-[1.5rem]"
-          >
-            <div className="bg-[#5500C3] italic h-[100px] text-[1.5rem] text-white font-bold flex justify-center items-center rounded-b-[100%] rounded-t-[10px] relative">
-              <p>Congratulations!</p>
-              <Icon
-                className="text-[2.5rem] absolute bottom-[-1rem] border-[2px] border-[#11061d] rounded-full shadow-lg p-1 bg-white"
-                icon="noto:trophy"
-              />
-            </div>
-
-            <div className="text-center space-y-[1rem] mt-[2rem]">
-              <h3 className="text-[1.25rem] italic font-bold italic">
-                Putta Manikanta
-              </h3>
-              <div>
-                <p className="font-medium text-[1rem]">
-                  <span>Order ID:</span> <span>#8192739182</span>
-                </p>
-                <p className="text-[#858585] text-[12px]">
-                  Announced on: 08:40 PM 18 December, 2023
-                </p>
-              </div>
-              <div>
-                <p className="font-medium text-[1rem]">WON:</p>
-                <p className="text-[1.5rem] text-[#5500C3] font-bold italic">
-                  INR 10000
-                </p>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            style={{
-              backgroundImage: `url(${wonLotteryTexure})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 65%",
-            }}
-            className="border-[3px] border-[#5500C3] rounded-[10px] pb-[1.5rem]"
-          >
-            <div className="bg-[#5500C3] italic h-[100px] text-[1.5rem] text-white font-bold flex justify-center items-center rounded-b-[100%] rounded-t-[10px] relative">
-              <p>Congratulations!</p>
-              <Icon
-                className="text-[2.5rem] absolute bottom-[-1rem] border-[2px] border-[#11061d] rounded-full shadow-lg p-1 bg-white"
-                icon="noto:trophy"
-              />
-            </div>
-
-            <div className="text-center space-y-[1rem] mt-[2rem]">
-              <h3 className="text-[1.25rem] italic font-bold italic">
-                Putta Manikanta
-              </h3>
-              <div>
-                <p className="font-medium text-[1rem]">
-                  <span>Order ID:</span> <span>#8192739182</span>
-                </p>
-                <p className="text-[#858585] text-[12px]">
-                  Announced on: 08:40 PM 18 December, 2023
-                </p>
-              </div>
-              <div>
-                <p className="font-medium text-[1rem]">WON:</p>
-                <p className="text-[1.5rem] text-[#5500C3] font-bold italic">
-                  INR 10000
-                </p>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   );

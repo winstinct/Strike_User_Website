@@ -7,6 +7,7 @@ import CopyCode from "./CopyCode";
 import { useGetOffersQuery } from "../../../redux/features/lottery/lotteryApi";
 import moment from "moment";
 import ValidOfferSkeleton from "./ValidOfferSkeleton";
+import CountDownTimer from "../../../shared/CountDownTimer/CountDownTimer";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -37,6 +38,10 @@ export default function OffersSection() {
 
   const {data, isLoading} = useGetOffersQuery();
   console.log("All offers ==> ", data?.response?.offer)
+  const activeOffers = data?.response?.offer?.filter(
+    ({ ExpieryDate }) => new Date(ExpieryDate).getTime() >= new Date().getTime()
+  );
+
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
@@ -95,7 +100,7 @@ export default function OffersSection() {
         className="w-full m-3"
       >
         {
-          data?.response?.offer?.map(({ExpieryDate, coupon_code, title, _id})=>(<SwiperSlide>
+          activeOffers?.map(({ExpieryDate, coupon_code, title, _id})=>(<SwiperSlide>
             <div
               style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
               className="p-[1rem] text-white rounded-[20px] bg-white"
@@ -107,11 +112,11 @@ export default function OffersSection() {
                 </h3>
                 <CopyCode code={coupon_code}/>
                 <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
-                  <div className="py-[0.5rem]">
+                  <div className="py-[0.5rem] flex flex-col items-center">
                     <span className="font-semibold text-[1.25rem]">
                       Offer ends in:
-                    </span>{" "}
-                    <span className="font-bold text-[1.5rem]">{moment(ExpieryDate).format('LT')}</span>
+                    </span>
+                    <div className="text-[1.5rem]"><CountDownTimer expieryDate={ExpieryDate}/></div>
                   </div>
                   <OfferDetailsModal offerId={_id}/>
                 </div>

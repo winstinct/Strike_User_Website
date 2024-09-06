@@ -10,10 +10,10 @@ import {
   useGetWishlistQuery,
 } from "../../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
-import Countdown from "react-countdown";
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
 import { useSelector } from "react-redux";
 import { useAuth } from "../../contexts/AuthContext";
+import CountDownTimer from "../../shared/CountDownTimer/CountDownTimer";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -54,7 +54,7 @@ export default function PublicLotteries() {
   );
   console.log("All Public Lotteries==> ", activeLotteris);
 
-  const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
+  const [addToWishlistApi] =
     useAddToWishlistMutation();
 
   const handleAddToWishlist = async (uniqueId) => {
@@ -71,7 +71,7 @@ export default function PublicLotteries() {
     }
   };
 
-  const { data: wishListData, isLoading: isLoadingWishListData } =
+  const { data: wishListData} =
     useGetWishlistQuery();
 
   return (
@@ -142,7 +142,6 @@ export default function PublicLotteries() {
             ticketPrice,
             winneramount,
             Totaltickets,
-            winnerSlot,
             UniqueID,
             lottaryPurchase,
           }) => (
@@ -216,18 +215,7 @@ export default function PublicLotteries() {
                       >
                         <div className="pt-[1rem] flex items-center justify-center gap-1">
                           <span className="font-semibold">Deal ends in:</span>{" "}
-                          <Countdown
-                            date={new Date(expieryDate).getTime()}
-                            zeroPadTime={false}
-                            renderer={({ days, hours, minutes, seconds }) => (
-                              <div className="text-[1.25rem] text-[#E0170B] font-bold italic flex gap-1">
-                                <span>{days}d</span>
-                                <span>{hours}h</span>
-                                <span>{minutes}m</span>
-                                <span>{seconds}s</span>
-                              </div>
-                            )}
-                          />
+                          <div className="text-[1.25rem] text-[#E0170B]"><CountDownTimer expieryDate={expieryDate}/></div>
                         </div>
                         <div className="text-[11px] text-[#858585] py-[0.8rem] flex items-center justify-center gap-1 flex-wrap">
                           <Icon icon="zondicons:exclamation-solid" />

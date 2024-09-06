@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 import { useGetAllCartItemsQuery } from "../../redux/features/cart/cartApi";
 import AvatarSkeleton from "./AvatarSkeleton";
+import { useEffect } from "react";
 const getTotalCartItemsPrice = (items) => {
   return items?.reduce((total, item) => item?.totalAmount + total, 0);
 };

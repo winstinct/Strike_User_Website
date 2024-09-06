@@ -96,11 +96,13 @@ export default function PublicLottery() {
           {...swiperConfig}
           className="w-full"
         >
-          {data?.response?.TicketHistory?.map(
+          {[...data?.response?.TicketHistory]?.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(
             ({
               _id,
               LottaryType,
               OrderValue,
+              lotteryToken,
+              createdAt,
               LottaryDetails: {
                 LottarySerial,
                 expieryDate,
@@ -128,10 +130,10 @@ export default function PublicLottery() {
                           </span>
                         </p>
                         <div className="font-semibold text-[14px] gap-1">
-                          Purchased on: {moment(updatedAt).format("DD-MM-YYYY")}
+                          Purchased on: {moment(createdAt).format("DD-MM-YYYY")}
                         </div>
                         <p className="font-medium text-[14px]">
-                          <span>Order ID:</span> <span>#{LottarySerial}</span>
+                          <span>Order ID:</span> <span>{lotteryToken}</span>
                         </p>
                       </div>
   
