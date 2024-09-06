@@ -1,11 +1,12 @@
 import { useContext, useState, useEffect, createContext } from "react";
 import { auth } from "../Firebase";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
 import { APIurls } from "../api/apiConstant";
 import { useDispatch } from "react-redux";
 import { setToken } from "../redux/authSlice";
 
 const AuthContext = createContext();
+export const firebaseCustomAuth = getAuth();
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -55,13 +56,14 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
-      await getUserRoleFunc(user)
-      dispatch(setToken(user?.accessToken));
+      await getUserRoleFunc(user);
+      const token = await auth.currentUser.getIdToken(true);
+      dispatch(setToken(token));
       setLoading(false);
     });
     console.log(unsubscribe);
 
-    return ()=>unsubscribe();
+    return () => unsubscribe();
   }, []);
 
   const value = {
@@ -70,12 +72,8 @@ export const AuthContextProvider = ({ children }) => {
     login,
     logout,
     getAccessToken,
-    userRole
+    userRole,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

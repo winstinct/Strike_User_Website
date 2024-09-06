@@ -93,8 +93,8 @@ export default function Winners() {
         {...swiperConfig}
         className="w-full"
       >
-        {data?.response?.fetchWinnerss?.map(({UserData:{FirstName, LastName}={}, lottaryId:{Currency, LottarySerial, winneramount}={}, updatedAt}) => (
-          <SwiperSlide>
+        {data?.response?.fetchWinnerss?.map(({UserData:{FirstName, LastName}={}, lottaryId:{Currency, LottarySerial, winneramount}={}, updatedAt, _id}) => (
+          <SwiperSlide key={_id}>
             <div
               style={{
                 backgroundImage: `url(${wonLotteryTexure})`,
