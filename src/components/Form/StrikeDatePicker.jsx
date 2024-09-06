@@ -4,14 +4,24 @@ import { Controller, useFormContext } from "react-hook-form";
 import Error from "../UI/Error";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import RedStar from "../UI/RedStar";
+import { useDispatch } from "react-redux";
+import { addPublicAgentPersonalDetails } from "../../redux/becomePublicAgentDetailsSlice";
+import { useEffect } from "react";
 
-export default function StrikeDatePicker({ name, label, required }) {
+export default function StrikeDatePicker({ name, label, required, formName }) {
+  const dispatch = useDispatch()
   const {
     control,
     formState: { errors },
     watch
   } = useFormContext();
-  // console.log("Selected Date=======> ", watch("dob") && watch("dob")[0])
+  const inputValue = watch(name);
+  useEffect(() => {
+    if (formName == "publicAgentPersonalDetails") {
+      inputValue &&
+        dispatch(addPublicAgentPersonalDetails({ [name]: inputValue }));
+    }
+  }, [inputValue, dispatch, name]);
   return (
     <div>
       <label className="block" htmlFor={name}>

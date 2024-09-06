@@ -17,7 +17,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPublicAgentPersonalDetails } from "../../redux/becomePublicAgentDetailsSlice";
 
 export default function PersonalDetailsPublicAgent() {
-  console.log("I am from personal details public agent===> ")
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -35,9 +34,6 @@ export default function PersonalDetailsPublicAgent() {
     email,
     mobileNumber,
   } = data?.response?.UserData || {};
-  console.log("direct data ==> ", data)
-
-
 
   if (isLoading) {
     return <ThreeDotsLoader />;
@@ -58,27 +54,21 @@ export default function PersonalDetailsPublicAgent() {
   };
 
   useEffect(() => {
-   if(!isLoading && isSuccess){
-    dispatch(addPublicAgentPersonalDetails(apiData));
-   }
-  }, [data, dispatch, addPublicAgentPersonalDetails, isLoading, isSuccess]);
-
-  
-
-  console.log("Fetched agent details data===============> ", apiData)
-
-
- 
+    !publicAgentPersonalDetails?.FirstName && dispatch(addPublicAgentPersonalDetails(apiData));
+  }, []);
 
   const handleSubmitPersonalDetails = (data) => {
-    console.log("Sumitted Data Public Agent=====> ", data);
     navigate("bank-details-public-agent");
   };
   return (
     <StrikeForm
       onSubmit={handleSubmitPersonalDetails}
       resolver={yupResolver(personalDetailsPublicAgentSchema)}
-      defaultValues={publicAgentPersonalDetails?.FirstName ? publicAgentPersonalDetails : apiData}
+      defaultValues={
+        publicAgentPersonalDetails?.FirstName
+          ? publicAgentPersonalDetails
+          : apiData
+      }
     >
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-[2.5rem] gap-y-[1.5rem]">
         <StrikeInput
@@ -102,7 +92,11 @@ export default function PersonalDetailsPublicAgent() {
           required={true}
           formName="publicAgentPersonalDetails"
         />
-        <StrikeDatePicker name="dob" label="Date of Birth" />
+        <StrikeDatePicker
+          name="dob"
+          label="Date of Birth"
+          formName="publicAgentPersonalDetails"
+        />
         <StrikeInput
           type="text"
           name="mobileNumber"
