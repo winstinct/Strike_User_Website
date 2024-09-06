@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Deposit() {
   const [amount, setAmount] = useState("");
+
   return (
     <div>
       <div className="gradientBg text-white text-center rounded-[20px] p-4 my-[1.5rem]">
@@ -107,8 +108,7 @@ export default function Deposit() {
             >
               Crypto
             </button>
-
-            <Link to="/agents">
+            <Link to="/agents" state={{ coins: amount }}>
               <button
                 style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
                 className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full"

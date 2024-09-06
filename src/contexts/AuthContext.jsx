@@ -26,7 +26,7 @@ export const AuthContextProvider = ({ children }) => {
   }
 
   function getAccessToken() {
-    return currentUser.getIdToken(true);
+    return currentUser?.getIdToken(true);
   }
   function saveUserRole(value) {
     setUserRole(value);
@@ -69,6 +69,7 @@ export const AuthContextProvider = ({ children }) => {
     loading,
     login,
     logout,
+    getAccessToken,
   };
 
   return (

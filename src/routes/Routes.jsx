@@ -57,6 +57,8 @@ import PrivateRoute from "./PrivateRoute";
 import MobileMenu from "../shared/MobileMenu/MobileMenu";
 import PublicLotteries from "../pages/Home/PublicLotteries";
 import PopularCampaigns from "../pages/Home/PopularCampaigns";
+import AgentDetails from "../pages/Agents/AgentDetails";
+import SubmitTicket from "../pages/Agents/SubmitTicket";
 
 export const router = createBrowserRouter([
   {
@@ -383,6 +385,14 @@ export const router = createBrowserRouter([
           {
             path: "agents-history",
             element: <AgentsHistory />,
+          },
+          {
+            path: "agent-details/:id",
+            element: <AgentDetails />,
+          },
+          {
+            path: "submit-ticket",
+            element: <SubmitTicket />,
           },
         ],
       },
