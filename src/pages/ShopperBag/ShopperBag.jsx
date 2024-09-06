@@ -1,21 +1,72 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Link, useNavigate } from "react-router-dom";
-import { useGetAllCartItemsQuery } from "../../redux/features/cart/cartApi";
+import { useNavigate } from "react-router-dom";
+import {
+  useApplyCouponCodeMutation,
+  useCheckoutCartItemsMutation,
+  useGetAllCartItemsQuery,
+} from "../../redux/features/cart/cartApi";
 import CartItem from "./CartItem";
 import ShopperBagEmpty from "./ShopperBagEmpty";
 import ThreeDotsLoader from "../../components/ThreeDotsLoader";
 import DisplayNetworkError from "../../components/DisplayNetworkError";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import SubmitBtnLoader from "../../components/SubmitBtnLoader";
+import ShopperBagSkeleton from "./ShopperBagSkeleton";
 const getTotalCartItemsPrice = (items) => {
   return items?.reduce((total, item) => item?.totalAmount + total, 0);
 };
 export default function ShopperBag() {
   const navigate = useNavigate();
+  const [couponCode, setCouponCode] = useState("");
+  const [displayError, setDisplayError] = useState(false);
   const { data, isLoading, isError } = useGetAllCartItemsQuery();
+  const cartItemsIdsArray = data?.response?.cart?.map((item) => item?._id);
+
+  const [applyCouponCodeApi, { isLoading: isLoadingApplyCode }] =
+    useApplyCouponCodeMutation();
+  const [checkoutCartItemsApi, { isLoading: isLoadingCheckout }] =
+    useCheckoutCartItemsMutation();
+
+  const handleApplyCouponCode = async () => {
+    if (!couponCode) {
+      return setDisplayError(true);
+    }
+
+    try {
+      const res = await applyCouponCodeApi({
+        coupon_code: couponCode,
+        ticketList: [],
+      });
+      if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      } else {
+        toast.success(res?.data?.message, { autoClose: 5000 });
+      }
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
+  };
+
+  const handleCheckout = async () => {
+    try {
+      const res = await checkoutCartItemsApi({
+        cartIdarray: cartItemsIdsArray,
+      });
+      if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      } else {
+        navigate("/purchase-success")
+      }
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
+  };
 
   // decide what to render
   let content = "";
   if (isLoading && !isError) {
-    content = <ThreeDotsLoader />;
+    content = <ShopperBagSkeleton />;
   }
 
   if (!isLoading && isError) {
@@ -39,17 +90,34 @@ export default function ShopperBag() {
         </div>
 
         <div>
-          <div
-            style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
-            className="rounded-2xl flex justify-between items-center p-3 mb-5 gap-5"
-          >
-            <input
-              className="border-[1px] border-gray-300 rounded-lg p-2 outline-none w-full"
-              type="text"
-            />
-            <button className="submitBtn w-[130px] h-[40px] flex justify-center items-center">
-              Apply
-            </button>
+          <div className="mb-5">
+            <div
+              style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
+              className="rounded-2xl flex justify-between items-center p-3 gap-2"
+            >
+              <input
+                className="border-[1px] border-gray-300 rounded-lg p-2 outline-none w-full"
+                type="text"
+                onChange={(e) => setCouponCode(e.target.value)}
+              />
+              {isLoadingApplyCode ? (
+                <div className="w-[130px] h-[40px]">
+                  <SubmitBtnLoader />
+                </div>
+              ) : (
+                <button
+                  onClick={handleApplyCouponCode}
+                  className="gradientBg text-white rounded-full w-[130px] h-[45px] flex justify-center items-center"
+                >
+                  Apply
+                </button>
+              )}
+            </div>
+            {displayError && !couponCode && (
+              <p className="text-red-500 font-bold text-[14px] mt-1">
+                Coupon code is required*
+              </p>
+            )}
           </div>
 
           {/* <div
@@ -86,10 +154,18 @@ export default function ShopperBag() {
                   </p>
                 </div>
               </div>
-
-              <Link to={`/cartQuantityAdjuster/lotteryId`}>
-                <button className="submitBtn w-full mt-[1rem]">Checkout</button>
-              </Link>
+              {isLoadingCheckout ? (
+                <div className="mt-[1rem]">
+                  <SubmitBtnLoader />
+                </div>
+              ) : (
+                <button
+                  onClick={handleCheckout}
+                  className="submitBtn w-full mt-[1rem]"
+                >
+                  Checkout
+                </button>
+              )}
             </div>
           </div>
         </div>

@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom"
 import animatedSubmitImg from "../../assets/animated-success.gif"
+import { useSelector } from "react-redux"
+import moment from "moment/moment"
 
 export default function WithdrawSubmitted() {
     window.scrollTo({top:0, behavior:'smooth'})
+    const {withdrawCoinDetails} = useSelector(state => state.withdrawCoin)
+    const {cryptoWalletAddress, fullName, withdrawalAmt} = withdrawCoinDetails;
   return (
     <div className='text-center'>
        <div className="flex justify-center"><img className="w-[150px] h-[150px]" src={animatedSubmitImg} alt="submitted icon" /></div>
@@ -16,19 +20,19 @@ export default function WithdrawSubmitted() {
             <h3 className='font-bold text-[20px] text-left'>Payment Details</h3>
             <div className='text-[14px] text-gray-500 flex md:flex-row flex-col justify-between items-center font-medium'>
                 <p>Coins Requested</p>
-                <p>1000</p>
+                <p>{withdrawalAmt}</p>
             </div>
             <div className='text-[14px] text-gray-500 flex md:flex-row flex-col justify-between items-center font-medium'>
                 <p>Full Name</p>
-                <p>Manikanta Putta</p>
+                <p>{fullName}</p>
             </div>
             <div className='text-[14px] text-gray-500 flex md:flex-row flex-col justify-between items-center font-medium'>
                 <p>Crypto Wallet Address</p>
-                <p>d28cbd85a4a97</p>
+                <p>{cryptoWalletAddress}</p>
             </div>
             <div className='text-[14px] text-gray-500 flex md:flex-row flex-col justify-between items-center font-medium'>
                 <p>Submitted Date and Time</p>
-                <p>26/06/2024 - 12:10 PM</p>
+                <p>{moment(new Date()).format("LLL")}</p>
             </div>
         </div>
 

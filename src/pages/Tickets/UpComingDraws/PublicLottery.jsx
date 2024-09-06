@@ -2,6 +2,10 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useGetTicketHistoryQuery } from "../../../redux/features/lottery/lotteryApi";
+import Countdown from "react-countdown";
+import moment from "moment/moment";
+import PublicTicketSkeleton from "./PublicTicketSkeleton";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -29,6 +33,9 @@ export default function PublicLottery() {
     setIsBeginning(swiperInstance?.isBeginning);
     setIsEnd(swiperInstance?.isEnd);
   };
+
+  const { data, isLoading } = useGetTicketHistoryQuery();
+
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[1rem]">
@@ -82,85 +89,82 @@ export default function PublicLottery() {
         </div>
       </header>
 
-      <Swiper
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => setSwiperInstance(swiper)}
-        {...swiperConfig}
-        className="w-full"
-      >
-        <SwiperSlide>
-          <div>
-            <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
-              <h3 className="mb-3">Better Luck Next Time</h3>
-            </div>
-
-            <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[4px] border-[#A967FF] rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold">Winner Details</p>
-                <div className="flex justify-center items-center flex-wrap gap-1 italic">
-                  <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
-                    <span className="font-medium text-[1rem]">Won</span>
-                    <span className="text-[#A967FF] text-[1.25rem]">200 Coins</span>
+      {
+        isLoading ? <PublicTicketSkeleton/> : (<Swiper
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => setSwiperInstance(swiper)}
+          {...swiperConfig}
+          className="w-full"
+        >
+          {data?.response?.TicketHistory?.map(
+            ({
+              _id,
+              LottaryType,
+              OrderValue,
+              LottaryDetails: {
+                LottarySerial,
+                expieryDate,
+                winneramount,
+                Currency,
+                updatedAt,
+              },
+            }) => (
+              <SwiperSlide>
+                <div>
+                  <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
+                    <h3 className="mb-3">Public Lottery</h3>
+                  </div>
+  
+                  <div className="flex justify-center public-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-[#A967FF] rounded-2xl bg-white relative min-h-[200px]">
+                    <div className="middle1"></div>
+                    <div className="middle2"></div>
+                    <div className="space-y-[0.5rem]">
+                      <div className="space-y-[0.5rem] ml-5">
+                        <p className="font-bold italic">
+                          <span className="text-[#A967FF]">WIN:</span>{" "}
+                          <span>
+                            {Currency}
+                            {OrderValue} Cash
+                          </span>
+                        </p>
+                        <div className="font-semibold text-[14px] gap-1">
+                          Purchased on: {moment(updatedAt).format("DD-MM-YYYY")}
+                        </div>
+                        <p className="font-medium text-[14px]">
+                          <span>Order ID:</span> <span>#{LottarySerial}</span>
+                        </p>
+                      </div>
+  
+                      <div
+                        className="bg-white px-3 py-1 rounded-lg ml-5"
+                        style={{
+                          boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
+                        }}
+                      >
+                        <span className="font-semibold">
+                          Winner Announced in:
+                        </span>
+                        <Countdown
+                          date={new Date(expieryDate).getTime()}
+                          zeroPadTime={false}
+                          renderer={({ days, hours, minutes, seconds }) => (
+                            <div className="text-[#A967FF] text-[1.2rem] space-x-2 font-bold italic">
+                              <span>{days}d</span>
+                              <span>{hours}h</span>
+                              <span>{minutes}m</span>
+                              <span>{seconds}s</span>
+                            </div>
+                          )}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p className="font-medium">Order ID: #8192739182</p>
-                <p className="text-[#858585]">
-                  Announced on: 18 December, 2023
-                </p>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
-              <h3 className="mb-3">Better Luck Next Time</h3>
-            </div>
-
-            <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[4px] border-[#A967FF] rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold">Winner Details</p>
-                <div className="flex justify-center items-center flex-wrap gap-1 italic">
-                  <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
-                    <span className="font-medium text-[1rem]">Won</span>
-                    <span className="text-[#A967FF] text-[1.25rem]">200 Coins</span>
-                </div>
-                <p className="font-medium">Order ID: #8192739182</p>
-                <p className="text-[#858585]">
-                  Announced on: 18 December, 2023
-                </p>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
-              <h3 className="mb-3">Better Luck Next Time</h3>
-            </div>
-
-            <div className="flex justify-center items-center py-[1.5rem] px-[1rem] border-[4px] border-[#A967FF] rounded-2xl bg-white relative min-h-[200px]">
-              <div className="middle1"></div>
-              <div className="middle2"></div>
-              <div className="text-center space-y-[0.5rem]">
-                <p className="font-bold">Winner Details</p>
-                <div className="flex justify-center items-center flex-wrap gap-1 italic">
-                  <h3 className="text-[1.25rem] font-bold">Putta Manikanta</h3>
-                    <span className="font-medium text-[1rem]">Won</span>
-                    <span className="text-[#A967FF] text-[1.25rem]">200 Coins</span>
-                </div>
-                <p className="font-medium">Order ID: #8192739182</p>
-                <p className="text-[#858585]">
-                  Announced on: 18 December, 2023
-                </p>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+              </SwiperSlide>
+            )
+          )}
+        </Swiper>)
+      }
     </section>
   );
 }

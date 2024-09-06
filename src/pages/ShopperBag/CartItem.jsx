@@ -87,7 +87,7 @@ export default function CartItem({ item }) {
             <span>INR {lotteryId?.winneramount} Cash</span>
           </h3>
 
-          <div className="flex items-center">
+          <div className="flex items-center gap-5">
             <div className="w-[3rem] h-[1.5rem] flex items-center justify-end">
               <button
                 onClick={() => handleDecrease(lotteryId?.UniqueID)}
@@ -98,12 +98,7 @@ export default function CartItem({ item }) {
               </button>
             </div>
 
-            <input
-              value={quantity}
-              readOnly
-              className="outline-none w-[40px] rounded-md text-center font-bold pl-2 text-[14px]"
-              type="number"
-            />
+            <p className="font-bold">{quantity}</p>
 
             <div className="w-[3rem] h-[1.5rem] flex items-center justify-start">
               <button

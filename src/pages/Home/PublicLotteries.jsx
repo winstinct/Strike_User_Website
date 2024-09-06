@@ -5,12 +5,15 @@ import "swiper/css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetPublicLotteriesQuery } from "../../redux/features/lottery/lotteryApi";
-import ThreeDotsLoader from "../../components/ThreeDotsLoader";
-import { useAddToWishlistMutation } from "../../redux/features/wishlist/wishlistApi";
+import {
+  useAddToWishlistMutation,
+  useGetWishlistQuery,
+} from "../../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
-import Countdown, { zeroPad } from "react-countdown";
-import { ThreeDots } from "react-loader-spinner";
+import Countdown from "react-countdown";
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
+import { useSelector } from "react-redux";
+import { useAuth } from "../../contexts/AuthContext";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -23,9 +26,14 @@ const swiperConfig = {
 };
 
 export default function PublicLotteries() {
+  const { currentUser } = useAuth();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
+
+  const { convertedAmount, currencyCode } = useSelector(
+    (state) => state.convertedCoin
+  );
 
   const handleNext = () => {
     swiperInstance?.slideNext();
@@ -44,6 +52,7 @@ export default function PublicLotteries() {
   const activeLotteris = data?.response?.Lottary?.filter(
     ({ expieryDate }) => new Date(expieryDate).getTime() >= new Date().getTime()
   );
+  console.log("All Public Lotteries==> ", activeLotteris);
 
   const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
     useAddToWishlistMutation();
@@ -61,6 +70,9 @@ export default function PublicLotteries() {
       return toast.error("There was something wrong.");
     }
   };
+
+  const { data: wishListData, isLoading: isLoadingWishListData } =
+    useGetWishlistQuery();
 
   return (
     <section>
@@ -132,142 +144,144 @@ export default function PublicLotteries() {
             Totaltickets,
             winnerSlot,
             UniqueID,
-            whitelist,
+            lottaryPurchase,
           }) => (
             <SwiperSlide key={_id}>
               <div
                 className="p-[0.6rem] rounded-xl m-1"
                 style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
               >
-                <header>
-                  <img
-                    className="h-[150px] w-full rounded-xl"
-                    src={lottaryImage}
-                    alt=""
-                  />
-                </header>
-                <footer className="space-y-[0.5rem] mt-[1rem]">
-                  <h3 className="text-[1.25rem] font-bold text-center">{Name}</h3>
-                  <div className="flex flex-col gap-3 items-center justify-between text-[14px]">
-                    <div className="text-center space-y-2">
-                      <div>
-                        Buy Credit for:
-                        <span className="text-[#FF2222] font-bold">
-                          {" "}
-                          INR {ticketPrice}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-[#25BF17]">WIN:</span>{" "}
-                        <span className="font-bold">{winneramount} Coins</span>
-                      </div>
-                    </div>
-
-                    <div
-                      style={{
-                        boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
-                      }}
-                      className="border-[1px] border-[#d8d4d442] p-3 rounded-2xl font-semibold w-full mb-2 text-center"
-                    >
-                      <div className="space-x-2">
-                        <span className="text-[#FF2222] text-[1rem] bold">
-                          {winnerSlot}{" "}
-                        </span>
-                        <span className="text-gray-700">SOLD OUT OF </span>
-                        <span className="text-[1rem] bold">
-                          {Totaltickets}
-                        </span>
-                      </div>
-                      <Progress
-                        className="mt-[10px]"
-                        size="sm"
-                        color="red"
-                        value={winnerSlot}
+                <Link to={`/addToCart/${UniqueID}`}>
+                  <div>
+                    <header>
+                      <img
+                        className="h-[150px] w-full rounded-xl"
+                        src={lottaryImage}
+                        alt=""
                       />
-                    </div>
-                  </div>
-
-                  <div
-                    className="text-center rounded-[20px]"
-                    style={{
-                      boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
-                    }}
-                  >
-                    <div className="pt-[1rem] flex items-center justify-center gap-1">
-                      <span className="font-semibold">Deal ends in:</span>{" "}
-                      <Countdown
-                        date={new Date(expieryDate).getTime()}
-                        zeroPadTime={false}
-                        renderer={({ days, hours, minutes, seconds }) => (
-                          <div className="text-[1.25rem] text-[#E0170B] font-bold italic flex gap-1">
-                            <span>{days}d</span>
-                            <span>{hours}h</span>
-                            <span>{minutes}m</span>
-                            <span>{seconds}s</span>
+                    </header>
+                    <footer className="space-y-[0.5rem] mt-[1rem]">
+                      <h3 className="text-[1.25rem] font-bold text-center">
+                        {Name}
+                      </h3>
+                      <div className="flex flex-col gap-3 items-center justify-between text-[14px]">
+                        <div className="text-center space-y-2">
+                          <div>
+                            Buy Credit for:
+                            <span className="text-[#FF2222] font-bold">
+                              {" "}
+                              {currencyCode}{" "}
+                              {convertedAmount &&
+                                ticketPrice &&
+                                (ticketPrice * convertedAmount).toFixed(2)}
+                            </span>
                           </div>
-                        )}
-                      />
-                    </div>
-                    <div className="text-[11px] text-[#858585] py-[0.8rem] flex items-center justify-center gap-1 flex-wrap">
-                      <Icon icon="zondicons:exclamation-solid" />
-                      <span>
-                        The lottery end time will be extended if unsold.
-                      </span>
-                    </div>
-                    <div className="">
-                      <Link to={`/addToCart/${UniqueID}`}>
-                        <button className="submitBtn w-full">Buy Now</button>
-                      </Link>
-                    </div>
-                  </div>
+                          <div>
+                            <span className="text-[#25BF17]">WIN:</span>{" "}
+                            <span className="font-bold">
+                              {winneramount} Coins
+                            </span>
+                          </div>
+                        </div>
 
-                  <div className="flex gap-3 text-[12px] font-semibold">
-                    <button className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2">
-                      <Icon className="text-[1rem]" icon="lucide:share" />
-                      Share
-                    </button>
-                    {isLoadingAddWishlist ? (
-                      <button className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center h-[40px]">
-                        <ThreeDots
-                          visible={true}
-                          height="30"
-                          width="30"
-                          align="center"
-                          color="#5500C3"
-                          radius="9"
-                          ariaLabel="three-dots-loading"
-                          wrapperClass=""
-                          wrapperStyle={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "100%",
-                            width: "100%",
-                            padding: "10px", // Example padding
+                        <div
+                          style={{
+                            boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
                           }}
-                        />
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleAddToWishlist(UniqueID)}
-                        className={`bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2 h-[40px] ${
-                          whitelist.length > 0 ? "text-red-500" : ""
-                        }`}
-                        disabled={
-                          isLoadingAddWishlist || whitelist.length > 0
-                            ? true
-                            : false
-                        }
+                          className="border-[1px] border-[#d8d4d442] p-3 rounded-2xl font-semibold w-full mb-2 text-center"
+                        >
+                          <div className="space-x-2">
+                            <span className="text-[#FF2222] text-[1rem] bold">
+                              {lottaryPurchase?.length}{" "}
+                            </span>
+                            <span className="text-gray-700">SOLD OUT OF </span>
+                            <span className="text-[1rem] bold">
+                              {Totaltickets}
+                            </span>
+                          </div>
+                          <Progress
+                            className="mt-[10px]"
+                            size="sm"
+                            color="red"
+                            value={lottaryPurchase?.length}
+                          />
+                        </div>
+                      </div>
+
+                      <div
+                        className="text-center rounded-[20px]"
+                        style={{
+                          boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
+                        }}
                       >
-                        <Icon
-                          className="text-[1rem]"
-                          icon="mdi:favourite-border"
-                        />
-                        {whitelist.length > 0 ? "Saved" : "Save"}
-                      </button>
-                    )}
+                        <div className="pt-[1rem] flex items-center justify-center gap-1">
+                          <span className="font-semibold">Deal ends in:</span>{" "}
+                          <Countdown
+                            date={new Date(expieryDate).getTime()}
+                            zeroPadTime={false}
+                            renderer={({ days, hours, minutes, seconds }) => (
+                              <div className="text-[1.25rem] text-[#E0170B] font-bold italic flex gap-1">
+                                <span>{days}d</span>
+                                <span>{hours}h</span>
+                                <span>{minutes}m</span>
+                                <span>{seconds}s</span>
+                              </div>
+                            )}
+                          />
+                        </div>
+                        <div className="text-[11px] text-[#858585] py-[0.8rem] flex items-center justify-center gap-1 flex-wrap">
+                          <Icon icon="zondicons:exclamation-solid" />
+                          <span>
+                            The lottery end time will be extended if unsold.
+                          </span>
+                        </div>
+                        <div className="">
+                          <Link to={`/addToCart/${UniqueID}`}>
+                            <button className="submitBtn w-full">
+                              Buy Now
+                            </button>
+                          </Link>
+                        </div>
+                      </div>
+                    </footer>
                   </div>
-                </footer>
+                </Link>
+                <div className="flex gap-3 text-[12px] font-semibold mt-[1rem]">
+                  <button className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2">
+                    <Icon className="text-[1rem]" icon="lucide:share" />
+                    Share
+                  </button>
+
+                  {currentUser && (
+                    <button
+                      onClick={() => handleAddToWishlist(UniqueID)}
+                      className={`bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2 h-[40px] ${
+                        wishListData?.response?.wishlistArray?.find(
+                          (item) => item._id == _id
+                        )
+                          ? "text-red-500"
+                          : ""
+                      }`}
+                      disabled={
+                        wishListData?.response?.wishlistArray?.find(
+                          (item) => item._id == _id
+                        )
+                          ? true
+                          : false
+                      }
+                    >
+                      <Icon
+                        className="text-[1rem]"
+                        icon="mdi:favourite-border"
+                      />
+                      {wishListData?.response?.wishlistArray?.find(
+                        (item) => item._id == _id
+                      )
+                        ? "Saved"
+                        : "Save"}
+                    </button>
+                  )}
+                </div>
               </div>
             </SwiperSlide>
           )

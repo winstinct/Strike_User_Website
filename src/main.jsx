@@ -15,16 +15,16 @@ import { PersistGate } from "redux-persist/integration/react";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <StepperContextProvider>
-        <AuthContextProvider>
-          <PersistGate loading={null} persistor={persistor}>
-          <div>
-            <RouterProvider router={router} />
-            <ToastContainer />
-          </div>
-          </PersistGate>
-        </AuthContextProvider>
-      </StepperContextProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <StepperContextProvider>
+          <AuthContextProvider>
+            <div>
+              <RouterProvider router={router} />
+              <ToastContainer />
+            </div>
+          </AuthContextProvider>
+        </StepperContextProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

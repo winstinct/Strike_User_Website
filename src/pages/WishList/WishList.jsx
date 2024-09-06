@@ -4,11 +4,13 @@ import WishListItem from "./WishListItem";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import WishlistEmpty from "./WishlistEmpty";
 import ThreeDotsLoader from "../../components/ThreeDotsLoader";
+import WishListSkeleton from "./WishListSkeleton";
 
 export default function WishList() {
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
   const { data, isLoading } = useGetWishlistQuery();
+  console.log("Wishlist Data==> ", data?.response?.wishlistArray)
   return (
     <div>
       <div className="flex items-center gap-5 mb-5">
@@ -20,7 +22,7 @@ export default function WishList() {
         </div>
         <h3 className="text-[2rem] font-bold italic">Wishlist</h3>
       </div>
-      {isLoading && <ThreeDotsLoader/>}
+      {isLoading && <WishListSkeleton/>}
       {data?.response?.wishlistArray?.length == 0 && <WishlistEmpty />}
       {data?.response?.wishlistArray?.map((lottery) => (
         <WishListItem key={lottery._id} lottery={lottery} />

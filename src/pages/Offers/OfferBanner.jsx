@@ -36,7 +36,7 @@ export default function OfferBanner() {
             <Link to={ExternalLink} target="_blank">
               <div>
                 <img
-                  className="rounded-2xl h-[250px] min-w-[100%]"
+                  className="rounded-2xl h-[300px] min-w-[100%]"
                   src={BannerImg}
                   alt=""
                 />

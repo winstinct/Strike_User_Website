@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Progress } from "@material-tailwind/react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useGetSinglePublicLotteryQuery } from "../../redux/features/lottery/lotteryApi";
+import { useGetPrivateLotteriesQuery, useGetSinglePrivateLotteryQuery } from "../../redux/features/lottery/lotteryApi";
 import Countdown from "react-countdown";
 import {
   useAddToWishlistMutation,
@@ -12,12 +12,12 @@ import { ThreeDots } from "react-loader-spinner";
 import { useAddItemToCartMutation } from "../../redux/features/cart/cartApi";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 
-export default function AddToCart() {
+export default function AddToCartPrivateLottery() {
   window.scrollTo({behavior:'smooth', top:0})
   const navigate = useNavigate();
   const { uniqueId } = useParams();
-  const { data } = useGetSinglePublicLotteryQuery(uniqueId);
-  console.log("single public lottery==> ", data?.response)
+  const { data } = useGetSinglePrivateLotteryQuery(uniqueId);
+  console.log("Private Lottery data==> ", data?.response?.privateLottery)
   const {
     lottaryImage,
     Name,
@@ -30,8 +30,8 @@ export default function AddToCart() {
     lottaryType,
     termsandcondi,
     whitelist,
-    lottaryPurchase
-  } = data?.response?.LottaryData || {};
+    _id
+  } = data?.response?.privateLottery || {};
 
   const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
     useAddToWishlistMutation();
@@ -78,7 +78,7 @@ export default function AddToCart() {
         return toast.error(res?.error?.data?.message);
       } else {
         toast.success("Added to cart successfully.", {autoClose:2000});
-        navigate(`/cartQuantityAdjuster/${UniqueID}`)
+        navigate(`/cartQuantityAdjuster/${_id}`)
       }
     } catch (error) {
       return toast.error("There was something wrong.");
@@ -224,7 +224,7 @@ export default function AddToCart() {
           <div className="p-2 rounded-2xl font-semibold space-y-[1rem]">
             <div className="text-center">
               <span className="text-[#FF2222] text-[1.5rem] font-bold">
-                {lottaryPurchase?.length}{" "}
+                {winnerSlot}{" "}
               </span>
               <span className="text-gray-700">SOLD OUT OF</span>
               <span className="text-[1.5rem] font-bold"> {Totaltickets}</span>
@@ -233,7 +233,7 @@ export default function AddToCart() {
               className="mt-[3px]"
               size="sm"
               color="red"
-              value={lottaryPurchase?.length}
+              value={winnerSlot}
             />
           </div>
 

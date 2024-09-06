@@ -5,7 +5,7 @@ export const lotteryApi = baseApi.injectEndpoints({
     getAllBanners: builder.query({
       query: () => {
         return {
-          url: `/users/fetch-banners`,
+          url: `/users/fetch-all-banners`,
           method: "GET",
         };
       },
@@ -54,7 +54,7 @@ export const lotteryApi = baseApi.injectEndpoints({
     getWinners: builder.query({
       query: () => {
         return {
-          url: `/users/fetch-winners-slider`,
+          url: `/users/fetch-winners-slider-public`,
           method: "GET",
         };
       },
@@ -63,7 +63,7 @@ export const lotteryApi = baseApi.injectEndpoints({
     getOffers: builder.query({
       query: () => {
         return {
-          url: `/users/all-offers`,
+          url: `/users/fetch-all-offers`,
           method: "GET",
         };
       },
@@ -73,6 +73,93 @@ export const lotteryApi = baseApi.injectEndpoints({
         return {
           url: `/users/offer/${offerId}`,
           method: "GET",
+        };
+      },
+    }),
+
+    convertCurrency: builder.query({
+      query: (currencyCode) => {
+        return {
+          url: `/users/convert-currency?currency=${currencyCode}`,
+          method: "GET",
+        };
+      },
+    }),
+
+    changeCurrency: builder.mutation({
+      query: (currencyCode) => {
+        return {
+          url: `/users/currency/preference?currency=${currencyCode}`,
+          method: "GET",
+        };
+      },
+      invalidatesTags: ["USER-DETAILS"],
+    }),
+
+    convertCoinsIntoCrypto: builder.query({
+      query: ({ amount, currencyType }) => {
+        return {
+          url: `/users/convert-inr-to-usdt?amount=${amount}&currencyType=${currencyType}`,
+          method: "GET",
+        };
+      },
+      invalidatesTags: ["USER-DETAILS"],
+    }),
+
+    convertINRIntoUSDT: builder.mutation({
+      query: (amount) => {
+        return {
+          url: `/users/convert-inr-to-usdt?amount=${amount}&currencyType=INR`,
+          method: "GET",
+        };
+      },
+    }),
+
+    getTicketHistory: builder.query({
+      query: () => {
+        return {
+          url: `/users/fetch-upcoming-tickets`,
+          method: "GET",
+        };
+      },
+    }),
+
+    //TODO: Apis to be integrated
+    getRecentTransactions: builder.query({
+      query: () => {
+        return {
+          url: `/users/fetch-coin-records`,
+          method: "GET",
+        };
+      },
+    }),
+
+    getWithdrawRequestHistory: builder.query({
+      query: () => {
+        return {
+          url: `/users/getCoinWithdrawHistory`,
+          method: "GET",
+        };
+      },
+    }),
+
+    withdrawCoins: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/users/withdrawCoins`,
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["USER-DETAILS"],
+    }),
+
+    becomePublicAgent: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/users/agent-request`,
+          method: "POST",
+          body: data,
         };
       },
     }),
@@ -88,4 +175,13 @@ export const {
   useGetAllBannersQuery,
   useGetSinglePublicLotteryQuery,
   useGetSinglePrivateLotteryQuery,
+  useConvertCurrencyQuery,
+  useChangeCurrencyMutation,
+  useConvertCoinsIntoCryptoQuery,
+  useGetTicketHistoryQuery,
+  useGetRecentTransactionsQuery,
+  useGetWithdrawRequestHistoryQuery,
+  useConvertINRIntoUSDTMutation,
+  useWithdrawCoinsMutation,
+  useBecomePublicAgentMutation,
 } = lotteryApi;
