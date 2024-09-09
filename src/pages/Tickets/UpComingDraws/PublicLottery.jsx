@@ -96,7 +96,7 @@ export default function PublicLottery() {
           {...swiperConfig}
           className="w-full"
         >
-          {data?.response?.TicketHistory.length  && [...data?.response?.TicketHistory]?.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(
+          {data?.response?.TicketHistory?.length  && [...data?.response?.TicketHistory]?.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(
             ({
               _id,
               OrderValue,

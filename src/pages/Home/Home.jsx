@@ -2,8 +2,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Banner from "./Banner";
 import GameCategories from "./GameCategories";
 import LotteryCategories from "./LotteryCategories";
-import PopularCampaigns from "./PopularCampaigns";
-import PublicLotteries from "./PublicLotteries";
 import Winners from "./Winners";
 import { Outlet } from "react-router-dom";
 

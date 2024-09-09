@@ -78,7 +78,7 @@ export default function AddToCartPrivateLottery() {
         return toast.error(res?.error?.data?.message);
       } else {
         toast.success("Added to cart successfully.", {autoClose:2000});
-        navigate(`/cartQuantityAdjuster/${_id}`)
+        navigate(`/cartQuantityAdjuster/${UniqueID}`)
       }
     } catch (error) {
       return toast.error("There was something wrong.");

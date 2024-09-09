@@ -116,7 +116,7 @@ export default function WithdrawRequestsHistory() {
               withdrawalId,
               status,
             }) => (
-              <SwiperSlide ke={_id}>
+              <SwiperSlide key={_id}>
                 <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
                   <div className="middle1"></div>
                   <div className="middle2"></div>
@@ -133,7 +133,17 @@ export default function WithdrawRequestsHistory() {
                     </p>
                     <p>
                       Status:{" "}
-                      <span className="text-[#25BF17] font-bold">{status}</span>
+                      {status.toLowerCase() == "approved" ? (
+                        <span className="text-[#25BF17] font-bold">
+                          Approved
+                        </span>
+                      ) : status.toLowerCase() == "rejected" ? (
+                        <span className="text-red-500 font-bold">Rejected</span>
+                      ) : (
+                        <span className="text-orange-500 font-bold">
+                          Pending
+                        </span>
+                      )}
                     </p>
                     <div>
                       <p>

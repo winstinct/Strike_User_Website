@@ -1,18 +1,43 @@
 import moment from "moment";
 import { useGetRecentTransactionsQuery } from "../../redux/features/lottery/lotteryApi";
+import RecentTransactionSkeleton from "./RecentTransactionSkeleton";
 
 export default function RecentTransactions() {
-  const { data: recentTransactionsData } = useGetRecentTransactionsQuery();
-  return (
-    <>
-      <h3 className="font-bold text-[1.1rem] my-[1.5rem]">
-        Recent Transactions
+  const {
+    data: recentTransactionsData,
+    isLoading,
+    isError,
+  } = useGetRecentTransactionsQuery();
+
+  // decide what to render
+  let content = "";
+  if (isLoading && !isError) {
+    content = <RecentTransactionSkeleton />;
+  }
+
+  if (
+    !isLoading &&
+    !isError &&
+    recentTransactionsData?.response?.coinHistory?.length == 0
+  ) {
+    content = (
+      <h3 className="text-[1.3rem] text-center py-5 text-gray-500">
+        No transaction available
       </h3>
+    );
+  }
+
+  if (
+    !isLoading &&
+    !isError &&
+    recentTransactionsData?.response?.coinHistory?.length > 0
+  ) {
+    content = (
       <div className="space-y-[1.5rem]">
         {/* transaction-1  */}
         {recentTransactionsData?.response?.coinHistory?.map(
-          ({ originalAmt, status, PaymentDetails, adddition, updatedAt, userId }) => (
-            <div className="border-b-[1px] border-b-gray-300 pb-5">
+          ({ originalAmt, status, adddition, updatedAt, userId }) => (
+            <div key={userId} className="border-b-[1px] border-b-gray-300 pb-5">
               <div className="flex justify-between items-center text-[13px]">
                 <p>#{Date.now()}</p>
                 {adddition ? (
@@ -44,6 +69,14 @@ export default function RecentTransactions() {
           )
         )}
       </div>
+    );
+  }
+  return (
+    <>
+      <h3 className="font-bold text-[1.1rem] my-[1.5rem]">
+        Recent Transactions
+      </h3>
+      {content}
     </>
   );
 }
