@@ -1,12 +1,11 @@
 import { useContext, useState, useEffect, createContext } from "react";
 import { auth } from "../Firebase";
-import { signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { APIurls } from "../api/apiConstant";
 import { useDispatch } from "react-redux";
 import { setToken } from "../redux/authSlice";
 
 const AuthContext = createContext();
-export const firebaseCustomAuth = getAuth();
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -29,9 +28,7 @@ export const AuthContextProvider = ({ children }) => {
   function getAccessToken() {
     return currentUser?.getIdToken(true);
   }
-  function saveUserRole(value) {
-    setUserRole(value);
-  }
+
   const getUserRoleFunc = async (user) => {
     try {
       const result = await fetch(APIurls.getRoles, {
@@ -64,7 +61,7 @@ export const AuthContextProvider = ({ children }) => {
     console.log(unsubscribe);
 
     return () => unsubscribe();
-  }, []);
+  }, [dispatch]);
 
   const value = {
     currentUser,
