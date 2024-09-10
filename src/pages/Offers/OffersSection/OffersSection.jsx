@@ -35,7 +35,6 @@ export default function OffersSection() {
   };
 
   const { data, isLoading } = useGetOffersQuery();
-  console.log("All offers ==> ", data?.response?.offer);
   const activeOffers = data?.response?.offer?.filter(
     ({ ExpieryDate }) => new Date(ExpieryDate).getTime() >= new Date().getTime()
   );

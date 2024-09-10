@@ -40,7 +40,6 @@ export default function ShopperBag() {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log("Coupon Code Successful =========> ", res)
         toast.success(res?.data?.message, { autoClose: 5000 });
       }
     } catch (error) {

@@ -30,10 +30,8 @@ export default function AgentDetails() {
 
   const {data: walletAgentDetails} = useGetSingleWalletAgentDetailsQuery(id);
   const walletAgent = walletAgentDetails?.response?.agentDetails || {};
-  console.log("Single Wallet Agent", walletAgent);
   const { data, isLoading, isError } = useGetSingleAgentDetailsQuery(id);
   const agentDetails = data?.response?.agentTicket || [];
-  console.log("Agent Details", agentDetails);
 
   useEffect(() => {
     return () => {
@@ -220,7 +218,6 @@ export default function AgentDetails() {
             </div>
           </header>
           <Swiper
-            onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => setSwiperInstance(swiper)}
             {...swiperConfig}
             className="w-full m-3"

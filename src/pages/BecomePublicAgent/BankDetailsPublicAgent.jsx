@@ -72,7 +72,6 @@ export default function BankDetailsPublicAgent() {
     } catch (error) {
       return toast.error("There was something wrong.");
     }
-    // console.log("Bank Details Data Public Agent=====> ", submitFormsData);
   };
 
   return (

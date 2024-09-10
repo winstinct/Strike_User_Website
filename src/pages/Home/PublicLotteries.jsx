@@ -102,7 +102,6 @@ export default function PublicLotteries() {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log(res);
         toast.success("Added to wishlist successfully.");
       }
     } catch (error) {

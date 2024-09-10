@@ -62,7 +62,6 @@ export default function CartItem({ item }) {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log("Current Cart Item after decreased ==> ", res?.data?.response?.cart)
         if(res?.data?.response?.cart?.quantity == 0){
             await removeItemFromCartApi(res?.data?.response?.cart?._id)
             navigate(`/addToCart/${lotteryId?.UniqueID}`)

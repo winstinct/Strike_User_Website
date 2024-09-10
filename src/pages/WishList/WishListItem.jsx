@@ -27,7 +27,6 @@ export default function WishListItem({ lottery }) {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log(res);
         toast.success("Removed from wishlist successfully.");
       }
     } catch (error) {

@@ -140,7 +140,6 @@ export default function WalletCard() {
       { amount: wallet, currencyType:Currency },
       { skip: isLoading }
     );
-    console.log("Crypto Coverted Value====> ", cryptoConvertedData)
     const cryptoConvertedValue =
       cryptoConvertedData?.response?.usdtAmt.toFixed(2);
   
@@ -150,10 +149,6 @@ export default function WalletCard() {
     const [changeCurrencyApi] = useChangeCurrencyMutation();
   
     const { data: recentTransactionsData } = useGetRecentTransactionsQuery();
-    console.log(
-      recentTransactionsData?.response?.coinHistory,
-      "Recent transactions"
-    );
   
     const handleChangeCurrency = async (e) => {
       try {
@@ -164,7 +159,6 @@ export default function WalletCard() {
           toast.success("Converted currency successfully.", { autoClose: 2000 });
         }
       } catch (error) {
-        console.log("Error is ==> ", error);
         return toast.error("There was something wrong.");
       }
     };

@@ -17,9 +17,7 @@ export default function ProfileContactDetails() {
     return <ThreeDotsLoader/>
   }
 
-  console.log({email, mobileNumber})
   const handleSubmitContactDetails = (data)=>{
-    console.log("Contact Details===> ", data)
   }
   return (
     <StrikeForm onSubmit={handleSubmitContactDetails} resolver={yupResolver(contactDetailsSchema)} defaultValues={defaultValues}>

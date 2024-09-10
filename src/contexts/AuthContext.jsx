@@ -38,8 +38,6 @@ export const AuthContextProvider = ({ children }) => {
         },
       });
       const resultJson = await result.json();
-
-      console.log(resultJson);
       if (!result.ok) {
         throw new Error("Failed to login");
       }
@@ -58,7 +56,6 @@ export const AuthContextProvider = ({ children }) => {
       dispatch(setToken(token));
       setLoading(false);
     });
-    console.log(unsubscribe);
 
     return () => unsubscribe();
   }, [dispatch]);

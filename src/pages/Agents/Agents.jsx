@@ -140,7 +140,6 @@ export default function Agents() {
   const { wallet, Currency } = userDetails?.response?.UserData || {};
   // const location = useLocation();
   // const coins = location?.state?.coins;
-  console.log("STATE COINS", stateCoins);
   const { data, isLoading, isError } = useGetAllAgentsQuery(stateCoins);
 
   // decide what to render
@@ -224,10 +223,6 @@ export default function Agents() {
   const [changeCurrencyApi] = useChangeCurrencyMutation();
 
   const { data: recentTransactionsData } = useGetRecentTransactionsQuery();
-  console.log(
-    recentTransactionsData?.response?.coinHistory,
-    "Recent transactions"
-  );
 
   const handleChangeCurrency = async (e) => {
     try {
@@ -239,10 +234,8 @@ export default function Agents() {
           `Currency Converted to ${res?.data?.response?.Currency}`,
           { autoClose: 2000 }
         );
-        console.log("CHANGE CURRENCY DATA", res);
       }
     } catch (error) {
-      console.log("Error is ==> ", error);
       return toast.error("There was something wrong.");
     }
   };

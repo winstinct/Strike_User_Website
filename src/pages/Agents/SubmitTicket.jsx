@@ -26,12 +26,7 @@ export default function SubmitTicket() {
   const convertedAmount = useSelector(
     (store) => store.convertedCoin.convertedAmount
   );
-  console.log("AMOUNT TO BE PAID", convertedAmount);
   const amountToBePaid = (convertedAmount * reqCoins).toFixed(2);
-
-  // console.log("MONGO ID", id);
-  console.log("URL", url);
-  console.log("IMAGE", selectImg);
 
   const customStyles = {
     container: (provided) => ({
@@ -107,7 +102,6 @@ export default function SubmitTicket() {
             try {
               const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
               setUrl(downloadURL);
-              console.log("File available at", downloadURL);
               resolve(downloadURL); // Resolve the promise with the download URL
             } catch (error) {
               console.error("Failed to get download URL:", error);
@@ -132,20 +126,16 @@ export default function SubmitTicket() {
     setLoaderBtn(true);
     let downloadURL;
     try {
-      console.log("Uploading image...");
       downloadURL = await handleImageChange();
 
       if (!downloadURL) {
         console.error("Image upload failed or no image selected.");
         return; // Exit if image upload fails
       }
-
-      console.log("Image uploaded successfully:", downloadURL);
     } catch (error) {
       console.error("Error during image upload:", error);
       return; // Exit if an error occurs during image upload
     }
-    console.log("FORM SUBMITTED...");
     const token = await getAccessToken();
     try {
       const response = await fetch(APIurls.submitTicket, {
@@ -169,7 +159,6 @@ export default function SubmitTicket() {
         throw new Error(result.message);
       }
       toast.success(result.message);
-      console.log("Submit Proof Result: ", result.message);
       navigate("/wallet");
     } catch (error) {
       console.log("ERROR WHILE SUBMITTING", error);

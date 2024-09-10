@@ -42,17 +42,14 @@ export default function SoldOutLotteries() {
 
   // RTK Query Hooks
   const { data, isLoading } = useGetPublicLotteriesQuery();
-  console.log("All Public Lotteries===> ", data?.response);
 
   const soldOutLotteries = data?.response?.Lottary?.filter(
     (item) => item.lottaryPurchase.length >= item.Totaltickets
   );
-  console.log("Already sold out lotteries========> ", soldOutLotteries);
 
   const activeLotteris = data?.response?.Lottary?.filter(
     ({ expieryDate }) => new Date(expieryDate).getTime() >= new Date().getTime()
   );
-  console.log("All Public Lotteries==> ", activeLotteris);
 
 
   return (

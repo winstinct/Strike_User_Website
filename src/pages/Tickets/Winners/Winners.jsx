@@ -113,7 +113,6 @@ export default function Winners() {
       </header>
       {
         content ? content : (<Swiper
-          onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           {...swiperConfig}
           className="w-full"

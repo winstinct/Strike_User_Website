@@ -17,7 +17,6 @@ export default function AddToCartPrivateLottery() {
   const navigate = useNavigate();
   const { uniqueId } = useParams();
   const { data } = useGetSinglePrivateLotteryQuery(uniqueId);
-  console.log("Private Lottery data==> ", data?.response?.privateLottery)
   const {
     lottaryImage,
     Name,

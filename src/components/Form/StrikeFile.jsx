@@ -16,7 +16,6 @@ export default function StrikeFile({ name, type, label }) {
 
   const selectedFile = watch(name);
   useEffect(()=>{
-    console.log("Selected File====> ", selectedFile?.length)
     selectedFile?.length > 0 && dispatch(addUserDetails({[name]:selectedFile}))
   }, [selectedFile, dispatch])
 

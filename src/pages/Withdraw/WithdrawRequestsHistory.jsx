@@ -36,7 +36,6 @@ export default function WithdrawRequestsHistory() {
   };
 
   const { data, isLoading } = useGetWithdrawRequestHistoryQuery();
-  console.log(data?.response?.withdrawList);
   return (
     <section>
       {/* Back button  */}
@@ -102,7 +101,6 @@ export default function WithdrawRequestsHistory() {
         <WithdrawRequestHistorySkeleton />
       ) : (
         <Swiper
-          onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           {...swiperConfig}
           className="w-full"

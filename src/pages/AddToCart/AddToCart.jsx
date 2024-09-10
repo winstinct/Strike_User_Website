@@ -38,8 +38,6 @@ export default function AddToCart() {
     _id,
   } = data?.response?.LottaryData || {};
 
-  console.log("Lottery mongo id====> ", data)
-
   const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
     useAddToWishlistMutation();
 
@@ -95,8 +93,6 @@ export default function AddToCart() {
 
   const { data: wishListData, isLoading: isLoadingWishListData } =
     useGetWishlistQuery();
-
-    console.log("Wish list in add to cart page==========> ", wishListData?.response?.wishlistArray?.find(item => item._id == _id))
     const isFoundInWishlist = wishListData?.response?.wishlistArray?.find(item => item._id == _id);
 
 

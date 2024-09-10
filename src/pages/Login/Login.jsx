@@ -46,7 +46,6 @@ export default function Login() {
     if (!emailRegex.test(email)) {
       return setShowError(true);
     }
-    console.log(email, password);
 
     //Login by firebase
     try {
