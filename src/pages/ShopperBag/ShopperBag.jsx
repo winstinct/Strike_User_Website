@@ -7,7 +7,6 @@ import {
 } from "../../redux/features/cart/cartApi";
 import CartItem from "./CartItem";
 import ShopperBagEmpty from "./ShopperBagEmpty";
-import ThreeDotsLoader from "../../components/ThreeDotsLoader";
 import DisplayNetworkError from "../../components/DisplayNetworkError";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -36,11 +35,12 @@ export default function ShopperBag() {
     try {
       const res = await applyCouponCodeApi({
         coupon_code: couponCode,
-        ticketList: [],
+        ticketList: cartItemsIdsArray,
       });
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
+        console.log("Coupon Code Successful =========> ", res)
         toast.success(res?.data?.message, { autoClose: 5000 });
       }
     } catch (error) {
