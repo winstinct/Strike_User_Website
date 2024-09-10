@@ -163,6 +163,21 @@ export const lotteryApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+
+    getUserWinnings: builder.query({
+      query: () => {
+        return {
+          url: `/users/fetch-winnings`,
+          method: "GET",
+        };
+      },
+    }),
+
+
+
+
+
   }),
 });
 
@@ -184,4 +199,5 @@ export const {
   useConvertINRIntoUSDTMutation,
   useWithdrawCoinsMutation,
   useBecomePublicAgentMutation,
+  useGetUserWinningsQuery
 } = lotteryApi;

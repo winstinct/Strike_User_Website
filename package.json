@@ -30,6 +30,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.25.1",
     "react-select": "^5.8.0",
+    "react-share-social": "^0.1.60",
     "react-switch": "^7.0.0",
     "react-toastify": "^10.0.5",
     "reactjs-popup": "^2.0.6",

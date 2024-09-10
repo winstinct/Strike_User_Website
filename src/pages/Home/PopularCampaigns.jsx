@@ -11,9 +11,7 @@ import {
 } from "../../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
 import Countdown from "react-countdown";
-import { ThreeDots } from "react-loader-spinner";
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
-import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 import { useSelector } from "react-redux";
 
 const swiperConfig = {
@@ -55,7 +53,7 @@ export default function PopularCampaigns() {
 
  
 
-  const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
+  const [addToWishlistApi] =
     useAddToWishlistMutation();
 
   const handleAddToWishlist = async (uniqueId) => {
@@ -72,7 +70,7 @@ export default function PopularCampaigns() {
     }
   };
 
-  const { data: wishListData, isLoading: isLoadingWishListData } =
+  const { data: wishListData} =
     useGetWishlistQuery();
   console.log("Wishlist Data==> ", wishListData?.response?.wishlistArray);
 
@@ -149,7 +147,6 @@ export default function PopularCampaigns() {
             ticketPrice,
             winneramount,
             Totaltickets,
-            winnerSlot,
             UniqueID,
             lottaryPurchase
           }) => (

@@ -35,7 +35,7 @@ export default function PublicLottery() {
   };
 
   const { data, isLoading } = useGetTicketHistoryQuery();
-
+  console.log("Upcoming draws =============> ", data?.response)
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[1rem]">
@@ -96,20 +96,18 @@ export default function PublicLottery() {
           {...swiperConfig}
           className="w-full"
         >
-          {data?.response?.TicketHistory?.map(
+          {data?.response?.TicketHistory?.length  && [...data?.response?.TicketHistory]?.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(
             ({
               _id,
-              LottaryType,
               OrderValue,
+              lotteryToken,
+              createdAt,
               LottaryDetails: {
-                LottarySerial,
                 expieryDate,
-                winneramount,
                 Currency,
-                updatedAt,
               },
             }) => (
-              <SwiperSlide>
+              <SwiperSlide key={_id}>
                 <div>
                   <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
                     <h3 className="mb-3">Public Lottery</h3>
@@ -128,10 +126,10 @@ export default function PublicLottery() {
                           </span>
                         </p>
                         <div className="font-semibold text-[14px] gap-1">
-                          Purchased on: {moment(updatedAt).format("DD-MM-YYYY")}
+                          Purchased on: {moment(createdAt).format("DD-MM-YYYY")}
                         </div>
                         <p className="font-medium text-[14px]">
-                          <span>Order ID:</span> <span>#{LottarySerial}</span>
+                          <span>Order ID:</span> <span>{lotteryToken}</span>
                         </p>
                       </div>
   

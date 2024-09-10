@@ -5,6 +5,7 @@ import { AccordionCustomIcon } from "./Accordion";
 import CopyCode from "./CopyCode";
 import { useGetSpecificOfferQuery } from "../../../redux/features/lottery/lotteryApi";
 import moment from "moment";
+import CountDownTimer from "../../../shared/CountDownTimer/CountDownTimer";
 
 export function OfferDetailsModal({offerId}) {
   const [size, setSize] = useState(null);
@@ -32,8 +33,8 @@ export function OfferDetailsModal({offerId}) {
       >
         <DialogHeader className="rounded-t-[30px] flex justify-center items-center">
           <span className="text-[1.5rem] font-semibold">Offer ends in:</span>
-          <span className="text-[#25BF17] text-[2.5rem] font-bold italic">
-            {moment(ExpieryDate).format('lll')}
+          <span className="text-[#25BF17] text-[2.5rem] font-bold italic ml-3">
+            <CountDownTimer expieryDate={ExpieryDate}/>
           </span>
         </DialogHeader>
         <DialogBody

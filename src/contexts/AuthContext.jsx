@@ -28,9 +28,7 @@ export const AuthContextProvider = ({ children }) => {
   function getAccessToken() {
     return currentUser?.getIdToken(true);
   }
-  function saveUserRole(value) {
-    setUserRole(value);
-  }
+
   const getUserRoleFunc = async (user) => {
     try {
       const result = await fetch(APIurls.getRoles, {
@@ -55,14 +53,15 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
-      await getUserRoleFunc(user)
-      dispatch(setToken(user?.accessToken));
+      await getUserRoleFunc(user);
+      const token = await auth.currentUser.getIdToken(true);
+      dispatch(setToken(token));
       setLoading(false);
     });
     console.log(unsubscribe);
 
-    return ()=>unsubscribe();
-  }, []);
+    return () => unsubscribe();
+  }, [dispatch]);
 
   const value = {
     currentUser,
@@ -70,12 +69,8 @@ export const AuthContextProvider = ({ children }) => {
     login,
     logout,
     getAccessToken,
-    userRole
+    userRole,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

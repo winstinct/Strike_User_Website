@@ -1,23 +1,27 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Progress } from "@material-tailwind/react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useGetSinglePublicLotteryQuery } from "../../redux/features/lottery/lotteryApi";
 import Countdown from "react-countdown";
 import {
   useAddToWishlistMutation,
+  useGetWishlistQuery,
   useRemoveFromWishlistMutation,
 } from "../../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
 import { useAddItemToCartMutation } from "../../redux/features/cart/cartApi";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
+import { useEffect } from "react";
 
 export default function AddToCart() {
-  window.scrollTo({behavior:'smooth', top:0})
+  const location = useLocation()
   const navigate = useNavigate();
   const { uniqueId } = useParams();
   const { data } = useGetSinglePublicLotteryQuery(uniqueId);
-  console.log("single public lottery==> ", data?.response)
+  useEffect(()=>{
+    window.scrollTo({behavior:'smooth', top:0})
+  }, [])
   const {
     lottaryImage,
     Name,
@@ -30,8 +34,11 @@ export default function AddToCart() {
     lottaryType,
     termsandcondi,
     whitelist,
-    lottaryPurchase
+    lottaryPurchase,
+    _id,
   } = data?.response?.LottaryData || {};
+
+  console.log("Lottery mongo id====> ", data)
 
   const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
     useAddToWishlistMutation();
@@ -84,6 +91,15 @@ export default function AddToCart() {
       return toast.error("There was something wrong.");
     }
   };
+
+
+  const { data: wishListData, isLoading: isLoadingWishListData } =
+    useGetWishlistQuery();
+
+    console.log("Wish list in add to cart page==========> ", wishListData?.response?.wishlistArray?.find(item => item._id == _id))
+    const isFoundInWishlist = wishListData?.response?.wishlistArray?.find(item => item._id == _id);
+
+
   return (
     <section>
       <div onClick={() => navigate(-1)} className="backBtn mb-[2rem]">
@@ -121,7 +137,7 @@ export default function AddToCart() {
             />
           )}
 
-          {whitelist?.length == 0 &&
+          {!isFoundInWishlist &&
             !isLoadingAddWishlist &&
             !isLoadingRemoveFromWishlist && (
               <button
@@ -144,7 +160,7 @@ export default function AddToCart() {
               </button>
             )}
 
-          {whitelist?.length > 0 &&
+          {isFoundInWishlist &&
             !isLoadingAddWishlist &&
             !isLoadingRemoveFromWishlist && (
               <button

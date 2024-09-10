@@ -32,7 +32,6 @@ import Wallet from "../pages/Wallet/Wallet";
 import Deposit from "../pages/Deposit/Deposit";
 import AgentsLayout from "../pages/Agents/AgentsLayout";
 import Agents from "../pages/Agents/Agents";
-import DepositHistory from "../pages/DepositHistory/History";
 import Profile from "../pages/Profile/Profile";
 import ProfilePersonalDetails from "../pages/Profile/ProfilePersonalDetails";
 import ProfileContactDetails from "../pages/Profile/ProfileContactDetails";
@@ -61,6 +60,7 @@ import AgentDetails from "../pages/Agents/AgentDetails";
 import SubmitTicket from "../pages/Agents/SubmitTicket";
 import AddToCartPrivateLottery from "../pages/AddToCart/AddToCartPrivateLottery";
 import PurchaseSuccess from "../pages/AddToCart/PurchaseSuccess";
+import SoldOutLotteries from "../pages/Home/SoldOutLotteries";
 
 export const router = createBrowserRouter([
   {
@@ -143,9 +143,7 @@ export const router = createBrowserRouter([
           {
             path: "soldout-lotteries",
             element: (
-              <h3 className="font-medium text-[1.5rem] text-center py-5 text-gray-500">
-                Sold out lottery is not available.
-              </h3>
+              <SoldOutLotteries/>
             ),
           },
         ],
@@ -300,7 +298,7 @@ export const router = createBrowserRouter([
         path: "deposit-history",
         element: (
           <PrivateRoute>
-            <DepositHistory />
+            <AgentsHistory />
           </PrivateRoute>
         ),
       },

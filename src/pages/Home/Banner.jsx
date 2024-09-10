@@ -32,7 +32,7 @@ export default function Banner() {
         navigation={true}
       >
         {data?.response?.Banners?.map(({ _id, ExternalLink, BannerImg }) => (
-          <SwiperSlide ke={_id}>
+          <SwiperSlide key={_id}>
             <Link to={ExternalLink} target="_blank">
               <div>
                 <img

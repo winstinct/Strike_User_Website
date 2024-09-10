@@ -1,5 +1,11 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Progress } from "@material-tailwind/react";
+import {
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
+  Progress,
+} from "@material-tailwind/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
@@ -10,10 +16,40 @@ import {
   useGetWishlistQuery,
 } from "../../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
-import Countdown from "react-countdown";
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
 import { useSelector } from "react-redux";
 import { useAuth } from "../../contexts/AuthContext";
+import CountDownTimer from "../../shared/CountDownTimer/CountDownTimer";
+import { ShareSocial } from "react-share-social";
+
+const ShareSocialModal = ({url}) => {
+  const [size, setSize] = useState(null);
+  const handleOpen = (value) => setSize(value);
+  return (
+    <>
+      <Dialog open={size === "sm"} size={size || "sm"} handler={handleOpen}>
+        <DialogHeader></DialogHeader>
+        <DialogBody>
+          <ShareSocial
+            url={`${window.location}${url}`}
+            socialTypes={["facebook", "twitter", "reddit", "linkedin"]}
+          />
+        </DialogBody>
+        <DialogFooter onClick={() => handleOpen(null)}>
+          <button className="bg-gray-600 text-white rounded-lg px-5 py-2">Close</button>
+        </DialogFooter>
+      </Dialog>
+
+      <button
+        onClick={() => handleOpen("sm")}
+        className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2"
+      >
+        <Icon className="text-[1rem]" icon="lucide:share" />
+        Share
+      </button>
+    </>
+  );
+};
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -51,11 +87,14 @@ export default function PublicLotteries() {
   const { data, isLoading } = useGetPublicLotteriesQuery();
   const activeLotteris = data?.response?.Lottary?.filter(
     ({ expieryDate }) => new Date(expieryDate).getTime() >= new Date().getTime()
-  );
-  console.log("All Public Lotteries==> ", activeLotteris);
+  ).filter((item) => {
+    return (
+      item?.lottaryPurchase?.length != item?.Totaltickets &&
+      item?.lottaryPurchase?.length < item?.Totaltickets
+    );
+  });
 
-  const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
-    useAddToWishlistMutation();
+  const [addToWishlistApi] = useAddToWishlistMutation();
 
   const handleAddToWishlist = async (uniqueId) => {
     try {
@@ -71,8 +110,7 @@ export default function PublicLotteries() {
     }
   };
 
-  const { data: wishListData, isLoading: isLoadingWishListData } =
-    useGetWishlistQuery();
+  const { data: wishListData } = useGetWishlistQuery();
 
   return (
     <section>
@@ -142,7 +180,6 @@ export default function PublicLotteries() {
             ticketPrice,
             winneramount,
             Totaltickets,
-            winnerSlot,
             UniqueID,
             lottaryPurchase,
           }) => (
@@ -216,18 +253,9 @@ export default function PublicLotteries() {
                       >
                         <div className="pt-[1rem] flex items-center justify-center gap-1">
                           <span className="font-semibold">Deal ends in:</span>{" "}
-                          <Countdown
-                            date={new Date(expieryDate).getTime()}
-                            zeroPadTime={false}
-                            renderer={({ days, hours, minutes, seconds }) => (
-                              <div className="text-[1.25rem] text-[#E0170B] font-bold italic flex gap-1">
-                                <span>{days}d</span>
-                                <span>{hours}h</span>
-                                <span>{minutes}m</span>
-                                <span>{seconds}s</span>
-                              </div>
-                            )}
-                          />
+                          <div className="text-[1.25rem] text-[#E0170B]">
+                            <CountDownTimer expieryDate={expieryDate} />
+                          </div>
                         </div>
                         <div className="text-[11px] text-[#858585] py-[0.8rem] flex items-center justify-center gap-1 flex-wrap">
                           <Icon icon="zondicons:exclamation-solid" />
@@ -247,10 +275,7 @@ export default function PublicLotteries() {
                   </div>
                 </Link>
                 <div className="flex gap-3 text-[12px] font-semibold mt-[1rem]">
-                  <button className="bg-[#F3F3F3] rounded-[0.5rem] py-2 flex-1 flex justify-center items-center gap-2">
-                    <Icon className="text-[1rem]" icon="lucide:share" />
-                    Share
-                  </button>
+                  <ShareSocialModal url={`addToCart/${UniqueID}`}/>
 
                   {currentUser && (
                     <button
