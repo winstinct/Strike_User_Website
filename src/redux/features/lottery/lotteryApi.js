@@ -109,7 +109,7 @@ export const lotteryApi = baseApi.injectEndpoints({
     convertINRIntoUSDT: builder.mutation({
       query: (amount) => {
         return {
-          url: `/users/convert-inr-to-usdt?amount=${amount}&currencyType=INR`,
+          url: `/users/convert-inr-to-usdt?amount=${amount}&currencyType=USDT`,
           method: "GET",
         };
       },
