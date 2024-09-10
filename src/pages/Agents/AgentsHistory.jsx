@@ -22,6 +22,7 @@ export default function AgentsHistory() {
   const [isBeginning, setIsBeginning] = useState(null);
 
   const { data, isLoading, isError } = useGetAllAgentsTicketsQuery();
+  // const agentTickets = data?.response?.agentTicket ? data?.response?.agentTicket?.reverse() : [];
   if (!isLoading && isError) {
     return (
       <h1 className="text-center text-red-500 py-[5rem]">
@@ -29,13 +30,13 @@ export default function AgentsHistory() {
       </h1>
     );
   }
-  if (data?.length === 0) {
+  if (data?.response?.agentTicket?.length === 0) {
     return (
       <h1 className="text-center py-[5rem]">There are no records to display</h1>
     );
   }
 
-  console.log("Agents Tickets", data);
+  console.log("Agents Tickets", data?.response?.agentTicket);
 
   const handleNext = () => {
     swiperInstance?.slideNext();
@@ -105,7 +106,7 @@ export default function AgentsHistory() {
         {...swiperConfig}
         className="w-full m-3"
       >
-        {data?.response?.agentTicket.map((item) => (
+        {data?.response?.agentTicket?.map((item) => (
           <SwiperSlide key={item.ticket_id}>
             <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
               <div className="middle1"></div>
@@ -119,8 +120,8 @@ export default function AgentsHistory() {
                   <span
                     className={`font-bold ${
                       item.status === "REJECTED"
-                        ? "text-gray-600"
-                        : "text-[#25BF17]"
+                        ? "text-gray-600" : item.status === "PROCESSED" ? "text-[#25BF17]"
+                        : "text-[#FFCE06]"
                     }`}
                   >
                     {item.status}

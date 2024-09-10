@@ -17,7 +17,7 @@ export default function AgentsLayout() {
       {/* Back button  */}
       <div className="flex justify-between items-center mb-[2rem]">
         <div className="flex items-center gap-5">
-          <div onClick={() => navigate("/deposit")} className="backBtn">
+          <div onClick={() => navigate(-1)} className="backBtn">
             <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
           </div>
           <h3 className="text-[1.5rem] font-bold">Agents</h3>
@@ -72,7 +72,7 @@ export default function AgentsLayout() {
         </div>
       </div>
 
-      {!(location?.pathname?.split("/").includes("agent-details")) && (
+      {!(location?.pathname?.split("/").includes("agent-details")) && !(location?.pathname?.split("/").includes("submit-ticket")) && (
         <>
           <div
             style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}

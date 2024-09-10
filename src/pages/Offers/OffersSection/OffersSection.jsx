@@ -35,13 +35,15 @@ export default function OffersSection() {
     setIsEnd(swiperInstance?.isEnd);
   };
 
-  const {data, isLoading} = useGetOffersQuery();
-  console.log("All offers ==> ", data?.response?.offer)
+  const { data, isLoading } = useGetOffersQuery();
+  console.log("All offers ==> ", data?.response?.offer);
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
         <div>
-          <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">Offers</h3>
+          <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
+            Offers
+          </h3>
           <p>*Available offers</p>
         </div>
         <div className="flex gap-5 text-[2rem]">
@@ -89,37 +91,45 @@ export default function OffersSection() {
         </div>
       </header>
 
-      {isLoading ? <ValidOfferSkeleton/> : (<Swiper
-        onSwiper={(swiper) => setSwiperInstance(swiper)}
-        {...swiperConfig}
-        className="w-full m-3"
-      >
-        {
-          data?.response?.offer?.map(({ExpieryDate, coupon_code, title, _id})=>(<SwiperSlide>
-            <div
-              style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
-              className="p-[1rem] text-white rounded-[20px] bg-white"
-            >
-              <div>
-                <p>Hurry up!</p>
-                <h3 className="font-bold text-[2rem] italic">
-                  {title}
-                </h3>
-                <CopyCode code={coupon_code}/>
-                <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
-                  <div className="py-[0.5rem]">
-                    <span className="font-semibold text-[1.25rem]">
-                      Offer ends in:
-                    </span>{" "}
-                    <span className="font-bold text-[1.5rem]">{moment(ExpieryDate).format('LT')}</span>
+      {isLoading ? (
+        <ValidOfferSkeleton />
+      ) : (
+        <Swiper
+          onSwiper={(swiper) => setSwiperInstance(swiper)}
+          {...swiperConfig}
+          className="w-full m-3"
+        >
+          {data?.response?.offer?.map(
+            ({ ExpieryDate, coupon_code, title, _id }) => (
+              <SwiperSlide key={_id}>
+                <div
+                  style={{
+                    backgroundImage: "linear-gradient(#36D1DC, #5B86E5)",
+                  }}
+                  className="p-[1rem] text-white rounded-[20px] bg-white"
+                  >
+                  <div>
+                    <p>Hurry up!</p>
+                    <h3 className="font-bold text-[2rem] italic">{title}</h3>
+                    <CopyCode code={coupon_code} />
+                    <div className="bg-red-500 rounded-[20px] text-center mt-[1.5rem]">
+                      <div className="py-[0.5rem]">
+                        <span className="font-semibold text-[1.25rem]">
+                          Offer ends in:
+                        </span>{" "}
+                        <span className="font-bold text-[1.5rem]">
+                          {moment(ExpieryDate).format("LT")}
+                        </span>
+                      </div>
+                      <OfferDetailsModal offerId={_id} />
+                    </div>
                   </div>
-                  <OfferDetailsModal offerId={_id}/>
                 </div>
-              </div>
-            </div>
-          </SwiperSlide>))
-        }
-      </Swiper>)}
+              </SwiperSlide>
+            )
+          )}
+        </Swiper>
+      )}
     </section>
   );
 }

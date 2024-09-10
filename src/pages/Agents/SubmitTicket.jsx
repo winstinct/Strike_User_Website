@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { storage } from "../../Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ThreeDots } from "react-loader-spinner";
+import { useSelector } from "react-redux";
 
 export default function SubmitTicket() {
   const [selectImg, setSelectImg] = useState();
@@ -22,6 +23,11 @@ export default function SubmitTicket() {
   const reqCoins = location.state.reqCoins;
   const navigate = useNavigate();
   const [loaderBtn, setLoaderBtn] = useState(false);
+  const convertedAmount = useSelector(
+    (store) => store.convertedCoin.convertedAmount
+  );
+  console.log("AMOUNT TO BE PAID", convertedAmount);
+  const amountToBePaid = (convertedAmount * reqCoins).toFixed(2);
 
   // console.log("MONGO ID", id);
   console.log("URL", url);
@@ -298,7 +304,7 @@ export default function SubmitTicket() {
           className="text-[15px] font-semibold outline-none border border-[#CCC] rounded-md p-3 w-full bg-[#D9D9D9]"
           type="text"
           readOnly
-          value={reqCoins}
+          value={amountToBePaid}
         />
       </div>
       <div className="flex flex-col gap-2 col-span-2">

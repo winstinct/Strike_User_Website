@@ -1,5 +1,4 @@
 import strikeLogo from "../../assets/strike-logo.svg";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useAuth } from "../../contexts/AuthContext";
 import { useDispatch, useSelector } from "react-redux";
 import NotificationModal from "../../pages/Notification/NotificationModal";

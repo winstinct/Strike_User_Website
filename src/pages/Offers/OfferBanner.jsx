@@ -18,6 +18,7 @@ export default function OfferBanner() {
       </h1>
     );
   }
+
   return (
     <div>
       <Swiper
@@ -32,7 +33,7 @@ export default function OfferBanner() {
         navigation={true}
       >
         {data?.response?.Banners?.map(({ _id, ExternalLink, BannerImg }) => (
-          <SwiperSlide ke={_id}>
+          <SwiperSlide key={_id}>
             <Link to={ExternalLink} target="_blank">
               <div>
                 <img

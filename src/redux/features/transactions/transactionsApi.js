@@ -26,11 +26,20 @@ export const transactionsApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getSingleWalletAgentDetails: builder.query({
+      query: (id) => {
+        return {
+          url: `https://api.strikexgaming.com/users/fetch-wallet/agent/single/${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
 export const {
   useGetAllAgentsQuery,
   useGetSingleAgentDetailsQuery,
-  useGetAllAgentsTicketsQuery
+  useGetAllAgentsTicketsQuery,
+  useGetSingleWalletAgentDetailsQuery,
 } = transactionsApi;
