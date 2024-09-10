@@ -8,7 +8,7 @@ export default function Deposit() {
 
   return (
     <div>
-      <WalletCard/>
+      <WalletCard />
 
       <div className="mt-[1.2rem]">
         <Link to="/deposit-history">
@@ -83,7 +83,7 @@ export default function Deposit() {
         />
       </div>
 
-      {amount && (
+      {amount && amount >= 100 && (
         <div className="mt-[1.5rem]">
           <h3 className="font-medium mb-[0.3rem]">Select Payment Method</h3>
           <div className="grid lg:grid-cols-2 gap-5 font-bold text-[1.5rem]">

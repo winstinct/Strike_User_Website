@@ -125,10 +125,9 @@ const currencyCodes = [
     "XOF",
     "YER",
     "ZAR",
-  ];
+];
 
 export default function WalletCard() {
-
 
 
     const dispatch = useDispatch();
@@ -177,8 +176,6 @@ export default function WalletCard() {
         })
       );
     }, [data, convertedCurrencyData]);
-
-
 
 
   return (

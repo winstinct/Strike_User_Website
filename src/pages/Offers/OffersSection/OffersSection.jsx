@@ -123,6 +123,7 @@ export default function OffersSection() {
                     </div>
                     <OfferDetailsModal offerId={_id} />
                   </div>
+                  <OfferDetailsModal offerId={_id}/>
                 </div>
               </div>
             </SwiperSlide>

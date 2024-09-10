@@ -1,5 +1,5 @@
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useGetSingleAgentDetailsQuery } from "../../redux/features/transactions/transactionsApi";
+import { useGetSingleAgentDetailsQuery, useGetSingleWalletAgentDetailsQuery } from "../../redux/features/transactions/transactionsApi";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useRef, useState } from "react";
 import noRecharge from "../../assets/no-recharge.svg";
@@ -28,9 +28,12 @@ export default function AgentDetails() {
   const location = useLocation();
   const reqCoins = location.state.reqCoins;
 
+  const {data: walletAgentDetails} = useGetSingleWalletAgentDetailsQuery(id);
+  const walletAgent = walletAgentDetails?.response?.agentDetails || {};
+  console.log("Single Wallet Agent", walletAgent);
   const { data, isLoading, isError } = useGetSingleAgentDetailsQuery(id);
-  console.log("Agent Details", data?.response?.agentTicket);
   const agentDetails = data?.response?.agentTicket || [];
+  console.log("Agent Details", agentDetails);
 
   useEffect(() => {
     return () => {
@@ -82,9 +85,9 @@ export default function AgentDetails() {
       >
         <div>
           <h1 className="text-[20px] font-semibold">
-            {agentDetails[0]?.agentId?.FirstName +
+            {walletAgent?.FirstName +
               " " +
-              agentDetails[0]?.agentId?.LastName}
+              walletAgent?.LastName}
           </h1>
           <span className="text-[13px] text-[#808080] mt-[-2px] block">
             Strike Agent
@@ -95,14 +98,14 @@ export default function AgentDetails() {
             Account Holder Name:
           </label>
           <span className="text-[15px] font-semibold">
-            {agentDetails[0]?.agentId?.bankDetails?.acc_name}
+            {walletAgent?.bankDetails?.acc_name}
           </span>
-          {isTextCopied === agentDetails[0]?.agentId?.bankDetails?.acc_name ? (
+          {isTextCopied === walletAgent?.bankDetails?.acc_name ? (
             <span className="text-[#029CFD] text-[14px]">Copied!</span>
           ) : (
             <button
               onClick={() =>
-                copyTextHandler(agentDetails[0]?.agentId?.bankDetails?.acc_name)
+                copyTextHandler(walletAgent?.bankDetails?.acc_name)
               }
             >
               <Icon
@@ -117,16 +120,16 @@ export default function AgentDetails() {
             A/C Number:
           </label>
           <span className="text-[15px] font-semibold">
-            {agentDetails[0]?.agentId?.bankDetails?.acc_number}
+            {walletAgent?.bankDetails?.acc_number}
           </span>
           {isTextCopied ===
-          agentDetails[0]?.agentId?.bankDetails?.acc_number ? (
+          walletAgent?.bankDetails?.acc_number ? (
             <span className="text-[#029CFD] text-[14px]">Copied!</span>
           ) : (
             <button
               onClick={() =>
                 copyTextHandler(
-                  agentDetails[0]?.agentId?.bankDetails?.acc_number
+                  walletAgent?.bankDetails?.acc_number
                 )
               }
             >
@@ -142,14 +145,14 @@ export default function AgentDetails() {
             IFSC Code:
           </label>
           <span className="text-[15px] font-semibold">
-            {agentDetails[0]?.agentId?.bankDetails?.acc_ifsc}
+            {walletAgent?.bankDetails?.acc_ifsc}
           </span>
-          {isTextCopied === agentDetails[0]?.agentId?.bankDetails?.acc_ifsc ? (
+          {isTextCopied === walletAgent?.bankDetails?.acc_ifsc ? (
             <span className="text-[#029CFD] text-[14px]">Copied!</span>
           ) : (
             <button
               onClick={() =>
-                copyTextHandler(agentDetails[0]?.agentId?.bankDetails?.acc_ifsc)
+                copyTextHandler(walletAgent?.bankDetails?.acc_ifsc)
               }
             >
               <Icon
