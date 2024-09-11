@@ -1,177 +1,174 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useAuth } from "../../contexts/AuthContext";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
-import { useChangeCurrencyMutation, useConvertCoinsIntoCryptoQuery, useConvertCurrencyQuery, useGetRecentTransactionsQuery } from "../../redux/features/lottery/lotteryApi";
+import {
+  useChangeCurrencyMutation,
+  useConvertCoinsIntoCryptoQuery,
+  useConvertCurrencyQuery,
+} from "../../redux/features/lottery/lotteryApi";
 import { toast } from "react-toastify";
 import { addConvertedCoinDetails } from "../../redux/convertedCoinSlice";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const currencyCodes = [
-    "INR",
-    "USD",
-    "EUR",
-    "CAD",
-    "AED",
-    "AFN",
-    "ALL",
-    "AMD",
-    "ARS",
-    "AUD",
-    "AZN",
-    "BAM",
-    "BDT",
-    "BGN",
-    "BHD",
-    "BIF",
-    "BND",
-    "BOB",
-    "BRL",
-    "BWP",
-    "BYR",
-    "BZD",
-    "CDF",
-    "CHF",
-    "CLP",
-    "CNY",
-    "COP",
-    "CRC",
-    "CVE",
-    "CZK",
-    "DJF",
-    "DKK",
-    "DOP",
-    "DZD",
-    "EEK",
-    "EGP",
-    "ERN",
-    "ETB",
-    "GBP",
-    "GEL",
-    "GHS",
-    "GNF",
-    "GTQ",
-    "HKD",
-    "HNL",
-    "HRK",
-    "HUF",
-    "IDR",
-    "ILS",
-    "IQD",
-    "IRR",
-    "ISK",
-    "JMD",
-    "JOD",
-    "JPY",
-    "KES",
-    "KHR",
-    "KMF",
-    "KRW",
-    "KWD",
-    "KZT",
-    "LBP",
-    "LKR",
-    "LTL",
-    "LVL",
-    "LYD",
-    "MAD",
-    "MDL",
-    "MGA",
-    "MKD",
-    "MMK",
-    "MOP",
-    "MUR",
-    "MXN",
-    "MYR",
-    "MZN",
-    "NAD",
-    "NGN",
-    "NIO",
-    "NOK",
-    "NPR",
-    "NZD",
-    "OMR",
-    "PAB",
-    "PEN",
-    "PHP",
-    "PKR",
-    "PLN",
-    "PYG",
-    "QAR",
-    "RON",
-    "RSD",
-    "RUB",
-    "RWF",
-    "SAR",
-    "SDG",
-    "SEK",
-    "SGD",
-    "SOS",
-    "SYP",
-    "THB",
-    "TND",
-    "TOP",
-    "TRY",
-    "TTD",
-    "TWD",
-    "TZS",
-    "UAH",
-    "UGX",
-    "UYU",
-    "UZS",
-    "VEF",
-    "VND",
-    "XAF",
-    "XOF",
-    "YER",
-    "ZAR",
+  "INR",
+  "USD",
+  "EUR",
+  "CAD",
+  "AED",
+  "AFN",
+  "ALL",
+  "AMD",
+  "ARS",
+  "AUD",
+  "AZN",
+  "BAM",
+  "BDT",
+  "BGN",
+  "BHD",
+  "BIF",
+  "BND",
+  "BOB",
+  "BRL",
+  "BWP",
+  "BYR",
+  "BZD",
+  "CDF",
+  "CHF",
+  "CLP",
+  "CNY",
+  "COP",
+  "CRC",
+  "CVE",
+  "CZK",
+  "DJF",
+  "DKK",
+  "DOP",
+  "DZD",
+  "EEK",
+  "EGP",
+  "ERN",
+  "ETB",
+  "GBP",
+  "GEL",
+  "GHS",
+  "GNF",
+  "GTQ",
+  "HKD",
+  "HNL",
+  "HRK",
+  "HUF",
+  "IDR",
+  "ILS",
+  "IQD",
+  "IRR",
+  "ISK",
+  "JMD",
+  "JOD",
+  "JPY",
+  "KES",
+  "KHR",
+  "KMF",
+  "KRW",
+  "KWD",
+  "KZT",
+  "LBP",
+  "LKR",
+  "LTL",
+  "LVL",
+  "LYD",
+  "MAD",
+  "MDL",
+  "MGA",
+  "MKD",
+  "MMK",
+  "MOP",
+  "MUR",
+  "MXN",
+  "MYR",
+  "MZN",
+  "NAD",
+  "NGN",
+  "NIO",
+  "NOK",
+  "NPR",
+  "NZD",
+  "OMR",
+  "PAB",
+  "PEN",
+  "PHP",
+  "PKR",
+  "PLN",
+  "PYG",
+  "QAR",
+  "RON",
+  "RSD",
+  "RUB",
+  "RWF",
+  "SAR",
+  "SDG",
+  "SEK",
+  "SGD",
+  "SOS",
+  "SYP",
+  "THB",
+  "TND",
+  "TOP",
+  "TRY",
+  "TTD",
+  "TWD",
+  "TZS",
+  "UAH",
+  "UGX",
+  "UYU",
+  "UZS",
+  "VEF",
+  "VND",
+  "XAF",
+  "XOF",
+  "YER",
+  "ZAR",
 ];
 
 export default function WalletCard() {
+  const dispatch = useDispatch();
+  const { data } = useGetUserDetailsQuery();
+  const { wallet, Currency } = data?.response?.UserData || {};
 
+  // RTK Query Hooks
+  const { data: cryptoConvertedData } = useConvertCoinsIntoCryptoQuery(
+    { amount: wallet, currencyType: Currency },
+    { skip: !Currency }
+  );
+  const cryptoConvertedValue =
+    cryptoConvertedData?.response?.usdtAmt.toFixed(2);
 
-    const dispatch = useDispatch();
-    const { currentUser } = useAuth();
-    const { data, isLoading } = useGetUserDetailsQuery();
-    const { wallet, Currency } = data?.response?.UserData || {};
-  
-    // RTK Query Hooks
-    const { data: cryptoConvertedData } = useConvertCoinsIntoCryptoQuery(
-      { amount: wallet, currencyType:Currency },
-      { skip: isLoading }
-    );
-    const cryptoConvertedValue =
-      cryptoConvertedData?.response?.usdtAmt.toFixed(2);
-  
-    const { data: convertedCurrencyData } = useConvertCurrencyQuery(Currency);
-    const convertedTotalAmount =
-      convertedCurrencyData?.response?.convertedAmount * wallet;
-    const [changeCurrencyApi] = useChangeCurrencyMutation();
-  
-    const { data: recentTransactionsData } = useGetRecentTransactionsQuery();
-  
-    const handleChangeCurrency = async (e) => {
-      try {
-        const res = await changeCurrencyApi(e.target.value);
-        if (res?.error) {
-          return toast.error(res?.error?.data?.message);
-        } else {
-          toast.success("Converted currency successfully.", { autoClose: 2000 });
-        }
-      } catch (error) {
-        return toast.error("There was something wrong.");
+  const { data: convertedCurrencyData } = useConvertCurrencyQuery(Currency);
+  const convertedTotalAmount =
+    convertedCurrencyData?.response?.convertedAmount * wallet;
+  const [changeCurrencyApi] = useChangeCurrencyMutation();
+
+  const handleChangeCurrency = async (e) => {
+    try {
+      const res = await changeCurrencyApi(e.target.value);
+      if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      } else {
+        toast.success("Converted currency successfully.", { autoClose: 2000 });
       }
-    };
-  
-    useEffect(() => {
-      dispatch(
-        addConvertedCoinDetails({
-          currencyCode: Currency,
-          convertedAmount: convertedCurrencyData?.response?.convertedAmount,
-        })
-      );
-    }, [data, convertedCurrencyData]);
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
+  };
 
+  useEffect(() => {
+    dispatch(
+      addConvertedCoinDetails({
+        currencyCode: Currency,
+        convertedAmount: convertedCurrencyData?.response?.convertedAmount,
+      })
+    );
+  }, [data, convertedCurrencyData, Currency, dispatch]);
 
   return (
     <div className="gradientBg text-white text-center rounded-[20px] p-4">
