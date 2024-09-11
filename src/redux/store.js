@@ -9,6 +9,7 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import convertedCoinSlice from "./convertedCoinSlice";
 import withdrawCoinSlice from "./withdrawCoinSlice";
 import becomePublicAgentDetailsSlice from "./becomePublicAgentDetailsSlice";
+import couponDataSlice from "./couponDataSlice";
 
 const persistConfig = {
   key: "root",
@@ -23,7 +24,8 @@ export const store = configureStore({
     notification: notificationSlice,
     convertedCoin: convertedCoinSlice,
     withdrawCoin: withdrawCoinSlice,
-    publicAgentDetails:becomePublicAgentDetailsSlice,
+    publicAgentDetails: becomePublicAgentDetailsSlice,
+    couponData: couponDataSlice,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

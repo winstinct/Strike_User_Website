@@ -61,6 +61,7 @@ import SubmitTicket from "../pages/Agents/SubmitTicket";
 import AddToCartPrivateLottery from "../pages/AddToCart/AddToCartPrivateLottery";
 import PurchaseSuccess from "../pages/AddToCart/PurchaseSuccess";
 import SoldOutLotteries from "../pages/Home/SoldOutLotteries";
+import BuyWithCouponCode from "../pages/ShopperBag/BuyWithCouponCode";
 
 export const router = createBrowserRouter([
   {
@@ -231,6 +232,10 @@ export const router = createBrowserRouter([
       {
         path: "shopper-bag",
         element: <ShopperBag />,
+      },
+      {
+        path: "buy-with-coupon-code",
+        element: <BuyWithCouponCode />,
       },
       {
         path: "faq",

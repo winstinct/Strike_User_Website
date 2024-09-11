@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  useConvertCoinsIntoCryptoQuery,
   useConvertINRIntoUSDTMutation,
   useWithdrawCoinsMutation,
 } from "../../redux/features/lottery/lotteryApi";
@@ -9,6 +10,7 @@ import { toast } from "react-toastify";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import { useDispatch } from "react-redux";
 import { addWithdrawCoinDetails } from "../../redux/withdrawCoinSlice";
+import { useEffect, useState } from "react";
 
 export default function Withdraw() {
   const dispatch = useDispatch();
@@ -26,26 +28,19 @@ export default function Withdraw() {
   const fullName = watch("fullName");
   const withdrawalAmt = watch("withdrawalAmt");
   const cryptoWalletAddress = watch("cryptoWalletAddress");
+  const [convertedValue, setConvertedValue] = useState("");
 
-  const [convertINRIntoUSDTApi, { isLoading }] =
+  const [convertINRIntoUSDTApi, { isLoading:isLoadingConversion }] =
     useConvertINRIntoUSDTMutation();
   const [winthdrawCoinsApi, { isLoading: isLoadingWithdraw }] =
     useWithdrawCoinsMutation();
 
   const onSubmit = async (data) => {
     try {
-      const convertCurrencyRes = await convertINRIntoUSDTApi(
-        data.withdrawalAmt
-      );
-      const cryptoValue =
-        convertCurrencyRes?.data?.response?.usdtAmt?.toFixed(3);
-      if (convertCurrencyRes?.error) {
-        return toast.error(convertCurrencyRes?.error?.data?.message);
-      }
       const withdrawCoinRes = await winthdrawCoinsApi({
         ...data,
         withdrawalAmt: Number(data.withdrawalAmt),
-        cryptoValue: Number(cryptoValue),
+        cryptoValue: convertedValue,
       });
       if (withdrawCoinRes?.error) {
         return toast.error(withdrawCoinRes?.error?.data?.message);
@@ -54,12 +49,23 @@ export default function Withdraw() {
         addWithdrawCoinDetails({
           ...data,
           withdrawalAmt: Number(data.withdrawalAmt),
-          cryptoValue: Number(cryptoValue),
+          cryptoValue: convertedValue,
         })
       );
       navigate("/withdraw-submitted");
     } catch (error) {
       return toast.error("There was something wrong.");
+    }
+  };
+
+  const handleBlur = async () => {
+    if (withdrawalAmt) {
+      const convertCurrencyRes = await convertINRIntoUSDTApi(
+        Number(withdrawalAmt)
+      );
+      const cryptoValue =
+        convertCurrencyRes?.data?.response?.usdtAmt?.toFixed(2);
+      setConvertedValue(cryptoValue);
     }
   };
 
@@ -78,7 +84,7 @@ export default function Withdraw() {
 
         {/* form  */}
         <div>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
               <div>
                 <label className="block" htmlFor="withdrawalAmt">
@@ -96,11 +102,19 @@ export default function Withdraw() {
                       required: true,
                       min: 1000,
                     })}
+                    onBlur={handleBlur}
                   />
-                  <Icon
-                    className="absolute text-[2rem] top-[0.3rem] right-2"
-                    icon="token-branded:usdt"
-                  />
+                  <div className="absolute top-[0.6rem] right-7 flex items-center gap-1">
+                    <Icon className="text-[1.5rem]" icon="token-branded:usdt" />
+                    <div>
+                      {
+                        isLoadingConversion ? <Icon icon="line-md:loading-loop" /> : convertedValue
+                      }
+                      {
+                        !isLoadingConversion && !withdrawalAmt && "00.00"
+                      }
+                      </div>
+                  </div>
                 </div>
                 <div
                   className={`flex items-center text-[14px] gap-2 ${
