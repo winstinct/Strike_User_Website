@@ -1,8 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
-  useConvertCoinsIntoCryptoQuery,
   useConvertINRIntoUSDTMutation,
   useWithdrawCoinsMutation,
 } from "../../redux/features/lottery/lotteryApi";
@@ -10,7 +9,7 @@ import { toast } from "react-toastify";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import { useDispatch } from "react-redux";
 import { addWithdrawCoinDetails } from "../../redux/withdrawCoinSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Withdraw() {
   const dispatch = useDispatch();
@@ -21,7 +20,6 @@ export default function Withdraw() {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
   } = useForm();
 
   // Input field values are being watched
