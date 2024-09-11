@@ -143,10 +143,12 @@ export default function WalletCard() {
   const cryptoConvertedValue =
     cryptoConvertedData?.response?.usdtAmt.toFixed(2);
 
+
   const { data: convertedCurrencyData } = useConvertCurrencyQuery(Currency);
   const convertedTotalAmount =
     convertedCurrencyData?.response?.convertedAmount * wallet;
   const [changeCurrencyApi] = useChangeCurrencyMutation();
+  
 
   const handleChangeCurrency = async (e) => {
     try {

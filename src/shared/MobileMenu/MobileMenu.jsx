@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../contexts/AuthContext";
 import { setActiveStyle } from "../../utils/setActiveStyle";
@@ -26,6 +26,7 @@ export default function MobileMenu() {
   const { displayName, email, phoneNumber } = currentUser || {};
   const { data } = useGetUserDetailsQuery();
   const userImageUrl = data?.response?.UserData?.imageUrl;
+  const { wallet } = data?.response?.UserData || {};
   const navigate = useNavigate();
   const handleLogout = async () => {
     const isLogout = confirm("Are you sure ?");
@@ -40,6 +41,8 @@ export default function MobileMenu() {
       toast.error("There was something wrong.");
     }
   };
+
+
   return (
     <div className="md:hidden block">
       <h3 className="font-bold text-[1.5rem] italic mb-[1.5rem]">Menu</h3>
@@ -71,10 +74,10 @@ export default function MobileMenu() {
                 </div>
                 <div>
                     <p className="text-[#858585] text-[14px] font-semibold pb-[2px]">Wallet Balance:</p>
-                    <p className="text-[1rem] font-bold italic">AED300</p>
+                    <p className="text-[1rem] font-bold italic">{wallet} INR</p>
                 </div>
             </div>
-            <button className="gradientBg w-full rounded-full p-2 text-white mt-5">Top up</button>
+            <Link to="/deposit"><button className="gradientBg w-full rounded-full p-2 text-white mt-5">Top up</button></Link>
         </div>
         </>
       )}

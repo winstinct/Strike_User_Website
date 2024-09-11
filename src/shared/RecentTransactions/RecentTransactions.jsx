@@ -36,8 +36,8 @@ export default function RecentTransactions() {
       <div className="space-y-[1.5rem]">
         {/* transaction-1  */}
         {recentTransactionsData?.response?.coinHistory?.map(
-          ({ originalAmt, status, adddition, updatedAt, userId }) => (
-            <div key={userId} className="border-b-[1px] border-b-gray-300 pb-5">
+          ({ originalAmt, status, adddition, updatedAt, _id }) => (
+            <div key={_id} className="border-b-[1px] border-b-gray-300 pb-5">
               <div className="flex justify-between items-center text-[13px]">
                 <p>#{Date.now()}</p>
                 {adddition ? (
