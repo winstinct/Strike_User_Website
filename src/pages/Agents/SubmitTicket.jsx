@@ -21,14 +21,13 @@ export default function SubmitTicket() {
   const [url, setUrl] = useState("");
   const { getAccessToken } = useAuth();
   const location = useLocation();
-  const id = location.state.id;
-  const reqCoins = location.state.reqCoins;
+  const id = location?.state?.id;
   const navigate = useNavigate();
   const [loaderBtn, setLoaderBtn] = useState(false);
   const convertedAmount = useSelector(
     (store) => store.convertedCoin.convertedAmount
   );
-  const amountToBePaid = (convertedAmount * reqCoins).toFixed(2);
+  const amountToBePaid = (convertedAmount * localStorage.getItem("selectedCoins")).toFixed(2);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -148,7 +147,7 @@ export default function SubmitTicket() {
         method: "POST",
         body: JSON.stringify({
           agentId: id,
-          coinreq: parseInt(reqCoins),
+          coinreq: parseInt(localStorage.getItem("selectedCoins")),
           proof_link: downloadURL,
           method: paymentOption?.value,
           UTR_no: utrNumber,
@@ -168,7 +167,6 @@ export default function SubmitTicket() {
       console.log("Submit Proof Result: ", result.message);
       navigate("/deposit-success", {
         state: {
-          reqCoins: reqCoins,
           paymentType: paymentOption?.value,
           utrNumber: utrNumber,
           date: date,
@@ -177,7 +175,6 @@ export default function SubmitTicket() {
     } catch (error) {
       navigate("/deposit-failure", {
         state: {
-          reqCoins: reqCoins,
           paymentType: paymentOption?.value,
           utrNumber: utrNumber,
           date: date,
@@ -214,7 +211,7 @@ export default function SubmitTicket() {
           className="text-[15px] font-semibold outline-none border border-[#CCC] rounded-md p-3 w-full bg-[#D9D9D9]"
           type="text"
           readOnly
-          value={reqCoins}
+          value={localStorage.getItem("selectedCoins")}
         />
       </div>
       <div className="flex flex-col gap-2">

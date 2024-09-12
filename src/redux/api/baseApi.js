@@ -7,10 +7,13 @@ const baseQuery = fetchBaseQuery({
   baseUrl: `${baseUrl}`,
   prepareHeaders: (headers, { getState }) => {
     // Assuming your token is stored in Redux state
+    const authToken = auth?.currentUser?.accessToken;
     const token = getState()?.auth?.token;
-    console.log("Token from RTK Query ===> ", token);
+    console.log("Auth Token==> ", authToken);
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
+    } else {
+      headers.set("Authorization", `Bearer ${authToken}`);
     }
     return headers;
   },

@@ -1,10 +1,11 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import WalletCard from "../../shared/WalletCard/WalletCard";
 import { useConvertINRIntoUSDTMutation } from "../../redux/features/lottery/lotteryApi";
 
 export default function Deposit() {
+  const navigate = useNavigate()
   const [amount, setAmount] = useState();
   const handleWheel = (e) => {
     e.target.blur();
@@ -22,6 +23,12 @@ export default function Deposit() {
       setConvertedValue(cryptoValue);
       setAmount(e.target.innerText);
   };
+
+
+  const handleNavigeToAgentPage = ()=>{
+    localStorage.setItem("selectedCoins", amount)
+    navigate("/agents")
+  }
 
   return (
     <div>
@@ -122,15 +129,14 @@ export default function Deposit() {
             >
               Crypto
             </button>
-            <Link to="/agents" state={{ coins: amount }}>
               <button
+              onClick={handleNavigeToAgentPage}
               disabled={isLoadingConversion}
                 style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
                 className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full"
               >
                 Agent
               </button>
-            </Link>
           </div>
         </div>
       )}

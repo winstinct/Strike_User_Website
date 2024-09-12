@@ -135,12 +135,32 @@ const currencyCodes = [
 ];
 
 export default function Agents() {
-  const [stateCoins] = useOutletContext();
+  const dispatch = useDispatch();
   const { data: userDetails } = useGetUserDetailsQuery();
   const { wallet, Currency } = userDetails?.response?.UserData || {};
   // const location = useLocation();
   // const coins = location?.state?.coins;
-  const { data, isLoading, isError } = useGetAllAgentsQuery(stateCoins);
+  const { data, isLoading, isError } = useGetAllAgentsQuery(localStorage.getItem("selectedCoins"));
+   // RTK Query Hooks
+   const { data: convertedCurrencyData } = useConvertCurrencyQuery(Currency);
+
+   const [changeCurrencyApi] = useChangeCurrencyMutation();
+ 
+   const handleChangeCurrency = async (e) => {
+     try {
+       const res = await changeCurrencyApi(e.target.value);
+       if (res?.error) {
+         return toast.error(res?.error?.data?.message);
+       } else {
+         toast.success(
+           `Currency Converted to ${res?.data?.response?.Currency}`,
+           { autoClose: 2000 }
+         );
+       }
+     } catch (error) {
+       return toast.error("There was something wrong.");
+     }
+   };
 
   // decide what to render
   let content = null;
@@ -191,7 +211,6 @@ export default function Agents() {
             <div>
               <Link
                 to={`agent-details/${item._id}`}
-                state={{ reqCoins: stateCoins }}
                 style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
                 className="border-[1px] flex items-center gap-1 rounded-lg p-2 border-gray-300 text-white bg-[#272424] hover:bg-black hover:text-white duration-300"
               >
@@ -208,37 +227,7 @@ export default function Agents() {
     );
   }
 
-  const dispatch = useDispatch();
-
-  // RTK Query Hooks
-  const { data: cryptoConvertedData } = useConvertCoinsIntoCryptoQuery(
-    { amount: wallet, currencyType: Currency },
-    { skip: isLoading }
-  );
-  const cryptoConvertedValue =
-    cryptoConvertedData?.response?.usdtAmt.toFixed(2);
-
-  const { data: convertedCurrencyData } = useConvertCurrencyQuery(Currency);
-
-  const [changeCurrencyApi] = useChangeCurrencyMutation();
-
-  const { data: recentTransactionsData } = useGetRecentTransactionsQuery();
-
-  const handleChangeCurrency = async (e) => {
-    try {
-      const res = await changeCurrencyApi(e.target.value);
-      if (res?.error) {
-        return toast.error(res?.error?.data?.message);
-      } else {
-        toast.success(
-          `Currency Converted to ${res?.data?.response?.Currency}`,
-          { autoClose: 2000 }
-        );
-      }
-    } catch (error) {
-      return toast.error("There was something wrong.");
-    }
-  };
+ 
   useEffect(() => {
     dispatch(
       addConvertedCoinDetails({

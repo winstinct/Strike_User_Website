@@ -2,15 +2,13 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 import Countdown, { zeroPad } from "react-countdown";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 
 
 
 export default function AgentsLayout() {
   const location = useLocation();
-  const coins = location?.state?.coins;
-  const [stateCoins, setStateCoins] = useState(coins);
   const navigate = useNavigate();
 
   // Using useMemo to ensure stable props for Countdown
@@ -35,7 +33,7 @@ export default function AgentsLayout() {
       {/* Back button  */}
       <div className="flex justify-between items-center mb-[2rem]">
         <div className="flex items-center gap-5">
-          <div onClick={() => navigate("/deposit")} className="backBtn">
+          <div onClick={() => navigate(-1)} className="backBtn">
             <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
           </div>
           <h3 className="text-[1.5rem] font-bold">Agents</h3>
@@ -91,7 +89,7 @@ export default function AgentsLayout() {
             className="text-center rounded-[12px] p-2"
           >
             <span className="font-medium">No. of Coins Requested:</span>
-            <span className="text-[1.25rem] font-bold px-1">{stateCoins}</span>
+            <span className="text-[1.25rem] font-bold px-1">{localStorage.getItem("selectedCoins")}</span>
           </div>
           <div
             style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
@@ -118,7 +116,7 @@ export default function AgentsLayout() {
         </>
       )}
 
-      <Outlet context={[stateCoins]} />
+      <Outlet />
     </div>
   );
 }

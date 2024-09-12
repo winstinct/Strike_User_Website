@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { APIurls } from "../api/apiConstant";
 import { useDispatch } from "react-redux";
 import { setToken } from "../redux/authSlice";
+import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 
@@ -52,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
       await getUserRoleFunc(user);
-      const token = await auth.currentUser.getIdToken(true);
+      const token = auth?.currentUser?.accessToken;
       dispatch(setToken(token));
       setLoading(false);
     });
@@ -70,4 +71,8 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.object,
 };
