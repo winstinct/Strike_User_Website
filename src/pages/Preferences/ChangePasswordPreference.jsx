@@ -2,16 +2,19 @@ import { useNavigate } from "react-router-dom";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import RequiredStar from "../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../shared/ShowErrorMsg/ShowErrorMsg";
-import { useUpdatePassForgotPassMutation } from "../../redux/features/auth/authApi";
+import {
+  useGetUserDetailsQuery,
+  useUpdatePassForgotPassMutation,
+} from "../../redux/features/auth/authApi";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
+import { toast } from "react-toastify";
 
 export default function ChangePasswordPreference() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  const { data } = useGetUserDetailsQuery();
+  const { Change_Passcontroller, email } = data?.response?.UserData || {};
   const navigate = useNavigate();
-  const { otpRefId, Email } = useSelector((state) => state.createUser);
 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -97,20 +100,20 @@ export default function ChangePasswordPreference() {
     }
 
     // Call API
-    // try {
-    //   const res = await updatePassword({
-    //     newPassword,
-    //     otp_reference: otpRefId,
-    //     Email,
-    //   });
-    //   if (res?.error) {
-    //     return toast.error(res?.error?.data?.message);
-    //   } else {
-    //     toast.success("Password updated successfully.");
-    //   }
-    // } catch (error) {
-    //   return toast.error("There was something wrong.");
-    // }
+    try {
+      const res = await updatePassword({
+        newPassword,
+        otp_reference: Change_Passcontroller?.otp_reference,
+        Email: email,
+      });
+      if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      } else {
+        toast.success("Password updated successfully.");
+      }
+    } catch (error) {
+      return toast.error("There was something wrong.");
+    }
     navigate("/auth/login");
   };
 
