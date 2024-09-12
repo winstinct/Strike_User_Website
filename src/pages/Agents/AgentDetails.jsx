@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetSingleAgentDetailsQuery, useGetSingleWalletAgentDetailsQuery } from "../../redux/features/transactions/transactionsApi";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useRef, useState } from "react";
@@ -25,8 +25,6 @@ export default function AgentDetails() {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
-  const location = useLocation();
-  const reqCoins = location.state.reqCoins;
 
   const {data: walletAgentDetails} = useGetSingleWalletAgentDetailsQuery(id);
   const walletAgent = walletAgentDetails?.response?.agentDetails || {};
@@ -287,7 +285,7 @@ export default function AgentDetails() {
           </Swiper>
         </>
       )}
-      <Link to="/agents/submit-ticket" state={{id: id, reqCoins: reqCoins}}
+      <Link to="/agents/submit-ticket"
       className="flex items-center justify-center mt-8">
         <button className="font-medium gradientBg text-white py-2 min-w-[300px] rounded-[50px]">
           Submit Proof

@@ -6,7 +6,7 @@ export default function SubmitSuccess() {
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
   const location = useLocation();
-  const { reqCoins, paymentType, utrNumber, date } = location.state || {};
+  const { paymentType, utrNumber, date } = location.state || {};
   return (
     <div className="flex flex-col items-center gap-8">
       <div className="flex flex-col items-center gap-3">
@@ -29,7 +29,7 @@ export default function SubmitSuccess() {
           <label htmlFor="coinsRequested" className="justify-self-start">
             Coins Requested
           </label>
-          <p className="justify-self-end">{reqCoins}</p>
+          <p className="justify-self-end">{localStorage.getItem("selectedCoins")}</p>
           <label htmlFor="coinsRequested" className="justify-self-start">
             Payment Method{" "}
           </label>
