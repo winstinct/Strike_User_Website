@@ -13,7 +13,7 @@ import { persistor, store } from "./redux/store.js";
 import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+ 
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <StepperContextProvider>
@@ -26,5 +26,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </StepperContextProvider>
       </PersistGate>
     </Provider>
-  </React.StrictMode>
+
 );
