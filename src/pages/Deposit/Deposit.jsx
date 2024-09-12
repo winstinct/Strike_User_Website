@@ -5,6 +5,9 @@ import WalletCard from "../../shared/WalletCard/WalletCard";
 
 export default function Deposit() {
   const [amount, setAmount] = useState("");
+  const handleWheel = (e) => {
+    e.target.blur();
+  };
 
   return (
     <div>
@@ -80,6 +83,7 @@ export default function Deposit() {
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+          onWheel={handleWheel}
         />
       </div>
 

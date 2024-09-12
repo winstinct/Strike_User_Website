@@ -103,7 +103,7 @@ export default function OffersSection() {
           className="w-full m-3"
         >
           {activeOffers?.map(({ ExpieryDate, coupon_code, title, _id }) => (
-            <SwiperSlide>
+            <SwiperSlide key={_id}>
               <div
                 style={{ backgroundImage: "linear-gradient(#36D1DC, #5B86E5)" }}
                 className="p-[1rem] text-white rounded-[20px] bg-white"

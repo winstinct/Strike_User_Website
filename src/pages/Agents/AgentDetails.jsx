@@ -268,7 +268,7 @@ export default function AgentDetails() {
                         Date and Time:{" "}
                         <span className="font-bold">
                           {moment(item.createdAt).format(
-                            "HH:MM A, DD MMM, YYYY"
+                            "hh:mm A, DD MMM, YYYY"
                           )}
                         </span>
                       </p>

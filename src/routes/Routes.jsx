@@ -61,6 +61,8 @@ import SubmitTicket from "../pages/Agents/SubmitTicket";
 import AddToCartPrivateLottery from "../pages/AddToCart/AddToCartPrivateLottery";
 import PurchaseSuccess from "../pages/AddToCart/PurchaseSuccess";
 import SoldOutLotteries from "../pages/Home/SoldOutLotteries";
+import SubmitSuccess from "../pages/Agents/SubmitSuccess";
+import SubmitFailure from "../pages/Agents/SubmitFailure";
 
 export const router = createBrowserRouter([
   {
@@ -396,6 +398,14 @@ export const router = createBrowserRouter([
             element: <Wallet />,
           },
         ],
+      },
+      {
+        path: "deposit-success",
+        element: <SubmitSuccess />,
+      },
+      {
+        path: "deposit-failure",
+        element: <SubmitFailure />,
       },
 
       {

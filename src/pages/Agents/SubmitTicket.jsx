@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Select from "react-select";
 import { APIurls } from "../../api/apiConstant";
@@ -11,6 +11,8 @@ import { ThreeDots } from "react-loader-spinner";
 import { useSelector } from "react-redux";
 
 export default function SubmitTicket() {
+  const date = Date.now();
+  console.log("new date: ", date);
   const [selectImg, setSelectImg] = useState();
   const [paymentOption, setPaymentOption] = useState(null);
   const [utrNumber, setUtrNumber] = useState("");
@@ -170,8 +172,23 @@ export default function SubmitTicket() {
       }
       toast.success(result.message);
       console.log("Submit Proof Result: ", result.message);
-      navigate("/wallet");
+      navigate("/deposit-success", {
+        state: {
+          reqCoins: reqCoins,
+          paymentType: paymentOption?.value,
+          utrNumber: utrNumber,
+          date: date,
+        },
+      });
     } catch (error) {
+      navigate("/deposit-failure", {
+        state: {
+          reqCoins: reqCoins,
+          paymentType: paymentOption?.value,
+          utrNumber: utrNumber,
+          date: date,
+        },
+      });
       console.log("ERROR WHILE SUBMITTING", error);
     }
     setLoaderBtn(false);
