@@ -145,7 +145,7 @@ export default function AgentsHistory() {
                     <p>
                       Date and Time:{" "}
                       <span className="font-bold">
-                        {moment(item.createdAt).format("HH:MM A, DD MMM, YYYY")}
+                        {moment(item.createdAt).format("hh:mm A, DD MMM, YYYY")}
                       </span>
                     </p>
                   </div>

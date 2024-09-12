@@ -6,6 +6,9 @@ import { useConvertINRIntoUSDTMutation } from "../../redux/features/lottery/lott
 
 export default function Deposit() {
   const [amount, setAmount] = useState();
+  const handleWheel = (e) => {
+    e.target.blur();
+  };
   const [convertedValue, setConvertedValue] = useState();
 
   const [convertINRIntoUSDTApi, { isLoading: isLoadingConversion}] =
@@ -105,6 +108,7 @@ export default function Deposit() {
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+          onWheel={handleWheel}
         />
       </div>
 
