@@ -1,5 +1,8 @@
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useGetSingleAgentDetailsQuery, useGetSingleWalletAgentDetailsQuery } from "../../redux/features/transactions/transactionsApi";
+import {
+  useGetSingleAgentDetailsQuery,
+  useGetSingleWalletAgentDetailsQuery,
+} from "../../redux/features/transactions/transactionsApi";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useRef, useState } from "react";
 import noRecharge from "../../assets/no-recharge.svg";
@@ -28,10 +31,14 @@ export default function AgentDetails() {
   const location = useLocation();
   const reqCoins = location.state.reqCoins;
 
-  const {data: walletAgentDetails} = useGetSingleWalletAgentDetailsQuery(id);
+  const { data: walletAgentDetails } = useGetSingleWalletAgentDetailsQuery(id);
   const walletAgent = walletAgentDetails?.response?.agentDetails || {};
   const { data, isLoading, isError } = useGetSingleAgentDetailsQuery(id);
   const agentDetails = data?.response?.agentTicket || [];
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -83,9 +90,7 @@ export default function AgentDetails() {
       >
         <div>
           <h1 className="text-[20px] font-semibold">
-            {walletAgent?.FirstName +
-              " " +
-              walletAgent?.LastName}
+            {walletAgent?.FirstName + " " + walletAgent?.LastName}
           </h1>
           <span className="text-[13px] text-[#808080] mt-[-2px] block">
             Strike Agent
@@ -120,15 +125,12 @@ export default function AgentDetails() {
           <span className="text-[15px] font-semibold">
             {walletAgent?.bankDetails?.acc_number}
           </span>
-          {isTextCopied ===
-          walletAgent?.bankDetails?.acc_number ? (
+          {isTextCopied === walletAgent?.bankDetails?.acc_number ? (
             <span className="text-[#029CFD] text-[14px]">Copied!</span>
           ) : (
             <button
               onClick={() =>
-                copyTextHandler(
-                  walletAgent?.bankDetails?.acc_number
-                )
+                copyTextHandler(walletAgent?.bankDetails?.acc_number)
               }
             >
               <Icon
@@ -287,8 +289,11 @@ export default function AgentDetails() {
           </Swiper>
         </>
       )}
-      <Link to="/agents/submit-ticket" state={{id: id, reqCoins: reqCoins}}
-      className="flex items-center justify-center mt-8">
+      <Link
+        to="/agents/submit-ticket"
+        state={{ id: id, reqCoins: reqCoins }}
+        className="flex items-center justify-center mt-8"
+      >
         <button className="font-medium gradientBg text-white py-2 min-w-[300px] rounded-[50px]">
           Submit Proof
         </button>

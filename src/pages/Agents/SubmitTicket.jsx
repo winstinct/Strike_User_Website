@@ -30,6 +30,10 @@ export default function SubmitTicket() {
   );
   const amountToBePaid = (convertedAmount * reqCoins).toFixed(2);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   const customStyles = {
     container: (provided) => ({
       ...provided,
@@ -187,7 +191,7 @@ export default function SubmitTicket() {
   return (
     <form
       onSubmit={submitHandler}
-      className="grid lg:grid-cols-2 grid-cols-1 gap-[2.5rem] gap-y-[1.5rem]"
+      className="flex flex-col gap-4 xl:grid xl:grid-cols-2 xl:gap-[2.5rem] xl:gap-y-[1.5rem]"
     >
       <div className="flex flex-col gap-2">
         <label htmlFor="userName" className="font-medium">
@@ -218,14 +222,14 @@ export default function SubmitTicket() {
           Upload Payment Proof
           <span className="text-red-500 text-[1.1rem] ml-[2px]">*</span>
         </label>
-        <div className="flex flex-col items-center justify-between py-2 px-[1rem] border border-[#CCC] rounded-md h-[90px]">
+        <div className="flex flex-col items-center justify-between py-2 px-[1rem] border border-[#CCC] rounded-md">
           {selectImg?.name ? (
             <>
-              <h2 className="text-[1.1rem] font-semibold text-green-600 my-2">
+              <h2 className="text-[1.1rem] font-semibold text-green-600 my-2 text-center">
                 Uploaded document
               </h2>
-              <div className="flex gap-[1rem] items-center">
-                <h2 className="text-black font-semibold">
+              <div className="flex gap-[1rem] items-center justify-center flex-wrap">
+                <h2 className="text-black font-semibold break-words">
                   {selectImg?.name.length > 30
                     ? selectImg.name.substring(0, 30) + "..."
                     : selectImg.name}
@@ -261,7 +265,7 @@ export default function SubmitTicket() {
                 }}
                 // onChange={handleImageChange}
               />
-              <p className="text-[0.9rem] text-[#858585]">
+              <p className="text-[0.9rem] text-[#858585] text-center">
                 Upload jpg, png, pdf. Size up to 20MB
               </p>
             </>
