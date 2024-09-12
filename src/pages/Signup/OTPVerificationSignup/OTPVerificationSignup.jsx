@@ -48,7 +48,6 @@ export default function OTPVerificationSignup() {
     try {
       const res = await verifyOTP({ otp, otpRefId });
       if (res?.error) {
-        console.log("Verify OTP Error===> ", res);
         return toast.error(res?.error?.data?.message);
       } else {
         toast.success("OTP verified successfully.");
@@ -65,7 +64,6 @@ export default function OTPVerificationSignup() {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log(res);
         dispatch(addUserDetails({ otpRefId: res?.data?.response?.refId }));
         toast.success("An OTP has been sent to your email.");
       }

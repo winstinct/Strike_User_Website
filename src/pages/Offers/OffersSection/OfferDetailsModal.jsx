@@ -11,7 +11,6 @@ export function OfferDetailsModal({offerId}) {
   const [size, setSize] = useState(null);
   const handleOpen = (value) => setSize(value);
   const {data} = useGetSpecificOfferQuery(offerId)
-  console.log("Specific offer ===> ", data?.response?.offer)
   const {ExpieryDate, coupon_code, title, _id} = data?.response?.offer || {};
   return (
     <>

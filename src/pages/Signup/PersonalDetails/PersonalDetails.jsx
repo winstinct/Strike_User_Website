@@ -24,13 +24,11 @@ export default function PersonalDetails() {
   const dispatch = useDispatch();
   const { FirstName, LastName, gender, dob, selecectedFile } =
     useSelector((state) => state.createUser);
-    console.log("Selected File===>", selecectedFile)
 
   const [showError, setShowError] = useState(false);
 
   const handleUpload = () => {
     if (!selecectedFile) {
-      console.log('No image selected');
       return;
     }
 
@@ -39,12 +37,10 @@ export default function PersonalDetails() {
 
     // Upload the file
     uploadBytes(imageRef, selecectedFile).then((snapshot) => {
-      console.log('Uploaded a blob or file!');
 
       // Get the download URL
       getDownloadURL(snapshot.ref).then((url) => {
         dispatch(addUserDetails({imageUrl:url}));
-        console.log('File available at', url);
       });
     }).catch((error) => {
       console.error('Upload failed', error);

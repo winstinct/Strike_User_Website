@@ -1,67 +1,34 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useNavigate } from "react-router-dom";
 import {
-  useApplyCouponCodeMutation,
-  useCheckoutCartItemsMutation,
+  useCheckoutWithCouponCodeMutation,
   useGetAllCartItemsQuery,
 } from "../../redux/features/cart/cartApi";
 import CartItem from "./CartItem";
 import ShopperBagEmpty from "./ShopperBagEmpty";
 import DisplayNetworkError from "../../components/DisplayNetworkError";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import ShopperBagSkeleton from "./ShopperBagSkeleton";
-import { useDispatch } from "react-redux";
-import { addCouponData } from "../../redux/couponDataSlice";
+import { useSelector } from "react-redux";
 const getTotalCartItemsPrice = (items) => {
   return items?.reduce((total, item) => item?.totalAmount + total, 0);
 };
-export default function ShopperBag() {
+
+export default function BuyWithCouponCode() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [couponCode, setCouponCode] = useState("");
-  const [displayError, setDisplayError] = useState(false);
+  const {coupon_code, totalDiscount} = useSelector(state => state.couponData);
   const { data, isLoading, isError } = useGetAllCartItemsQuery();
-  const cartItemsIdsArray = data?.response?.cart?.map((item) => item?._id);
+  const cartIdarray = data?.response?.cart?.map((item) => item?._id);
 
-  const [applyCouponCodeApi, { isLoading: isLoadingApplyCode }] =
-    useApplyCouponCodeMutation();
-  const [checkoutCartItemsApi, { isLoading: isLoadingCheckout }] =
-    useCheckoutCartItemsMutation();
+  const [checkoutWithCouponCodeApi, { isLoading: isLoadingCheckout }] =
+    useCheckoutWithCouponCodeMutation();
 
-  const handleApplyCouponCode = async () => {
-    if (!couponCode) {
-      return setDisplayError(true);
-    }
-
+  const handleBuyWithCoupon = async () => {
     try {
-      const res = await applyCouponCodeApi({
-        coupon_code: couponCode,
-        ticketList: cartItemsIdsArray,
-      });
-      if (res?.error) {
-        return toast.error(res?.error?.data?.message);
-      } else {
-        dispatch(
-          addCouponData({
-            totalDiscount:
-              res?.data?.response?.OutputData?.Output[0]?.discountedPriceTotal,
-            coupon_code: res?.data?.response?.OutputData?.coupData?.coupon_code,
-          })
-        );
-        toast.success(res?.data?.message, { autoClose: 5000 });
-        navigate("/buy-with-coupon-code")
-      }
-    } catch (error) {
-      return toast.error("There was something wrong.");
-    }
-  };
-
-  const handleCheckout = async () => {
-    try {
-      const res = await checkoutCartItemsApi({
-        cartIdarray: cartItemsIdsArray,
+      const res = await checkoutWithCouponCodeApi({
+        coupon_code,
+        cartIdarray,
       });
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
@@ -100,34 +67,20 @@ export default function ShopperBag() {
         </div>
 
         <div>
-          <div className="mb-5">
-            <div
-              style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
-              className="rounded-2xl flex justify-between items-center p-3 gap-2"
-            >
-              <input
-                className="border-[1px] border-gray-300 rounded-lg p-2 outline-none w-full"
-                type="text"
-                onChange={(e) => setCouponCode(e.target.value)}
-              />
-              {isLoadingApplyCode ? (
-                <div className="w-[130px] h-[40px]">
-                  <SubmitBtnLoader />
-                </div>
-              ) : (
-                <button
-                  onClick={handleApplyCouponCode}
-                  className="gradientBg text-white rounded-full w-[130px] h-[45px] flex justify-center items-center"
-                >
-                  Apply
-                </button>
-              )}
-            </div>
-            {displayError && !couponCode && (
-              <p className="text-red-500 font-bold text-[14px] mt-1">
-                Coupon code is required*
-              </p>
-            )}
+          <div
+            style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
+            className="rounded-2xl flex justify-between items-center p-3 gap-2 mb-5 text-[14px]"
+          >
+            <Icon
+              className="text-[#13E700]"
+              icon="teenyicons:tick-circle-solid"
+            />
+            <p>You saved ₹{totalDiscount} with “{coupon_code}”</p>
+            <Icon
+              onClick={()=>navigate("/shopper-bag")}
+              className="text-red-500 font-bold text-[1rem] cursor-pointer"
+              icon="gridicons:cross"
+            />
           </div>
 
           <div
@@ -143,11 +96,12 @@ export default function ShopperBag() {
                     {getTotalCartItemsPrice(data?.response?.cart)}
                   </p>
                 </div>
+
                 <div className="flex justify-between items-center text-[#858585] font-bold">
                   <p className="text-[#212529]">Total</p>
                   <p className="text-[#212529] italic">
                     <span className="pr-1">INR</span>
-                    {getTotalCartItemsPrice(data?.response?.cart)}
+                    {getTotalCartItemsPrice(data?.response?.cart)-totalDiscount}
                   </p>
                 </div>
               </div>
@@ -157,7 +111,7 @@ export default function ShopperBag() {
                 </div>
               ) : (
                 <button
-                  onClick={handleCheckout}
+                  onClick={handleBuyWithCoupon}
                   className="submitBtn w-full mt-[1rem]"
                 >
                   Checkout

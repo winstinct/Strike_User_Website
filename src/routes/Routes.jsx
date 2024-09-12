@@ -63,6 +63,7 @@ import PurchaseSuccess from "../pages/AddToCart/PurchaseSuccess";
 import SoldOutLotteries from "../pages/Home/SoldOutLotteries";
 import SubmitSuccess from "../pages/Agents/SubmitSuccess";
 import SubmitFailure from "../pages/Agents/SubmitFailure";
+import BuyWithCouponCode from "../pages/ShopperBag/BuyWithCouponCode";
 
 export const router = createBrowserRouter([
   {
@@ -233,6 +234,10 @@ export const router = createBrowserRouter([
       {
         path: "shopper-bag",
         element: <ShopperBag />,
+      },
+      {
+        path: "buy-with-coupon-code",
+        element: <BuyWithCouponCode />,
       },
       {
         path: "faq",

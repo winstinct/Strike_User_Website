@@ -16,10 +16,12 @@ export default function WishListItem({ lottery }) {
     winnerSlot,
     Totaltickets,
     UniqueID,
-    expieryDate
+    expieryDate,
+    lottaryPurchase
   } = lottery || {};
   const [removeFromWishlistApi, { isLoading }] =
     useRemoveFromWishlistMutation();
+    console.log("Wishlist Item data===> ", lottery)
 
   const handleRemoveFromWishlist = async (uniqueId) => {
     try {
@@ -27,7 +29,6 @@ export default function WishListItem({ lottery }) {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log(res);
         toast.success("Removed from wishlist successfully.");
       }
     } catch (error) {
@@ -67,7 +68,7 @@ export default function WishListItem({ lottery }) {
               className="border-[1px] border-[#d8d4d442] p-2 rounded-2xl font-semibold"
             >
               <div>
-                <span className="text-[#FF2222]">{winnerSlot} </span>
+                <span className="text-[#FF2222]">{lottaryPurchase?.length} </span>
                 <span className="text-gray-700 text-[14px]">SOLD OUT OF</span>
                 <span> {Totaltickets}</span>
               </div>

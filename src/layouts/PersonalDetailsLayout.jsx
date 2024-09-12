@@ -6,7 +6,6 @@ import { StepperContext } from "../contexts/StepperContextProvider";
 
 export default function PersonalDetailsLayout() {
   const {currentStep, steps} = useContext(StepperContext) || {}
-  console.log("personal details layout rendered====> ", steps, currentStep)
   return (
     <div>
       <Header />

@@ -62,7 +62,6 @@ export default function PopularCampaigns() {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log(res);
         toast.success("Added to wishlist successfully.");
       }
     } catch (error) {
@@ -72,7 +71,6 @@ export default function PopularCampaigns() {
 
   const { data: wishListData} =
     useGetWishlistQuery();
-  console.log("Wishlist Data==> ", wishListData?.response?.wishlistArray);
 
 
   if(activeLotteris?.length == 0){

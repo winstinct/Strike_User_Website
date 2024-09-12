@@ -34,7 +34,6 @@ export default function Winners() {
   };
 
   const { data, isLoading } = useGetWinnersQuery();
-  console.log("Home Winners ===> ", data?.response)
  
   return (
     <section>
@@ -91,7 +90,6 @@ export default function Winners() {
       </header>
 
       {isLoading ? <WinnersSkeleton/> : (<Swiper
-        onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
         className="w-full"

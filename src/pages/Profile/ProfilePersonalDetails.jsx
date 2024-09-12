@@ -31,7 +31,6 @@ export default function ProfilePersonalDetails() {
 
   const handleUpload = async() => {
     if (!selectedFile) {
-      console.log('No image selected');
       return;
     }
   
@@ -44,7 +43,6 @@ export default function ProfilePersonalDetails() {
   
       // Get the download URL
       const url = await getDownloadURL(snapshot.ref);
-      console.log('File available at', url);
       return url;
     } catch (error) {
       console.error('Upload failed', error);
@@ -55,16 +53,11 @@ export default function ProfilePersonalDetails() {
     if (!selectedFile) {
       return setShowError(true);
     }
-
-     console.log("update form data===>", formData)
-    //  return;
     // Call API
     try {
       const imageUrl = await handleUpload();
       const res = await updateUser({...formData, gender:formData.gender.value, imageUrl});
       if (res?.error) {
-        console.log("User updated api response===>", res);
-        // return toast.error(res?.error?.data?.response?.message);
         return toast.error(res?.error?.data?.message);
       } else {
         toast.success("Updated user successfully.");

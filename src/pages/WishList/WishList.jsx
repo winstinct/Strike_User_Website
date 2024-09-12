@@ -10,7 +10,6 @@ export default function WishList() {
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
   const { data, isLoading } = useGetWishlistQuery();
-  console.log("Wishlist Data==> ", data?.response?.wishlistArray)
   return (
     <div>
       <div className="flex items-center gap-5 mb-5">

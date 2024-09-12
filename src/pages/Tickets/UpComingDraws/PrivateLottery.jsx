@@ -83,7 +83,6 @@ export default function PrivateLottery() {
       </header>
 
       <Swiper
-        onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         {...swiperConfig}
         className="w-full"

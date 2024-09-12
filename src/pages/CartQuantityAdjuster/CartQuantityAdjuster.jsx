@@ -19,18 +19,11 @@ export default function CartQuantityAdjuster() {
   const navigate = useNavigate();
   const { uniqueId } = useParams();
   const {data} = useGetSinglePublicLotteryQuery(uniqueId)
-  console.log(data?.response?.LottaryData?.whitelist)
   const {
     data: cartItems,
     isLoading: isLoadingCartItems,
     isError,
   } = useGetAllCartItemsQuery();
-  console.log(
-    "All cart items===> ",
-    cartItems?.response?.cart?.find(
-      (item) => item?.lotteryId?.UniqueID == uniqueId
-    )
-  );
   const { quantity, totalAmount, lotteryId, _id } =
     cartItems?.response?.cart?.find(
       (item) => item?.lotteryId?.UniqueID == uniqueId
@@ -49,7 +42,6 @@ export default function CartQuantityAdjuster() {
     termsandcondi,
     whitelist,
   } = lotteryId || {};
-  console.log(whitelist, 'whitelisted')
 
   const [addToWishlistApi, { isLoading: isLoadingAddWishlist }] =
     useAddToWishlistMutation();
@@ -60,7 +52,6 @@ export default function CartQuantityAdjuster() {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log(res);
         toast.success("Added to wishlist successfully.", {autoClose:1000});
       }
     } catch (error) {
@@ -77,7 +68,6 @@ export default function CartQuantityAdjuster() {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log(res);
         toast.success("Removed from wishlist successfully.", {autoClose:1000});
       }
     } catch (error) {
@@ -104,7 +94,6 @@ export default function CartQuantityAdjuster() {
         return toast.error(res?.error?.data?.message);
       } else {
         toast.success("Increased successfully.", { autoClose: 1000 });
-        console.log("total quantitiy===>", res);
       }
     } catch (error) {
       return toast.error("There was something wrong.");
@@ -121,10 +110,6 @@ export default function CartQuantityAdjuster() {
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
-        console.log(
-          "Current Cart Item after decreased ==> ",
-          res?.data?.response?.cart?.quantity
-        );
         if (res?.data?.response?.cart?.quantity == 0) {
           await removeItemFromCartApi(res?.data?.response?.cart?._id);
           navigate(`/addToCart/${UniqueID}`)

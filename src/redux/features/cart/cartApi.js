@@ -65,6 +65,20 @@ export const cartApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["cart", "USER-DETAILS"],
     }),
+
+
+    checkoutWithCouponCode: builder.mutation({
+      query: (cartData) => {
+        return {
+          url: `/users/buy-with-coupon`,
+          method: "POST",
+          body: cartData,
+        };
+      },
+      invalidatesTags: ["cart", "USER-DETAILS"],
+    }),
+
+
   }),
 });
 
@@ -75,4 +89,5 @@ export const {
   useRemoveItemFromCartMutation,
   useApplyCouponCodeMutation,
   useCheckoutCartItemsMutation,
+  useCheckoutWithCouponCodeMutation
 } = cartApi;

@@ -34,7 +34,6 @@ export default function ProfileLocationDetails() {
     return <ThreeDotsLoader/>
   }
   const handleSubmitLocationDetails = async(data)=>{
-    console.log("Location Details===> ", data)
     const updateData = {
       country:data?.country?.value,
       state:data?.state?.value,
@@ -42,12 +41,10 @@ export default function ProfileLocationDetails() {
       pincode:data?.pincode,
       address:data?.address
     }
-    console.log("Update Location Data===> ", updateData)
     // Call API
     try {
       const res = await updateUser({location:updateData});
       if (res?.error) {
-        console.log("User updated api response===>", res);
         // return toast.error(res?.error?.data?.response?.message);
         return toast.error(res?.error?.data?.message);
       } else {

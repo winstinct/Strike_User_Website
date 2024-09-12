@@ -36,7 +36,6 @@ export default function ExpiredOffers() {
   const expiredOffers = data?.response?.offer?.filter(
     ({ ExpieryDate }) => new Date(ExpieryDate).getTime() < new Date().getTime()
   );
-  console.log("Expired offers ==> ", expiredOffers);
   return (
     <section className="mt-[3.5rem]">
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
@@ -95,7 +94,6 @@ export default function ExpiredOffers() {
         <ExpiredOfferSkeleton />
       ) : (
         <Swiper
-          onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           {...swiperConfig}
           className="w-full"

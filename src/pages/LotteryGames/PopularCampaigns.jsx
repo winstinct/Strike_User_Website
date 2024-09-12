@@ -37,7 +37,6 @@ export default function PopularCampaigns() {
   };
 
   const {data, isLoading} = useGetPrivateLotteriesQuery();
-  console.log("Private Lotteries===> ", data?.response?.lottery)
 
   return (
     <section>

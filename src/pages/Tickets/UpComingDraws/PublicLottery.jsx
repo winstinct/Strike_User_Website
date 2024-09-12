@@ -35,7 +35,6 @@ export default function PublicLottery() {
   };
 
   const { data, isLoading } = useGetTicketHistoryQuery();
-  console.log("Upcoming draws =============> ", data?.response)
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[1rem]">
@@ -91,7 +90,6 @@ export default function PublicLottery() {
 
       {
         isLoading ? <PublicTicketSkeleton/> : (<Swiper
-          onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           {...swiperConfig}
           className="w-full"

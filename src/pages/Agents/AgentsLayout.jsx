@@ -2,22 +2,40 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 import Countdown, { zeroPad } from "react-countdown";
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+
+
 
 export default function AgentsLayout() {
   const location = useLocation();
   const coins = location?.state?.coins;
   const [stateCoins, setStateCoins] = useState(coins);
-  console.log("LOCATIONS", location);
-  // console.log("PARENT STATE COINS", stateCoins);
   const navigate = useNavigate();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Using useMemo to ensure stable props for Countdown
+  const countdownDate = useMemo(() => Date.now() + 60000 * 10, []);
+
+  // Render the Countdown component with stable props
+  const countdownRenderer = ({ seconds, minutes }) => (
+    <div className="text-[1.5rem]">
+      <span>{zeroPad(minutes)}</span>
+      <span>:</span>
+      <span>{zeroPad(seconds)}</span>
+    </div>
+  );
+
+  // Handle the scroll effect
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div>
       {/* Back button  */}
       <div className="flex justify-between items-center mb-[2rem]">
         <div className="flex items-center gap-5">
-          <div onClick={() => navigate(-1)} className="backBtn">
+          <div onClick={() => navigate("/deposit")} className="backBtn">
             <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
           </div>
           <h3 className="text-[1.5rem] font-bold">Agents</h3>
@@ -57,16 +75,10 @@ export default function AgentsLayout() {
           </div>
           <div className="w-[75px]">
             <Countdown
-              date={Date.now() + 60000 * 10}
+              date={countdownDate}
               zeroPadTime={false}
               onComplete={() => navigate("/deposit")}
-              renderer={({ seconds, minutes, hours }) => (
-                <div className="text-[1.5rem]">
-                  <span>{zeroPad(minutes)}</span>
-                  <span>:</span>
-                  <span>{zeroPad(seconds)}</span>
-                </div>
-              )}
+              renderer={countdownRenderer}
             />
           </div>
         </div>

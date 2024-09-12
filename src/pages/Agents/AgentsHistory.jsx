@@ -38,8 +38,6 @@ export default function AgentsHistory() {
     );
   }
 
-  console.log("Agents Tickets", data?.response?.agentTicket);
-
   const handleNext = () => {
     swiperInstance?.slideNext();
     setIsEnd(swiperInstance?.isEnd);
@@ -104,7 +102,6 @@ export default function AgentsHistory() {
 
       {content || (
         <Swiper
-          onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           {...swiperConfig}
           className="w-full m-3"
