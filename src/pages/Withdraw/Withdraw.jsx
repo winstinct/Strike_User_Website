@@ -9,27 +9,23 @@ import { toast } from "react-toastify";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import { useDispatch } from "react-redux";
 import { addWithdrawCoinDetails } from "../../redux/withdrawCoinSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Withdraw() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-  } = useForm();
+  const { register, handleSubmit, watch } = useForm();
 
   // Input field values are being watched
   const fullName = watch("fullName");
   const withdrawalAmt = watch("withdrawalAmt");
   const cryptoWalletAddress = watch("cryptoWalletAddress");
   const [convertedValue, setConvertedValue] = useState("");
+  const [perINRToUSDT, setPerINRToUSDT] = useState(0);
 
-  const [convertINRIntoUSDTApi, { isLoading:isLoadingConversion }] =
-    useConvertINRIntoUSDTMutation();
+  const [convertINRIntoUSDTApi] = useConvertINRIntoUSDTMutation();
   const [winthdrawCoinsApi, { isLoading: isLoadingWithdraw }] =
     useWithdrawCoinsMutation();
 
@@ -56,16 +52,22 @@ export default function Withdraw() {
     }
   };
 
-  const handleBlur = async () => {
-    if (withdrawalAmt) {
-      const convertCurrencyRes = await convertINRIntoUSDTApi(
-        Number(withdrawalAmt)
-      );
-      const cryptoValue =
-        convertCurrencyRes?.data?.response?.usdtAmt?.toFixed(2);
-      setConvertedValue(cryptoValue);
-    }
+  const handleChangeAmount = (e) => {
+    console.log(e.target.value, perINRToUSDT);
+    setConvertedValue((Number(e.target.value) * perINRToUSDT).toFixed(2));
   };
+
+  useEffect(() => {
+    const convertIntoISDTValue = async () => {
+      const response = await convertINRIntoUSDTApi(1);
+      console.log(
+        "Per INR to USDT value===> ",
+        response?.data?.response?.usdtAmt
+      );
+      setPerINRToUSDT(response?.data?.response?.usdtAmt);
+    };
+    convertIntoISDTValue();
+  }, []);
 
   return (
     <div>
@@ -100,18 +102,11 @@ export default function Withdraw() {
                       required: true,
                       min: 1000,
                     })}
-                    onBlur={handleBlur}
+                    onChange={handleChangeAmount}
                   />
                   <div className="absolute top-[0.6rem] right-7 flex items-center gap-1">
                     <Icon className="text-[1.5rem]" icon="token-branded:usdt" />
-                    <div>
-                      {
-                        isLoadingConversion ? <Icon icon="line-md:loading-loop" /> : convertedValue
-                      }
-                      {
-                        !isLoadingConversion && !withdrawalAmt && "00.00"
-                      }
-                      </div>
+                    <p>{convertedValue || "00.00"}</p>
                   </div>
                 </div>
                 <div

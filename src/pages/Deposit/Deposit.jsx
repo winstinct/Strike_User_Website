@@ -1,34 +1,49 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import WalletCard from "../../shared/WalletCard/WalletCard";
 import { useConvertINRIntoUSDTMutation } from "../../redux/features/lottery/lotteryApi";
 
 export default function Deposit() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [amount, setAmount] = useState();
+  const [perINRToUSDT, setPerINRToUSDT] = useState(0);
+  const [convertedValue, setConvertedValue] = useState();
+
   const handleWheel = (e) => {
     e.target.blur();
   };
-  const [convertedValue, setConvertedValue] = useState();
 
-  const [convertINRIntoUSDTApi, { isLoading: isLoadingConversion}] =
+  const [convertINRIntoUSDTApi, { isLoading: isLoadingConversion }] =
     useConvertINRIntoUSDTMutation();
 
   const handleSelect = async (e) => {
-      const convertCurrencyRes = await convertINRIntoUSDTApi(
-        Number(e.target.innerText)
-      );
-      const cryptoValue = convertCurrencyRes?.data?.response?.usdtAmt?.toFixed(2);
-      setConvertedValue(cryptoValue);
-      setAmount(e.target.innerText);
+    const cryptoValue = (Number(e.target.innerText) * perINRToUSDT).toFixed(2);
+    setConvertedValue(cryptoValue);
+    setAmount(e.target.innerText);
   };
 
+  const handleChangeInput = (e) => {
+    setConvertedValue((Number(e.target.value) * perINRToUSDT).toFixed(2));
+    setAmount(e.target.value);
+  };
 
-  const handleNavigeToAgentPage = ()=>{
-    localStorage.setItem("selectedCoins", amount)
-    navigate("/agents")
-  }
+  const handleNavigeToAgentPage = () => {
+    localStorage.setItem("selectedCoins", amount);
+    navigate("/agents");
+  };
+
+  useEffect(() => {
+    const convertIntoISDTValue = async () => {
+      const response = await convertINRIntoUSDTApi(1);
+      console.log(
+        "Per INR to USDT value===> ",
+        response?.data?.response?.usdtAmt
+      );
+      setPerINRToUSDT(response?.data?.response?.usdtAmt);
+    };
+    convertIntoISDTValue();
+  }, []);
 
   return (
     <div>
@@ -92,12 +107,7 @@ export default function Deposit() {
           <div className="flex items-center gap-[2px]">
             <Icon className="text-[1.3rem]" icon="token-branded:usdt" />
             <div>
-              {isLoadingConversion ? (
-                <Icon className="text-[1.1rem]" icon="line-md:loading-loop" />
-              ) : (
-                convertedValue
-              )}
-              {!isLoadingConversion && !amount && "00.00"}
+              {convertedValue || "00.00"}
             </div>
           </div>
         </div>
@@ -114,7 +124,7 @@ export default function Deposit() {
           placeholder="Custom Amount"
           type="number"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={handleChangeInput}
           onWheel={handleWheel}
         />
       </div>
@@ -129,14 +139,14 @@ export default function Deposit() {
             >
               Crypto
             </button>
-              <button
+            <button
               onClick={handleNavigeToAgentPage}
               disabled={isLoadingConversion}
-                style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
-                className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full"
-              >
-                Agent
-              </button>
+              style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
+              className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full"
+            >
+              Agent
+            </button>
           </div>
         </div>
       )}
