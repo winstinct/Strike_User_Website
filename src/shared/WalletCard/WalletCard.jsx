@@ -148,8 +148,6 @@ export default function WalletCard() {
   const convertedTotalAmount =
     convertedCurrencyData?.response?.convertedAmount * wallet;
   const [changeCurrencyApi] = useChangeCurrencyMutation();
-
-  console.log("I am from wallet card==========> ", wallet)
   
 
   const handleChangeCurrency = async (e) => {

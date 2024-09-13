@@ -175,7 +175,17 @@ export const lotteryApi = baseApi.injectEndpoints({
     }),
 
 
-
+    getAllNotifications: builder.query({
+      query: () => {
+        return {
+          url: `/users/fetch-notify`,
+          method: "GET",
+        };
+      },
+      transformResponse:(data)=>{
+        return data?.response?.notifications;
+      }
+    }),
 
 
   }),
@@ -199,5 +209,6 @@ export const {
   useConvertINRIntoUSDTMutation,
   useWithdrawCoinsMutation,
   useBecomePublicAgentMutation,
-  useGetUserWinningsQuery
+  useGetUserWinningsQuery,
+  useGetAllNotificationsQuery
 } = lotteryApi;
