@@ -8,6 +8,7 @@ import { useGetPublicLotteriesQuery } from "../../redux/features/lottery/lottery
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
 import { useSelector } from "react-redux";
 import CountDownTimer from "../../shared/CountDownTimer/CountDownTimer";
+import ReactSlider from "react-slider";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -175,12 +176,13 @@ export default function SoldOutLotteries() {
                             {Totaltickets}
                           </span>
                         </div>
-                        <Progress
-                          className="mt-[10px]"
-                          size="sm"
-                          color="red"
-                          value={lottaryPurchase?.length}
-                        />
+                        <ReactSlider
+                            className="horizontal-slider mt-3"
+                            trackClassName="example-track"
+                            min={0}
+                            max={Totaltickets}
+                            value={lottaryPurchase?.length}
+                          />
                       </div>
                     </div>
 

@@ -21,8 +21,10 @@ import { useSelector } from "react-redux";
 import { useAuth } from "../../contexts/AuthContext";
 import CountDownTimer from "../../shared/CountDownTimer/CountDownTimer";
 import { ShareSocial } from "react-share-social";
+import ReactSlider from "react-slider";
+import { getTrackBackground, Range, rtl } from "react-range";
 
-const ShareSocialModal = ({url}) => {
+const ShareSocialModal = ({ url }) => {
   const [size, setSize] = useState(null);
   const handleOpen = (value) => setSize(value);
   return (
@@ -36,7 +38,9 @@ const ShareSocialModal = ({url}) => {
           />
         </DialogBody>
         <DialogFooter onClick={() => handleOpen(null)}>
-          <button className="bg-gray-600 text-white rounded-lg px-5 py-2">Close</button>
+          <button className="bg-gray-600 text-white rounded-lg px-5 py-2">
+            Close
+          </button>
         </DialogFooter>
       </Dialog>
 
@@ -62,6 +66,7 @@ const swiperConfig = {
 };
 
 export default function PublicLotteries() {
+  const [values, setValues] = useState([50]);
   const { currentUser } = useAuth();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
@@ -235,10 +240,11 @@ export default function PublicLotteries() {
                               {Totaltickets}
                             </span>
                           </div>
-                          <Progress
-                            className="mt-[10px]"
-                            size="sm"
-                            color="red"
+                          <ReactSlider
+                            className="horizontal-slider mt-3"
+                            trackClassName="example-track"
+                            min={0}
+                            max={Totaltickets}
                             value={lottaryPurchase?.length}
                           />
                         </div>
@@ -274,7 +280,7 @@ export default function PublicLotteries() {
                   </div>
                 </Link>
                 <div className="flex gap-3 text-[12px] font-semibold mt-[1rem]">
-                  <ShareSocialModal url={`addToCart/${UniqueID}`}/>
+                  <ShareSocialModal url={`addToCart/${UniqueID}`} />
 
                   {currentUser && (
                     <button
