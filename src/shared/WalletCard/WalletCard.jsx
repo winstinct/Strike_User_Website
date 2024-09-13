@@ -137,8 +137,7 @@ export default function WalletCard() {
 
   // RTK Query Hooks
   const { data: cryptoConvertedData } = useConvertCoinsIntoCryptoQuery(
-    { amount: wallet, currencyType: Currency },
-    { skip: !Currency }
+    { amount: wallet, currencyType:"INR" }
   );
   const cryptoConvertedValue =
     cryptoConvertedData?.response?.usdtAmt.toFixed(2);
@@ -148,8 +147,6 @@ export default function WalletCard() {
   const convertedTotalAmount =
     convertedCurrencyData?.response?.convertedAmount * wallet;
   const [changeCurrencyApi] = useChangeCurrencyMutation();
-
-  console.log("I am from wallet card==========> ", wallet)
   
 
   const handleChangeCurrency = async (e) => {

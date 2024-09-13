@@ -10,10 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 import { useGetAllCartItemsQuery } from "../../redux/features/cart/cartApi";
 import AvatarSkeleton from "./AvatarSkeleton";
-import { useEffect } from "react";
-const getTotalCartItemsPrice = (items) => {
-  return items?.reduce((total, item) => item?.totalAmount + total, 0);
-};
 
 export default function Header() {
   const { currentUser } = useAuth();
@@ -21,7 +17,7 @@ export default function Header() {
   const userImageUrl = data?.response?.UserData?.imageUrl;
   const dispatch = useDispatch();
   const { showNotificationModal } = useSelector((store) => store.notification);
-  const { data: cartData, isLoading, isError } = useGetAllCartItemsQuery();
+  const { data: cartData } = useGetAllCartItemsQuery();
   const totalAddedItems = cartData?.response?.cart?.length;
   return (
     <>
@@ -104,9 +100,7 @@ export default function Header() {
                     </svg>
                   </button>
                   {showNotificationModal && (
-                    <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
                       <NotificationModal />
-                    </div>
                   )}
                 </div>
                 <Link to="/shopper-bag">
