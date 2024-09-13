@@ -26,10 +26,14 @@ export default function AgentDetails() {
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
 
-  const {data: walletAgentDetails} = useGetSingleWalletAgentDetailsQuery(id);
+  const { data: walletAgentDetails } = useGetSingleWalletAgentDetailsQuery(id);
   const walletAgent = walletAgentDetails?.response?.agentDetails || {};
   const { data, isLoading, isError } = useGetSingleAgentDetailsQuery(id);
   const agentDetails = data?.response?.agentTicket || [];
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -81,9 +85,7 @@ export default function AgentDetails() {
       >
         <div>
           <h1 className="text-[20px] font-semibold">
-            {walletAgent?.FirstName +
-              " " +
-              walletAgent?.LastName}
+            {walletAgent?.FirstName + " " + walletAgent?.LastName}
           </h1>
           <span className="text-[13px] text-[#808080] mt-[-2px] block">
             Strike Agent
@@ -118,15 +120,12 @@ export default function AgentDetails() {
           <span className="text-[15px] font-semibold">
             {walletAgent?.bankDetails?.acc_number}
           </span>
-          {isTextCopied ===
-          walletAgent?.bankDetails?.acc_number ? (
+          {isTextCopied === walletAgent?.bankDetails?.acc_number ? (
             <span className="text-[#029CFD] text-[14px]">Copied!</span>
           ) : (
             <button
               onClick={() =>
-                copyTextHandler(
-                  walletAgent?.bankDetails?.acc_number
-                )
+                copyTextHandler(walletAgent?.bankDetails?.acc_number)
               }
             >
               <Icon
