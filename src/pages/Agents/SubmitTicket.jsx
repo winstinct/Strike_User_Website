@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 export default function SubmitTicket() {
   const date = Date.now();
-  console.log("new date: ", date);
+  const { currentUser } = useAuth();
   const [selectImg, setSelectImg] = useState();
   const [paymentOption, setPaymentOption] = useState(null);
   const [utrNumber, setUtrNumber] = useState("");
@@ -27,7 +27,9 @@ export default function SubmitTicket() {
   const convertedAmount = useSelector(
     (store) => store.convertedCoin.convertedAmount
   );
-  const amountToBePaid = (convertedAmount * localStorage.getItem("selectedCoins")).toFixed(2);
+  const amountToBePaid = (
+    convertedAmount * localStorage.getItem("selectedCoins")
+  ).toFixed(2);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -199,7 +201,7 @@ export default function SubmitTicket() {
           className="text-[15px] font-semibold outline-none border border-[#CCC] rounded-md p-3 w-full bg-[#D9D9D9]"
           type="text"
           readOnly
-          value={"Mustaq Ahmed"}
+          value={currentUser?.displayName}
         />
       </div>
       <div className="flex flex-col gap-2">
