@@ -76,7 +76,10 @@ export default function Header() {
               <>
                 <div className="relative">
                   <button
-                    onClick={() => dispatch(toggleNotificationModal())}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      dispatch(toggleNotificationModal())
+                    }}
                     className="cursor-pointer"
                   >
                     <svg

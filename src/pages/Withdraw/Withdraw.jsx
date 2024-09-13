@@ -111,7 +111,7 @@ export default function Withdraw() {
                 </div>
                 <div
                   className={`flex items-center text-[14px] gap-2 ${
-                    withdrawalAmt < 1000 ? "text-red-500" : "text-gray-500"
+                    withdrawalAmt && withdrawalAmt < 1000 ? "text-red-500" : "text-gray-500"
                   }`}
                 >
                   <Icon icon="zondicons:exclamation-solid" />

@@ -12,9 +12,12 @@ const notificationSlice = createSlice({
         toggleNotificationModal(state) {
             state.showNotificationModal = !state.showNotificationModal;
         },
+        hideNotificationModal(state) {
+            state.showNotificationModal = false;
+        },
     }
 })
 
-export const { toggleNotificationModal } = notificationSlice.actions;
+export const { toggleNotificationModal, hideNotificationModal } = notificationSlice.actions;
 
 export default notificationSlice.reducer;
