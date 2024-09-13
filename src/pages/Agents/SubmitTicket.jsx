@@ -4,7 +4,7 @@ import Select from "react-select";
 import { APIurls } from "../../api/apiConstant";
 import { useAuth } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { storage } from "../../Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ThreeDots } from "react-loader-spinner";
@@ -20,8 +20,6 @@ export default function SubmitTicket() {
   const [showError, setShowError] = useState(false);
   const [url, setUrl] = useState("");
   const { getAccessToken } = useAuth();
-  const location = useLocation();
-  const id = location?.state?.id;
   const navigate = useNavigate();
   const [loaderBtn, setLoaderBtn] = useState(false);
   const convertedAmount = useSelector(
@@ -148,7 +146,7 @@ export default function SubmitTicket() {
       const response = await fetch(APIurls.submitTicket, {
         method: "POST",
         body: JSON.stringify({
-          agentId: id,
+          agentId: localStorage.getItem("agentId"),
           coinreq: parseInt(localStorage.getItem("selectedCoins")),
           proof_link: downloadURL,
           method: paymentOption?.value,

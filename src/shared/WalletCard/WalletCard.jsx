@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 import {
   useChangeCurrencyMutation,
@@ -9,6 +9,7 @@ import {
 import { toast } from "react-toastify";
 import { addConvertedCoinDetails } from "../../redux/convertedCoinSlice";
 import { Icon } from "@iconify/react/dist/iconify.js";
+
 
 const currencyCodes = [
   "INR",
@@ -132,6 +133,7 @@ const currencyCodes = [
 
 export default function WalletCard() {
   const dispatch = useDispatch();
+  const {token} = useSelector(state => state.auth);
   const { data } = useGetUserDetailsQuery();
   const { wallet, Currency } = data?.response?.UserData || {};
 
@@ -169,7 +171,11 @@ export default function WalletCard() {
         convertedAmount: convertedCurrencyData?.response?.convertedAmount,
       })
     );
-  }, [data, convertedCurrencyData, Currency, dispatch]);
+
+    if(!token){
+      window.location.reload()
+    }
+  }, [data, convertedCurrencyData, Currency, dispatch, token]);
 
   return (
     <div className="gradientBg text-white text-center rounded-[20px] p-4">
