@@ -133,7 +133,6 @@ const currencyCodes = [
 
 export default function WalletCard() {
   const dispatch = useDispatch();
-  const {token} = useSelector(state => state.auth);
   const { data } = useGetUserDetailsQuery();
   const { wallet, Currency } = data?.response?.UserData || {};
 
@@ -171,11 +170,7 @@ export default function WalletCard() {
         convertedAmount: convertedCurrencyData?.response?.convertedAmount,
       })
     );
-
-    if(!token){
-      window.location.reload()
-    }
-  }, [data, convertedCurrencyData, Currency, dispatch, token]);
+  }, [data, convertedCurrencyData, Currency, dispatch]);
 
   return (
     <div className="gradientBg text-white text-center rounded-[20px] p-4">
