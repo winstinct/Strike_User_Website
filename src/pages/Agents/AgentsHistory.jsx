@@ -6,6 +6,12 @@ import { useGetAllAgentsTicketsQuery } from "../../redux/features/transactions/t
 import moment from "moment";
 import ViewRemarksModal from "./ViewRemarksModal";
 import AgentHistorySkeleton from "./AgentHistorySkeleton";
+import RejectAgentModal from "./RejectAgentModal";
+import { toast } from "react-toastify";
+import { useAuth } from "../../contexts/AuthContext";
+import { APIurls } from "../../api/apiConstant";
+import { ThreeDots } from "react-loader-spinner";
+import NotifyAgentModal from "./NotifyAgentModal";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -21,8 +27,11 @@ export default function AgentsHistory() {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
+  const [notifyLoading, setNotifyLoading] = useState({});
+  const { getAccessToken } = useAuth();
 
   const { data, isLoading, isError } = useGetAllAgentsTicketsQuery();
+  console.log("AGENT TICKETS: ", data);
 
   // decide what to render
   let content = "";
@@ -32,7 +41,11 @@ export default function AgentsHistory() {
     content = <AgentHistorySkeleton />;
   }
 
-  if (!isLoading && !isError && data?.response?.agentTicket?.response?.agentTicket == 0) {
+  if (
+    !isLoading &&
+    !isError &&
+    data?.response?.agentTicket?.response?.agentTicket == 0
+  ) {
     content = (
       <h1 className="text-center py-[5rem]">There are no records to display</h1>
     );
@@ -49,6 +62,40 @@ export default function AgentsHistory() {
     setIsBeginning(swiperInstance?.isBeginning);
     setIsEnd(swiperInstance?.isEnd);
   };
+
+  const notifyAgentHandler = async (singleData) => {
+    setNotifyLoading({
+      [singleData?._id]: true,
+    });
+    const token = await getAccessToken();
+    try {
+      const response = await fetch(`${APIurls.notifyAgent}`, {
+        method: "POST",
+        body: JSON.stringify({
+          agentId: singleData?.agentId?._id,
+          requestId: singleData?._id,
+        }),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        toast.error("Failed to Report Agent");
+        throw new Error("Failed to Report Agent");
+      }
+      const result = await response.json();
+      console.log(result);
+      toast.success("Agent Reported Successfully");
+      close();
+    } catch (error) {
+      console.warn("Failed to Report Agent");
+    }
+    setNotifyLoading({
+      [singleData?._id]: false,
+    });
+  };
+
   return (
     <section className="mt-[2rem]">
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
@@ -121,7 +168,9 @@ export default function AgentsHistory() {
                     <span
                       className={`font-bold ${
                         item.status === "REJECTED"
-                          ? "text-gray-600" : item.status === "PROCESSED" ? "text-[#25BF17]"
+                          ? "text-gray-600"
+                          : item.status === "PROCESSED"
+                          ? "text-[#25BF17]"
                           : "text-[#FFCE06]"
                       }`}
                     >
@@ -150,14 +199,8 @@ export default function AgentsHistory() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="flex items-center text-[#5500C3] gap-1 cursor-pointer">
-                      <p>Notify Agent</p>
-                      <Icon icon="mdi:bell-outline" />
-                    </div>
-                    <div className="flex items-center text-red-500 gap-1 cursor-pointer">
-                      <p>Report Agent</p>
-                      <Icon icon="zondicons:exclamation-outline" />
-                    </div>
+                    <NotifyAgentModal data={item}/>
+                    <RejectAgentModal data={item} />
                   </div>
                 </div>
               </div>
