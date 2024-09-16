@@ -126,6 +126,7 @@ export default function LocationDetails() {
     // Call API
     try {
       const res = await signup(userInfo);
+      // console.log("Signup User Response ===> ", res)
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {

@@ -9,7 +9,7 @@ const baseQuery = fetchBaseQuery({
     // Assuming your token is stored in Redux state
     const authToken = auth?.currentUser?.accessToken;
     const token = getState()?.auth?.token;
-    console.log("Auth Token==> ", authToken);
+    // console.log("Auth Token==> ", authToken);
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     } else {

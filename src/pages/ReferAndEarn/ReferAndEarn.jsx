@@ -4,6 +4,9 @@ import { Progress } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
+import { useGetReferralHistoryQuery } from "../../redux/features/lottery/lotteryApi";
+import ReferralItem from "./ReferralItem";
+import { useState } from "react";
 
 const options = [
   {
@@ -57,15 +60,30 @@ const customStyles = {
   }),
 };
 
+const getTotalReferralEarnings = (referals) => {
+  return referals?.reduce((total, curr) => curr.coinsEarned + total, 0);
+};
+
 export default function ReferAndEarn() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  const navigate = useNavigate()
-  const {data} = useGetUserDetailsQuery();
-  const {refferal, wallet} = data?.response?.UserData || {};
+  // window.scrollTo({ top: 0, behavior: "smooth" });
+  const navigate = useNavigate();
+  const { data } = useGetUserDetailsQuery();
+  const { refferal } = data?.response?.UserData || {};
+  const { data: referralData } = useGetReferralHistoryQuery();
+  const [status, setStatus] = useState("all");
+
+  const handleChange = (data) => {
+    setStatus(data.value.toLowerCase());
+  };
+  console.log("Status===> ", status);
+
   return (
     <main>
       <div className="flex items-center gap-5 mb-5">
-        <div onClick={() => navigate("/menu")} className="backBtn md:hidden block">
+        <div
+          onClick={() => navigate("/menu")}
+          className="backBtn md:hidden block"
+        >
           <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
         </div>
         <h3 className="text-[2rem] font-bold italic">Refer and Earn</h3>
@@ -136,29 +154,21 @@ export default function ReferAndEarn() {
         </div>
       </div>
 
-      <div className="gradientBg text-white text-center rounded-[20px] p-2 mt-[2rem]">
+      <div className="gradientBg text-white text-center rounded-[20px] p-3 mt-[2rem]">
         <p className="text-[1rem] font-semibold">Total Earnings</p>
         <h3 className="font-bold italic">
-          <span className="text-[2rem]">{wallet}</span>{" "}
+          <span className="text-[2rem]">
+            {getTotalReferralEarnings(referralData)}
+          </span>{" "}
           <span className="text-[1.25rem]">Coins</span>
         </h3>
         <p className="text-[14px]">Invite more and keep earning</p>
       </div>
 
       {/* Filter Buttons  */}
-      <div className="flex lg:flex-row flex-col items-center justify-between mt-[2rem]">
-        <div className="flex lg:flex-row flex-col items-center gap-3">
-          <button className="rounded-full w-[120px] py-2 border-[1px] border-[#5500C3] hover:bg-[#5500C3] hover:text-white duration-300">
-            All
-          </button>
-          <button className="rounded-full w-[120px] py-2 border-[1px] border-[#5500C3] hover:bg-[#5500C3] hover:text-white duration-300">
-            Completed
-          </button>
-          <button className="rounded-full w-[120px] py-2 border-[1px] border-[#5500C3] hover:bg-[#5500C3] hover:text-white duration-300">
-            Pending
-          </button>
-        </div>
+      <div className="flex lg:flex-row flex-col items-center justify-end mt-[2rem]">
         <Select
+          onChange={handleChange}
           options={options}
           styles={customStyles}
           placeholder="Sort By"
@@ -166,97 +176,17 @@ export default function ReferAndEarn() {
         ></Select>
       </div>
 
-      <div className="space-y-[0.5rem] border-[2px] border-[#5500C3] rounded-lg p-3 mt-[1.5rem]">
-        <div className="flex items-center justify-between">
-          <h3 className="text-[1rem] font-semibold">Billal Hossain</h3>
-          <div className="text-[14px] font-medium">
-            <span>Status:</span> <span className="text-[#E5B905]">Pending</span>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <Progress size="sm" color="red" value={50} />
-          <p className="w-[100px] text-right">1/2 Tasks</p>
-        </div>
-
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-1">
-            <Icon
-              className="text-[#198754] text-[1.5rem]"
-              icon="lets-icons:check-fill"
-            />
-            <p>App install</p>
-          </div>
-          <p>100 coins</p>
-        </div>
-
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-1">
-            <Icon
-              className="text-[#E5B905] text-[1.5rem]"
-              icon="arcticons:ca-lottery"
-            />
-            <p>App install</p>
-          </div>
-          <p>100 coins</p>
-        </div>
-
-        <div className="flex items-center justify-center gap-1">
-          <Icon
-            className="text-[14px] text-gray-500"
-            icon="zondicons:exclamation-solid"
-          />
-          <p className="text-[12px]">
-            Earn 20 coins upon completion of 2 tasks
-          </p>
-        </div>
-      </div>
-
-      <div className="space-y-[0.5rem] border-[2px] border-[#5500C3] rounded-lg p-3 mt-[1.5rem]">
-        <div className="flex items-center justify-between">
-          <h3 className="text-[1rem] font-semibold">Billal Hossain</h3>
-          <div className="text-[14px] font-medium">
-            <span>Status:</span> <span className="text-[#E5B905]">Pending</span>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <Progress size="sm" color="red" value={50} />
-          <p className="w-[100px] text-right">1/2 Tasks</p>
-        </div>
-
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-1">
-            <Icon
-              className="text-[#198754] text-[1.5rem]"
-              icon="lets-icons:check-fill"
-            />
-            <p>App install</p>
-          </div>
-          <p>100 coins</p>
-        </div>
-
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-1">
-            <Icon
-              className="text-[#E5B905] text-[1.5rem]"
-              icon="arcticons:ca-lottery"
-            />
-            <p>Lottery Purchase</p>
-          </div>
-          <p>100 coins</p>
-        </div>
-
-        <div className="flex items-center justify-center gap-1">
-          <Icon
-            className="text-[14px] text-gray-500"
-            icon="zondicons:exclamation-solid"
-          />
-          <p className="text-[12px]">
-            Earn 20 coins upon completion of 2 tasks
-          </p>
-        </div>
-      </div>
+      {referralData
+        ?.filter((item) => {
+          if(status == 'all'){
+            return item;
+          }else{
+            return item.status.toLowerCase() == status
+          }
+        })
+        ?.map((item) => (
+          <ReferralItem key={item._id} item={item} />
+        ))}
     </main>
   );
 }

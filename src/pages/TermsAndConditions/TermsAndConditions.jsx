@@ -1,7 +1,7 @@
 export const TermsAndConditions = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
   return (
-    <div className="mr-[16.5rem]">
+    <div>
       <div className="container mx-auto p-6">
         <h1 className="text-3xl font-bold mb-4">Terms and Conditions</h1>
         <p className="mb-4">

@@ -124,7 +124,6 @@ export const lotteryApi = baseApi.injectEndpoints({
       },
     }),
 
-    //TODO: Apis to be integrated
     getRecentTransactions: builder.query({
       query: () => {
         return {
@@ -188,6 +187,19 @@ export const lotteryApi = baseApi.injectEndpoints({
     }),
 
 
+    getReferralHistory: builder.query({
+      query: () => {
+        return {
+          url: `/users/fetch-refferals`,
+          method: "GET",
+        };
+      },
+      transformResponse:(data)=>{
+        return data?.response?.Referals;
+      }
+    }),
+
+
   }),
 });
 
@@ -210,5 +222,6 @@ export const {
   useWithdrawCoinsMutation,
   useBecomePublicAgentMutation,
   useGetUserWinningsQuery,
-  useGetAllNotificationsQuery
+  useGetAllNotificationsQuery,
+  useGetReferralHistoryQuery
 } = lotteryApi;
