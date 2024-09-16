@@ -232,6 +232,10 @@ div button.peer ::after,
   border-radius: 8px;
   overflow: auto;
   max-height: 90%;
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  /* box-sizing: border-box; */
 }
 
 .modal {
@@ -268,4 +272,24 @@ div button.peer ::after,
   background: #ffffff;
   border-radius: 18px;
   border: 1px solid #cfcece;
+}
+@media screen and (max-width: 640px) {
+  .popup-content {
+    width: 90% !important;
+    max-width: 90% !important;
+
+  }
+
+  .modal {
+    font-size: 14px; /* Slightly increase font size for readability */
+  }
+
+  .modal > .header {
+    font-size: 20px; /* Increase header font size */
+  }
+
+  .modal > .content,
+  .modal > .actions {
+    padding: 15px 10px; /* Increase padding for better touch interaction */
+  }
 }
