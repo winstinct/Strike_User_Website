@@ -1,11 +1,11 @@
 import { Progress } from "@material-tailwind/react";
-import popularLotteryImg from "../../assets/popular-lottery.jpeg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link } from "react-router-dom";
 import { useRemoveFromWishlistMutation } from "../../redux/features/wishlist/wishlistApi";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import { toast } from "react-toastify";
 import Countdown from "react-countdown";
+import PropTypes from 'prop-types';
 
 export default function WishListItem({ lottery }) {
   const {
@@ -136,4 +136,8 @@ export default function WishListItem({ lottery }) {
       <div className="w-full bg-gray-300 h-[1.5px] my-10"></div>
     </>
   );
+}
+
+WishListItem.propTypes = {
+  lottery:PropTypes.object
 }

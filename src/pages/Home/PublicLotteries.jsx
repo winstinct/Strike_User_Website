@@ -4,7 +4,6 @@ import {
   DialogBody,
   DialogFooter,
   DialogHeader,
-  Progress,
 } from "@material-tailwind/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -21,8 +20,10 @@ import { useSelector } from "react-redux";
 import { useAuth } from "../../contexts/AuthContext";
 import CountDownTimer from "../../shared/CountDownTimer/CountDownTimer";
 import { ShareSocial } from "react-share-social";
+import ReactSlider from "react-slider";
+import PropTypes from "prop-types";
 
-const ShareSocialModal = ({url}) => {
+const ShareSocialModal = ({ url }) => {
   const [size, setSize] = useState(null);
   const handleOpen = (value) => setSize(value);
   return (
@@ -36,7 +37,9 @@ const ShareSocialModal = ({url}) => {
           />
         </DialogBody>
         <DialogFooter onClick={() => handleOpen(null)}>
-          <button className="bg-gray-600 text-white rounded-lg px-5 py-2">Close</button>
+          <button className="bg-gray-600 text-white rounded-lg px-5 py-2">
+            Close
+          </button>
         </DialogFooter>
       </Dialog>
 
@@ -164,6 +167,12 @@ export default function PublicLotteries() {
           </button>
         </div>
       </header>
+      {activeLotteris?.length == 0 && (
+        <h3 className="text-gray-500 text-center text-[1.3rem] py-5">
+          No public lotteries are available!
+        </h3>
+      )}
+
       {isLoading && <PublicLotterySkeleton />}
       <Swiper
         onSwiper={(swiper) => setSwiperInstance(swiper)}
@@ -235,10 +244,11 @@ export default function PublicLotteries() {
                               {Totaltickets}
                             </span>
                           </div>
-                          <Progress
-                            className="mt-[10px]"
-                            size="sm"
-                            color="red"
+                          <ReactSlider
+                            className="horizontal-slider mt-3"
+                            trackClassName="example-track"
+                            min={0}
+                            max={Totaltickets}
                             value={lottaryPurchase?.length}
                           />
                         </div>
@@ -274,7 +284,7 @@ export default function PublicLotteries() {
                   </div>
                 </Link>
                 <div className="flex gap-3 text-[12px] font-semibold mt-[1rem]">
-                  <ShareSocialModal url={`addToCart/${UniqueID}`}/>
+                  <ShareSocialModal url={`addToCart/${UniqueID}`} />
 
                   {currentUser && (
                     <button
@@ -314,3 +324,7 @@ export default function PublicLotteries() {
     </section>
   );
 }
+
+ShareSocialModal.propTypes = {
+  url: PropTypes.string,
+};

@@ -93,6 +93,10 @@ export default function OffersSection() {
         </div>
       </header>
 
+      {
+        activeOffers?.length == 0 && <h3 className="text-gray-500 text-center text-[1.3rem] py-5">No offers are available!</h3>
+      }
+
       {isLoading ? (
         <ValidOfferSkeleton />
       ) : (

@@ -33,6 +33,7 @@ export default function AgentDetails() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    localStorage.setItem("agentId", id)
   }, []);
 
   useEffect(() => {

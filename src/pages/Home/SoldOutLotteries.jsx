@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Progress } from "@material-tailwind/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
@@ -8,6 +7,7 @@ import { useGetPublicLotteriesQuery } from "../../redux/features/lottery/lottery
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
 import { useSelector } from "react-redux";
 import CountDownTimer from "../../shared/CountDownTimer/CountDownTimer";
+import ReactSlider from "react-slider";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -45,10 +45,6 @@ export default function SoldOutLotteries() {
 
   const soldOutLotteries = data?.response?.Lottary?.filter(
     (item) => item.lottaryPurchase.length >= item.Totaltickets
-  );
-
-  const activeLotteris = data?.response?.Lottary?.filter(
-    ({ expieryDate }) => new Date(expieryDate).getTime() >= new Date().getTime()
   );
 
 
@@ -175,12 +171,13 @@ export default function SoldOutLotteries() {
                             {Totaltickets}
                           </span>
                         </div>
-                        <Progress
-                          className="mt-[10px]"
-                          size="sm"
-                          color="red"
-                          value={lottaryPurchase?.length}
-                        />
+                        <ReactSlider
+                            className="horizontal-slider mt-3"
+                            trackClassName="example-track"
+                            min={0}
+                            max={Totaltickets}
+                            value={lottaryPurchase?.length}
+                          />
                       </div>
                     </div>
 

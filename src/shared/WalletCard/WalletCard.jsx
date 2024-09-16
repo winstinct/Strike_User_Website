@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { addConvertedCoinDetails } from "../../redux/convertedCoinSlice";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
+
 const currencyCodes = [
   "INR",
   "USD",

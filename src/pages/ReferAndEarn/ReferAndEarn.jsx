@@ -60,7 +60,7 @@ const customStyles = {
 export default function ReferAndEarn() {
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate()
-  const {data, isLoading} = useGetUserDetailsQuery();
+  const {data} = useGetUserDetailsQuery();
   const {refferal, wallet} = data?.response?.UserData || {};
   return (
     <main>

@@ -17,7 +17,7 @@ export default function ProfileContactDetails() {
     return <ThreeDotsLoader/>
   }
 
-  const handleSubmitContactDetails = (data)=>{
+  const handleSubmitContactDetails = ()=>{
   }
   return (
     <StrikeForm onSubmit={handleSubmitContactDetails} resolver={yupResolver(contactDetailsSchema)} defaultValues={defaultValues}>
@@ -25,11 +25,11 @@ export default function ProfileContactDetails() {
       <StrikeInput type="text" name="mobileNumber" label="Mobile Number" required={true} readonly={true}/>
       <StrikeInput type="email" name="email" label="Email" required={true} readonly={true}/>
     </div>
-    <div className="flex justify-center items-center">
+    {/* <div className="flex justify-center items-center">
       <button type="submit" className="submitBtn w-[22rem] mt-[1.5rem]">
         Save
       </button>
-    </div>
+    </div> */}
   </StrikeForm>
   )
 }
