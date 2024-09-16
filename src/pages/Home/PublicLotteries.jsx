@@ -4,7 +4,6 @@ import {
   DialogBody,
   DialogFooter,
   DialogHeader,
-  Progress,
 } from "@material-tailwind/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -22,7 +21,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import CountDownTimer from "../../shared/CountDownTimer/CountDownTimer";
 import { ShareSocial } from "react-share-social";
 import ReactSlider from "react-slider";
-import { getTrackBackground, Range, rtl } from "react-range";
+import PropTypes from "prop-types";
 
 const ShareSocialModal = ({ url }) => {
   const [size, setSize] = useState(null);
@@ -66,7 +65,6 @@ const swiperConfig = {
 };
 
 export default function PublicLotteries() {
-  const [values, setValues] = useState([50]);
   const { currentUser } = useAuth();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
@@ -169,6 +167,12 @@ export default function PublicLotteries() {
           </button>
         </div>
       </header>
+      {activeLotteris?.length == 0 && (
+        <h3 className="text-gray-500 text-center text-[1.3rem] py-5">
+          No public lotteries are available!
+        </h3>
+      )}
+
       {isLoading && <PublicLotterySkeleton />}
       <Swiper
         onSwiper={(swiper) => setSwiperInstance(swiper)}
@@ -320,3 +324,7 @@ export default function PublicLotteries() {
     </section>
   );
 }
+
+ShareSocialModal.propTypes = {
+  url: PropTypes.string,
+};

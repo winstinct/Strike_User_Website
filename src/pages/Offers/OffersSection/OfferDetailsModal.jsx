@@ -6,18 +6,19 @@ import CopyCode from "./CopyCode";
 import { useGetSpecificOfferQuery } from "../../../redux/features/lottery/lotteryApi";
 import moment from "moment";
 import CountDownTimer from "../../../shared/CountDownTimer/CountDownTimer";
+import PropTypes from 'prop-types';
 
 export function OfferDetailsModal({offerId}) {
   const [size, setSize] = useState(null);
   const handleOpen = (value) => setSize(value);
   const {data} = useGetSpecificOfferQuery(offerId)
-  const {ExpieryDate, coupon_code, title, _id} = data?.response?.offer || {};
+  const {ExpieryDate, coupon_code, title} = data?.response?.offer || {};
   return (
     <>
       <div className="mb-3 flex gap-3">
         <button
           onClick={() => handleOpen("md")}
-          variant="gradient"
+          // variant="gradient"
           className="flex items-center justify-center p-1 gap-2 bg-white text-black w-full rounded-[20px]"
         >
           <span className="font-semibold">Learn More</span>
@@ -66,4 +67,8 @@ export function OfferDetailsModal({offerId}) {
       </Dialog>
     </>
   );
+}
+
+OfferDetailsModal.propTypes = {
+  offerId:PropTypes.string
 }

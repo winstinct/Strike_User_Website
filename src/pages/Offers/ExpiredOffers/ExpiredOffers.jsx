@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
@@ -36,6 +35,7 @@ export default function ExpiredOffers() {
   const expiredOffers = data?.response?.offer?.filter(
     ({ ExpieryDate }) => new Date(ExpieryDate).getTime() < new Date().getTime()
   );
+  console.log("Expired Data===> ", expiredOffers)
   return (
     <section className="mt-[3.5rem]">
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
@@ -98,8 +98,8 @@ export default function ExpiredOffers() {
           {...swiperConfig}
           className="w-full"
         >
-          {expiredOffers?.map(({ ExpieryDate, coupon_code, title }) => (
-            <SwiperSlide>
+          {expiredOffers?.map(({_id, coupon_code, title }) => (
+            <SwiperSlide key={_id}>
               <div
                 style={{ backgroundImage: "linear-gradient(#FF0000, #AD0000)" }}
                 className="p-[1rem] text-white rounded-[20px] bg-white"

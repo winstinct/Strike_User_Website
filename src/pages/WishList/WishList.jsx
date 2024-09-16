@@ -3,7 +3,6 @@ import { useGetWishlistQuery } from "../../redux/features/wishlist/wishlistApi";
 import WishListItem from "./WishListItem";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import WishlistEmpty from "./WishlistEmpty";
-import ThreeDotsLoader from "../../components/ThreeDotsLoader";
 import WishListSkeleton from "./WishListSkeleton";
 
 export default function WishList() {

@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -34,7 +33,7 @@ export default function Winners() {
   };
 
   const { data, isLoading } = useGetWinnersQuery();
- 
+
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
@@ -89,46 +88,56 @@ export default function Winners() {
         </div>
       </header>
 
-      {isLoading ? <WinnersSkeleton/> : (<Swiper
-        onSwiper={(swiper) => setSwiperInstance(swiper)}
-        {...swiperConfig}
-        className="w-full"
-      >
-        {data?.response?.fetchWinnerss?.map(
-          ({ UserID, transID, createdAt, winningAmount }) => (
-            <SwiperSlide>
-              <div className="flex justify-center h-[250px] items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
-                <div className="middle1"></div>
-                <div className="middle2"></div>
-                <div className="text-center space-y-[0.5rem]">
-                  <p className="font-bold">Congratulations</p>
-                  <h3 className="text-[1.25rem] font-bold">
-                    {UserID?.FirstName ? (
-                      <div>
-                        <span>{UserID?.FirstName}</span>
-                        <span className="ml-1">{UserID?.LastName}</span>
-                      </div>
-                    ) : (
-                      <span>Unknown User</span>
-                    )}
-                  </h3>
-                  <p>
-                    <span className="font-medium">Won</span>{" "}
-                    <span className="text-[#A967FF] text-[1.25rem] font-bold">
-                      {winningAmount} Coins
-                    </span>
-                  </p>
-                  <p className="font-medium">Order ID: {transID}</p>
-                  <p className="text-[#858585]">
-                    {/* Announced on: 08:40 PM 18 December, 2023 */}
-                    Announced on: {moment(createdAt).format("LLL")}
-                  </p>
+      {data?.response?.fetchWinnerss?.length == 0 && (
+        <h3 className="text-gray-500 text-center text-[1.3rem] py-5">
+          No winners are available!
+        </h3>
+      )}
+
+      {isLoading ? (
+        <WinnersSkeleton />
+      ) : (
+        <Swiper
+          onSwiper={(swiper) => setSwiperInstance(swiper)}
+          {...swiperConfig}
+          className="w-full"
+        >
+          {data?.response?.fetchWinnerss?.map(
+            ({ UserID, transID, createdAt, winningAmount }) => (
+              <SwiperSlide key={UserID}>
+                <div className="flex justify-center h-[250px] items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
+                  <div className="middle1"></div>
+                  <div className="middle2"></div>
+                  <div className="text-center space-y-[0.5rem]">
+                    <p className="font-bold">Congratulations</p>
+                    <h3 className="text-[1.25rem] font-bold">
+                      {UserID?.FirstName ? (
+                        <div>
+                          <span>{UserID?.FirstName}</span>
+                          <span className="ml-1">{UserID?.LastName}</span>
+                        </div>
+                      ) : (
+                        <span>Unknown User</span>
+                      )}
+                    </h3>
+                    <p>
+                      <span className="font-medium">Won</span>{" "}
+                      <span className="text-[#A967FF] text-[1.25rem] font-bold">
+                        {winningAmount} Coins
+                      </span>
+                    </p>
+                    <p className="font-medium">Order ID: {transID}</p>
+                    <p className="text-[#858585]">
+                      {/* Announced on: 08:40 PM 18 December, 2023 */}
+                      Announced on: {moment(createdAt).format("LLL")}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          )
-        )}
-      </Swiper>)}
+              </SwiperSlide>
+            )
+          )}
+        </Swiper>
+      )}
     </section>
   );
 }

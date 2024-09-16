@@ -17,8 +17,8 @@ export default function WheelGames() {
         <div className="flex justify-center">
           <img className="h-[300px]" src={wheelGameImg} alt="" />
         </div>
-        <h3 className="text-[1.5rem] font-bold">What's Coming 🚀</h3>
-        <p>We're cooking up something special for you. Stay tuned! 🚀</p>
+        <h3 className="text-[1.5rem] font-bold">What is Coming 🚀</h3>
+        <p>We are cooking up something special for you. Stay tuned! 🚀</p>
         <div className="pt-[1rem]">
           <Link to="/">
             <button className="submitBtn w-[250px]">Home</button>

@@ -111,6 +111,11 @@ export default function Winners() {
           </button>
         </div>
       </header>
+
+      {
+        data?.response?.fetchWinnerss == 0 && <h3 className="text-gray-500 text-center text-[1.3rem] py-5">No winnings are available!</h3>
+      }
+
       {
         content ? content : (<Swiper
           onSwiper={(swiper) => setSwiperInstance(swiper)}

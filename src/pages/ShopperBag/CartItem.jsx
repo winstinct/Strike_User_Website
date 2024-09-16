@@ -1,35 +1,14 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useRemoveItemFromCartMutation, useUpdateCartItemQuantityMutation } from "../../redux/features/cart/cartApi";
 import { toast } from "react-toastify";
-import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-
-const ThreeDotsLoadingState = () => (
-  <ThreeDots
-    visible={true}
-    height="10"
-    width="10"
-    align="center"
-    color="#5500C3"
-    radius="9"
-    ariaLabel="three-dots-loading"
-    wrapperClass=""
-    wrapperStyle={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100%",
-      width: "100%",
-      padding: "10px", // Example padding
-    }}
-  />
-);
+import PropTypes from 'prop-types';
 
 export default function CartItem({ item }) {
   const { lotteryId, quantity } = item || {};
   const navigate = useNavigate()
 
-  const [removeItemFromCartApi, { isLoading:isLoadingRemoveCartFromQuantity }] =
+  const [removeItemFromCartApi] =
   useRemoveItemFromCartMutation();
 
   const [updateCartItemQuantityApi, { isLoading }] =
@@ -116,4 +95,8 @@ export default function CartItem({ item }) {
       </div>
     </div>
   );
+}
+
+CartItem.propTypes = {
+  item:PropTypes.object
 }

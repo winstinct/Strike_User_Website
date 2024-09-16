@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Progress } from "@material-tailwind/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
@@ -46,10 +45,6 @@ export default function SoldOutLotteries() {
 
   const soldOutLotteries = data?.response?.Lottary?.filter(
     (item) => item.lottaryPurchase.length >= item.Totaltickets
-  );
-
-  const activeLotteris = data?.response?.Lottary?.filter(
-    ({ expieryDate }) => new Date(expieryDate).getTime() >= new Date().getTime()
   );
 
 
