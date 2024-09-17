@@ -8,6 +8,7 @@ export default function RecentTransactions() {
     isLoading,
     isError,
   } = useGetRecentTransactionsQuery();
+  console.log("Recent Transactions==========> ", recentTransactionsData)
 
   // decide what to render
   let content = "";
@@ -39,7 +40,7 @@ export default function RecentTransactions() {
           ({ originalAmt, status, adddition, updatedAt, _id }) => (
             <div key={_id} className="border-b-[1px] border-b-gray-300 pb-5">
               <div className="flex justify-between items-center text-[13px]">
-                <p>#{Date.now()}</p>
+                <p>{_id.slice(0, 18)}</p>
                 {adddition ? (
                   <p className="text-green-500">+{originalAmt} Coins</p>
                 ) : (

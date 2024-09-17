@@ -1,9 +1,9 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Progress } from "@material-tailwind/react";
 import PropTypes from "prop-types";
+import ReactSlider from "react-slider";
 
 export default function ReferralItem({ item }) {
-  const { userMongoId, status, appInstalled } = item || {};
+  const { userMongoId, status } = item || {};
   const { FirstName, LastName } = userMongoId || {};
   return (
     <div className="space-y-[1rem] border-[2px] border-[#5500C3] rounded-lg p-3 mt-[1.5rem]">
@@ -30,8 +30,14 @@ export default function ReferralItem({ item }) {
       </div>
 
       <div className="flex items-center justify-between">
-        <Progress size="sm" color="red" value={50} />
-        <p className="w-[100px] text-right">1/2 Tasks</p>
+        <ReactSlider
+          className="horizontal-slider mt-3"
+          trackClassName="example-track"
+          min={0}
+          max={2}
+          value={status.toLowerCase() == "completed" ? 2 : 1}
+        />
+        <p className="w-[100px] text-right">{status.toLowerCase() == "completed" ? "2/2" : "1/2"} Tasks</p>
       </div>
 
       <div className="flex justify-between items-center">
