@@ -1,12 +1,12 @@
 import CopyCodeReferAndEarn from "./CopyCodeReferAndEarn";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Progress } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 import { useGetReferralHistoryQuery } from "../../redux/features/lottery/lotteryApi";
 import ReferralItem from "./ReferralItem";
 import { useState } from "react";
+import { ReferalSkeleton } from "./ReferalSkeleton";
 
 const options = [
   {
@@ -69,7 +69,7 @@ export default function ReferAndEarn() {
   const navigate = useNavigate();
   const { data } = useGetUserDetailsQuery();
   const { refferal } = data?.response?.UserData || {};
-  const { data: referralData } = useGetReferralHistoryQuery();
+  const { data: referralData, isLoading } = useGetReferralHistoryQuery();
   const [status, setStatus] = useState("all");
 
   const handleChange = (data) => {
@@ -176,17 +176,21 @@ export default function ReferAndEarn() {
         ></Select>
       </div>
 
-      {referralData
-        ?.filter((item) => {
-          if(status == 'all'){
-            return item;
-          }else{
-            return item.status.toLowerCase() == status
-          }
-        })
-        ?.map((item) => (
-          <ReferralItem key={item._id} item={item} />
-        ))}
+      {
+        isLoading ? <ReferalSkeleton/> : <div>
+          {referralData
+          ?.filter((item) => {
+            if(status == 'all'){
+              return item;
+            }else{
+              return item.status.toLowerCase() == status
+            }
+          })
+          ?.map((item) => (
+            <ReferralItem key={item._id} item={item} />
+          ))}
+        </div>
+      }
     </main>
   );
 }
