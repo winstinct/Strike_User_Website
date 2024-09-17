@@ -1,14 +1,12 @@
 import strikeLogo from "../../assets/strike-logo.svg";
 import { useAuth } from "../../contexts/AuthContext";
-import { useDispatch, useSelector } from "react-redux";
 import NotificationModal from "../../pages/Notification/NotificationModal";
-import { toggleNotificationModal } from "../../redux/notificationSlice";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function MobileHeader() {
   const { currentUser } = useAuth();
-  const dispatch = useDispatch();
-  const { showNotificationModal } = useSelector((store) => store.notification);
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
   return (
     <div className="mx-[1rem] mt-[2rem]">
       <header
@@ -38,7 +36,7 @@ export default function MobileHeader() {
                 <>
                   <div className="relative">
                     <button
-                      onClick={() => dispatch(toggleNotificationModal())}
+                      onClick={() => setIsVisibleModal(!isVisibleModal)}
                       className="cursor-pointer"
                     >
                       <svg
@@ -51,54 +49,54 @@ export default function MobileHeader() {
                         <path
                           d="M6.44784 8.46942C6.76219 5.64032 9.15349 3.5 12 3.5V3.5C14.8465 3.5 17.2378 5.64032 17.5522 8.46942L17.804 10.7356C17.8072 10.7645 17.8088 10.779 17.8104 10.7933C17.9394 11.9169 18.3051 13.0005 18.8836 13.9725C18.8909 13.9849 18.8984 13.9973 18.9133 14.0222L19.4914 14.9856C20.0159 15.8599 20.2782 16.297 20.2216 16.6559C20.1839 16.8946 20.061 17.1117 19.8757 17.2668C19.5971 17.5 19.0873 17.5 18.0678 17.5H5.93223C4.91268 17.5 4.40291 17.5 4.12434 17.2668C3.93897 17.1117 3.81609 16.8946 3.77841 16.6559C3.72179 16.297 3.98407 15.8599 4.50862 14.9856L5.08665 14.0222C5.10161 13.9973 5.10909 13.9849 5.11644 13.9725C5.69488 13.0005 6.06064 11.9169 6.18959 10.7933C6.19123 10.779 6.19283 10.7645 6.19604 10.7356L6.44784 8.46942Z"
                           stroke="#1A1A1A"
-                          stroke-width="2"
+                          strokeWidth="2"
                         />
                         <path
                           d="M8 17.5C8 18.0253 8.10346 18.5454 8.30448 19.0307C8.5055 19.516 8.80014 19.957 9.17157 20.3284C9.54301 20.6999 9.98396 20.9945 10.4693 21.1955C10.9546 21.3965 11.4747 21.5 12 21.5C12.5253 21.5 13.0454 21.3965 13.5307 21.1955C14.016 20.9945 14.457 20.6999 14.8284 20.3284C15.1999 19.957 15.4945 19.516 15.6955 19.0307C15.8965 18.5454 16 18.0253 16 17.5"
                           stroke="#1A1A1A"
-                          stroke-width="2"
-                          stroke-linecap="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
                         />
                       </svg>
                     </button>
-                    {showNotificationModal && (
+                    {isVisibleModal && (
                       <div className="absolute top-[3.5rem] right-[-5rem] shadow-lg z-40 w-[25rem] bg-white">
                         <NotificationModal />
                       </div>
                     )}
                   </div>
                   <Link to="/shopper-bag">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 8.5L8 7.5C8 5.29086 9.79086 3.5 12 3.5V3.5C14.2091 3.5 16 5.29086 16 7.5L16 8.5"
-                      stroke="#212529"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                    <path
-                      d="M15 14.5V12.5"
-                      stroke="#212529"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                    <path
-                      d="M9 14.5V12.5"
-                      stroke="#212529"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                    <path
-                      d="M4 12.5C4 10.6144 4 9.67157 4.58579 9.08579C5.17157 8.5 6.11438 8.5 8 8.5H16C17.8856 8.5 18.8284 8.5 19.4142 9.08579C20 9.67157 20 10.6144 20 12.5V13.5C20 17.2712 20 19.1569 18.8284 20.3284C17.6569 21.5 15.7712 21.5 12 21.5V21.5C8.22876 21.5 6.34315 21.5 5.17157 20.3284C4 19.1569 4 17.2712 4 13.5V12.5Z"
-                      stroke="#212529"
-                      stroke-width="2"
-                    />
-                  </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="25"
+                      viewBox="0 0 24 25"
+                      fill="none"
+                    >
+                      <path
+                        d="M8 8.5L8 7.5C8 5.29086 9.79086 3.5 12 3.5V3.5C14.2091 3.5 16 5.29086 16 7.5L16 8.5"
+                        stroke="#212529"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M15 14.5V12.5"
+                        stroke="#212529"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M9 14.5V12.5"
+                        stroke="#212529"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M4 12.5C4 10.6144 4 9.67157 4.58579 9.08579C5.17157 8.5 6.11438 8.5 8 8.5H16C17.8856 8.5 18.8284 8.5 19.4142 9.08579C20 9.67157 20 10.6144 20 12.5V13.5C20 17.2712 20 19.1569 18.8284 20.3284C17.6569 21.5 15.7712 21.5 12 21.5V21.5C8.22876 21.5 6.34315 21.5 5.17157 20.3284C4 19.1569 4 17.2712 4 13.5V12.5Z"
+                        stroke="#212529"
+                        strokeWidth="2"
+                      />
+                    </svg>
                   </Link>
                 </>
               ) : (

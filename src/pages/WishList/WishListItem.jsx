@@ -116,7 +116,7 @@ export default function WishListItem({ lottery }) {
               </div>
             </div>
             <div className="mt-3">
-              <Link to={`/addToCart/lotteryId`}>
+              <Link to={`/addToCart/${UniqueID}`}>
                 <button className="submitBtn w-full">Buy Now</button>
               </Link>
             </div>
