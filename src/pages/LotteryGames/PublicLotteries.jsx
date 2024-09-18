@@ -5,7 +5,6 @@ import "swiper/css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetPublicLotteriesQuery } from "../../redux/features/lottery/lotteryApi";
-import { useSelector } from "react-redux";
 import moment from "moment/moment";
 import ThreeDotsLoader from "../../components/ThreeDotsLoader";
 
@@ -107,7 +106,6 @@ export default function PublicLotteries() {
             ticketPrice,
             winneramount,
             lottaryPurchase,
-            Totaltickets,
           }) => (
             <SwiperSlide key={_id}>
               <div

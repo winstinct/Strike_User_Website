@@ -14,10 +14,12 @@ import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import ShopperBagSkeleton from "./ShopperBagSkeleton";
 import { useDispatch } from "react-redux";
 import { addCouponData } from "../../redux/couponDataSlice";
+import useTitle from "../../hooks/useTitle";
 const getTotalCartItemsPrice = (items) => {
   return items?.reduce((total, item) => item?.totalAmount + total, 0);
 };
 export default function ShopperBag() {
+  useTitle("Strike - Shopper Bag")
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [couponCode, setCouponCode] = useState("");

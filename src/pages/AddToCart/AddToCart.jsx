@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Progress } from "@material-tailwind/react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetSinglePublicLotteryQuery } from "../../redux/features/lottery/lotteryApi";
 import Countdown from "react-countdown";
 import {
@@ -13,9 +13,10 @@ import { ThreeDots } from "react-loader-spinner";
 import { useAddItemToCartMutation } from "../../redux/features/cart/cartApi";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import { useEffect } from "react";
+import useTitle from "../../hooks/useTitle";
 
 export default function AddToCart() {
-  const location = useLocation()
+  useTitle("Strike - Add To Cart")
   const navigate = useNavigate();
   const { uniqueId } = useParams();
   const { data } = useGetSinglePublicLotteryQuery(uniqueId);
@@ -26,14 +27,12 @@ export default function AddToCart() {
     lottaryImage,
     Name,
     ticketPrice,
-    winnerSlot,
     expieryDate,
     Totaltickets,
     UniqueID,
     winneramount,
     lottaryType,
     termsandcondi,
-    whitelist,
     lottaryPurchase,
     _id,
   } = data?.response?.LottaryData || {};
@@ -91,7 +90,7 @@ export default function AddToCart() {
   };
 
 
-  const { data: wishListData, isLoading: isLoadingWishListData } =
+  const { data: wishListData } =
     useGetWishlistQuery();
     const isFoundInWishlist = wishListData?.response?.wishlistArray?.find(item => item._id == _id);
 
@@ -150,7 +149,7 @@ export default function AddToCart() {
                   <path
                     d="M7.41787 23.1802L19.0056 34.0656C19.4047 34.4406 19.6043 34.628 19.8396 34.6742C19.9456 34.695 20.0546 34.695 20.1606 34.6742C20.3959 34.628 20.5954 34.4406 20.9946 34.0656L32.5823 23.1802C35.8426 20.1175 36.2385 15.0775 33.4964 11.5433L32.9808 10.8787C29.7005 6.65081 23.1161 7.35986 20.8112 12.1893C20.4856 12.8714 19.5146 12.8714 19.189 12.1893C16.884 7.35986 10.2996 6.65081 7.01932 10.8787L6.50373 11.5433C3.76166 15.0775 4.15757 20.1175 7.41787 23.1802Z"
                     stroke="black"
-                    stroke-width="3.75"
+                    strokeWidth="3.75"
                   />
                 </svg>
               </button>
@@ -173,7 +172,7 @@ export default function AddToCart() {
                   <path
                     d="M7.41787 23.1802L19.0056 34.0656C19.4047 34.4406 19.6043 34.628 19.8396 34.6742C19.9456 34.695 20.0546 34.695 20.1606 34.6742C20.3959 34.628 20.5954 34.4406 20.9946 34.0656L32.5823 23.1802C35.8426 20.1175 36.2385 15.0775 33.4964 11.5433L32.9808 10.8787C29.7005 6.65081 23.1161 7.35986 20.8112 12.1893C20.4856 12.8714 19.5146 12.8714 19.189 12.1893C16.884 7.35986 10.2996 6.65081 7.01932 10.8787L6.50373 11.5433C3.76166 15.0775 4.15757 20.1175 7.41787 23.1802Z"
                     stroke="#FF0023"
-                    stroke-width="3.75"
+                    strokeWidth="3.75"
                   />
                 </svg>
               </button>
