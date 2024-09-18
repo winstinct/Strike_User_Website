@@ -94,7 +94,6 @@ export default function NotificationSettings() {
           />
         </div>
       </div>
-
       {/* Notification-4  */}
       <div
         className={`text-[1.25rem] duration-200 ${
@@ -103,10 +102,12 @@ export default function NotificationSettings() {
       >
         <div className="flex items-center justify-between">
           <p
-            onClick={() => setEmailNotification(!emailNotification)}
+            onClick={() =>
+              setEmailNotification(!emailNotification)
+            }
             className="cursor-pointer flex-1 select-none"
           >
-            Subscription Notification
+            Email Notification
           </p>
           <Switch
             checked={emailNotification}

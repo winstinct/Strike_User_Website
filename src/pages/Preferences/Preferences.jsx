@@ -1,8 +1,10 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 export default function Preferences() {
+  useTitle("Strike - Preferences")
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate()
   return (

@@ -7,6 +7,7 @@ import moment from "moment";
 import ViewRemarksModal from "./ViewRemarksModal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import useTitle from "../../hooks/useTitle";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -19,6 +20,7 @@ const swiperConfig = {
 };
 
 export default function AgentDetails() {
+  useTitle("Strike - Agent Details")
   const { id } = useParams();
   const timeoutRef = useRef(null);
   const [isTextCopied, setIsTextCopied] = useState("");

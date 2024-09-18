@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -15,6 +16,7 @@ const swiperConfig = {
 };
 
 export default function DepositHistory() {
+  useTitle("Strike - Deposit History")
   window.scrollTo({top:0, behavior:"smooth"})
   const navigate = useNavigate();
   const [swiperInstance, setSwiperInstance] = useState(null);

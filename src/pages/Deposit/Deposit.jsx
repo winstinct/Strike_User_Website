@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import WalletCard from "../../shared/WalletCard/WalletCard";
 import { useConvertINRIntoUSDTMutation } from "../../redux/features/lottery/lotteryApi";
+import useTitle from "../../hooks/useTitle";
 
 export default function Deposit() {
+  useTitle("Strike - Deposit")
   const navigate = useNavigate();
   const [amount, setAmount] = useState();
   const [perINRToUSDT, setPerINRToUSDT] = useState(0);

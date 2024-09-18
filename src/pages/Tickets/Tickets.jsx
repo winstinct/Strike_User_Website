@@ -1,7 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
 import "./Tickets.css";
 import { setActiveStyle } from "../../utils/setActiveStyle";
+import useTitle from "../../hooks/useTitle";
 export default function Tickets() {
+  useTitle("Strike - Tickets")
   window.scrollTo({ top: 0, behavior: "smooth" });
   return (
     <div>
