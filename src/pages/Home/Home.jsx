@@ -4,8 +4,10 @@ import GameCategories from "./GameCategories";
 import LotteryCategories from "./LotteryCategories";
 import Winners from "./Winners";
 import { Outlet } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 export default function Home() {
+  useTitle("Strike - Home")
   window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (

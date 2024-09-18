@@ -1,84 +1,151 @@
 import { Link } from "react-router-dom";
 import strikeLogo from "../../assets/strike-logo.svg";
-import playStoreIcon from "../../assets/play-store.svg"
-import appStoreIcon from "../../assets/app-store.svg"
+import playStoreIcon from "../../assets/play-store.svg";
+import appStoreIcon from "../../assets/app-store.svg";
 
 export default function Footer() {
   return (
-    <footer 
-    className="md:p-[1.5rem] p-[1rem] text-white rounded-lg gradientBg relative"
-    >
+    <footer className="md:p-[1.5rem] p-[1rem] text-white rounded-lg gradientBg relative">
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-[1.5rem]">
-      <div>
-        <img src={strikeLogo} alt="Website Logo" className="bg-white p-[0.5rem] w-[130px] h-[50px] rounded-md mb-[0.5rem]"/>
-        <p className="text-[14px] text-[#fff]">Play Smart, Dream Big.
-        Your Future Starts Here!</p>
-      </div>
-      <div>
-        <h3 className="text-[1.1rem] font-bold">Quick Links</h3>
-        <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
-          <li>
-            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="">Home</Link>
-          </li>
-          <li>
-            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/offers">Offers</Link>
-          </li>
-          <li>
-            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/tickets">Tickets</Link>
-          </li>
-        </ul>
-      </div>
+        <div>
+          <img
+            src={strikeLogo}
+            alt="Website Logo"
+            className="bg-white p-[0.5rem] w-[130px] h-[50px] rounded-md mb-[0.5rem]"
+          />
+          <p className="text-[14px] text-[#fff]">
+            Play Smart, Dream Big. Your Future Starts Here!
+          </p>
+        </div>
+        <div>
+          <h3 className="text-[1.1rem] font-bold">Quick Links</h3>
+          <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to=""
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to="/offers"
+              >
+                Offers
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to="/tickets"
+              >
+                Tickets
+              </Link>
+            </li>
+          </ul>
+        </div>
 
-      <div>
-        <h3 className="text-[1.1rem] font-bold">Support</h3>
-        <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
-          <li>
-            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/faq">F.A.Q</Link>
-          </li>
-          <li>
-            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/chat-support">Chat Support</Link>
-          </li>
-        </ul>
-      </div>
+        <div>
+          <h3 className="text-[1.1rem] font-bold">Support</h3>
+          <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to="/faq"
+              >
+                F.A.Q
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to="/chat-support"
+              >
+                Chat Support
+              </Link>
+            </li>
+          </ul>
+        </div>
 
-      <div>
-        <h3 className="text-[1.1rem] font-bold">Policies</h3>
-        <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
-          <li>
-            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/terms-and-conditions">Terms & Conditions</Link>
-          </li>
-          <li>
-            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/privacy-policy">Privacy Policy</Link>
-          </li>
-          <li>
-            <Link className="hover:underline text-[#fff] hover:text-gray-100" to="/refund-policy">Refund Policy</Link>
-          </li>
-        </ul>
-      </div>
+        <div>
+          <h3 className="text-[1.1rem] font-bold">Policies</h3>
+          <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to="/terms-and-conditions"
+              >
+                Terms & Conditions
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to="/privacy-policy"
+              >
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to="/refund-policy"
+              >
+                Refund Policy
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to="/data-deletion-policy"
+              >
+                Data Deletion Policy
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:underline text-[#fff] hover:text-gray-100"
+                to="/strike-adult-gaming-policy"
+              >
+                Strike Adult Gaming Policy
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div className="flex lg:flex-row flex-col lg:justify-between lg:items-center lg:mt-[0.3rem] pt-[2rem] pb-[1.5rem] md:gap-0 gap-3">
-        <p className="text-[1rem] font-medium">Download the Strike app for the ultimate experience!</p>
+        <p className="text-[1rem] font-medium">
+          Download the Strike app for the ultimate experience!
+        </p>
         <div className="flex  lg:gap-5 gap-2">
-        <div className="flex  md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
-          <img className="w-[30px]" src={playStoreIcon} alt="Playstore icon" />
-          <div>
-            <p className="text-[10px] font-medium">GET IT ON</p>
-            <h3 className="font-semibold text-[12px]">Google Play</h3>
+          <div className="flex  md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
+            <img
+              className="w-[30px]"
+              src={playStoreIcon}
+              alt="Playstore icon"
+            />
+            <div>
+              <p className="text-[10px] font-medium">GET IT ON</p>
+              <h3 className="font-semibold text-[12px]">Google Play</h3>
+            </div>
           </div>
-        </div>
 
-        <div className="flex  md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
-          <img className="w-[30px]" src={appStoreIcon} alt="Playstore icon" />
-          <div>
-            <p className="text-[10px] font-medium">GET IT ON</p>
-            <h3 className="font-semibold text-[12px]">App Store</h3>
+          <div className="flex  md:items-center md:gap-[1.1rem] gap-[0.5rem] bg-black px-[1rem] py-[0.5rem] lg:w-[180px] w-full">
+            <img className="w-[30px]" src={appStoreIcon} alt="Playstore icon" />
+            <div>
+              <p className="text-[10px] font-medium">GET IT ON</p>
+              <h3 className="font-semibold text-[12px]">App Store</h3>
+            </div>
           </div>
-        </div>
         </div>
       </div>
 
-      <p className="text-center text-[14px] text-gray-300 pt-[0.3rem]">© {new Date().getFullYear()} Strike x Gaming. All rights reserved.</p>
+      <p className="text-center text-[14px] text-gray-300 pt-[0.3rem]">
+        © {new Date().getFullYear()} Strike x Gaming. All rights reserved.
+      </p>
     </footer>
-  )
+  );
 }

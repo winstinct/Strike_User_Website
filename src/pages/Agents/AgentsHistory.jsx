@@ -12,6 +12,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { APIurls } from "../../api/apiConstant";
 import { ThreeDots } from "react-loader-spinner";
 import NotifyAgentModal from "./NotifyAgentModal";
+import useTitle from "../../hooks/useTitle";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -24,6 +25,7 @@ const swiperConfig = {
 };
 
 export default function AgentsHistory() {
+  useTitle("Strike - Deposit History")
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);

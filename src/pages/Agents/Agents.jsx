@@ -13,6 +13,7 @@ import {
   useGetRecentTransactionsQuery,
 } from "../../redux/features/lottery/lotteryApi";
 import { useDispatch } from "react-redux";
+import useTitle from "../../hooks/useTitle";
 
 const currencyCodes = [
   "INR",
@@ -135,6 +136,7 @@ const currencyCodes = [
 ];
 
 export default function Agents() {
+  useTitle("Strike - Agents")
   const dispatch = useDispatch();
   const { data: userDetails } = useGetUserDetailsQuery();
   const { wallet, Currency } = userDetails?.response?.UserData || {};

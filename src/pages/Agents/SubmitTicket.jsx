@@ -9,8 +9,10 @@ import { storage } from "../../Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ThreeDots } from "react-loader-spinner";
 import { useSelector } from "react-redux";
+import useTitle from "../../hooks/useTitle";
 
 export default function SubmitTicket() {
+  useTitle("Strike - Submit Ticket")
   const date = Date.now();
   const { currentUser } = useAuth();
   const [selectImg, setSelectImg] = useState();
