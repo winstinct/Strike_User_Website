@@ -103,8 +103,13 @@ export const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mt-6 mb-2">Contact Us:</h2>
         <p className="mb-4">
           If you have any questions, concerns, or feedback regarding this
-          Privacy Policy or our data practices, please contact us at
-          admin@strikexgaming.com
+          Privacy Policy or our data practices, please contact us at {" "}
+          <a
+            href="mailto:admin@strikexgaming.com"
+            className="text-blue-500 hover:underline"
+          >
+            admin@strikexgaming.com
+          </a>
         </p>
         <h2 className="text-xl font-semibold mt-6 mb-2">
           Effective Date: March 11, 2024
