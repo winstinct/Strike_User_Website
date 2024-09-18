@@ -1,7 +1,9 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import useTitle from "../../hooks/useTitle";
 export default function Profile() {
+  useTitle("Strike - Account Details")
   const navigate = useNavigate()
   window.scrollTo({ top: 0, behavior: "smooth" });
   return (

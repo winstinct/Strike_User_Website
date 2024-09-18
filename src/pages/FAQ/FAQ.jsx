@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { AccordionFaq } from "../../shared/Accordion/AccordionFaq";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import useTitle from "../../hooks/useTitle";
 
 const faqs = [
   {
@@ -59,6 +60,7 @@ const faqs = [
 ];
 
 export default function FAQ() {
+  useTitle("Strike - FAQ")
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
   return (

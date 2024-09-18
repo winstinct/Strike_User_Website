@@ -10,8 +10,10 @@ import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import { useDispatch } from "react-redux";
 import { addWithdrawCoinDetails } from "../../redux/withdrawCoinSlice";
 import { useEffect, useState } from "react";
+import useTitle from "../../hooks/useTitle";
 
 export default function Withdraw() {
+  useTitle("Strike - Withdraw");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // window.scrollTo({ top: 0, behavior: "smooth" });
@@ -111,7 +113,9 @@ export default function Withdraw() {
                 </div>
                 <div
                   className={`flex items-center text-[14px] gap-2 ${
-                    withdrawalAmt && withdrawalAmt < 1000 ? "text-red-500" : "text-gray-500"
+                    withdrawalAmt && withdrawalAmt < 1000
+                      ? "text-red-500"
+                      : "text-gray-500"
                   }`}
                 >
                   <Icon icon="zondicons:exclamation-solid" />

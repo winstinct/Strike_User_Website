@@ -7,6 +7,7 @@ import { useGetReferralHistoryQuery } from "../../redux/features/lottery/lottery
 import ReferralItem from "./ReferralItem";
 import { useState } from "react";
 import { ReferalSkeleton } from "./ReferalSkeleton";
+import useTitle from "../../hooks/useTitle";
 
 const options = [
   {
@@ -65,7 +66,7 @@ const getTotalReferralEarnings = (referals) => {
 };
 
 export default function ReferAndEarn() {
-  // window.scrollTo({ top: 0, behavior: "smooth" });
+  useTitle("Strike - Refere and Earn")
   const navigate = useNavigate();
   const { data } = useGetUserDetailsQuery();
   const { refferal } = data?.response?.UserData || {};
@@ -75,7 +76,6 @@ export default function ReferAndEarn() {
   const handleChange = (data) => {
     setStatus(data.value.toLowerCase());
   };
-  console.log("Status===> ", status);
 
   return (
     <main>

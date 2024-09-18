@@ -4,8 +4,10 @@ import WishListItem from "./WishListItem";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import WishlistEmpty from "./WishlistEmpty";
 import WishListSkeleton from "./WishListSkeleton";
+import useTitle from "../../hooks/useTitle";
 
 export default function WishList() {
+  useTitle("Strike - Wishlist")
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
   const { data, isLoading } = useGetWishlistQuery();

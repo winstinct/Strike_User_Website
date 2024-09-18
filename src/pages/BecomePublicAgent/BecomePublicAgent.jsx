@@ -1,8 +1,10 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import useTitle from "../../hooks/useTitle";
 
 export default function BecomePublicAgent() {
+  useTitle("Strike - Become Agent")
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
   return (

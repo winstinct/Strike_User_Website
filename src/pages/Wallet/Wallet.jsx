@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import WalletCard from "../../shared/WalletCard/WalletCard";
 import RecentTransactions from "../../shared/RecentTransactions/RecentTransactions";
+import useTitle from "../../hooks/useTitle";
 
 export default function Wallet() {
+  useTitle("Strike - Wallet")
   window.scrollTo({top:0, behavior:'smooth'})
   return (
     <div>
