@@ -64,6 +64,7 @@ import SoldOutLotteries from "../pages/Home/SoldOutLotteries";
 import SubmitSuccess from "../pages/Agents/SubmitSuccess";
 import SubmitFailure from "../pages/Agents/SubmitFailure";
 import BuyWithCouponCode from "../pages/ShopperBag/BuyWithCouponCode";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -126,6 +127,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<NotFound/>,
     children: [
       {
         path: "",
