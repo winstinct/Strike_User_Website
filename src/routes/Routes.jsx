@@ -64,6 +64,8 @@ import SoldOutLotteries from "../pages/Home/SoldOutLotteries";
 import SubmitSuccess from "../pages/Agents/SubmitSuccess";
 import SubmitFailure from "../pages/Agents/SubmitFailure";
 import BuyWithCouponCode from "../pages/ShopperBag/BuyWithCouponCode";
+import DataDeletionPolicy from "../pages/DataDeletionPolicy/DataDeletionPolicy";
+import StrikeAdultGamingPolicy from "../pages/StrikeAdultGamingPolicy/StrikeAdultGamingPolicy";
 
 export const router = createBrowserRouter([
   {
@@ -254,6 +256,14 @@ export const router = createBrowserRouter([
       {
         path: "refund-policy",
         element: <RefundPolicy />,
+      },
+      {
+        path: "data-deletion-policy",
+        element: <DataDeletionPolicy />,
+      },
+      {
+        path: "strike-adult-gaming-policy",
+        element: <StrikeAdultGamingPolicy />,
       },
 
       // sidebar pages
