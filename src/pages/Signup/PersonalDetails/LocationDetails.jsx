@@ -11,6 +11,7 @@ import { useSignupMutation } from "../../../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../contexts/AuthContext";
 import SubmitBtnLoader from "../../../components/SubmitBtnLoader";
+import { Country, State, City }  from 'country-state-city';
 
 const indianStatesArray = [
   "Andhra Pradesh",
@@ -81,6 +82,7 @@ export default function LocationDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { login } = useAuth();
+  console.log("Countries =======> ", Country.getAllCountries())
   const {
     location,
     Email,
@@ -122,8 +124,6 @@ export default function LocationDetails() {
       imageUrl,
       refferalCodes,
     };
-
-    console.log("Country code+mobile number before calling api========> ", countryCode, MobileNumber)
 
     // Call API
     try {
@@ -201,7 +201,7 @@ export default function LocationDetails() {
             }
           >
             {
-              countriesArray.map(country => (<Option key={country} value={country}>{country}</Option>))
+              Country.getAllCountries().map(country => (<Option key={country.name} value={country.name}>{country.name}</Option>))
             }
           </Select>
           {showError && !country && (

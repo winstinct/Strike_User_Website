@@ -89,7 +89,7 @@ export default function PublicLottery() {
 
 
       {
-        data?.response?.TicketHistory?.length == 0 && <h3 className="text-gray-500 text-center text-[1.3rem] py-5">No tickets are available!</h3>
+        data?.response?.publicLotteryPurchase?.length == 0 && <h3 className="text-gray-500 text-center text-[1.3rem] py-5">No tickets are available!</h3>
       }
 
       {
@@ -98,7 +98,7 @@ export default function PublicLottery() {
           {...swiperConfig}
           className="w-full"
         >
-          {data?.response?.TicketHistory?.length  && [...data.response.TicketHistory]?.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(
+          {data?.response?.publicLotteryPurchase?.length  && [...data.response.publicLotteryPurchase]?.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(
             ({
               _id,
               OrderValue,
