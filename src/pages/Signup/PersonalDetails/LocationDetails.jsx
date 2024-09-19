@@ -123,10 +123,12 @@ export default function LocationDetails() {
       refferalCodes,
     };
 
+    console.log("Country code+mobile number before calling api========> ", countryCode, MobileNumber)
+
     // Call API
     try {
       const res = await signup(userInfo);
-      // console.log("Signup User Response ===> ", res)
+      console.log("Signup User Response ===> ", res)
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
@@ -158,6 +160,7 @@ export default function LocationDetails() {
         otp: "",
         otpRefId: "",
         countryCode: "",
+        selectedCountryIndex:101,
         selectedFile: "",
         refferalCodes: "",
       })

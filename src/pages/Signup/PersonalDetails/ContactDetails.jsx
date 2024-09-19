@@ -19,13 +19,16 @@ export default function ContactDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { MobileNumber, Email } = useSelector((state) => state.createUser);
+  const { MobileNumber, Email, selectedCountryIndex } = useSelector(
+    (state) => state.createUser
+  );
 
   const { countries } = useCountries();
-  const sortedCoutnries = countries?.sort((a, b) => a.name.localeCompare(b.name));
-  const [country, setCountry] = useState(0);
-  const { name, flags, countryCallingCode } = sortedCoutnries[country];
-  const callingCode = countries[country]?.countryCallingCode || "";
+  const sortedCoutnries = countries?.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+  const { name, flags, countryCallingCode } = sortedCoutnries[selectedCountryIndex];
+  console.log("Selected Country ===> ", sortedCoutnries[selectedCountryIndex]);
 
   const [showError, setShowError] = useState(false);
 
@@ -53,9 +56,17 @@ export default function ContactDetails() {
   };
 
   useEffect(() => {
-    dispatch(addUserDetails({ countryCode: callingCode }));
     setCurrentStep(0);
-  }, [MobileNumber]);
+  }, [setCurrentStep]);
+
+  const handleChangeCountry = (index) => {
+    dispatch(
+      addUserDetails({
+        countryCode: sortedCoutnries[index]?.countryCallingCode,
+        selectedCountryIndex: index,
+      })
+    );
+  };
 
   return (
     <div>
@@ -100,7 +111,7 @@ export default function ContactDetails() {
                       key={name}
                       value={name}
                       className="flex items-center gap-2"
-                      onClick={() => setCountry(index)}
+                      onClick={() => handleChangeCountry(index)}
                     >
                       <img
                         src={flags.svg}
