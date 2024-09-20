@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 import { useGetAllCartItemsQuery } from "../../redux/features/cart/cartApi";
 import AvatarSkeleton from "./AvatarSkeleton";
-import { useState } from "react";
 import LanguageModal from "../../pages/LanguageTranslation/LanguageModal";
 import { useTranslation } from "react-i18next";
 import { toggleLanguageModal } from "../../redux/languageSlice";

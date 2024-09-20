@@ -10,7 +10,6 @@ import RejectAgentModal from "./RejectAgentModal";
 import { toast } from "react-toastify";
 import { useAuth } from "../../contexts/AuthContext";
 import { APIurls } from "../../api/apiConstant";
-import { ThreeDots } from "react-loader-spinner";
 import NotifyAgentModal from "./NotifyAgentModal";
 import useTitle from "../../hooks/useTitle";
 
@@ -33,12 +32,10 @@ export default function AgentsHistory() {
   const { getAccessToken } = useAuth();
 
   const { data, isLoading, isError } = useGetAllAgentsTicketsQuery();
-  console.log("AGENT TICKETS: ", data);
 
   // decide what to render
   let content = "";
 
-  // const agentTickets = data?.response?.agentTicket ? data?.response?.agentTicket?.reverse() : [];
   if (isLoading && !isError) {
     content = <AgentHistorySkeleton />;
   }
