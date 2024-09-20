@@ -131,7 +131,7 @@ export default function Winners() {
           {data?.response?.fetchWinnerss?.map(
             ({
               UserData: { FirstName, LastName } = {},
-              lottaryId: { Currency, LottarySerial, winneramount } = {},
+              lottaryId: { Currency, winneramount, UniqueID } = {},
               updatedAt,
               _id,
             }) => (
@@ -159,7 +159,7 @@ export default function Winners() {
                     </h3>
                     <div>
                       <p className="font-medium text-[1rem]">
-                        <span>Order ID:</span> <span>{LottarySerial}</span>
+                        <span>Order ID:</span> <span>{UniqueID}</span>
                       </p>
                       <p className="text-[#858585] text-[12px]">
                         Announced on: {moment(updatedAt).format("LLL")}

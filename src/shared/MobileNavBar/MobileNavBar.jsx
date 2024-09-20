@@ -1,6 +1,4 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
-import { setActiveStyle } from "../../utils/setActiveStyle";
 
 export default function MobileNavBar() {
   return (

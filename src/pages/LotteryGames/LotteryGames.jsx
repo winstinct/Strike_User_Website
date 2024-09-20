@@ -1,8 +1,10 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { setActiveStyle } from "../../utils/setActiveStyle";
+import useTitle from "../../hooks/useTitle";
 
 export default function LotteryGames() {
+  useTitle("Strike - Lottery Games")
   const navigate = useNavigate();
   window.scrollTo({ top: 0 });
   return (

@@ -8,7 +8,6 @@ export default function RecentTransactions() {
     isLoading,
     isError,
   } = useGetRecentTransactionsQuery();
-  console.log("Recent Transactions==========> ", recentTransactionsData)
 
   // decide what to render
   let content = "";

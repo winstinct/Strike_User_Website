@@ -1,8 +1,10 @@
 import numberGameImg from "../../assets/number-games.png";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link, useNavigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 export default function NumberGames() {
+  useTitle("Strike - Number Games")
   const navigate = useNavigate();
   window.scrollTo({ top: 0 });
   return (

@@ -105,8 +105,8 @@ export default function Winners() {
           className="w-full"
         >
           {data?.response?.fetchWinnerss?.map(
-            ({ UserID, transID, createdAt, winningAmount }) => (
-              <SwiperSlide key={UserID}>
+            ({ UserID, transID, createdAt, winningAmount, _id }) => (
+              <SwiperSlide key={_id}>
                 <div className="flex justify-center h-[250px] items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
                   <div className="middle1"></div>
                   <div className="middle2"></div>

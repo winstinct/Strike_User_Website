@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Progress } from "@material-tailwind/react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetSinglePublicLotteryQuery } from "../../redux/features/lottery/lotteryApi";
 import Countdown from "react-countdown";
 import {
@@ -13,9 +13,10 @@ import { ThreeDots } from "react-loader-spinner";
 import { useAddItemToCartMutation } from "../../redux/features/cart/cartApi";
 import SubmitBtnLoader from "../../components/SubmitBtnLoader";
 import { useEffect } from "react";
+import useTitle from "../../hooks/useTitle";
 
 export default function AddToCart() {
-  const location = useLocation()
+  useTitle("Strike - Add To Cart")
   const navigate = useNavigate();
   const { uniqueId } = useParams();
   const { data } = useGetSinglePublicLotteryQuery(uniqueId);
@@ -26,14 +27,12 @@ export default function AddToCart() {
     lottaryImage,
     Name,
     ticketPrice,
-    winnerSlot,
     expieryDate,
     Totaltickets,
     UniqueID,
     winneramount,
     lottaryType,
     termsandcondi,
-    whitelist,
     lottaryPurchase,
     _id,
   } = data?.response?.LottaryData || {};
@@ -91,7 +90,7 @@ export default function AddToCart() {
   };
 
 
-  const { data: wishListData, isLoading: isLoadingWishListData } =
+  const { data: wishListData } =
     useGetWishlistQuery();
     const isFoundInWishlist = wishListData?.response?.wishlistArray?.find(item => item._id == _id);
 
