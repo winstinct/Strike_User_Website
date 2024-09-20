@@ -32,7 +32,7 @@ export default function PrivateLottery() {
     setIsEnd(swiperInstance?.isEnd);
   };
 
-  const { data, isLoading } = useGetTicketHistoryQuery();
+  const { data } = useGetTicketHistoryQuery();
   return (
     <section className="mt-[3rem]">
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[1rem]">
