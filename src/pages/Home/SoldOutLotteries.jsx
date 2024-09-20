@@ -8,6 +8,7 @@ import PublicLotterySkeleton from "./PublicLotterySkeleton";
 import { useSelector } from "react-redux";
 import CountDownTimer from "../../shared/CountDownTimer/CountDownTimer";
 import ReactSlider from "react-slider";
+import { useTranslation } from "react-i18next";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -20,6 +21,7 @@ const swiperConfig = {
 };
 
 export default function SoldOutLotteries() {
+  const { t } = useTranslation();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -47,13 +49,12 @@ export default function SoldOutLotteries() {
     (item) => item.lottaryPurchase.length >= item.Totaltickets
   );
 
-
   return (
     <section>
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
-            Sold Out Lottery
+            {t("sold out lottery")}
           </h3>
           <p>*Sold Out lotteries can not be added to cart.</p>
         </div>
@@ -172,12 +173,12 @@ export default function SoldOutLotteries() {
                           </span>
                         </div>
                         <ReactSlider
-                            className="horizontal-slider mt-3"
-                            trackClassName="example-track"
-                            min={0}
-                            max={Totaltickets}
-                            value={lottaryPurchase?.length}
-                          />
+                          className="horizontal-slider mt-3"
+                          trackClassName="example-track"
+                          min={0}
+                          max={Totaltickets}
+                          value={lottaryPurchase?.length}
+                        />
                       </div>
                     </div>
 

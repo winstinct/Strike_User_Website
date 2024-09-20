@@ -5,6 +5,7 @@ import { useGetTicketHistoryQuery } from "../../../redux/features/lottery/lotter
 import Countdown from "react-countdown";
 import moment from "moment/moment";
 import PublicTicketSkeleton from "./PublicTicketSkeleton";
+import { useTranslation } from "react-i18next";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -17,6 +18,7 @@ const swiperConfig = {
 };
 
 export default function PublicLottery() {
+  const { t } = useTranslation();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -39,7 +41,7 @@ export default function PublicLottery() {
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[1rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
-            Public Lottery
+            {t("public lottery")}
           </h3>
         </div>
         <div className="flex gap-5 text-[2rem]">
@@ -87,84 +89,88 @@ export default function PublicLottery() {
         </div>
       </header>
 
+      {data?.response?.TicketHistory?.length == 0 && (
+        <h3 className="text-gray-500 text-center text-[1.3rem] py-5">
+          No tickets are available!
+        </h3>
+      )}
 
-      {
-        data?.response?.TicketHistory?.length == 0 && <h3 className="text-gray-500 text-center text-[1.3rem] py-5">No tickets are available!</h3>
-      }
-
-      {
-        isLoading ? <PublicTicketSkeleton/> : (<Swiper
+      {isLoading ? (
+        <PublicTicketSkeleton />
+      ) : (
+        <Swiper
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           {...swiperConfig}
           className="w-full"
         >
-          {data?.response?.TicketHistory?.length  && [...data.response.TicketHistory]?.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(
-            ({
-              _id,
-              OrderValue,
-              lotteryToken,
-              createdAt,
-              LottaryDetails: {
-                expieryDate,
-                Currency,
-              },
-            }) => (
-              <SwiperSlide key={_id}>
-                <div>
-                  <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
-                    <h3 className="mb-3">Public Lottery</h3>
-                  </div>
-  
-                  <div className="flex justify-center public-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-[#A967FF] rounded-2xl bg-white relative min-h-[200px]">
-                    <div className="middle1"></div>
-                    <div className="middle2"></div>
-                    <div className="space-y-[0.5rem]">
-                      <div className="space-y-[0.5rem] ml-5">
-                        <p className="font-bold italic">
-                          <span className="text-[#A967FF]">WIN:</span>{" "}
-                          <span>
-                            {Currency}
-                            {OrderValue} Cash
-                          </span>
-                        </p>
-                        <div className="font-semibold text-[14px] gap-1">
-                          Purchased on: {moment(createdAt).format("DD-MM-YYYY")}
-                        </div>
-                        <p className="font-medium text-[14px]">
-                          <span>Order ID:</span> <span>{lotteryToken}</span>
-                        </p>
+          {data?.response?.TicketHistory?.length &&
+            [...data.response.TicketHistory]
+              ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              .map(
+                ({
+                  _id,
+                  OrderValue,
+                  lotteryToken,
+                  createdAt,
+                  LottaryDetails: { expieryDate, Currency },
+                }) => (
+                  <SwiperSlide key={_id}>
+                    <div>
+                      <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
+                        <h3 className="mb-3">Public Lottery</h3>
                       </div>
-  
-                      <div
-                        className="bg-white px-3 py-1 rounded-lg ml-5"
-                        style={{
-                          boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
-                        }}
-                      >
-                        <span className="font-semibold">
-                          Winner Announced in:
-                        </span>
-                        <Countdown
-                          date={new Date(expieryDate).getTime()}
-                          zeroPadTime={false}
-                          renderer={({ days, hours, minutes, seconds }) => (
-                            <div className="text-[#A967FF] text-[1.2rem] space-x-2 font-bold italic">
-                              <span>{days}d</span>
-                              <span>{hours}h</span>
-                              <span>{minutes}m</span>
-                              <span>{seconds}s</span>
+
+                      <div className="flex justify-center public-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-[#A967FF] rounded-2xl bg-white relative min-h-[200px]">
+                        <div className="middle1"></div>
+                        <div className="middle2"></div>
+                        <div className="space-y-[0.5rem]">
+                          <div className="space-y-[0.5rem] ml-5">
+                            <p className="font-bold italic">
+                              <span className="text-[#A967FF]">WIN:</span>{" "}
+                              <span>
+                                {Currency}
+                                {OrderValue} Cash
+                              </span>
+                            </p>
+                            <div className="font-semibold text-[14px] gap-1">
+                              Purchased on:{" "}
+                              {moment(createdAt).format("DD-MM-YYYY")}
                             </div>
-                          )}
-                        />
+                            <p className="font-medium text-[14px]">
+                              <span>Order ID:</span> <span>{lotteryToken}</span>
+                            </p>
+                          </div>
+
+                          <div
+                            className="bg-white px-3 py-1 rounded-lg ml-5"
+                            style={{
+                              boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
+                            }}
+                          >
+                            <span className="font-semibold">
+                              Winner Announced in:
+                            </span>
+                            <Countdown
+                              date={new Date(expieryDate).getTime()}
+                              zeroPadTime={false}
+                              renderer={({ days, hours, minutes, seconds }) => (
+                                <div className="text-[#A967FF] text-[1.2rem] space-x-2 font-bold italic">
+                                  <span>{days}d</span>
+                                  <span>{hours}h</span>
+                                  <span>{minutes}m</span>
+                                  <span>{seconds}s</span>
+                                </div>
+                              )}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            )
-          )}
-        </Swiper>)
-      }
+                  </SwiperSlide>
+                )
+              )}
+        </Swiper>
+      )}
     </section>
   );
 }

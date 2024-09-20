@@ -2,8 +2,11 @@ import { NavLink, Outlet } from "react-router-dom";
 import "./Tickets.css";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 import useTitle from "../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
+
 export default function Tickets() {
-  useTitle("Strike - Tickets")
+  const { t } = useTranslation();
+  useTitle("Strike - Tickets");
   window.scrollTo({ top: 0, behavior: "smooth" });
   return (
     <div>
@@ -17,7 +20,7 @@ export default function Tickets() {
           className="block font-bold md:text-[1.25rem] text-[1.1rem] italic py-3 px-1 rounded-[20px] w-full text-center"
           end
         >
-          Upcoming Draws
+          {t("upcoming draws")}
         </NavLink>
         <NavLink
           style={setActiveStyle}
@@ -25,7 +28,7 @@ export default function Tickets() {
           className="block font-bold md:text-[1.25rem] text-[1.1rem] italic py-3 px-1 rounded-[20px] w-full text-center"
           end
         >
-          Winnings
+          {t("winnings")}
         </NavLink>
       </div>
       <Outlet />
