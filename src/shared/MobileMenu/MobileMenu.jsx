@@ -4,6 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
+import { useTranslation } from "react-i18next";
 
 const ArrowIcon = () => (
   <svg
@@ -28,6 +29,7 @@ export default function MobileMenu() {
   const userImageUrl = data?.response?.UserData?.imageUrl;
   const { wallet } = data?.response?.UserData || {};
   const navigate = useNavigate();
+  const {t} = useTranslation();
   const handleLogout = async () => {
     const isLogout = confirm("Are you sure ?");
     if (!isLogout) {
@@ -45,7 +47,7 @@ export default function MobileMenu() {
 
   return (
     <div className="md:hidden block">
-      <h3 className="font-bold text-[1.5rem] italic mb-[1.5rem]">Menu</h3>
+      <h3 className="font-bold text-[1.5rem] italic mb-[1.5rem]">{t('menu')}</h3>
       {currentUser && (
         <>
         <div className="flex flex-col items-center gap-[1rem] mb-[1.5rem]">
@@ -69,15 +71,15 @@ export default function MobileMenu() {
         className="mb-[1.5rem] p-[1rem] rounded-[20px]">
             <div className="flex justify-between items-center">
                 <div>
-                    <p className="text-[#858585] text-[14px] font-semibold pb-[2px]">Referral Earnings:</p>
+                    <p className="text-[#858585] text-[14px] font-semibold pb-[2px]">{t('referral earnings')}:</p>
                     <p className="text-[1rem] font-bold italic">USDT100.00</p>
                 </div>
                 <div>
-                    <p className="text-[#858585] text-[14px] font-semibold pb-[2px]">Wallet Balance:</p>
+                    <p className="text-[#858585] text-[14px] font-semibold pb-[2px]">{t('wallet balance')}:</p>
                     <p className="text-[1rem] font-bold italic">{wallet} INR</p>
                 </div>
             </div>
-            <Link to="/deposit"><button className="gradientBg w-full rounded-full p-2 text-white mt-5">Top up</button></Link>
+            <Link to="/deposit"><button className="gradientBg w-full rounded-full p-2 text-white mt-5">{t('top up')}</button></Link>
         </div>
         </>
       )}
@@ -111,7 +113,7 @@ export default function MobileMenu() {
                     strokeLinecap="round"
                   />
                 </svg>
-                <p>Account Details</p>
+                <p>{t('account details')}</p>
               </div>
               <ArrowIcon />
             </NavLink>
@@ -136,7 +138,7 @@ export default function MobileMenu() {
                   stroke="currentColor"
                 />
               </svg>
-              <p>Become an Agent</p>
+              <p>{t('become an agent')}</p>
             </div>
             <ArrowIcon />
           </NavLink>
@@ -200,7 +202,7 @@ export default function MobileMenu() {
                   stroke="currentColor"
                 />
               </svg>
-              <p>Wishlist</p>
+              <p>{t('wishlist')}</p>
             </div>
             <ArrowIcon />
           </NavLink>
@@ -224,7 +226,7 @@ export default function MobileMenu() {
                   fill="currentColor"
                 />
               </svg>
-              <p>Deposit History</p>
+              <p>{t('deposit history')}</p>
             </div>
             <ArrowIcon />
           </NavLink>
@@ -248,7 +250,7 @@ export default function MobileMenu() {
                   fill="currentColor"
                 />
               </svg>
-              <p>Preferences</p>
+              <p>{t('preferences')}</p>
             </div>
             <ArrowIcon />
           </NavLink>
@@ -274,12 +276,12 @@ export default function MobileMenu() {
                   stroke="currentColor"
                 />
               </svg>
-              <p>F.A.Q</p>
+              <p>{t('faq')}</p>
             </div>
             <ArrowIcon />
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             to="https://dashboard.tawk.to/login#/chat"
             target="_blank"
@@ -314,7 +316,7 @@ export default function MobileMenu() {
             </div>
             <ArrowIcon />
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink
             className="flex items-center justify-between font-medium gap-[0.8rem] hover:text-[#25BF17] p-2 rounded-md"
@@ -343,12 +345,12 @@ export default function MobileMenu() {
                 />
                 <path
                   fillRule="evenodd"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                   d="M9.5023 6.12505C9.50056 6.0834 9.49969 6.04168 9.49969 5.99991C9.49969 5.65258 9.56 5.30825 9.67759 4.98218C9.53283 5.03314 9.3893 5.08807 9.24719 5.14694C8.21592 5.57411 7.27889 6.20021 6.48959 6.98951C5.70029 7.77881 5.07419 8.71584 4.64702 9.74711C4.21986 10.7784 4 11.8837 4 12.9999C4 13.526 4.04883 14.0496 4.14519 14.5642C4.36875 14.2994 4.63675 14.0751 4.9375 13.9014C4.97371 13.8805 5.01033 13.8604 5.04732 13.841C5.01586 13.5623 5 13.2815 5 12.9999C5 12.015 5.19399 11.0397 5.5709 10.1298C5.94781 9.21985 6.50026 8.39306 7.1967 7.69662C7.86045 7.03286 8.6426 6.49991 9.5023 6.12505ZM15.4971 6.12478C16.357 6.49965 17.1394 7.0327 17.8033 7.69661C18.4997 8.39305 19.0522 9.21984 19.4291 10.1298C19.806 11.0397 20 12.015 20 12.9999C20 13.2816 19.9841 13.5625 19.9526 13.8413C19.9894 13.8606 20.0259 13.8806 20.0619 13.9014C20.3629 14.0752 20.631 14.2997 20.8547 14.5648C20.9511 14.05 21 13.5262 21 12.9999C21 11.8837 20.7801 10.7784 20.353 9.7471C19.9258 8.71583 19.2997 7.7788 18.5104 6.9895C17.7211 6.20021 16.7841 5.5741 15.7528 5.14694C15.6105 5.08797 15.4667 5.03296 15.3217 4.98193C15.4393 5.30808 15.4997 5.6525 15.4997 5.99991C15.4997 6.04159 15.4988 6.08322 15.4971 6.12478ZM18.033 19.4525C17.6915 19.3914 17.3629 19.2714 17.0619 19.0976C17.0259 19.0768 16.9904 19.0553 16.9554 19.0331C16.4664 19.3942 15.9343 19.6953 15.3701 19.929C14.4602 20.3059 13.4849 20.4999 12.5 20.4999C11.5151 20.4999 10.5398 20.3059 9.62988 19.929C9.06563 19.6953 8.53337 19.3941 8.04432 19.0329C8.0092 19.0552 7.97359 19.0767 7.9375 19.0976C7.63663 19.2713 7.30817 19.3912 6.9669 19.4524C7.64725 20.0358 8.41666 20.5089 9.24719 20.8529C10.2785 21.2801 11.3838 21.4999 12.5 21.4999C13.6162 21.4999 14.7215 21.2801 15.7528 20.8529C16.5833 20.5089 17.3527 20.0359 18.033 19.4525Z"
                   fill="currentColor"
                 />
               </svg>
-              <p>Refer & Earn</p>
+              <p>{t('refer and earn')}</p>
             </div>
             <ArrowIcon />
           </NavLink>
@@ -378,7 +380,7 @@ export default function MobileMenu() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <p>Logout</p>
+              <p>{t('logout')}</p>
             </div>
           </li>
         )}
