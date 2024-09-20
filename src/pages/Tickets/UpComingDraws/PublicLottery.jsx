@@ -146,7 +146,6 @@ export default function PublicLottery() {
                         </span>
                         <Countdown
                           date={new Date(expieryDate).getTime()}
-                          zeroPadTime={false}
                           renderer={({ days, hours, minutes, seconds }) => (
                             <div className="text-[#A967FF] text-[1.2rem] space-x-2 font-bold italic">
                               <span>{days}d</span>
