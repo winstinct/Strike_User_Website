@@ -4,6 +4,7 @@ import "swiper/css";
 import { useGetTicketHistoryQuery } from "../../../redux/features/lottery/lotteryApi";
 import moment from "moment";
 import Countdown from "react-countdown";
+import { useTranslation } from "react-i18next";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -16,6 +17,7 @@ const swiperConfig = {
 };
 
 export default function PrivateLottery() {
+  const {t} = useTranslation();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -38,7 +40,7 @@ export default function PrivateLottery() {
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[1rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold">
-            Private Lottery
+          {t("public lottery")}
           </h3>
         </div>
         <div className="flex gap-5 text-[2rem]">

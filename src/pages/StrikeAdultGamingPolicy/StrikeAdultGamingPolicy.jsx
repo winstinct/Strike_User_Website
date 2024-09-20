@@ -7,7 +7,7 @@ export default function StrikeAdultGamingPolicy() {
 
   return (
     <div>
-      <div className="container mx-auto p-6">
+      <div className="container mx-auto">
         <h1 className="text-3xl font-bold mb-4">Strike Adult Gaming Policy</h1>
         <h2 className="text-2xl font-semibold mt-6 mb-2">Introduction:</h2>
         <p className="mb-4">

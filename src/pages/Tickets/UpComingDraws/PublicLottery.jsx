@@ -5,6 +5,7 @@ import { useGetTicketHistoryQuery } from "../../../redux/features/lottery/lotter
 import Countdown from "react-countdown";
 import moment from "moment/moment";
 import PublicTicketSkeleton from "./PublicTicketSkeleton";
+import { useTranslation } from "react-i18next";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -17,6 +18,7 @@ const swiperConfig = {
 };
 
 export default function PublicLottery() {
+  const { t } = useTranslation();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -39,7 +41,7 @@ export default function PublicLottery() {
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[1rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
-            Public Lottery
+            {t("public lottery")}
           </h3>
         </div>
         <div className="flex gap-5 text-[2rem]">
@@ -92,8 +94,10 @@ export default function PublicLottery() {
         data?.response?.publicLotteryPurchase?.length == 0 && <h3 className="text-gray-500 text-center text-[1.3rem] py-5">No tickets are available!</h3>
       }
 
-      {
-        isLoading ? <PublicTicketSkeleton/> : (<Swiper
+      {isLoading ? (
+        <PublicTicketSkeleton />
+      ) : (
+        <Swiper
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           {...swiperConfig}
           className="w-full"

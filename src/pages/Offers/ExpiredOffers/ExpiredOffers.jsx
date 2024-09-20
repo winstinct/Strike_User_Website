@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useGetOffersQuery } from "../../../redux/features/lottery/lotteryApi";
 import CopyCode from "../OffersSection/CopyCode";
 import ExpiredOfferSkeleton from "./ExpiredOfferSkeleton";
+import { useTranslation } from "react-i18next";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -16,6 +17,7 @@ const swiperConfig = {
 };
 
 export default function ExpiredOffers() {
+  const {t} = useTranslation();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -40,7 +42,7 @@ export default function ExpiredOffers() {
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
-            Expired Offers
+            {t("expired offers")}
           </h3>
           <p>*Offers expired recently</p>
         </div>
