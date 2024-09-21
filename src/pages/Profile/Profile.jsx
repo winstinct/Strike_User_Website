@@ -32,7 +32,7 @@ export default function Profile() {
             to="/profile"
             end
           >
-            Personal Details
+            {t("personal details")}
           </NavLink>
           <NavLink
             style={setActiveStyle}
@@ -40,7 +40,7 @@ export default function Profile() {
             to="/profile/location-details"
             end
           >
-            Location Details
+            {t("location details")}
           </NavLink>
           <NavLink
             style={setActiveStyle}
@@ -48,7 +48,7 @@ export default function Profile() {
             to="/profile/contact-details"
             end
           >
-            Contact Details
+            {t("contact details")}
           </NavLink>
         </section>
         <Outlet />

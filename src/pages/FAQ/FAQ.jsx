@@ -60,13 +60,16 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  useTitle("Strike - FAQ")
+  useTitle("Strike - FAQ");
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
   return (
     <div>
       <div className="flex items-center gap-5">
-        <div onClick={() => navigate("/menu")} className="backBtn md:hidden block">
+        <div
+          onClick={() => navigate("/menu")}
+          className="backBtn md:hidden block"
+        >
           <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
         </div>
         <h3 className="text-[2rem] font-bold italic">F.A.Q</h3>
