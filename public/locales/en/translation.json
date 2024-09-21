@@ -1,3 +1,4 @@
+
 {
   "home": "Home",
   "offers": "Offers",
@@ -63,5 +64,26 @@
   "expired offers": "Expired offers",
   "upcoming draws": "Upcoming Draws",
   "winnings": "Winnings",
-  "won lottery": "Won Lottery"
+  "won lottery": "Won Lottery",
+
+  "q1": "How do I buy a lottery ticket?",
+  "a1": "Select your numbers and draw date on our site, then proceed to checkout.",
+  "q2": "What lottery games are available?",
+  "a2": "We offer number draws, scratch-offs, and instant win games.",
+  "q3": "How can I check if I won?",
+  "a3": "Visit the 'Check Results' section and enter your ticket number.",
+  "q4": "What’s the minimum age to buy a ticket?",
+  "a4": "You must be at least 18 years old.",
+  "q5": "How do I claim my winnings?",
+  "a5": "Follow the instructions in your winning notification for claiming prizes.",
+  "q6": "Can I play from outside my country?",
+  "a6": "Check eligibility requirements on our site or contact support.",
+  "q7": "What payment methods are accepted?",
+  "a7": "We accept credit cards, PayPal, and other secure methods.",
+  "q8": "Is my information secure?",
+  "a8": "Yes, we use encryption to protect your personal and payment details.",
+  "q9": "Can I cancel a ticket?",
+  "a9": "No, once purchased, tickets cannot be canceled or refunded.",
+  "q10": "How often are draws held?",
+  "a10": "Draws vary by game; check the game rules for details."
 }
