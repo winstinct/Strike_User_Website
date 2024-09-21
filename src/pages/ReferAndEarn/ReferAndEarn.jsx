@@ -15,6 +15,7 @@ import {
   DialogHeader,
 } from "@material-tailwind/react";
 import { ShareSocial } from "react-share-social";
+import { useTranslation } from "react-i18next";
 
 const options = [
   {
@@ -137,16 +138,13 @@ const ShareSocialModal = ({ icon, code }) => {
         </DialogFooter>
       </Dialog>
 
-      <button
-        onClick={() => handleOpen("sm")}
-      >
-        {icon}
-      </button>
+      <button onClick={() => handleOpen("sm")}>{icon}</button>
     </>
   );
 };
 
 export default function ReferAndEarn() {
+  const { t } = useTranslation();
   useTitle("Strike - Refere and Earn");
   const navigate = useNavigate();
   const { data } = useGetUserDetailsQuery();
@@ -167,14 +165,14 @@ export default function ReferAndEarn() {
         >
           <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
         </div>
-        <h3 className="text-[2rem] font-bold italic">Refer and Earn</h3>
+        <h3 className="text-[2rem] font-bold italic">{t("refer and earn")}</h3>
       </div>
       <div
         style={{ boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)" }}
         className="rounded-lg p-3"
       >
         <div className="space-y-[0.8rem]">
-          <p className="text-[1.25rem] font-semibold">Invite Code</p>
+          <p className="text-[1.25rem] font-semibold">{t("invite code")}</p>
           <p className="text-[14px]">
             Invite your friends & family to earn 10 coins per invite.
           </p>

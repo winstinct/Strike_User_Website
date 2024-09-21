@@ -1,13 +1,13 @@
 export let baseUrl = "http://localhost:4000";
 
-const type = "STAGE";
-// const type = "PROD";
+// const type = "STAGE";
+const type = "PROD";
 
 if (type === "PROD") {
   baseUrl = "https://api.strikexgaming.com";
 } else if (type === "STAGE") {
   baseUrl = "https://stagingapiv2.strikexgaming.com"
-  
+
 } else {
   baseUrl = "http://localhost:4000";
 }

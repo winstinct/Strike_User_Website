@@ -1,7 +1,9 @@
 import Switch from "react-switch";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function NotificationSettings() {
+  const { t } = useTranslation();
   const [pushNotification, setPushNotification] = useState(true);
   const [bookingNotification, setBookingNotification] = useState(false);
   const [subscriptionNotification, setSubscriptionNotification] =
@@ -22,7 +24,7 @@ export default function NotificationSettings() {
             onClick={() => setPushNotification(!pushNotification)}
             className="cursor-pointer select-none flex-1"
           >
-            Push Notification
+            {t("push notification")}
           </p>
           <Switch
             checked={pushNotification}
@@ -49,7 +51,7 @@ export default function NotificationSettings() {
             onClick={() => setBookingNotification(!bookingNotification)}
             className="cursor-pointer flex-1 select-none"
           >
-            Booking Notification
+            {t("booking notification")}
           </p>
           <Switch
             checked={bookingNotification}
@@ -78,7 +80,7 @@ export default function NotificationSettings() {
             }
             className="cursor-pointer flex-1 select-none"
           >
-            Subscription Notification
+            {t("subscription notification")}
           </p>
           <Switch
             checked={subscriptionNotification}
@@ -102,12 +104,10 @@ export default function NotificationSettings() {
       >
         <div className="flex items-center justify-between">
           <p
-            onClick={() =>
-              setEmailNotification(!emailNotification)
-            }
+            onClick={() => setEmailNotification(!emailNotification)}
             className="cursor-pointer flex-1 select-none"
           >
-            Email Notification
+            {t("email notification")}
           </p>
           <Switch
             checked={emailNotification}
@@ -135,7 +135,7 @@ export default function NotificationSettings() {
             onClick={() => setWhatsappNotification(!whatsappNotification)}
             className="cursor-pointer flex-1 select-none"
           >
-            WhatsApp Notification
+            {t("whatsapp notification")}
           </p>
           <Switch
             checked={whatsappNotification}
