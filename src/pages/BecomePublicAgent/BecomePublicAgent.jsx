@@ -2,18 +2,23 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { setActiveStyle } from "../../utils/setActiveStyle";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import useTitle from "../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 export default function BecomePublicAgent() {
-  useTitle("Strike - Become Agent")
+  const { t } = useTranslation();
+  useTitle("Strike - Become Agent");
   window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
   return (
     <main>
       <div className="flex items-center gap-5 mb-3">
-        <div onClick={() => navigate("/menu")} className="backBtn md:hidden block">
+        <div
+          onClick={() => navigate("/menu")}
+          className="backBtn md:hidden block"
+        >
           <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
         </div>
-        <h3 className="text-[2rem] font-bold italic">Become an Agent</h3>
+        <h3 className="text-[2rem] font-bold italic">{t("become an agent")}</h3>
       </div>
 
       <div>
@@ -43,7 +48,7 @@ export default function BecomePublicAgent() {
           to=""
           end
         >
-          Personal Details
+          {t("personal details")}
         </NavLink>
         <NavLink
           style={setActiveStyle}
@@ -51,7 +56,7 @@ export default function BecomePublicAgent() {
           to="bank-details-public-agent"
           end
         >
-          Bank Details
+          {t("bank details")}
         </NavLink>
       </div>
 
