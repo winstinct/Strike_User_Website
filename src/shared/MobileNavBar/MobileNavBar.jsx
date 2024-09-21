@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
 export default function MobileNavBar() {
+  const { t } = useTranslation();
   return (
     <div
       style={{ boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.20)" }}
@@ -32,7 +34,7 @@ export default function MobileNavBar() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <p className="text-[12px]">Home</p>
+              <p className="text-[12px]">{t('home')}</p>
             </div>
           )}
         </NavLink>
@@ -61,7 +63,7 @@ export default function MobileNavBar() {
                   stroke="#222222"
                 />
               </svg>
-              <p className="text-[12px]">Offers</p>
+              <p className="text-[12px]">{t('offers')}</p>
             </div>
           )}
         </NavLink>
@@ -112,7 +114,7 @@ export default function MobileNavBar() {
                 <path d="M10 15H14" stroke="#222222" strokeLinecap="round" />
                 <path d="M10 12H14" stroke="#222222" strokeLinecap="round" />
               </svg>
-              <p className="text-[12px]">Tickets</p>
+              <p className="text-[12px]">{t('tickets')}</p>
             </div>
           )}
         </NavLink>
@@ -149,7 +151,7 @@ export default function MobileNavBar() {
                   strokeLinecap="round"
                 />
               </svg>
-              <p className="text-[12px]">Menu</p>
+              <p className="text-[12px]">{t('menu')}</p>
             </div>
           )}
         </NavLink>
