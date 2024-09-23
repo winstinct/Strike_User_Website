@@ -6,7 +6,7 @@ export default function MobileNavBar() {
   return (
     <div
       style={{ boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.20)" }}
-      className="md:hidden block rounded-[20px] mt-[4rem] w-full"
+      className="md:hidden block rounded-[20px] mt-[4rem] w-full mb-2 sticky bottom-2 bg-white z-50"
     >
       <div className="grid grid-cols-5 relative">
         <NavLink to="/">

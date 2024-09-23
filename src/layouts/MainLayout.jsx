@@ -34,8 +34,8 @@ export default function MainLayout() {
         <Outlet />
         <div className="my-[3rem]">
           <Footer />
-          {isRenderMobileNavBar(location) && <MobileNavBar />}
         </div>
+          {isRenderMobileNavBar(location) && <MobileNavBar />}
       </div>
       {isRenderFaqSidebar(location) ? <FAQRightSideBar /> : <RightSideBar />}
     </div>
