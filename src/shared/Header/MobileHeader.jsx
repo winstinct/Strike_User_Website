@@ -23,7 +23,7 @@ export default function MobileHeader() {
             <Link to="/">
               <img src={strikeLogo} className="w-[100px]" alt="Site Logo" />
             </Link>
-            <div className="flex items-center gap-[1rem]">
+            <div className="flex items-center gap-[2rem]">
             <div className="relative">
               <button
                 onClick={() => dispatch(toggleLanguageModal())}
