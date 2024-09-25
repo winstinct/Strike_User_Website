@@ -327,6 +327,4 @@ export default function PublicLotteries() {
   );
 }
 
-ShareSocialModal.propTypes = {
-  url: PropTypes.string,
-};
+

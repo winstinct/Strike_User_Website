@@ -9,6 +9,12 @@ export default function RecentTransactions() {
     isError,
   } = useGetRecentTransactionsQuery();
 
+  const descendingOrderedData =
+    recentTransactionsData?.response?.coinHistory &&
+    Array.from(recentTransactionsData?.response?.coinHistory)?.sort((a, b) => {
+      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+    });
+
   // decide what to render
   let content = "";
   if (isLoading && !isError) {
@@ -35,7 +41,7 @@ export default function RecentTransactions() {
     content = (
       <div className="space-y-[1.5rem]">
         {/* transaction-1  */}
-        {recentTransactionsData?.response?.coinHistory?.map(
+        {descendingOrderedData?.map(
           ({ originalAmt, status, adddition, updatedAt, _id }) => (
             <div key={_id} className="border-b-[1px] border-b-gray-300 pb-5">
               <div className="flex justify-between items-center text-[13px]">
