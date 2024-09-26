@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import strikeLogo from "../../assets/strike-logo.svg";
-import playStoreIcon from "../../assets/play-store.svg";
-import appStoreIcon from "../../assets/app-store.svg";
+// import playStoreIcon from "../../assets/play-store.svg";
+// import appStoreIcon from "../../assets/app-store.svg";
 import { useTranslation } from "react-i18next";
 
 export default function Footer() {
