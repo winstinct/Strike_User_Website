@@ -180,67 +180,71 @@ export default function WithdrawRequestsHistory() {
           {...swiperConfig}
           className="w-full"
         >
-          {data?.response?.withdrawList?.filter((item) => {
+          {data?.response?.withdrawList
+            ?.filter((item) => {
               if (status == "all") {
                 return item;
               } else {
                 return item.status.toLowerCase() == status;
               }
-            }).map(
-            ({
-              _id,
-              withdrawalAmt,
-              cryptoValue,
-              cryptoWalletAddress,
-              withdrawalId,
-              status,
-            }) => (
-              <SwiperSlide key={_id}>
-                <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative h-[230px]">
-                  <div className="middle1"></div>
-                  <div className="middle2"></div>
-                  <div className="text-left space-y-[0.5rem] ml-3 text-[14px]">
-                    <p className="font-medium text-[14px]">
-                      Withdrawal ID:{" "}
-                      <span className="font-bold">{withdrawalId}</span>
-                    </p>
-                    <p>
-                      Coins Requested:{" "}
-                      <span className="text-[#5500C3] font-bold">
-                        {withdrawalAmt}
-                      </span>
-                    </p>
-                    <p>
-                      Status:{" "}
-                      {status.toLowerCase() == "approved" ? (
-                        <span className="text-[#25BF17] font-bold">
-                          Approved
-                        </span>
-                      ) : status.toLowerCase() == "rejected" ? (
-                        <span className="text-red-500 font-bold">Rejected</span>
-                      ) : (
-                        <span className="text-orange-500 font-bold">
-                          Pending
-                        </span>
-                      )}
-                    </p>
-                    <div>
+            })
+            .map(
+              ({
+                _id,
+                withdrawalAmt,
+                cryptoValue,
+                cryptoWalletAddress,
+                withdrawalId,
+                status,
+              }) => (
+                <SwiperSlide key={_id}>
+                  <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative h-[230px]">
+                    <div className="middle1"></div>
+                    <div className="middle2"></div>
+                    <div className="text-left space-y-[0.5rem] ml-3 text-[14px]">
+                      <p className="font-medium text-[14px]">
+                        Withdrawal ID:{" "}
+                        <span className="font-bold">{withdrawalId}</span>
+                      </p>
                       <p>
-                        Crypto Amount:{" "}
+                        Coins Requested:{" "}
                         <span className="text-[#5500C3] font-bold">
-                          {cryptoValue}
+                          {withdrawalAmt}
                         </span>
                       </p>
-                    </div>
-                    <div>
-                      Crypto Address:{" "}
-                      <span className="font-bold">{cryptoWalletAddress}</span>
+                      <p>
+                        Status:{" "}
+                        {status.toLowerCase() == "approved" ? (
+                          <span className="text-[#25BF17] font-bold">
+                            Approved
+                          </span>
+                        ) : status.toLowerCase() == "rejected" ? (
+                          <span className="text-red-500 font-bold">
+                            Rejected
+                          </span>
+                        ) : (
+                          <span className="text-orange-500 font-bold">
+                            Pending
+                          </span>
+                        )}
+                      </p>
+                      <div>
+                        <p>
+                          Crypto Amount:{" "}
+                          <span className="text-[#5500C3] font-bold">
+                            {cryptoValue}
+                          </span>
+                        </p>
+                      </div>
+                      <div>
+                        Crypto Address:{" "}
+                        <span className="font-bold">{cryptoWalletAddress}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            )
-          )}
+                </SwiperSlide>
+              )
+            )}
         </Swiper>
       )}
     </section>

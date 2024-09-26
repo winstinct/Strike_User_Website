@@ -13,6 +13,7 @@ import { APIurls } from "../../api/apiConstant";
 import NotifyAgentModal from "./NotifyAgentModal";
 import useTitle from "../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
+import Select from "react-select";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -22,6 +23,63 @@ const swiperConfig = {
       slidesPerView: 2,
     },
   },
+};
+
+const options = [
+  {
+    label: "All",
+    value: "All",
+  },
+  {
+    label: "Processed",
+    value: "Processed",
+  },
+  {
+    label: "Rejected",
+    value: "Rejected",
+  },
+  {
+    label: "Submitted",
+    value: "Submitted",
+  },
+];
+
+const customStyles = {
+  container: (provided) => ({
+    ...provided,
+    width: "150px",
+    zIndex: "50",
+  }),
+  control: (provided) => ({
+    ...provided,
+    border: "1px solid #5500C3",
+    boxShadow: "none",
+    "&:hover": {
+      border: "1px solid #5500C3",
+    },
+    padding: "2px 0",
+    borderRadius: "35px",
+    cursor: "pointer",
+  }),
+  menu: (provided) => ({
+    ...provided,
+    width: "100%",
+    borderRadius: "10px",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#5500C3" : provided.backgroundColor,
+    color: state.isSelected ? "#fff" : provided.color,
+    "&:hover": {
+      backgroundColor: state.isSelected ? "#5500C3" : provided.backgroundColor,
+    },
+    cursor: "pointer",
+    borderRadius: "10px",
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: "#333",
+  }),
 };
 
 export default function AgentsHistory() {
@@ -100,13 +158,28 @@ export default function AgentsHistory() {
     });
   };
 
+  const [status, setStatus] = useState("all");
+  const handleChange = (data) => {
+    setStatus(data.value.toLowerCase());
+  };
+
   return (
     <section className="mt-[2rem]">
-      <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
-        <div>
-          <h3 className="text-[1.25rem] font-bold">{t("history")}</h3>
+      <div>
+        {/* Filter Buttons  */}
+        <div className="flex justify-between items-center flex-wrap mb-[1rem]">
+        <h3 className="text-[1.25rem] font-bold">{t("history")}</h3>
+          <Select
+            onChange={handleChange}
+            options={options}
+            styles={customStyles}
+            placeholder="Filter By"
+            className="lg:mt-0 mt-3"
+          ></Select>
         </div>
-        <div className="flex gap-5 text-[2rem]">
+      </div>
+      <header className="flex items-center justify-end">
+        <div className="flex items-center gap-3">
           <button
             className={`border-[2px] rounded-md p-1 border-[#858585] ${
               isBeginning ? "bg-gray-300 border-[#e9e7e7]" : ""
@@ -157,7 +230,13 @@ export default function AgentsHistory() {
           {...swiperConfig}
           className="w-full m-3"
         >
-          {data?.response?.agentTicket?.map((item) => (
+          {data?.response?.agentTicket?.filter((item) => {
+              if (status == "all") {
+                return item;
+              } else {
+                return item.status.toLowerCase() == status;
+              }
+            })?.map((item) => (
             <SwiperSlide key={item.ticket_id}>
               <div className="flex justify-center items-center py-[1.5rem] px-[1rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
                 <div className="middle1"></div>
