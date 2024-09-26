@@ -1,6 +1,7 @@
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { Icon } from "@iconify/react";
+import PropTypes from 'prop-types';
 
 export default function ViewRemarksModal({ remarks }) {
   return (
@@ -34,4 +35,8 @@ export default function ViewRemarksModal({ remarks }) {
       )}
     </Popup>
   );
+}
+
+ViewRemarksModal.propTypes = {
+  remarks: PropTypes.string,
 }
