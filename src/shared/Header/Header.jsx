@@ -26,7 +26,7 @@ export default function Header() {
   const { isLanguageModalVisible } = useSelector((store) => store.language);
   return (
     <>
-      <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] py-[0.8rem] border-b-[1px] border-b-[#D9D9D9] fixed w-full bg-white top-0 z-50">
+      <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] border-b-[1px] border-b-[#D9D9D9] fixed w-full bg-white top-0 z-50 py-[0.8rem]">
         <div>
           <Link to="/">
             <img src={strikeLogo} className="w-[130px]" alt="Site Logo" />
@@ -44,10 +44,9 @@ export default function Header() {
           </li>
         </ul>
 
-        <div className="flex items-center lg:gap-[1rem] gap-[0.5rem]">
+        <div className="flex items-center lg:gap-[1rem] gap-[0.5rem] ">
           {/* For Only Logged In User  */}
           {currentUser && (
-            <>
               <button
                 style={{
                   backgroundImage: "linear-gradient(#A967FF, #5500C3)",
@@ -60,9 +59,8 @@ export default function Header() {
                   {data?.response?.UserData?.wallet} Coins
                 </span>
               </button>
-              <div className="bg-gray-300 h-[50px] w-[3px]"></div>
-            </>
           )}
+          <div className="bg-gray-300 h-[50px] w-[3px]"></div>
           <div className="flex items-center gap-5">
             <div className="relative">
               <button

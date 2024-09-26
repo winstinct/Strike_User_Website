@@ -6,6 +6,7 @@ import {
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useTranslation } from "react-i18next";
 
 function CustomIcon({ id, open }) {
   return (
@@ -34,6 +35,8 @@ export function AccordionFaq({ qna }) {
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
+  const {t} = useTranslation()
+
   return (
     <Accordion
       open={open === qna.id}
@@ -47,11 +50,11 @@ export function AccordionFaq({ qna }) {
         } pb-5 text-[1.25rem] faq font-['Inter']`}
         onClick={() => handleOpen(qna.id)}
       >
-        {qna?.question}
+        {t(qna?.question)}
       </AccordionHeader>
       <AccordionBody className="border-b-[2px] border-gray-200">
         <p className="text-[1rem] text-[#000] faq font-['Inter'] font-medium">
-          {qna?.answer}
+          {t(qna?.answer)}
         </p>
       </AccordionBody>
     </Accordion>

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RequiredStar from "../../shared/RequiredStar/RequiredStar";
 import ShowErrorMsg from "../../shared/ShowErrorMsg/ShowErrorMsg";
 import {
@@ -116,6 +116,10 @@ export default function ChangePasswordPreference() {
     }
     navigate("/auth/login");
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="flex flex-col justify-center md:mt-0 mt-[2rem]">

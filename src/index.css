@@ -275,19 +275,6 @@ div button.peer ::after,
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* styles.css or your component's CSS file */
 .horizontal-slider {
   width: 100%;
@@ -328,4 +315,9 @@ div button.peer ::after,
   .modal > .actions {
     padding: 15px 10px; /* Increase padding for better touch interaction */
   }
+}
+
+
+.makeStyles-copyIcon-23{
+  color: red !important;
 }

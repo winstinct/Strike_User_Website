@@ -13,17 +13,17 @@ export default function MobileHeader() {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const { isLanguageModalVisible } = useSelector((store) => store.language);
   return (
-    <div className="mx-[1rem] mt-[2rem]">
+    <div className="sticky top-0 z-50 bg-white p-3 md:hidden block">
       <header
         style={{ boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.20)" }}
-        className="top-0 w-full bg-white rounded-[20px] px-[1.5rem] py-[1rem] md:hidden block"
+        className="top-0 w-full bg-white rounded-[20px] px-[1.5rem] py-[1rem]"
       >
         <div>
           <div className="flex items-center justify-between">
             <Link to="/">
               <img src={strikeLogo} className="w-[100px]" alt="Site Logo" />
             </Link>
-            <div className="flex items-center gap-[1rem]">
+            <div className="flex items-center gap-[2rem]">
             <div className="relative">
               <button
                 onClick={() => dispatch(toggleLanguageModal())}

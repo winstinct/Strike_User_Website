@@ -118,6 +118,8 @@ const linkedIn = (
   </svg>
 );
 
+
+
 const ShareSocialModal = ({ icon, code }) => {
   const [size, setSize] = useState(null);
   const handleOpen = (value) => setSize(value);
