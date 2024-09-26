@@ -5,6 +5,7 @@ import "swiper/css";
 import { useNavigate } from "react-router-dom";
 import { useGetWithdrawRequestHistoryQuery } from "../../redux/features/lottery/lotteryApi";
 import WithdrawRequestHistorySkeleton from "./WithdrawRequestHistorySkeleton";
+import Select from "react-select";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -16,12 +17,70 @@ const swiperConfig = {
   },
 };
 
+const options = [
+  {
+    label: "All",
+    value: "All",
+  },
+  {
+    label: "Pending",
+    value: "Pending",
+  },
+  {
+    label: "Approved",
+    value: "Approved",
+  },
+  {
+    label: "Rejected",
+    value: "Rejected",
+  },
+];
+
+const customStyles = {
+  container: (provided) => ({
+    ...provided,
+    width: "150px",
+    zIndex: "50",
+  }),
+  control: (provided) => ({
+    ...provided,
+    border: "1px solid #5500C3",
+    boxShadow: "none",
+    "&:hover": {
+      border: "1px solid #5500C3",
+    },
+    padding: "2px 0",
+    borderRadius: "35px",
+    cursor: "pointer",
+  }),
+  menu: (provided) => ({
+    ...provided,
+    width: "100%",
+    borderRadius: "10px",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#5500C3" : provided.backgroundColor,
+    color: state.isSelected ? "#fff" : provided.color,
+    "&:hover": {
+      backgroundColor: state.isSelected ? "#5500C3" : provided.backgroundColor,
+    },
+    cursor: "pointer",
+    borderRadius: "10px",
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: "#333",
+  }),
+};
+
 export default function WithdrawRequestsHistory() {
   const navigate = useNavigate();
   window.scrollTo({ top: 0, behavior: "smooth" });
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
+  const [status, setStatus] = useState("all");
 
   const handleNext = () => {
     swiperInstance?.slideNext();
@@ -33,6 +92,10 @@ export default function WithdrawRequestsHistory() {
     swiperInstance?.slidePrev();
     setIsBeginning(swiperInstance?.isBeginning);
     setIsEnd(swiperInstance?.isEnd);
+  };
+
+  const handleChange = (data) => {
+    setStatus(data.value.toLowerCase());
   };
 
   const { data, isLoading } = useGetWithdrawRequestHistoryQuery();
@@ -48,10 +111,22 @@ export default function WithdrawRequestsHistory() {
         </h3>
       </div>
 
-      <header className="flex md:flex-row flex-col mb-[1rem] md:gap-1 gap-3 md:items-center justify-between">
-        <div>
-          <h3 className="md:text-[2.5rem] text-[2rem] font-bold">History</h3>
+      {/* Filter  */}
+      <div className="flex justify-between items-center flex-wrap mb-6">
+        <h3 className="md:text-[1.25rem] text-[2rem] font-bold">History</h3>
+        {/* Filter Buttons  */}
+        <div className="flex lg:flex-row flex-col items-center justify-end">
+          <Select
+            onChange={handleChange}
+            options={options}
+            styles={customStyles}
+            placeholder="Filter By"
+            className="lg:mt-0 mt-3"
+          ></Select>
         </div>
+      </div>
+
+      <header className="flex justify-end mb-[1rem] md:gap-1 gap-3 md:items-center">
         <div className="flex gap-5 text-[2rem]">
           <button
             className={`border-[2px] rounded-md p-1 border-[#858585] ${
@@ -105,7 +180,13 @@ export default function WithdrawRequestsHistory() {
           {...swiperConfig}
           className="w-full"
         >
-          {data?.response?.withdrawList?.map(
+          {data?.response?.withdrawList?.filter((item) => {
+              if (status == "all") {
+                return item;
+              } else {
+                return item.status.toLowerCase() == status;
+              }
+            }).map(
             ({
               _id,
               withdrawalAmt,
@@ -115,7 +196,7 @@ export default function WithdrawRequestsHistory() {
               status,
             }) => (
               <SwiperSlide key={_id}>
-                <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative">
+                <div className="flex justify-center items-center py-[1.5rem] pl-[2rem] withdraw-history border-gray-400 rounded-2xl border-[1px] bg-white relative h-[230px]">
                   <div className="middle1"></div>
                   <div className="middle2"></div>
                   <div className="text-left space-y-[0.5rem] ml-3 text-[14px]">
