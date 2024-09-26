@@ -38,10 +38,6 @@ export default function Deposit() {
   useEffect(() => {
     const convertIntoISDTValue = async () => {
       const response = await convertINRIntoUSDTApi(1);
-      console.log(
-        "Per INR to USDT value===> ",
-        response?.data?.response?.usdtAmt
-      );
       setPerINRToUSDT(response?.data?.response?.usdtAmt);
     };
     convertIntoISDTValue();

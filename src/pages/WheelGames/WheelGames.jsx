@@ -1,8 +1,10 @@
 import wheelGameImg from "../../assets/wheel-game.png";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link, useNavigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 export default function WheelGames() {
+  useTitle("Strike - Wheel Games")
   const navigate = useNavigate();
   window.scrollTo({ top: 0 });
   return (

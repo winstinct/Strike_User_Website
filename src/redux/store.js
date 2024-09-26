@@ -10,6 +10,7 @@ import convertedCoinSlice from "./convertedCoinSlice";
 import withdrawCoinSlice from "./withdrawCoinSlice";
 import becomePublicAgentDetailsSlice from "./becomePublicAgentDetailsSlice";
 import couponDataSlice from "./couponDataSlice";
+import languageSlice from "./languageSlice";
 
 const persistConfig = {
   key: "root",
@@ -22,6 +23,7 @@ export const store = configureStore({
     auth: persistedReducer,
     createUser: createUserSlice,
     notification: notificationSlice,
+    language: languageSlice,
     convertedCoin: convertedCoinSlice,
     withdrawCoin: withdrawCoinSlice,
     publicAgentDetails: becomePublicAgentDetailsSlice,

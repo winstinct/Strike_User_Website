@@ -1,7 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Select, Option } from "@material-tailwind/react";
 import RequiredStar from "../../../shared/RequiredStar/RequiredStar";
 import { StepperContext } from "../../../contexts/StepperContextProvider";
 import ShowErrorMsg from "../../../shared/ShowErrorMsg/ShowErrorMsg";
@@ -11,70 +10,52 @@ import { useSignupMutation } from "../../../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../contexts/AuthContext";
 import SubmitBtnLoader from "../../../components/SubmitBtnLoader";
+import ReactSelect from "react-select";
+import { stateOptions } from "../../../options/stateOptions";
+import { cityOptions } from "../../../options/cityOptions";
+import { countryOptions } from "../../../options/countryOptions";
 
-const indianStatesArray = [
-  "Andhra Pradesh",
-  "Arunachal Pradesh",
-  "Assam",
-  "Bihar",
-  "Chhattisgarh",
-  "Goa",
-  "Gujarat",
-  "Haryana",
-  "Himachal Pradesh",
-  "Jharkhand",
-  "Karnataka",
-  "Kerala",
-  "Madhya Pradesh",
-  "Maharashtra",
-  "Manipur",
-  "Meghalaya",
-  "Mizoram",
-  "Nagaland",
-  "Odisha",
-  "Punjab",
-  "Rajasthan",
-  "Sikkim",
-  "Tamil Nadu",
-  "Telangana",
-  "Tripura",
-  "Uttar Pradesh",
-  "Uttarakhand",
-  "West Bengal",
-  "Andaman and Nicobar Islands",
-  "Chandigarh",
-  "Puducherry"
-];
-
-
-const indianCitiesArray = [
-  "Mumbai",
-  "Delhi",
-  "Bengaluru",
-  "Chennai",
-  "Kolkata",
-  "Hyderabad",
-  "Pune",
-  "Jaipur",
-  "Ahmedabad",
-  "Chandigarh"
-];
-
-
-const countriesArray = [
-  "India",
-  "United States",
-  "China",
-  "Japan",
-  "Germany",
-  "United Kingdom",
-  "France",
-  "Brazil",
-  "Canada",
-  "Australia"
-];
-
-
+const customStyles = {
+  container: (provided) => ({
+    ...provided,
+    width: "100%",
+  }),
+  control: (provided) => ({
+    ...provided,
+    border: "1px solid #e7e4e4",
+    boxShadow: "none",
+    "&:hover": {
+      border: "1px solid #e7e4e4",
+    },
+    padding: "2px 0",
+    borderRadius: "5px",
+    cursor: "pointer",
+  }),
+  menu: (provided) => ({
+    ...provided,
+    width: "100%",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#5500C3" : provided.backgroundColor,
+    color: state.isSelected ? "#fff" : provided.color,
+    "&:hover": {
+      backgroundColor: state.isSelected ? "#5500C3" : provided.backgroundColor,
+    },
+    cursor: "pointer",
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: "#333",
+  }),
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    color: "#000", // Change this to the color you want for the arrow
+    "&:hover": {
+      color: "#000", // Optional: change color on hover if desired
+    },
+  }),
+};
 
 export default function LocationDetails() {
   const { currentStep, setCurrentStep, steps } = useContext(StepperContext);
@@ -111,7 +92,11 @@ export default function LocationDetails() {
     }
 
     const userInfo = {
-      location,
+      location: {
+        country: country.value,
+        state: state.value,
+        city: city.value,
+      },
       Email,
       Password,
       FirstName,
@@ -126,7 +111,7 @@ export default function LocationDetails() {
     // Call API
     try {
       const res = await signup(userInfo);
-      // console.log("Signup User Response ===> ", res)
+      // console.log("Signup User Response ===> ", res);
       if (res?.error) {
         return toast.error(res?.error?.data?.message);
       } else {
@@ -158,6 +143,7 @@ export default function LocationDetails() {
         otp: "",
         otpRefId: "",
         countryCode: "",
+        selectedCountryIndex: 101,
         selectedFile: "",
         refferalCodes: "",
       })
@@ -187,20 +173,18 @@ export default function LocationDetails() {
             Country
             <RequiredStar />
           </p>
-          <Select
-            className="border-[1px] border-gray-300 rounded-md"
-            placeholder="Country"
-            value={country}
-            onChange={(value) =>
+
+          <ReactSelect
+            onChange={(data) =>
               dispatch(
-                addUserDetails({ location: { ...location, country: value } })
+                addUserDetails({ location: { ...location, country: data } })
               )
             }
-          >
-            {
-              countriesArray.map(country => (<Option key={country} value={country}>{country}</Option>))
-            }
-          </Select>
+            options={countryOptions}
+            styles={customStyles}
+            value={country}
+          ></ReactSelect>
+
           {showError && !country && (
             <ShowErrorMsg message="This field is required" />
           )}
@@ -210,20 +194,17 @@ export default function LocationDetails() {
             State
             <RequiredStar />
           </p>
-          <Select
-            className="border-[1px] border-gray-300 rounded-md"
-            placeholder="gg"
-            value={state}
-            onChange={(value) =>
+
+          <ReactSelect
+            onChange={(data) =>
               dispatch(
-                addUserDetails({ location: { ...location, state: value } })
+                addUserDetails({ location: { ...location, state: data } })
               )
             }
-          >
-            {
-              indianStatesArray.map(state => (<Option key={state} value={state}>{state}</Option>))
-            }
-          </Select>
+            options={stateOptions}
+            styles={customStyles}
+            value={state}
+          ></ReactSelect>
           {showError && !state && (
             <ShowErrorMsg message="This field is required" />
           )}
@@ -233,20 +214,17 @@ export default function LocationDetails() {
             City
             <RequiredStar />
           </p>
-          <Select
-            className="border-[1px] border-gray-300 rounded-md"
-            placeholder="gg"
-            value={city}
-            onChange={(value) =>
+          
+          <ReactSelect
+            onChange={(data) =>
               dispatch(
-                addUserDetails({ location: { ...location, city: value } })
+                addUserDetails({ location: { ...location, city: data } })
               )
             }
-          >
-            {
-              indianCitiesArray.map(city => (<Option key={city} value={city}>{city}</Option>))
-            }
-          </Select>
+            options={cityOptions}
+            styles={customStyles}
+            value={city}
+          ></ReactSelect>
           {showError && !city && (
             <ShowErrorMsg message="This field is required" />
           )}
@@ -257,7 +235,7 @@ export default function LocationDetails() {
             <RequiredStar />
           </label>
           <input
-            className="border-[1px] border-[#CCC] px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
+            className="border-[1px] border-gray-300 px-[1rem] py-[0.4rem] rounded-[6px] outline-none w-full"
             type="number"
             id="pincode"
             value={pinCode}

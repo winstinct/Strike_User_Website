@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useGetAllAgentsTicketsQuery } from "../../redux/features/transactions/transactionsApi";
@@ -10,9 +10,9 @@ import RejectAgentModal from "./RejectAgentModal";
 import { toast } from "react-toastify";
 import { useAuth } from "../../contexts/AuthContext";
 import { APIurls } from "../../api/apiConstant";
-import { ThreeDots } from "react-loader-spinner";
 import NotifyAgentModal from "./NotifyAgentModal";
 import useTitle from "../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -25,20 +25,22 @@ const swiperConfig = {
 };
 
 export default function AgentsHistory() {
-  useTitle("Strike - Deposit History")
+  const { t } = useTranslation();
+  useTitle("Strike - Deposit History");
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
   const [notifyLoading, setNotifyLoading] = useState({});
   const { getAccessToken } = useAuth();
+  useEffect(() => {
+    window.scrollTo({ behavior: "smooth", top: 0 });
+  }, []);
 
   const { data, isLoading, isError } = useGetAllAgentsTicketsQuery();
-  console.log("AGENT TICKETS: ", data);
 
   // decide what to render
   let content = "";
 
-  // const agentTickets = data?.response?.agentTicket ? data?.response?.agentTicket?.reverse() : [];
   if (isLoading && !isError) {
     content = <AgentHistorySkeleton />;
   }
@@ -102,7 +104,7 @@ export default function AgentsHistory() {
     <section className="mt-[2rem]">
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between">
         <div>
-          <h3 className="text-[1.25rem] font-bold">History</h3>
+          <h3 className="text-[1.25rem] font-bold">{t("history")}</h3>
         </div>
         <div className="flex gap-5 text-[2rem]">
           <button
@@ -201,7 +203,7 @@ export default function AgentsHistory() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <NotifyAgentModal data={item}/>
+                    <NotifyAgentModal data={item} />
                     <RejectAgentModal data={item} />
                   </div>
                 </div>

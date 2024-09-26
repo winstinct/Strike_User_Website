@@ -20,6 +20,7 @@ const initialState = {
   otp: "",
   otpRefId: "",
   countryCode: "",
+  selectedCountryIndex:101,
   selectedFile: null,
   refferalCodes: "",
 };

@@ -7,6 +7,7 @@ import { useGetUserWinningsQuery } from "../../../redux/features/lottery/lottery
 import moment from "moment";
 import WinningSkeleton from "./WinningSkeleton";
 import DisplayNetworkError from "../../../components/DisplayNetworkError";
+import { useTranslation } from "react-i18next";
 const swiperConfig = {
   slidesPerView: 1,
   spaceBetween: 20,
@@ -18,6 +19,7 @@ const swiperConfig = {
 };
 
 export default function Winners() {
+  const { t } = useTranslation();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -56,7 +58,7 @@ export default function Winners() {
   }
 
   // if (!isLoading && !isError && data.length > 0) {
-   
+
   // }
 
   return (
@@ -64,7 +66,7 @@ export default function Winners() {
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2.5rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
-            Won Lottery
+           {t("won lottery")}
           </h3>
         </div>
         <div className="flex gap-5 text-[2rem]">
@@ -112,12 +114,16 @@ export default function Winners() {
         </div>
       </header>
 
-      {
-        data?.response?.fetchWinnerss == 0 && <h3 className="text-gray-500 text-center text-[1.3rem] py-5">No winnings are available!</h3>
-      }
+      {data?.response?.fetchWinnerss == 0 && (
+        <h3 className="text-gray-500 text-center text-[1.3rem] py-5">
+          No winnings are available!
+        </h3>
+      )}
 
-      {
-        content ? content : (<Swiper
+      {content ? (
+        content
+      ) : (
+        <Swiper
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           {...swiperConfig}
           className="w-full"
@@ -125,7 +131,7 @@ export default function Winners() {
           {data?.response?.fetchWinnerss?.map(
             ({
               UserData: { FirstName, LastName } = {},
-              lottaryId: { Currency, LottarySerial, winneramount } = {},
+              lottaryId: { Currency, winneramount, UniqueID } = {},
               updatedAt,
               _id,
             }) => (
@@ -145,7 +151,7 @@ export default function Winners() {
                       icon="noto:trophy"
                     />
                   </div>
-  
+
                   <div className="text-center space-y-[1rem] mt-[2rem]">
                     <h3 className="text-[1.25rem] italic font-bold">
                       <span>{FirstName}</span>
@@ -153,7 +159,7 @@ export default function Winners() {
                     </h3>
                     <div>
                       <p className="font-medium text-[1rem]">
-                        <span>Order ID:</span> <span>{LottarySerial}</span>
+                        <span>Order ID:</span> <span>{UniqueID}</span>
                       </p>
                       <p className="text-[#858585] text-[12px]">
                         Announced on: {moment(updatedAt).format("LLL")}
@@ -171,8 +177,8 @@ export default function Winners() {
               </SwiperSlide>
             )
           )}
-        </Swiper>)
-      }
+        </Swiper>
+      )}
     </section>
   );
 }

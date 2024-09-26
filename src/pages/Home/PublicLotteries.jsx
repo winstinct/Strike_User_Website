@@ -22,6 +22,7 @@ import CountDownTimer from "../../shared/CountDownTimer/CountDownTimer";
 import { ShareSocial } from "react-share-social";
 import ReactSlider from "react-slider";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 const ShareSocialModal = ({ url }) => {
   const [size, setSize] = useState(null);
@@ -65,6 +66,7 @@ const swiperConfig = {
 };
 
 export default function PublicLotteries() {
+  const { t } = useTranslation();
   const { currentUser } = useAuth();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
@@ -119,7 +121,7 @@ export default function PublicLotteries() {
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
-            Public Lottery
+            {t("public lottery")}
           </h3>
           <p>*Public lotteries are visible to all persons</p>
         </div>
@@ -325,6 +327,4 @@ export default function PublicLotteries() {
   );
 }
 
-ShareSocialModal.propTypes = {
-  url: PropTypes.string,
-};
+

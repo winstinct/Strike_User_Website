@@ -10,10 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetUserDetailsQuery } from "../../redux/features/auth/authApi";
 import { useGetAllCartItemsQuery } from "../../redux/features/cart/cartApi";
 import AvatarSkeleton from "./AvatarSkeleton";
-import { useState } from "react";
 import LanguageModal from "../../pages/LanguageTranslation/LanguageModal";
+import { useTranslation } from "react-i18next";
+import { toggleLanguageModal } from "../../redux/languageSlice";
 
 export default function Header() {
+  const { t } = useTranslation();
   const { currentUser } = useAuth();
   const { data } = useGetUserDetailsQuery();
   const userImageUrl = data?.response?.UserData?.imageUrl;
@@ -21,10 +23,10 @@ export default function Header() {
   const { showNotificationModal } = useSelector((store) => store.notification);
   const { data: cartData } = useGetAllCartItemsQuery();
   const totalAddedItems = cartData?.response?.cart?.length;
-  const [showLanguageModal, setShowLanguageModal] = useState(false);
+  const { isLanguageModalVisible } = useSelector((store) => store.language);
   return (
     <>
-      <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] py-[0.8rem] border-b-[1px] border-b-[#D9D9D9] fixed w-full bg-white top-0 z-50">
+      <header className="md:flex hidden justify-between items-center lg:px-[2rem] px-[1rem] border-b-[1px] border-b-[#D9D9D9] fixed w-full bg-white top-0 z-50 py-[0.8rem]">
         <div>
           <Link to="/">
             <img src={strikeLogo} className="w-[130px]" alt="Site Logo" />
@@ -32,20 +34,19 @@ export default function Header() {
         </div>
         <ul className="flex items-center large lg:gap-[3rem] gap-[1.5rem] text-[1rem] font-medium">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">{t("home")}</NavLink>
           </li>
           <li>
-            <NavLink to="/offers">Offers</NavLink>
+            <NavLink to="/offers">{t("offers")}</NavLink>
           </li>
           <li>
-            <NavLink to="/tickets">Tickets</NavLink>
+            <NavLink to="/tickets">{t("tickets")}</NavLink>
           </li>
         </ul>
 
-        <div className="flex items-center lg:gap-[1rem] gap-[0.5rem]">
+        <div className="flex items-center lg:gap-[1rem] gap-[0.5rem] ">
           {/* For Only Logged In User  */}
           {currentUser && (
-            <>
               <button
                 style={{
                   backgroundImage: "linear-gradient(#A967FF, #5500C3)",
@@ -58,13 +59,12 @@ export default function Header() {
                   {data?.response?.UserData?.wallet} Coins
                 </span>
               </button>
-              <div className="bg-gray-300 h-[50px] w-[3px]"></div>
-            </>
           )}
+          <div className="bg-gray-300 h-[50px] w-[3px]"></div>
           <div className="flex items-center gap-5">
             <div className="relative">
               <button
-                onClick={() => setShowLanguageModal((prevState) => !prevState)}
+                onClick={() => dispatch(toggleLanguageModal())}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ export default function Header() {
                   />
                 </svg>
               </button>
-              {showLanguageModal && <LanguageModal />}
+              {isLanguageModalVisible && <LanguageModal />}
             </div>
             {/* Notification Modal  */}
             {currentUser && (

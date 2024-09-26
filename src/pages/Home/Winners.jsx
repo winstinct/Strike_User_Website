@@ -4,6 +4,7 @@ import "swiper/css";
 import { useGetWinnersQuery } from "../../redux/features/lottery/lotteryApi";
 import moment from "moment";
 import WinnersSkeleton from "./WinnersSkeleton";
+import { useTranslation } from "react-i18next";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -16,6 +17,7 @@ const swiperConfig = {
 };
 
 export default function Winners() {
+  const { t } = useTranslation();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -39,7 +41,7 @@ export default function Winners() {
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
-            Winners
+            {t("winners")}
           </h3>
           <p>*Check winners of previous lotteries</p>
         </div>
@@ -103,8 +105,8 @@ export default function Winners() {
           className="w-full"
         >
           {data?.response?.fetchWinnerss?.map(
-            ({ UserID, transID, createdAt, winningAmount }) => (
-              <SwiperSlide key={UserID}>
+            ({ UserID, transID, createdAt, winningAmount, _id }) => (
+              <SwiperSlide key={_id}>
                 <div className="flex justify-center h-[250px] items-center py-[1.5rem] px-[1rem] border-[#A967FF] rounded-2xl border-[4px] bg-white relative">
                   <div className="middle1"></div>
                   <div className="middle2"></div>

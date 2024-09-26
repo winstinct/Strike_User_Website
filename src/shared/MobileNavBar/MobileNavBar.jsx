@@ -1,12 +1,12 @@
-import React from "react";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { setActiveStyle } from "../../utils/setActiveStyle";
 
 export default function MobileNavBar() {
+  const { t } = useTranslation();
   return (
     <div
       style={{ boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.20)" }}
-      className="md:hidden block rounded-[20px] mt-[4rem] w-full"
+      className="md:hidden block rounded-[20px] mt-[4rem] w-full mb-2 sticky bottom-2 bg-white z-50"
     >
       <div className="grid grid-cols-5 relative">
         <NavLink to="/">
@@ -30,11 +30,11 @@ export default function MobileNavBar() {
                 <path
                   d="M14.5 21V16C14.5 15.4477 14.0523 15 13.5 15H10.5C9.94772 15 9.5 15.4477 9.5 16V21"
                   stroke="#222222"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
-              <p className="text-[12px]">Home</p>
+              <p className="text-[12px]">{t('home')}</p>
             </div>
           )}
         </NavLink>
@@ -63,7 +63,7 @@ export default function MobileNavBar() {
                   stroke="#222222"
                 />
               </svg>
-              <p className="text-[12px]">Offers</p>
+              <p className="text-[12px]">{t('offers')}</p>
             </div>
           )}
         </NavLink>
@@ -85,7 +85,7 @@ export default function MobileNavBar() {
                 <path
                   d="M3.00001 6.5V6.5C3.00001 5.11929 4.1193 4 5.50001 4L19.2857 4C19.4852 4 19.585 4 19.6651 4.02806C19.8088 4.07831 19.9217 4.19124 19.9719 4.33486C20 4.41505 20 4.51479 20 4.71429V4.71429C20 5.91124 20 6.50972 19.8317 6.99084C19.5301 7.85258 18.8526 8.53011 17.9908 8.83165C17.5097 9 16.9112 9 15.7143 9L15 9M3.00001 6.5V6.5C3.00001 7.88071 4.11929 9 5.50001 9L19 9C19.9428 9 20.4142 9 20.7071 9.29289C21 9.58579 21 10.0572 21 11L21 13M3.00001 6.5L3.00001 17C3.00001 18.8856 3.00001 19.8284 3.58579 20.4142C4.17158 21 5.11439 21 7.00001 21L19 21C19.9428 21 20.4142 21 20.7071 20.7071C21 20.4142 21 19.9428 21 19L21 17M21 17H17C16.0572 17 15.5858 17 15.2929 16.7071C15 16.4142 15 15.9428 15 15V15C15 14.0572 15 13.5858 15.2929 13.2929C15.5858 13 16.0572 13 17 13H21M21 17L21 13"
                   stroke={isActive ? 'currentColor' : '#222222'}
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                 />
               </svg>
             </div>
@@ -108,13 +108,13 @@ export default function MobileNavBar() {
                 <path
                   d="M18 21V3L15 5L12 3L9 5L6 3V21L9 19.5L12 21L15 19.5L18 21Z"
                   stroke={isActive ? "currentColor" : "#222222"}
-                  stroke-linejoin="round"
+                  strokeLinejoin="round"
                 />
-                <path d="M10 9H14" stroke="#222222" stroke-linecap="round" />
-                <path d="M10 15H14" stroke="#222222" stroke-linecap="round" />
-                <path d="M10 12H14" stroke="#222222" stroke-linecap="round" />
+                <path d="M10 9H14" stroke="#222222" strokeLinecap="round" />
+                <path d="M10 15H14" stroke="#222222" strokeLinecap="round" />
+                <path d="M10 12H14" stroke="#222222" strokeLinecap="round" />
               </svg>
-              <p className="text-[12px]">Tickets</p>
+              <p className="text-[12px]">{t('tickets')}</p>
             </div>
           )}
         </NavLink>
@@ -135,23 +135,23 @@ export default function MobileNavBar() {
                 <path
                   d="M5 7H19"
                   stroke={isActive ? 'currentColor' : '#222222'}
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <path
                   d="M5 12H19"
                   stroke={isActive ? 'currentColor' : '#222222'}
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <path
                   d="M5 17H19"
                   stroke={isActive ? 'currentColor' : '#222222'}
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
               </svg>
-              <p className="text-[12px]">Menu</p>
+              <p className="text-[12px]">{t('menu')}</p>
             </div>
           )}
         </NavLink>
