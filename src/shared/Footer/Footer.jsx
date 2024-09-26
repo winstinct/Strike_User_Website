@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import strikeLogo from "../../assets/strike-logo.svg";
-import playStoreIcon from "../../assets/play-store.svg";
-import appStoreIcon from "../../assets/app-store.svg";
 import { useTranslation } from "react-i18next";
 
 export default function Footer() {
@@ -50,7 +48,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-[1.1rem] font-bold">{t("support")}</h3>
+          <h3 className="text-[1.1rem] font-bold">{t("Support")}</h3>
           <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
             <li>
               <Link
@@ -72,14 +70,14 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-[1.1rem] font-bold">{t("policies")}</h3>
+          <h3 className="text-[1.1rem] font-bold">{t("Policies")}</h3>
           <ul className="space-y-[0.5rem] mt-[0.3rem] text-[14px]">
             <li>
               <Link
                 className="hover:underline text-[#fff] hover:text-gray-100"
                 to="/terms-and-conditions"
               >
-                {t("terms and conditions")}
+                {t("Terms and Conditions")}
               </Link>
             </li>
             <li>
@@ -87,7 +85,7 @@ export default function Footer() {
                 className="hover:underline text-[#fff] hover:text-gray-100"
                 to="/privacy-policy"
               >
-                {t("privacy policy")}
+                {t("Privacy Policy")}
               </Link>
             </li>
             <li>
@@ -95,7 +93,7 @@ export default function Footer() {
                 className="hover:underline text-[#fff] hover:text-gray-100"
                 to="/refund-policy"
               >
-                {t("refund policy")}
+                {t("Refund Policy")}
               </Link>
             </li>
             <li>
@@ -103,7 +101,7 @@ export default function Footer() {
                 className="hover:underline text-[#fff] hover:text-gray-100"
                 to="/data-deletion-policy"
               >
-                {t("data deletion policy")}
+                {t("Data Deletion Policy")}
               </Link>
             </li>
             <li>
@@ -111,7 +109,7 @@ export default function Footer() {
                 className="hover:underline text-[#fff] hover:text-gray-100"
                 to="/strike-adult-gaming-policy"
               >
-                {t("strike adult gaming policy")}
+                {t("Strike Adult Gaming Policy")}
               </Link>
             </li>
           </ul>

@@ -55,7 +55,26 @@
   "become private lottery agent": "ప్రైవేట్ లాటరీ ఏజెంట్ అవ్వండి",
   "wishlist": "విష్‌లిస్ట్",
   "deposit history": "డిపాజిట్ చరిత్ర",
-  "preferences": "ప్రాధాన్యతలు",
+
+
+  "notification settings": "నోటిఫికేషన్ సెటింగ్స్",
+  "preferences": "ఆకాంక్షలు",
+  "push notification": "పుష్ నోటిఫికేషన్",
+  "booking notification": "బుకింగ్ నోటిఫికేషన్",
+  "subscription notification": "సబ్‌స్క్రిప్షన్ నోటిఫికేషన్",
+  "email notification": "ఈమెయిల్ నోటిఫికేషన్",
+  "whatsapp notification": "వాట్సాప్ నోటిఫికేషన్",
+
+  "privacy settings": "గోప్యత సెట్టింగ్స్",
+  "privacy": "గోప్యత",
+  "camera access": "కెమరా ప్రాప్యత",
+  "microphone access": "మైక్రోఫోన్ ప్రాప్యత",
+  "location access": "స్థాన ప్రాప్యత",
+  "security": "భద్రత",
+  "change password": "పాస్వర్డ్ మార్చండి",
+
+
+
   "faq": "ఎఫ్ ఎ క్యూ",
   "chat support": "చాట్ సపోర్ట్",
   "refer and earn": "రెఫర్ చేసి సంపాదించండి",

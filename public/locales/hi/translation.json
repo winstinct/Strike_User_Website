@@ -55,7 +55,24 @@
   "become private lottery agent": "निजी लॉटरी एजेंट बनें",
   "wishlist": "इच्छा-सूची",
   "deposit history": "जमा इतिहास",
+
   "preferences": "प्राथमिकताएँ",
+  "notification settings": "सूचना सेटिंग्स",
+  "push notification": "पुष अधिसूचना",
+  "booking notification": "बुकिंग अधिसूचना",
+  "subscription notification": "सदस्यता अधिसूचना",
+  "email notification": "ईमेल अधिसूचना",
+  "whatsapp notification": "व्हाट्सएप अधिसूचना",
+
+  "privacy settings": "गोपनीयता सेटिंग्स",
+  "privacy": "गोपनीयता",
+  "camera access": "कैमरा एक्सेस",
+  "microphone access": "माइक्रोफोन एक्सेस",
+  "location access": "स्थान एक्सेस",
+  "security": "सुरक्षा",
+  "change password": "पासवर्ड बदलें",
+
+
   "faq": "सामान्य प्रश्न",
   "chat support": "चैट समर्थन",
   "refer and earn": "रेफर और कमाओ",

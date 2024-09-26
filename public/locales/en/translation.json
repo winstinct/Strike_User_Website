@@ -56,7 +56,24 @@
   "become private lottery agent": "Become a Private Lottery Agent",
   "wishlist": "Wishlist",
   "deposit history": "Deposit History",
+
+  "notification settings": "Notification Settings",
   "preferences": "Preferences",
+  "push notification":"Push Notification",
+  "booking notification":"Booking Notification",
+  "subscription notification":"Subscription Notification",
+  "email notification":"Email Notification",
+  "whatsapp notification":"Whatsapp Notification",
+
+  "privacy settings": "Privacy Settings",
+  "privacy": "Privacy",
+  "camera access": "Camera Access",
+  "microphone access": "Micorphone Access",
+  "location access": "Location Access",
+  "security": "Security",
+  "change password": "Change Password",
+
+
   "faq": "F.A.Q",
   "chat support": "Chat Support",
   "refer and earn": "Refer & Earn",
