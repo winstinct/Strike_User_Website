@@ -48,7 +48,7 @@ const customStyles = {
   container: (provided) => ({
     ...provided,
     width: "150px",
-    zIndex: "50",
+    zIndex: "40",
   }),
   control: (provided) => ({
     ...provided,

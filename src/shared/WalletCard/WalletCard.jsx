@@ -9,6 +9,7 @@ import {
 import { toast } from "react-toastify";
 import { addConvertedCoinDetails } from "../../redux/convertedCoinSlice";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useTranslation } from "react-i18next";
 
 
 const currencyCodes = [
@@ -132,6 +133,7 @@ const currencyCodes = [
 ];
 
 export default function WalletCard() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { data } = useGetUserDetailsQuery();
   const { wallet, Currency } = data?.response?.UserData || {};
@@ -175,10 +177,10 @@ export default function WalletCard() {
 
   return (
     <div className="gradientBg text-white text-center rounded-[20px] p-4">
-      <p className="text-[12px]">Available Balance in Wallet</p>
+      <p className="text-[12px]">{t('available balance in wallet')}</p>
       <h3 className="font-bold italic">
         <span className="text-[2rem]">{wallet}</span>{" "}
-        <span className="text-[1.25rem]">Coins</span>
+        <span className="text-[1.25rem]">{t('coins')}</span>
       </h3>
       <div className="flex flex-col items-center justify-center space-y-[1rem] mt-[0.3rem]">
         <div className="bg-white text-black w-full p-1 rounded-lg">

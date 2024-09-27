@@ -11,8 +11,10 @@ import { useDispatch } from "react-redux";
 import { addWithdrawCoinDetails } from "../../redux/withdrawCoinSlice";
 import { useEffect, useState } from "react";
 import useTitle from "../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 export default function Withdraw() {
+  const { t } = useTranslation();
   useTitle("Strike - Withdraw");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -80,7 +82,7 @@ export default function Withdraw() {
             <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
           </div>
           <h3 className="md:text-[2rem] text-[1.5rem] font-semibold italic">
-            Withdraw
+            {t('withdraw')}
           </h3>
         </div>
 
@@ -90,7 +92,7 @@ export default function Withdraw() {
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
               <div>
                 <label className="block" htmlFor="withdrawalAmt">
-                  Withdraw Coins to Amount
+                  {t('Withdraw Coins to Amount')}
                   <span className="text-red-500 ml-1 font-bold">*</span>
                 </label>
                 <div className="relative">
@@ -119,19 +121,19 @@ export default function Withdraw() {
                   }`}
                 >
                   <Icon icon="zondicons:exclamation-solid" />
-                  <span>Min: 1,000 | Max: 10,000</span>
+                  <span>{t('min')}: 1,000 | {t('max')}: 10,000</span>
                 </div>
               </div>
 
               <div>
                 <label htmlFor="fullName">
-                  Full Name
+                  {t('Full Name')}
                   <span className="text-red-500 ml-1 font-bold">*</span>
                 </label>
                 <input
                   className="p-2 border-[1px] border-gray-400 rounded-md outline-none w-full"
                   id="fullName"
-                  placeholder="Enter Full Name"
+                  placeholder={t('Enter Full Name')}
                   type="text"
                   name="fullName"
                   {...register("fullName", { required: true })}
@@ -140,7 +142,7 @@ export default function Withdraw() {
 
               <div className="lg:col-span-2">
                 <label htmlFor="cryptoWalletAddress">
-                  Crypto Wallet Address
+                  {t('Crypto Wallet Address')}
                   <span className="text-red-500 ml-1 font-bold">*</span>
                 </label>
                 <input
@@ -156,18 +158,18 @@ export default function Withdraw() {
 
             <footer>
               <div className="mt-[3rem] space-y-[1rem]">
-                <h3 className="text-[1.25rem] font-bold">Withdrawal Details</h3>
+                <h3 className="text-[1.25rem] font-bold">{t('withdraw details')}</h3>
                 <div className="flex justify-between md:items-center text-gray-500 text-[14px] md:flex-row flex-col">
-                  <p>Total Coins</p>
-                  <p>{withdrawalAmt || 0} Coins</p>
+                  <p>{t('Total Coins')}</p>
+                  <p>{withdrawalAmt || 0} {t('coins')}</p>
                 </div>
                 <div className="flex justify-between md:items-center text-gray-500 text-[14px] md:flex-row flex-col">
-                  <p>Convenience Fee</p>
-                  <p>0 Coins</p>
+                  <p>{t('Convenience Fee')}</p>
+                  <p>0 {t('coins')}</p>
                 </div>
                 <div className="flex justify-between md:items-center font-bold text-[14px] md:flex-row flex-col">
-                  <p>Total Withdraw</p>
-                  <p>{withdrawalAmt || 0} Coins</p>
+                  <p>{t('Total Withdraw')}</p>
+                  <p>{withdrawalAmt || 0} {t('coins')}</p>
                 </div>
               </div>
 
@@ -195,7 +197,7 @@ export default function Withdraw() {
                       "gradientBg"
                     }`}
                   >
-                    Withdraw
+                    {t('withdraw')}
                   </button>
                 )}
               </div>

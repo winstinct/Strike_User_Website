@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetWithdrawRequestHistoryQuery } from "../../redux/features/lottery/lotteryApi";
 import WithdrawRequestHistorySkeleton from "./WithdrawRequestHistorySkeleton";
 import Select from "react-select";
+import { useTranslation } from "react-i18next";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -40,7 +41,7 @@ const customStyles = {
   container: (provided) => ({
     ...provided,
     width: "150px",
-    zIndex: "50",
+    zIndex: "40",
   }),
   control: (provided) => ({
     ...provided,
@@ -75,6 +76,7 @@ const customStyles = {
 };
 
 export default function WithdrawRequestsHistory() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   window.scrollTo({ top: 0, behavior: "smooth" });
   const [swiperInstance, setSwiperInstance] = useState(null);
@@ -107,13 +109,13 @@ export default function WithdrawRequestsHistory() {
           <Icon className="text-[2rem]" icon="lets-icons:arrow-left-long" />
         </div>
         <h3 className="md:text-[2rem] text-[1.25rem] font-semibold">
-          Withdraw Request History
+          {t('withdraw request history')}
         </h3>
       </div>
 
       {/* Filter  */}
       <div className="flex justify-between items-center flex-wrap mb-6">
-        <h3 className="md:text-[1.25rem] text-[2rem] font-bold">History</h3>
+        <h3 className="md:text-[1.25rem] text-[2rem] font-bold">{t('history')}</h3>
         {/* Filter Buttons  */}
         <div className="flex lg:flex-row flex-col items-center justify-end">
           <Select

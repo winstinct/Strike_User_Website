@@ -44,7 +44,7 @@ export default function ExpiredOffers() {
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
             {t("expired offers")}
           </h3>
-          <p>*Offers expired recently</p>
+          <p>*{t('offers expired recently')}</p>
         </div>
         <div className="flex gap-5 text-[2rem]">
           <button

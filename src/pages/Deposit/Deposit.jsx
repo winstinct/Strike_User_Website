@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import WalletCard from "../../shared/WalletCard/WalletCard";
 import { useConvertINRIntoUSDTMutation } from "../../redux/features/lottery/lotteryApi";
 import useTitle from "../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 export default function Deposit() {
+  const { t } = useTranslation();
   useTitle("Strike - Deposit")
   const navigate = useNavigate();
   const [amount, setAmount] = useState();
@@ -50,14 +52,14 @@ export default function Deposit() {
       <div className="mt-[1.2rem]">
         <Link to="/deposit-history">
           <button className="text-[#5500C3] text-[14px] font-bold text-center w-full">
-            Deposit History
+            {t('deposit history')}
           </button>
         </Link>
       </div>
 
       {/* Form  */}
       <div className="mt-[1.5rem]">
-        <h3 className="font-medium mb-[0.3rem]">Select Amount</h3>
+        <h3 className="font-medium mb-[0.3rem]">{t('Select Amount')}</h3>
         <div className="grid grid-cols-4 gap-5">
           <button
             disabled={isLoadingConversion}
@@ -100,7 +102,7 @@ export default function Deposit() {
           <div className="bg-gray-500 w-[15px] h-[15px] flex justify-center items-center rounded-full text-white">
             <Icon className="text-[2rem]" icon="bi:exclamation" />
           </div>
-          <span>{amount || "0"} Coins</span>
+          <span>{amount || "0"} {t('coins')}</span>
           <span>=</span>
           <div className="flex items-center gap-[2px]">
             <Icon className="text-[1.3rem]" icon="token-branded:usdt" />
@@ -113,13 +115,13 @@ export default function Deposit() {
 
       <div className="mt-[1.5rem]">
         <label className="font-medium block mb-[0.3rem]" htmlFor="customAmount">
-          Select Custom Amount
+          {t('Select Custom Amount')}
           <span className="text-red-500 ml-1 font-bold">*</span>
         </label>
         <input
           className="p-2 border-[1px] border-gray-300 rounded-md outline-none w-full"
           id="customAmount"
-          placeholder="Custom Amount"
+          placeholder={t('Custom Amount')}
           type="number"
           value={amount}
           onChange={handleChangeInput}
@@ -129,13 +131,13 @@ export default function Deposit() {
 
       {amount && amount >= 100 && (
         <div className="mt-[1.5rem]">
-          <h3 className="font-medium mb-[0.3rem]">Select Payment Method</h3>
+          <h3 className="font-medium mb-[0.3rem]">{t('Select Payment Method')}</h3>
           <div className="grid lg:grid-cols-2 gap-5 font-bold text-[1.5rem]">
             <button
               style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
               className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full"
             >
-              Crypto
+              {t('Crypto')}
             </button>
             <button
               onClick={handleNavigeToAgentPage}
@@ -143,7 +145,7 @@ export default function Deposit() {
               style={{ boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.25)" }}
               className="border-[1px] hover:text-[#5500C3] duration-300 border-gray-300 hover:border-[#5500C3] rounded-[20px] py-8 w-full"
             >
-              Agent
+              {t('Agent')}
             </button>
           </div>
         </div>

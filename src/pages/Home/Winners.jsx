@@ -43,7 +43,7 @@ export default function Winners() {
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
             {t("winners")}
           </h3>
-          <p>*Check winners of previous lotteries</p>
+          <p>*{t('check winners of previous lotteries')}</p>
         </div>
         <div className="flex gap-5 text-[2rem]">
           <button
@@ -111,7 +111,7 @@ export default function Winners() {
                   <div className="middle1"></div>
                   <div className="middle2"></div>
                   <div className="text-center space-y-[0.5rem]">
-                    <p className="font-bold">Congratulations</p>
+                    <p className="font-bold">{t('congratulations')}</p>
                     <h3 className="text-[1.25rem] font-bold">
                       {UserID?.FirstName ? (
                         <div>

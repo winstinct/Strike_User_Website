@@ -9,8 +9,10 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useBecomePublicAgentMutation } from "../../redux/features/lottery/lotteryApi";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export default function BankDetailsPublicAgent() {
+  const { t } = useTranslation();
   const { publicAgentBankDetails } = useSelector(
     (state) => state.publicAgentDetails
   );

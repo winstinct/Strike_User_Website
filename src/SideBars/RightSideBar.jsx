@@ -5,8 +5,10 @@ import walletImg from "../assets/wallet-illustration.svg";
 import { useAuth } from "../contexts/AuthContext";
 import WalletCard from "../shared/WalletCard/WalletCard";
 import RecentTransactions from "../shared/RecentTransactions/RecentTransactions";
+import { useTranslation } from "react-i18next";
 
 export default function RightSideBar() {
+  const { t } = useTranslation();
   const { currentUser } = useAuth();
   return (
     <div
@@ -20,19 +22,19 @@ export default function RightSideBar() {
           <div className="mt-[1rem] space-y-[1rem]">
             <Link to="/withdraw" className="block">
               <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">
-                Withdraw Coins
+                {t('withdraw coins')}
               </button>
             </Link>
             <Link to="/deposit" className="block mt-[0.5rem]">
               <button className="rounded-full py-2 cursor-pointer gradientBg text-white w-full">
-                Deposit
+              {t('deposit')}
               </button>
             </Link>
           </div>
 
           <Link to="/withdraw-requests-history">
             <button className="text-[#5500C3] text-[14px] font-bold text-center mt-[1rem] w-full">
-              Withdraw Request History
+            {t('withdraw request history')}
             </button>
           </Link>
 

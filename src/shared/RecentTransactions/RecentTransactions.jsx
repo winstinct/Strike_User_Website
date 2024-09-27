@@ -1,8 +1,10 @@
 import moment from "moment";
 import { useGetRecentTransactionsQuery } from "../../redux/features/lottery/lotteryApi";
 import RecentTransactionSkeleton from "./RecentTransactionSkeleton";
+import { useTranslation } from "react-i18next";
 
 export default function RecentTransactions() {
+  const { t } = useTranslation();
   const {
     data: recentTransactionsData,
     isLoading,
@@ -80,7 +82,7 @@ export default function RecentTransactions() {
   return (
     <>
       <h3 className="font-bold text-[1.1rem] my-[1.5rem]">
-        Recent Transactions
+        {t('recent transactions')}
       </h3>
       {content}
     </>
