@@ -1,7 +1,9 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./DepositLayout.css";
+import { useTranslation } from "react-i18next";
 export default function DepositLayout() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   window.scrollTo({ top: 0, behavior: "smooth" });
   return (
@@ -22,7 +24,7 @@ export default function DepositLayout() {
           className="block font-bold text-[1.25rem] italic py-3 rounded-[20px] w-full text-center"
           end
         >
-          Wallet
+          {t('wallet')}
         </NavLink>
 
         <NavLink
@@ -30,7 +32,7 @@ export default function DepositLayout() {
           to="deposit"
           end
         >
-          Deposit
+          {t('deposit')}
         </NavLink>
       </div>
 

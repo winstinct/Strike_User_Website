@@ -56,7 +56,7 @@ export default function SoldOutLotteries() {
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
             {t("sold out lottery")}
           </h3>
-          <p>*Sold Out lotteries can not be added to cart.</p>
+          <p>*{t('sold Out lotteries can not be added to cart')}.</p>
         </div>
         <div className="flex gap-5 text-[2rem]">
           <button

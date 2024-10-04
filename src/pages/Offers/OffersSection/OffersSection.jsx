@@ -48,7 +48,7 @@ export default function OffersSection() {
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
             {t("offers")}
           </h3>
-          <p>*Available offers</p>
+          <p>*{t('available offers')}</p>
         </div>
         <div className="flex gap-5 text-[2rem]">
           <button

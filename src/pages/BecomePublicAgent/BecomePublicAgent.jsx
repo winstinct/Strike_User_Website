@@ -25,15 +25,13 @@ export default function BecomePublicAgent() {
         <div className="flex items-center gap-2">
           <p className="w-[6px] h-[6px] bg-black rounded-full"></p>
           <p>
-            Fill out the form below if not already filled and raise a request to
-            become an agent.
+            {t('become agent bullet one')}.
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mt-4">
           <p className="w-[6px] h-[6px] bg-black rounded-full"></p>
           <p>
-            After submission just wait for the approval of your request and then
-            move forward.
+          {t('become agent bullet two')}..
           </p>
         </div>
       </div>

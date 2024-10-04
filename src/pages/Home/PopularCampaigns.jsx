@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import Countdown from "react-countdown";
 import PublicLotterySkeleton from "./PublicLotterySkeleton";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const swiperConfig = {
   slidesPerView: 1,
@@ -25,6 +26,7 @@ const swiperConfig = {
 };
 
 export default function PopularCampaigns() {
+  const { t } = useTranslation();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isEnd, setIsEnd] = useState(null);
   const [isBeginning, setIsBeginning] = useState(null);
@@ -82,9 +84,9 @@ export default function PopularCampaigns() {
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[2rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
-            Private Lottery
+            {t('private lottery')}
           </h3>
-          <p>*Private lotteries are visible to only invited persons</p>
+          <p>*{t('private lotteries are visible to only invited persons')}</p>
         </div>
         <div className="flex gap-5 text-[2rem]">
           <button

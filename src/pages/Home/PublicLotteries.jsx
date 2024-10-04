@@ -123,7 +123,7 @@ export default function PublicLotteries() {
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold italic">
             {t("public lottery")}
           </h3>
-          <p>*Public lotteries are visible to all persons</p>
+          <p>*{t('public lotteries are visible to all persons')}</p>
         </div>
         <div className="flex gap-5 text-[2rem]">
           <button
