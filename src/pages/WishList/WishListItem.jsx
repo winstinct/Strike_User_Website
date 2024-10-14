@@ -43,7 +43,7 @@ export default function WishListItem({ lottery }) {
           <img
             className="xl:h-full w-full h-[200px] rounded-3xl"
             src={lottaryImage}
-            alt="Lottery Image"
+            alt="Gift Card Image"
           />
           <div className="flex flex-col justify-between space-y-[0.8rem]">
             <div className="space-y-[0.8rem]">

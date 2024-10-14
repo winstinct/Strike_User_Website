@@ -116,7 +116,7 @@ export default function PublicLottery() {
               <SwiperSlide key={_id}>
                 <div>
                   <div className="bg-[#A967FF] p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-[#A967FF]">
-                    <h3 className="mb-3">Public Lottery</h3>
+                    <h3 className="mb-3">Public Gift Card</h3>
                   </div>
   
                   <div className="flex justify-center public-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-[#A967FF] rounded-2xl bg-white relative min-h-[200px]">

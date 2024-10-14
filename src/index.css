@@ -146,7 +146,7 @@ div button.peer ::after,
   /* background-color: transparent; */
 }
 
-/* Lottery shape styles  */
+/* Gift Card shape styles  */
 .middle1 {
   position: absolute;
   left: -5px;
@@ -173,7 +173,7 @@ div button.peer ::after,
   border-right: 4px solid #fff;
 }
 
-/* Private Lottery Styles  */
+/* Private Gift Card Styles  */
 .private-lotter .middle1 {
   position: absolute;
   left: -5px;

@@ -40,7 +40,7 @@ export default function PrivateLottery() {
       <header className="flex md:flex-row flex-col md:gap-1 gap-3 md:items-center justify-between mb-[1rem]">
         <div>
           <h3 className="md:text-[2.5rem] text-[2rem] font-bold">
-          {t("public lottery")}
+          {t("private lottery")}
           </h3>
         </div>
         <div className="flex gap-5 text-[2rem]">
@@ -108,7 +108,7 @@ export default function PrivateLottery() {
                   <SwiperSlide key={_id}>
                     <div>
                       <div className="bg-red-500 p-2 rounded-t-2xl relative bottom-[-1rem] text-center text-white font-bold text-[1.25rem] border-[4px] border-red-500">
-                        <h3 className="mb-3 italic">Private Lottery</h3>
+                        <h3 className="mb-3 italic">Private Gift Card</h3>
                       </div>
 
                       <div className="flex justify-center private-lotter items-center py-[1.5rem] px-[1rem] border-[4px] border-red-500 rounded-2xl bg-white relative min-h-[200px]">

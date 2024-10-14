@@ -57,7 +57,7 @@ export default function CartItem({ item }) {
         <img
           className="rounded-[10px] h-full"
           src={lotteryId?.lottaryImage}
-          alt="Lottery Image"
+          alt="Gift Card Image"
         />
         <div className="space-y-[1rem]">
           <h3 className="font-semibold">
