@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.strikexgaming",
+      "sha256_cert_fingerprints": [
+        "1A:EC:45:B9:6F:EF:3E:E4:06:81:63:3F:A1:74:8B:B2:27:A0:82:94:71:AD:95:41:26:C0:D0:2B:7E:B3:F1:3E"
+      ]
+    }
+  }
+]

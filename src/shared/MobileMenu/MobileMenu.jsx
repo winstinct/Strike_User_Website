@@ -180,7 +180,7 @@ export default function MobileMenu() {
                       strokeLinecap="round"
                     />
                   </svg>
-                  <p>Be Private Lottery Agent</p>
+                  <p>Be Private Gift Card Agent</p>
           </NavLink>
         </li> */}
         <li>

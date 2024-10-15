@@ -14,7 +14,7 @@ export const TermsAndConditions = () => {
           1. Account Registration:
         </h2>
         {/* <h2 className="text-xl font-semibold mt-6 mb-2">
-          2. Lottery Purchases
+          2. Gift Card Purchases
         </h2> */}
         <p className="mb-4">
           1.1. You must be at least 13 years old to create an account with

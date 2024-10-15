@@ -4,7 +4,7 @@ import { setActiveStyle } from "../../utils/setActiveStyle";
 import useTitle from "../../hooks/useTitle";
 
 export default function LotteryGames() {
-  useTitle("Strike - Lottery Games")
+  useTitle("Strike - Gift Card Games")
   const navigate = useNavigate();
   window.scrollTo({ top: 0 });
   return (
@@ -13,7 +13,7 @@ export default function LotteryGames() {
         <div onClick={() => navigate(-1)} className="backBtn">
           <Icon className="text-[2.5rem]" icon="lets-icons:arrow-left-long" />
         </div>
-        <h3 className="text-[1.5rem] font-bold italic">Lottery Games</h3>
+        <h3 className="text-[1.5rem] font-bold italic">Gift Card Games</h3>
       </div>
 
       {/* filter buttons  */}
@@ -24,7 +24,7 @@ export default function LotteryGames() {
           to=""
           end
         >
-          <div>Public Lottery</div>
+          <div>Public Gift Card</div>
         </NavLink>
 
         <NavLink
@@ -33,7 +33,7 @@ export default function LotteryGames() {
           to="private-lotteries"
           end
         >
-          <div>Private Lottery</div>
+          <div>Private Gift Card</div>
         </NavLink>
 
         <NavLink

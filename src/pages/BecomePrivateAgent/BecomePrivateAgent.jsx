@@ -6,7 +6,7 @@ export default function BecomePrivateAgent() {
   return (
     <main>
       <h3 className="text-[2rem] font-bold italic">
-        Become a Private Lottery Agent{" "}
+        Become a Private Gift Card Agent{" "}
       </h3>
       <div>
         <div className="flex items-center gap-2">

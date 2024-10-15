@@ -91,7 +91,7 @@ export default function ReferralItem({ item }) {
               />
             </svg>
           )}
-          <p>Lottery Purchase</p>
+          <p>Gift Card Purchase</p>
         </div>
         <p>10 coins</p>
       </div>

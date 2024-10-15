@@ -47,7 +47,7 @@ export function AccordionCustomIcon() {
           } pb-2 faq text-white hover:text-white text-[1rem]`}
           onClick={() => handleOpen(1)}
         >
-          Eligible Lottery
+          Eligible Gift Card
         </AccordionHeader>
         <AccordionBody className="border-b border-[#a967ff5b]">
           <div className="grid grid-cols-3 gap-3 font-semibold">
